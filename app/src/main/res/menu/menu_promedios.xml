@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".reportes.Historial">
+    <item
+        android:id="@+id/empty"
+        android:title="Ordenar"
+        android:orderInCategory="101"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_sort"
+        >
+        <menu>
+            <item android:id="@+id/setting_trans"
+                app:showAsAction="ifRoom"
+                android:title="N. Transacción" />
+            <item android:id="@+id/setting_fe"
+                app:showAsAction="ifRoom"
+                android:title="F. Emisión" />
+            <item android:id="@+id/setting_fv"
+                app:showAsAction="ifRoom"
+                android:title="F. Vencimiento" />
+            <item android:id="@+id/setting_fp"
+                app:showAsAction="ifRoom"
+                android:title="F. Pago" />
+        </menu>
+    </item>
+</menu>

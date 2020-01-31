@@ -1,0 +1,42 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <header
+        android:fragment="ibzssoft.com.ishidamovile.Configuraciones$GeneralPreferenceFragment"
+        android:icon="@drawable/ic_info_black_24dp"
+        android:title="@string/pref_header_general" />
+
+    <header
+        android:fragment="ibzssoft.com.ishidamovile.Configuraciones$NotificationPreferenceFragment"
+        android:icon="@drawable/ic_mp"
+        android:title="@string/pref_header_menu" />
+
+
+    <header
+        android:fragment="ibzssoft.com.ishidamovile.Configuraciones$TransaccionesPreferenceFragment"
+        android:icon="@drawable/ic_binder"
+        android:title="@string/pref_header_transacciones" />
+
+    <header
+        android:fragment="ibzssoft.com.ishidamovile.Configuraciones$EtiquetasPreferenceFragment"
+        android:icon="@drawable/ic_tag"
+        android:title="@string/pref_header_etiquetas" />
+
+    <header
+        android:fragment="ibzssoft.com.ishidamovile.Configuraciones$SesionPreferenceFragment"
+        android:icon="@drawable/ic_user_folder"
+        android:title="@string/pref_header_usuarios" />
+
+    <header
+        android:fragment="ibzssoft.com.ishidamovile.Configuraciones$WSPreferenceFragment"
+        android:icon="@drawable/ic_cloud"
+        android:title="@string/pref_header_servicios" />
+
+    <header
+        android:fragment="ibzssoft.com.ishidamovile.Configuraciones$ConexionPreferenceFragment"
+        android:icon="@drawable/ic_sync_black_24dp"
+        android:title="@string/pref_header_conexion" />
+    <header
+        android:fragment="ibzssoft.com.ishidamovile.Configuraciones$DecimalesFragment"
+        android:icon="@drawable/ic_info_black_24dp"
+        android:title="@string/pref_header_decimales" />
+</preference-headers>

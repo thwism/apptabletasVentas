@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#222</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="textColorPrimary">#212121</color>
+    <color name="textColorSecondary">#727272</color>
+    <color name="lightColorPrimary">#F8BBD0</color>
+    <color name="dividerColor">#B6B6B6</color>
+    <color name="textColor">#FFFFFF</color>
+    <color name="iconsColor">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="updateCatalog">#1565C0</color>
+    <color name="colorInfo">#90CAF9</color>
+    <color name="colorCheque">#2962FF</color>
+    <color name="successfull">#009688</color>
+    <color name="fab_add">#64B5F6</color>
+    <color name="fab_edit">#BA68C8</color>
+    <color name="fab_del">#E57373</color>
+    <color name="fab_save">#4DB6AC</color>
+    <color name="fab_show">#FFD54F</color>
+    <color name="color_danger">#F44336</color>
+    <color name="color_cobro">#FFECB3</color>
+    <!-- Screens background color-->
+    <color name="bg_screen1">#f64c73</color>
+    <color name="bg_screen2">#20d2bb</color>
+    <color name="bg_screen3">#3395ff</color>
+    <color name="bg_screen4">#c873f4</color>
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#d1395c</color>
+    <color name="dot_dark_screen2">#14a895</color>
+    <color name="dot_dark_screen3">#2278d4</color>
+    <color name="dot_dark_screen4">#a854d4</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#f98da5</color>
+    <color name="dot_light_screen2">#8cf9eb</color>
+    <color name="dot_light_screen3">#93c6fd</color>
+    <color name="dot_light_screen4">#e4b5fc</color>
+
+    <array name="array_dot_active">
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen2</item>
+        <item>@color/dot_light_screen3</item>
+        <item>@color/dot_light_screen4</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen2</item>
+        <item>@color/dot_dark_screen3</item>
+        <item>@color/dot_dark_screen4</item>
+    </array>
+
+
+    <color name="textIconColorPrimary">#FFFFFF</color>
+
+    <color name="colorAccentLight">#F8BBD0</color>
+    <color name="colorAccent">#ee1f65</color>
+    <color name="colorAccentDark">#c2185b</color>
+
+    <color name="facebook_bg">#3b5998</color>
+    <color name="facebook_bg_pressed">#2a406e</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent">#bd000000</color>
+    <color name="black_transparent_70percent">#B3000000</color>
+    <color name="semi_light_transparent">#5a000000</color>
+    <color name="semi_lighter_transparent">#2d000000</color>
+
+    <color name="colorPrimaryLight">#b4b4b4</color>
+    <color name="navigationBarColor">#29b6f6</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="textPrimary">#212121</color>
+
+    <color name="background_grey">#f2f2f2</color>
+    <color name="line_lighter_grey">#dedede</color>
+    <color name="line_light_grey">#d7a7a7a7</color>
+    <color name="item_grey">#eeeeee</color>
+    <color name="grey_lighter">#bcbcbc</color>
+    <color name="grey">#d7666666</color>
+
+    <color name="viewBg">#f1f5f8</color>
+    <color name="album_title">#4c4c4c</color>
+</resources>
+

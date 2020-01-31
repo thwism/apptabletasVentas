@@ -1,0 +1,34 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Catalogo_Clientes">
+    <item android:id="@+id/action_search"
+        android:title="Buscar Clientes"
+        android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
+
+    <item
+        android:id="@+id/empty"
+        android:title="Opciones"
+        android:orderInCategory="101"
+        app:showAsAction="always"
+        android:icon="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha">
+
+        <menu>
+
+            <item android:id="@+id/setting_all"
+                app:showAsAction="ifRoom"
+                android:title="Todos" />
+
+            <item android:id="@+id/setting_cartera"
+                app:showAsAction="ifRoom"
+                android:title="Clientes con Cartera" />
+            <item android:id="@+id/setting_descuento"
+                app:showAsAction="ifRoom"
+                android:title="Clientes con Descuento" />
+
+        </menu>
+
+    </item>
+</menu>

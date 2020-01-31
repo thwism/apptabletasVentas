@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ibzssoft.com.ishidamovile">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- To auto-complete the email text field in the login formnuevaofer with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:largeHeap="true">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".CargandoDatos"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Splash"
+            android:label="@string/title_activity_splash" />
+        <activity
+            android:name=".MainActivity"
+            android:supportsRtl="true" />
+        <activity
+            android:name=".Login"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ImportacionInicial"
+            android:label="@string/tittle_import_ini" />
+        <activity
+            android:name=".SeleccionarEmpresa"
+            android:label="@string/tittle_seleccionar_empresa" />
+        <activity
+            android:name=".Permisos"
+            android:label="@string/title_activity_permisos"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Configurar_GNTrans"
+            android:label="@string/title_activity_configurar__gntrans"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Cliente_Detalle"
+            android:label="@string/title_activity_cliente__detalle"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Producto_Detalle"
+            android:label="@string/title_activity_producto__detalle"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Catalogo_Vendedores"
+            android:label="@string/title_activity_catalogo__vendedores"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Vendedor_Detalle"
+            android:label="@string/title_activity_vendedor__detalle"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Transaccion_IT_Detalle"
+            android:label="@string/title_activity_transaccion__it__detalle"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".visita.visualizar.VisitaDetalle"
+            android:label="@string/title_activity_transaccion_vst_detalle"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".transbodega.visualizar.TransferenciaDetalle"
+            android:label="@string/title_activity_transaccion__trf__detalle"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ipt.visualizar.IngresoProductoTermiandoDetalle"
+            android:label="@string/title_activity_transaccion__ipt__detalle"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ReporteExistencia"
+            android:label="@string/title_activity_existencia"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".reportes.EstadoCuenta"
+            android:label="@string/tittle_estado_cuenta"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".FacturaDetalle"
+            android:label="@string/title_activity_factura_detalle"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".reportes.Historial"
+            android:label="Historial de Compras"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Catalogo_Descuentos"
+            android:label="Catalogo de Descuentos"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".reportes.DescuentosCliente"
+            android:label="@string/title_activity_descuentos_cliente"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".reportes.ItemsPendientes"
+            android:label="@string/title_activity_items_pendientes"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ReporteChequesPostfechados"
+            android:label="@string/title_activity_reporte_cheques" />
+        <activity
+            android:name=".ReportePromedios"
+            android:label="@string/title_activity_promedio_cobros"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Localizacion_Cliente"
+            android:label="@string/title_activity_localizacion__cliente"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".NuevaVisita"
+            android:label="@string/title_activity_nueva_visita"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Configuraciones"
+            android:label="@string/title_activity_configuraciones" />
+        <activity
+            android:name=".pedido.crear.NuevoPedido"
+            android:label="@string/title_activity_nuevo_pedido"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".pedido.crear.NuevoPedidoJM"
+            android:label="@string/title_activity_nuevo_pedido_jm"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".pedido.modificar.ModificaPedido"
+            android:label="@string/title_activity_modifica_pedido"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".pedido.modificar.ModificaPedidoJM"
+            android:label="@string/title_activity_modifica_pedido_jm"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".transbodega.modificar.ModificaTransferencia"
+            android:label="@string/title_activity_modifica_transferencia"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ipt.modificar.ModificaIngresoProductoTerminado"
+            android:label="@string/title_activity_modifica_ipt"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".transbodega.crear.NuevaTransferencia"
+            android:label="@string/title_activity_nueva_transferencia"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ipt.crear.NuevoIngresoProductoTerminado"
+            android:label="@string/title_activity_nueva_ipt"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".oferta.crear.NuevaOfertaG"
+            android:label="@string/title_activity_nueva_oferta"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".oferta.crear.NuevaOfertaM"
+            android:label="@string/title_activity_nueva_oferta"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".oferta.crear.NuevaOfertaJM"
+            android:label="@string/title_activity_nueva_oferta_jm"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".oferta.modificar.ModificaOfertaG"
+            android:label="@string/title_activity_modifica_oferta"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".oferta.modificar.ModificaOfertaM"
+            android:label="@string/title_activity_modifica_oferta"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".oferta.modificar.ModificaOfertaJM"
+            android:label="@string/title_activity_modifica_oferta_jm"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".pedido.visualizar.PedidoDetalle"
+            android:label="@string/title_activity_pedido_detalle"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".oferta.visualizar.OfertaDetalleG"
+            android:label="@string/title_activity_oferta_detalle"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".oferta.visualizar.OfertaDetalleM"
+            android:label="@string/title_activity_oferta_detalle"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".cobro.crear.Cobro"
+            android:label="@string/title_activity_cobro"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".cobro.crear.CobroY"
+            android:label="@string/title_activity_cobro"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".visita.crear.VisitaY"
+            android:label="@string/title_activity_nueva_visita"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Bienvenida"
+            android:label="@string/title_activity_bienvenida"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".VisitaDetalle"
+            android:label="@string/title_activity_visita_detalle"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".reportes.CierreVentas"
+            android:label="@string/title_activity_cierre_ventas"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".reportes.Balance"
+            android:label="@string/title_activity_balance_general"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".AprobacionOferta"
+            android:label="@string/title_activity_aprobacion_oferta"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".barcode.LectorCodigoBarras"
+            android:label="@string/title_activity_lector_codigo_barras"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ShoppingCar"
+            android:label="@string/title_activity_shopping_car"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+    </application>
+
+</manifest>

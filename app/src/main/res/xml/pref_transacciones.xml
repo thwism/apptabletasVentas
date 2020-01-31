@@ -1,0 +1,252 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Opciones Generales">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/key_act_obs"
+        android:title="Observaciones"
+        android:summary="Habilitar observaciones en todas las transacciones"/>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_act_validar_duplicidad"
+            android:title="Validar duplicidad de items ingresados"
+            android:summary="Bloquear ingreso de items si el mismo ya se encuentra ingresado"/>
+
+        <ListPreference
+            android:defaultValue="@string/pref_act_num_pcg_default"
+            android:entries="@array/pref_precios_list_tittles"
+            android:entryValues="@array/pref_precios_list_values"
+            android:key="@string/key_act_num_pcg"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:summary="Grupo para manejar precios"
+            android:title="Precios por grupo" />
+
+
+        <ListPreference
+            android:defaultValue="@string/pref_act_num_lin_default"
+            android:entries="@array/pref_lineas_list_tittles"
+            android:entryValues="@array/pref_lineas_list_values"
+            android:key="@string/key_act_num_lin"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:summary="Grupo para manejar lineas"
+            android:title="Lineas por producto" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Cobros">
+
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="MPT-II"
+            android:inputType="textCapWords"
+            android:key="@string/key_nombre_impresora"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Impresora"
+            android:summary="Configure una impresora"/>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_conf_supr_trans"
+            android:title="Permitir eliminar cobros no enviados"
+            android:summary="Eliminar los cobros  no enviados desde el catálogo de transacciones"/>
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/pref_cartera_list_tittles"
+            android:entryValues="@array/pref_cartera_list_values"
+            android:key="@string/key_conf_descarga_cartera"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="Descargar cartera por" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/pref_clientes_list_tittles"
+            android:entryValues="@array/pref_clientes_list_values"
+            android:key="@string/key_conf_descarga_clientes"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="Descargar clientes por" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_conf_calcula_interes"
+            android:title="Calcular Interes"
+            android:summary="Permitir el cálculo de intereses en el cobro"/>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_conf_orden_cronologico"
+            android:title="Cobrar en orden cronológico"
+            android:summary="Cobrar facturas en orden cronológico"/>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_conf_kardex_transaccion"
+            android:title="Descargar Kardex por Transacción"
+            android:summary="Descargar el Kardex del Cliente al sincronizar"/>
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/key_conf_impresion_obligatoria"
+            android:title="Impresión Obligatoria en Cobro"
+            android:summary="Imprimir Obligatoriamente al realizar cobro"/>
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/pref_transacciones_send_list_tittles"
+            android:entryValues="@array/pref_transacciones_send_list_values"
+            android:key="@string/key_conf_tipo_envio_cobro"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="Forma de envio" />
+
+
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Carrito de Compras">
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/list_carrito_categorias"
+            android:entryValues="@array/list_carrito_categorias_default"
+            android:key="@string/key_conf_carrito_categorias"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="Categoria por defecto"
+            android:summary="Categoria por defecto para la carga de productos"/>
+
+
+        <ListPreference
+            android:defaultValue="4"
+            android:entries="@array/list_carrito_columns_labels"
+            android:entryValues="@array/list_carrito_columns"
+            android:key="@string/key_conf_column_shop"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="Columnas en catálogo de items"
+            android:summary="Número de columnas a visualizar en el listado de items"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Catálogo de Items">
+        <MultiSelectListPreference
+            android:key="@string/key_act_show_list_price"
+            android:entries="@array/list"
+            android:entryValues="@array/list_precios_default"
+            android:defaultValue="@array/list_precios_default"
+            android:summary="Precios a visualizar en el detalle del item"
+            android:title="Precios Visibles">
+        </MultiSelectListPreference>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_act_show_image_items"
+            android:title="Mostrar catálogo de Items con Imágenes" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_conf_filtrar_items_familia"
+            android:title="Filtrar x familias"
+            android:summary="Filtrar por familias al inicio"/>
+        <Preference
+            android:title="Exportar Imagenes de Items a Sii4A"
+            android:key="conf_export_img"
+            android:summary="Exportar imágenes desde la galería o cámara a Sii4A">
+        </Preference>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Catálogo de Clientes">
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/list_opciones_catalogo_clientes"
+            android:entryValues="@array/list_valores_catalogo_clientes"
+            android:key="@string/key_conf_catalogo_clientes"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="Lista de Clientes a mostrar"
+            android:summary="Listado por defecto en catálogo de clientes"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_title_otros">
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/list"
+            android:entryValues="@array/list_precios_default"
+            android:key="@string/key_act_list_price"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:summary="Listado de precios a utilizar en la transacción"
+            android:title="Precio por defecto en transacciones" />
+        <ListPreference
+            android:defaultValue="@string/pref_orden_default_cat_trans"
+            android:entries="@array/pref_order_cat_trans"
+            android:entryValues="@array/pref_order_cat_trans_values"
+            android:key="@string/key_conf_orden_cat_trans"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="Ordenar Transacciones por" />
+
+        <ListPreference
+            android:defaultValue="@string/pref_orden_comodin_cat_trans_default"
+            android:entries="@array/pref_order_cat_trans_comodin"
+            android:entryValues="@array/pref_order_cat_trans_comodin_values"
+            android:key="@string/key_conf_orden_cat_trans_comodin"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="Tipo de orden" />
+
+        <Preference
+            android:title="Configuración de Transacciones"
+            android:key="conf_transacciones"
+            android:summary="Transacciones disponibles por grupo">
+        </Preference>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_conf_import_trans"
+            android:title="Importar Transacciones desde Sii4A"
+            android:summary="Importar Transacciones para aprobación desde Sii4A"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Variables del sistema">
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="0"
+        android:inputType="textCapWords"
+        android:key="@string/key_conf_aplica_calculo_mensual"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Aplica cálculo mensual"
+        android:summary="Aplica cálculo de intereses mensualmente"/>
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="0"
+            android:inputType="textCapWords"
+            android:key="@string/key_conf_tasa_mora"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Tasa Mora"
+            android:summary="Tasa para el cálculo de interes por mora"/>
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="0"
+            android:inputType="textCapWords"
+            android:key="@string/key_conf_dias_gracia_mora"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Días de gracia"
+            android:summary="Días de gracia"/>
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue=""
+        android:inputType="textCapWords"
+        android:key="@string/key_conf_ishida_movil"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Ishida Movil"
+        android:summary="Configuración Sii4A :: Ishida Movil"/>
+</PreferenceCategory>
+</PreferenceScreen>

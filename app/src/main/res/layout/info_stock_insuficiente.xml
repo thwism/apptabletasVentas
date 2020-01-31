@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:id="@+id/custom_toast_layout_id1"
+    android:orientation="horizontal" android:padding="10dp"
+    android:layout_height="wrap_content" android:background="#F8BBD0">
+    <LinearLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="20dp"
+
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/filaExistenciaIcon"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_warning"
+            />
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="wrap_content"
+        android:id="@+id/linearLayout1" android:orientation="vertical"
+        android:layout_height="wrap_content" android:paddingLeft="15dp">
+
+
+        <TextView android:layout_height="wrap_content" android:id="@+id/toast_stock"
+            android:paddingTop="10dp"
+            android:layout_width="wrap_content" android:textColor="#E2574C" android:textAllCaps="true"
+            android:text="Stock Infuciciente"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLargeInverse"/>
+        <TextView android:id="@+id/toast_bodega"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#E2574C"
+            android:textStyle="normal"
+            android:text="No existe suficiente producto en bodega"
+            android:textAppearance="?android:attr/textAppearanceMedium">
+
+        </TextView>
+    </LinearLayout>
+
+</LinearLayout>

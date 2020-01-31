@@ -1,0 +1,442 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_ws_test"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_test"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_titulo_servicio_test"/>
+
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_ws_provincias"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_provincias"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_titulo_servicio_provincia"/>
+
+    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+         dismiss it. -->
+    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_ws_cantones"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_cantones"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_titulo_servicio_canton" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_ws_parroquias"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_parroquias"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_titulo_servicio_parroquia" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_ws_bodegas"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_bodegas"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_titulo_servicio_bodegas" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_ws_bancos"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_bancos"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_titulo_servicio_bancos" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_ws_formas_cobro"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_formas"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_titulo_servicio_formas" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_ws_gnopcion"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_gnopcion"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_titulo_servicio_gnopcion" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_ws_empresas"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_empresas"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_titulo_servicio_empresas" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_ws_gntrans"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_gntrans"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_titulo_servicio_gntrans" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_ws_grupos"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_grupos"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_titulo_servicio_grupos" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_permisos"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_permisos"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_permisos" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_perxtran"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_perxtran"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_permisos_trans" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_usuarios"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_usuarios"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_usuarios" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_vendedores"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_vendedores"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_vendedores" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_cartera_vendedor"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_cartera_vendedor"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_cartera_vendedor" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_cartera_ruta"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_cartera_ruta"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_cartera_ruta" />
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_cartera_cobrador"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_cartera_cobrador"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_cartera_cobrador" />
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_cheques"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_cheques"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_cheques" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_pcg1"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_pcg1"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_pcg1" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_pcg2"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_pcg2"
+        android:maxLines="2"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_pcg2" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_pcg3"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_pcg3"
+        android:maxLines="3"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_pcg3" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_pcg4"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_pcg4"
+        android:maxLines="4"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_pcg4" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_clientes_vendedor"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_clientes_vendedor"
+        android:maxLines="4"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_clientes_vendedor" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_clientes_cobrador"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_clientes_cobrador"
+        android:maxLines="4"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_clientes_cobrador" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_clientes_all"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_clientes_all"
+        android:maxLines="4"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_clientes_all" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_descuentos"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_descuentos"
+        android:maxLines="4"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_descuentos" />
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_existencias"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_existencias"
+        android:maxLines="4"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_existencias" />
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_facturas"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_facturas"
+        android:maxLines="4"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_facturas" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_items_pendientes"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_items_pendientes"
+        android:maxLines="4"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_items_pendientes" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_ivg1"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_ivg1"
+        android:maxLines="4"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_ivg1" />
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_ivg2"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_ivg2"
+        android:maxLines="4"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_ivg2" />
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_ivg3"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_ivg3"
+        android:maxLines="4"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_ivg3" />
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_ivg4"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_ivg4"
+        android:maxLines="4"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_ivg4" />
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_ivg5"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_ivg5"
+        android:maxLines="5"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_ivg5" />
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_ivg6"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_ivg6"
+        android:maxLines="6"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_ivg6" />
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_productos"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_productos"
+        android:maxLines="6"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_productos" />
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_promociones"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_promociones"
+        android:maxLines="6"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_promociones" />
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="@string/pref_titulo_servicio_transacciones"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_transacciones"
+        android:maxLines="6"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_transacciones" />
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="Cierre de Ventas Diario"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_cierreventas"
+        android:maxLines="6"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_cierreventas" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="Balance"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_balance"
+        android:maxLines="6"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_balance" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="Visitas"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_visitas"
+        android:maxLines="6"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_visita" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="Imagenes"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_imagenes"
+        android:maxLines="6"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_imagenes" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="Subir Imagenes"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_upload_image"
+        android:maxLines="6"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_upload_image" />
+    <EditTextPreference
+        android:capitalize="words"
+        android:title="Ubicacion GPS"
+        android:inputType="textCapWords"
+        android:key="@string/key_ws_ubicacion_gps"
+        android:maxLines="6"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:defaultValue="@string/pref_ws_ubicacion_gps" />
+</PreferenceScreen>

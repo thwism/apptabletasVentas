@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context="ibzssoft.com.ishidamovile.Splash"
+    tools:showIn="@layout/activity_splash"
+    android:background="@color/windowBackground"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin">
+
+
+    <ImageView
+        android:id="@+id/imgSplash"
+        android:layout_width="match_parent"
+        android:layout_height="164dp"
+        android:src="@drawable/icon_app"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/imgSplash"
+    android:id="@+id/contentSplash"
+    android:gravity="center">
+    <ProgressBar
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:id="@+id/splashProgress"/>
+
+</LinearLayout>
+
+    <TextView
+        android:id="@+id/loading"
+        android:layout_below="@id/contentSplash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cargando ..."
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:gravity="center" />
+
+</RelativeLayout>

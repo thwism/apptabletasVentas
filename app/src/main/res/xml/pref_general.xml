@@ -1,0 +1,110 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:icon="@drawable/ic_sync_black_24dp"
+        android:title="@string/pref_header_general">
+
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_codigo_empresa_default"
+            android:inputType="textCapWords"
+            android:key="@string/key_empresa_codigo"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Código"/>
+
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_codigo_empresa_default"
+            android:inputType="textCapWords"
+            android:key="@string/key_empresa_base"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Base de Datos"/>
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_nombre_empresa_default"
+        android:inputType="textCapWords"
+        android:key="@string/key_empresa_nombre"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_nombre_empresa"/>
+
+    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+         dismiss it. -->
+    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_telefono_empresa_default"
+        android:inputType="textCapWords"
+        android:key="@string/key_empresa_telefono"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_telefono_empresa" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_direccion_empresa_default"
+        android:inputType="textCapWords"
+        android:key="@string/key_empresa_direccion"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_direccion_empresa" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_logo_empresa_default"
+        android:inputType="textCapWords"
+        android:key="@string/key_empresa_logo"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_logo_empresa" />
+
+    <ListPreference
+        android:defaultValue="12"
+        android:entries="@array/pref_iva_list_tittles"
+        android:entryValues="@array/pref_iva_list_values"
+        android:key="@string/key_empresa_iva"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="Porcentaje IVA" />
+
+        <ListPreference
+            android:defaultValue="2"
+            android:entries="@array/pref_decimales_list_tittles"
+            android:entryValues="@array/pref_decimales_list_values"
+            android:key="@string/key_empresa_decimales"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="Decimales" />
+        <Preference
+            android:title="Buscar Logotipo"
+            android:key="conf_logotipo"
+            android:summary="Seleccione una imagen desde la galeria">
+        </Preference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Info App">
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_nro_compilacion_default"
+            android:inputType="numberDecimal"
+            android:key="@string/key_empresa_nro_compilacion"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Ult. Actualización"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Almacenamiento">
+        <Preference
+            android:title="Actualizar BD"
+            android:key="conf_storage"
+            android:summary="Alterar tablas y campos de la base de datos">
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>

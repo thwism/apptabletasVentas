@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="ibzssoft.com.ishidamovile.Configurar_GNTrans"
+    tools:showIn="@layout/activity_configurar__gntrans">
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_weight="1">
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:dividerPadding="10dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1">
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dip">
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:background="@drawable/header_fields"
+                            android:gravity="center"
+                            android:text="Cod. Trans"
+                            android:layout_weight="1" />
+                        <EditText
+                            android:id="@+id/conf_trans_codigo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:enabled="false"
+                            android:focusable="false"
+                            style="@style/login_edit_text"
+                            android:layout_weight="4"
+                            android:hint="@string/hint_codigo_transaccion"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:background="@drawable/text_field"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:padding="5dip"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/header_fields"
+                            android:gravity="center"
+                            android:text="Nom. Trans"
+                            android:layout_weight="1" />
+                        <EditText
+                            android:id="@+id/conf_trans_nombre"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="4"
+                            android:layout_height="40dp"
+                            style="@style/login_edit_text"
+                            android:hint="@string/hint_nombre_transaccion"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:background="@drawable/text_field"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:padding="5dip"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/header_fields"
+                            android:gravity="center"
+                            android:text="Descripcion"
+                            android:layout_weight="1" />
+                        <EditText
+                            android:id="@+id/conf_trans_desc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            style="@style/login_edit_text"
+                            android:layout_weight="4"
+                            android:hint="@string/hint_desc_transaccion"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:background="@drawable/text_field"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:padding="5dip"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/header_fields"
+                            android:gravity="center"
+                            android:text="Num. Filas"
+                            android:layout_weight="1" />
+                        <EditText
+                            android:id="@+id/conf_trans_limite"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            style="@style/login_edit_text"
+                            android:layout_weight="4"
+                            android:hint="@string/hint_num_filas"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:background="@drawable/text_field"/>
+                    </TableRow>
+
+
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:padding="5dip"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textStyle="bold"
+                            android:textAllCaps="true"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:gravity="center"
+                            android:text="Opciones "
+                            android:layout_weight="1" />
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:padding="5dip"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/header_fields"    android:gravity="center"
+                            android:text="Precio PCG"
+                            android:layout_weight="1" />
+                        <CheckBox
+                            android:id="@+id/conf__trans_precio_pcg"
+                            android:layout_weight="4"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:padding="5dip"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/header_fields"
+                            android:gravity="center"
+                            android:text="Bodega"
+                            android:layout_weight="1" />
+                        <EditText
+                            android:id="@+id/conf_trans_bodega"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            style="@style/login_edit_text"
+                            android:layout_weight="4"
+                            android:hint="@string/hint_bodega"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:background="@drawable/text_field"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:padding="5dip"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/header_fields"
+                            android:gravity="center"
+                            android:text="Precio"
+                            android:layout_weight="1" />
+                        <EditText
+                            android:id="@+id/conf_trans_precio_pre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            style="@style/login_edit_text"
+                            android:layout_weight="4"
+                            android:hint="@string/hint_precio_pre"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:background="@drawable/text_field"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:padding="5dip"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/header_fields"
+                            android:gravity="center"
+                            android:text="Cliente"
+                            android:layout_weight="1" />
+                        <EditText
+                            android:id="@+id/conf_trans_cliente_pre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            style="@style/login_edit_text"
+                            android:layout_weight="4"
+                            android:hint="@string/hint_cliente_pre"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:background="@drawable/text_field"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:padding="5dip"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/header_fields"
+                            android:gravity="center"
+                            android:text="Cantidad"
+                            android:layout_weight="1" />
+                        <EditText
+                            android:id="@+id/conf_trans_cantidad_pre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            style="@style/login_edit_text"
+                            android:layout_weight="4"
+                            android:hint="@string/hint_cantidad_pre"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:background="@drawable/text_field"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:padding="5dip"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textStyle="bold"
+                            android:textAllCaps="true"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:gravity="center"
+                            android:text="cartera"
+                            android:layout_weight="1" />
+                    </TableRow>
+
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:padding="5dip"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/header_fields"
+                            android:gravity="center"
+                            android:text="Doc.Vencidos"
+                            android:layout_weight="1" />
+                        <EditText
+                            android:id="@+id/conf_trans_max_docs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            style="@style/login_edit_text"
+                            android:layout_weight="4"
+                            android:hint="@string/hint_doc_vencidos"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:background="@drawable/text_field"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:padding="5dip"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/header_fields"
+                            android:gravity="center"
+                            android:text="Estado"
+                            android:layout_weight="1" />
+                        <EditText
+                            android:id="@+id/conf_trans_estado"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            style="@style/login_edit_text"
+                            android:layout_weight="4"
+                            android:hint="Estado cartera"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:background="@drawable/text_field"/>
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </ScrollView>

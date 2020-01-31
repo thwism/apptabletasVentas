@@ -1,0 +1,1147 @@
+<resources>
+    <string name="app_name">Ishida Movil 2.2</string>
+    <string name="action_delete_all">Eliminar todo</string>
+    <string name="institucion">Ishida &amp; Asociados 2016</string>
+    <string name="hint_user">Usuario</string>
+    <string name="hint_pass">Constraseña</string>
+    <string name="btn_login">ingresar</string>
+    <string name="btn_info_login">Ishida Movil Copyright &#169; 2016</string>
+
+    <string name="nav_item_pedidos">Pedido</string>
+    <string name="nav_item_ofertas">Oferta</string>
+    <string name="nav_item_facturas">Factura</string>
+    <string name="nav_item_nota">Nota de Venta</string>
+    <string name="nav_item_cobro">Cobro</string>
+    <string name="nav_item_visita">Visita</string>
+    <string name="nav_item_trans_bodega">Trans. Bodega</string>
+    <string name="nav_item_trans_ipt">Ing.Pro.Term</string>
+    <string name="nav_item_trans_shop">Carrito de Compras</string>
+    <string name="nav_item_pago">Pago</string>
+
+    <string name="tittle_estado_cuenta">Estado de Cuenta</string>
+
+    <string name="nav_sub_menu_sinc">Sincronización Información</string>
+    <string name="nav_sub_menu_sinc_item1">Sincronizar</string>
+
+    <string name="nav_sub_menu_report">Reportes</string>
+    <string name="nav_sub_menu_report_item1">Consultar Cartera</string>
+    <string name="nav_sub_menu_report_item2">Consultar Descuentos</string>
+    <string name="nav_sub_menu_report_item3">Pedidos Pendientes</string>
+    <string name="nav_sub_menu_report_item4">Cierre de Ventas Diario</string>
+    <string name="nav_sub_menu_report_item5">Balance General</string>
+    <string name="nav_sub_menu_report_item6">Clientes por Sector</string>
+
+
+    <string name="nav_sub_menu_cat">Catálogos</string>
+    <string name="nav_sub_menu_cat_item1">Clientes</string>
+    <string name="nav_sub_menu_cat_item2">Productos</string>
+
+    <string name="nav_sub_menu_perm">Opciones</string>
+    <string name="nav_sub_menu_perm_item2">Configuraciones</string>
+
+    <string name="nav_sub_menu_cuenta">Cuenta</string>
+    <string name="nav_sub_menu_salir_item1">Mis permisos</string>
+    <string name="nav_sub_menu_salir_item5">Cambiar Contraseña</string>
+    <string name="nav_sub_menu_informacion">Información</string>
+    <string name="nav_sub_menu_salir_item2">Info. Empresa</string>
+    <string name="nav_sub_menu_salir_item3">Info. App</string>
+    <string name="nav_sub_menu_salir_item4">Salir</string>
+
+
+    <string name="drawer_header_text">Usuario</string>
+    <string name="drawer_header_subtext">Empresa</string>
+    <string name="drawer_header_subtext_info">Grupo</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_splash">Splash</string>
+    <string name="title_activity_login">Login</string>
+
+    <string name="tittle_precio">Precio</string>
+    <string name="tittle_import_ini">Importación Inicial</string>
+    <string name="tittle_seleccionar_empresa">Seleccionar Empresa</string>
+    <string name="info_no_selected_rows">No existen filas seleccionadas</string>
+    <!--Catalogos-->
+    <string name="catalogo_clientes">clientes</string>
+    <string name="catalogo_productos">productos</string>
+    <string name="catalogo_transacciones">transacciones</string>
+    <string name="catalogo_promociones">promociones</string>
+    <string name="catalogo_descuentos">descuentos</string>
+    <string name="catalogo_cartera">cartera</string>
+    <string name="catalogo_existencias">existencias</string>
+    <string name="catalogo_config_ini">Config. Inicial</string>
+
+    <string name="info_send">ENVIADO</string>
+    <string name="info_no_send">NO ENVIADO</string>
+    <string name="info_reference_empty">REF: 0000</string>
+    <string name="title_activity_nueva__transaccion">Nueva Transacción</string>
+
+    <string name="info_precio_pcgrupo_disable">Todos</string>
+    <string name="info_precio_pcgrupo_enabled">PCGrupo</string>
+    <string name="info_tittle_trans">Transacción: </string>
+
+
+    <string name="title_pedido">PEDIDO</string>
+    <string name="title_oferta">OFERTA</string>
+    <string name="title_proforma">PROFORMA</string>
+    <string name="title_factura">FACTURA</string>
+    <string name="title_nota_venta">NOTA DE VENTA</string>
+    <string name="title_cobro">COBRO</string>
+    <string name="title_compra">COMPRA</string>
+    <string name="title_precio">Precio</string>
+    <string name="title_activity_sincronizacion">Sincronización</string>
+    <string name="tittle_dialog_show_detalle">Detalle del Item Seleccionado</string>
+    <string name="tittle_dialog_desc_promo">Item con Descuento y Promoción</string>
+    <string name="info_complete_row">Complete la fila actual</string>
+    <string name="info_imposible_add">No se puede agregar ninguna fila</string>
+    <string name="info_sin_cheques">Esta transacción no cuenta con cheques de respaldo</string>
+    <string name="info_no_select_cli">Por favor seleccione un cliente!</string>
+    <string name="hint_producto"> Descripción del producto.. </string>
+    <string name="hint_cantidad">0</string>
+    <string name="info_field_required">Campo Obligatorio!!</string>
+    <string name="info_field_no_valid">Cantidad no valida</string>
+    <string name="info_no_selection">No hay filas seleccionadas</string>
+    <string name="info_imposible_delete_row">No se puede eliminar la fila</string>
+    <string name="info_single_row">Seleccione solo una fila</string>
+    <string name="info_fila_promocion_mod">El item forma parte de una promoción y no puede ser modificado</string>
+    <string name="info_fila_promocion_del">El item forma parte de una promoción y no puede ser eliminado</string>
+    <string name="info_delete_row">Filas eliminadas</string>
+    <string name="info_no_delete_row">No se pudo eliminar este registro</string>
+    <string name="info_descuento">Descuento aplicado: $</string>
+    <string name="info_max_row_trans">No se pueden seguir ingresando más items pues ha llegado al limite establecido en la transacción</string>
+    <string name="info_invalid_cantidad">Cantidad invalida!!</string>
+    <string name="info_invalid_cifra">Cifra Incorrecta!!</string>
+    <string name="info_promo">Promoción aplicada</string>
+    <string name="empty_cartera">Cliente sin cartera vencida</string>
+    <string name="title_activity_permisos">Permisos por grupo</string>
+    <string name="title_activity_configurar__gntrans">Configurar Transacción y Permisos</string>
+    <!--Configuracion de la transaccion-->
+    <string name="hint_codigo_transaccion">Código de la Transacción</string>
+    <string name="hint_nombre_transaccion">Nombre de la Transacción</string>
+    <string name="hint_desc_transaccion">Descripción..</string>
+    <string name="hint_num_tran_transaccion">Num. Trans. siguiente</string>
+    <string name="hint_num_filas">Límite de filas</string>
+    <string name="hint_num_grupo">Número de grupo</string>
+    <string name="hint_trans_tag">Ej: proforma;oferta;etc.</string>
+
+    <string name="hint_bodega">Bodega Predeterminada</string>
+    <string name="hint_precio_pre">Precio Predeterminado</string>
+    <string name="hint_cliente_pre">Cliente Predeterminado</string>
+    <string name="hint_cantidad_pre">Cantidad Predeterminado</string>
+    <string name="hint_doc_vencidos">Num. Max. Doc.Vencidos</string>
+    <string name="hint_save_conf_trans">Guardar los cambios realizados</string>
+    <string name="info_save_configuration">La configuración se completado satisfactoriamente..</string>
+    <string name="info_unsave_configuration">No se puede completar la configuración</string>
+    <string name="title_activity_configuracion__conexion">Configuración Conexión</string>
+    <string name="tittle_dialog_tsf">Formas de pago</string>
+    <string name="error_no_load_file">No se ha logrado encontrar la imagen!!</string>
+
+    <string name="info_empty_trans">No existen transacciones disponibles</string>
+    <string name="info_no_super">!No disponible!</string>
+    <string name="title_activity_catalogo__clientes">Catálogo de Clientes</string>
+    <string name="title_activity_catalogo__productos">Catálogo de Productos</string>
+    <string name="title_activity_cliente__detalle">Info. detallada cliente</string>
+    <string name="title_activity_producto__detalle">Info. detallada producto</string>
+    <string name="title_activity_transaccion__detalle">Info. detallada de la transacción</string>
+
+    <string name="send_trans_success">Transacción enviada correctamente</string>
+    <string name="send_ivk_success">IVKardex enviado correctamente</string>
+    <string name="send_trans_fail">No es posible enviar la transacción</string>
+    <string name="send_trans_no_valid">Formato no valido en la referencia</string>
+    <string name="get_docs_fail">No es posible descargar las facturas</string>
+    <string name="send_ivk_fail">No es posible enviar los IVKardex</string>
+    <string name="title_activity_modificar__transaccion">Modificar Transacción</string>
+    <string name="conection_fail">Ha ocurrido un error mientras se descargaba la información</string>
+    <!--FOLDERS-->
+    <string name="title_folder_root">STORAGE_ISHIDA</string>
+    <string name="title_activity_configurar__empresa">Configurar Empresa</string>
+
+    <!--Configuracion de la empresa-->
+    <string name="hint_codigo_empresa">Código</string>
+    <string name="hint_nombre_empresa">Razón Social</string>
+    <string name="hint_direccion_empresa">Dirección</string>
+    <string name="hint_porcentaje_iva">Porcentaje IVA</string>
+    <string name="hint_nombre_impresora">Impresora Configurada</string>
+    <string name="hint_telefono_empresa">Teléfono</string>
+    <string name="hint_logo_empresa">Logotipo de la empresa</string>
+    <string name="hint_ip_conexion">Dirección IP</string>
+    <string name="hint_port_conexion">Puerto</string>
+    <string name="hint_url_conexion">URL ej: /Ishida</string>
+    <string name="hint_nombre_usuario">Nombre de Usuario</string>
+    <string name="hint_password_usuario">Password</string>
+    <string name="hint_grupo_usuario">Grupo de usuario</string>
+    <string name="hint_vendedor_usuario">Código de vendedor</string>
+
+
+    <string name="write_pdf_success">PDF generado correctamente</string>
+    <string name="write_pdf_fail">Error creando PDF!!</string>
+
+    <string name="delete_trans_success">Transacción eliminada correctamente</string>
+    <string name="delete_trans_success_all">Las transacciones han sido eliminadas correctamente</string>
+    <string name="delete_trans_fail">No se puede eliminar la transacción!!</string>
+
+    <string name="no_found_file_to_send">No se encuentra el archivo adjunto, genere el PDF antes de enviar!!</string>
+    <string name="no_found_vendedor">Lo sentimos usted debe poseer una cuenta de vendedor para poder usar la app, registrese como vendedor en el sistema!!</string>
+    <string name="no_import_ini">La importación inicial de información no se ha complatado aún.</string>
+    <string name="title_activity_configurar_mi_cuenta">Cambiar Contraseña</string>
+    <string name="info_disconnect_server">No es posible conectarse al servidor, revise su conexión a Internet</string>
+    <string name="title_activity_catalogo__vendedores">Catálogo de Vendedores</string>
+    <string name="title_activity_vendedor__detalle">Vendedor Detalle</string>
+    <string name="info_no_login">Credenciales Incorrectas</string>
+    <string name="title_activity_mis__permisos">Mis Permisos</string>
+    <string name="title_activity_info__app">Información de la Aplicación</string>
+    <string name="title_activity_info__company">Info. Organización</string>
+    <string name="info_no_load_price">No es posible cargar el precio, verifique la configuración de precios por grupos de la transacción!!</string>
+    <string name="title_activity_catalogo__cartera">Reporte de Cartera</string>
+    <string name="title_opc_oferta">Aplicando opciones de oferta</string>
+    <string name="title_activity_nuevo__cobro">Nuevo Cobro</string>
+    <string name="title_activity_generar_cobro">Generar Cobro</string>
+    <string name="no_send_transaction">FAILED</string>
+    <string name="calculo_interes_deshabilitado">No se calcula el interes por mora</string>
+    <!--Compos Retencion-->
+    <string name="info_field_autorizacion">Número de caractere 10,37 o 49</string>
+    <string name="info_field_serie">Número de caracteres 9</string>
+    <string name="info_field_punto_est">Número de caracteres 3</string>
+    <string name="info_field_fecha">Formato de fecha incorrecto!!</string>
+    <string name="info_field_fecha_cheque">Fecha menor a la fecha de emisión!!</string>
+    <string name="title_activity_transaccion__it__modificar">Modificar Cobro</string>
+    <string name="info_valor_cobro_invalid">Valor a cobrar incorrecto</string>
+    <string name="title_activity_transaccion__it__detalle">Info. detallada del Cobro</string>
+    <string name="title_activity_transaccion_vst_detalle">Info. detallada de la Visita</string>
+    <string name="title_activity_transaccion__trf__detalle">Info. detallada transferencia de bodega</string>
+    <string name="title_activity_transaccion__ipt__detalle">Info. detallada ingreso de producto terminado</string>
+    <string name="title_transaction_send_already">La transacción ya ha sido enviada!!</string>
+    <string name="title_activity_existencia">Reporte de Existencias</string>
+    <string name="title_activity_factura_detalle">Detalle de la Factura</string>
+
+    <string name="info_success_import">Proceso completado exitosamente!!</string>
+    <string name="title_activity_descuentos_cliente">Descuentos por Cliente</string>
+    <string name="title_activity_pedidos_pedientes">Pedidos Pedientes</string>
+    <string name="title_activity_reporte_cheques">Cheques Postfechados</string>
+    <string name="title_activity_items_pendientes">Items Pendientes</string>
+    <string name="title_activity_promedio_cobros">Promedio de Cobros</string>
+    <string name="title_activity_filtro_descuento">FiltroDescuento</string>
+    <string name="consumidor_final">9999999999999</string>
+    <string name="title_activity_localizacion__cliente">Localizacion_Cliente</string>
+    <string name="title_activity_dispositivos__bluetooth">Dispositivos_Bluetooth</string>
+    <string name="title_activity_nueva_visita">Nueva Visita</string>
+    <string name="title_activity_configuraciones">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <string name="setting_activity">Configuraciones del Sistema</string>
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_iva_list_tittles">
+        <item>14</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="pref_iva_list_values">
+        <item>14</item>
+        <item>12</item>
+    </string-array>
+    <!--opciones para descargar cartera-->
+    <string-array name="pref_cartera_list_tittles">
+        <item>Vendedor</item>
+        <item>Ruta</item>
+        <item>Cobrador</item>
+    </string-array>
+    <string-array name="pref_cartera_list_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <!--Opciones para seleccionar transacciones-->
+    <string-array name="list">
+        <item>Precio 1</item>
+        <item>Precio 2</item>
+        <item>Precio 3</item>
+        <item>Precio 4</item>
+        <item>Precio 5</item>
+        <item>Precio 6</item>
+        <item>Precio 7</item>
+    </string-array>
+
+    <string-array name="list_precios_default">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    <!--Opciones para seleccionar transacciones-->
+    <string-array name="list_carrito_categorias">
+        <item>Grupo 1</item>
+        <item>Grupo 2</item>
+        <item>Grupo 3</item>
+        <item>Grupo 4</item>
+        <item>Grupo 5</item>
+        <item>Grupo 6</item>
+    </string-array>
+    <!--etiquetas columnas carrito de comptas-->
+    <string-array name="list_carrito_columns_labels">
+        <item>1 columna(s)</item>
+        <item>2 columna(s)</item>
+        <item>3 columna(s)</item>
+        <item>4 columna(s)</item>
+    </string-array>
+
+    <string-array name="list_carrito_categorias_default">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <!--Numero de columnas para carrito de compras-->
+    <string-array name="list_carrito_columns">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <!--Opciones para catalogo de clientes-->
+    <string-array name="list_opciones_catalogo_clientes">
+        <item>Todos</item>
+        <item>Clientes con Cartera</item>
+        <item>Clientes con Descuentos</item>
+    </string-array>
+    <string-array name="list_valores_catalogo_clientes">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <!--opciones para descargar clientes-->
+    <string-array name="pref_clientes_list_tittles">
+        <item>Vendedor</item>
+        <item>Cobrador</item>
+        <item>Todos</item>
+    </string-array>
+    <string-array name="pref_clientes_list_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!--opciones para campo orden en catalogo de transacciones-->
+    <string-array name="pref_order_cat_trans">
+        <item>Número de transacción</item>
+        <item>Cliente</item>
+        <item>Cod.Trans</item>
+        <item>F. Envio</item>
+        <item>F. Modificación</item>
+    </string-array>
+    <string-array name="pref_order_cat_trans_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <!--opciones de comodin campo orden en catalogo de transacciones-->
+    <string-array name="pref_order_cat_trans_comodin">
+        <item>Descendente</item>
+        <item>Ascendente</item>
+    </string-array>
+    <string-array name="pref_order_cat_trans_comodin_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <!--Opciones para redondeo de numeros-->
+    <string-array name="pref_decimales_list_tittles">
+        <item>#.##</item>
+        <item>#.###</item>
+        <item>#.####</item>
+        <item>#.#####</item>
+    </string-array>
+    <string-array name="pref_decimales_list_values">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <!--opciones para envio de transacciones -->
+    <string-array name="pref_transacciones_send_list_tittles">
+        <item>Enviar al guardar la transacción</item>
+        <item>Enviar desde el catálogo de transacciones</item>
+    </string-array>
+    <string-array name="pref_transacciones_send_list_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <!--OPciones para precios-->
+    <string-array name="pref_precios_list_tittles">
+        <item>Grupo 1</item>
+        <item>Grupo 2</item>
+        <item>Grupo 3</item>
+        <item>Grupo 4</item>
+    </string-array>
+    <string-array name="pref_precios_list_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <!--OPciones para lineas-->
+    <string-array name="pref_lineas_list_tittles">
+        <item>Grupo 1</item>
+        <item>Grupo 2</item>
+        <item>Grupo 3</item>
+        <item>Grupo 4</item>
+        <item>Grupo 5</item>
+        <item>Grupo 6</item>
+    </string-array>
+    <string-array name="pref_lineas_list_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="pref_import_ini_list_tittles">
+        <item>Incompleto</item>
+        <item>Completado</item>
+    </string-array>
+    <string-array name="pref_import_ini_list_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string name="pref_items_visita_default">GESTIONV</string>
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="opciones_pedido">
+        <item>Modificar</item>
+        <item>Eliminar</item>
+        <item>Ver Detalles</item>
+    </string-array>
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+
+
+    <string name="pref_nombre_empresa">Empresa</string>
+    <string name="pref_telefono_empresa">Teléfono</string>
+    <string name="pref_direccion_empresa">Dirección</string>
+    <string name="pref_logo_empresa">Logotipo</string>
+    <string name="pref_iva_empresa">14</string>
+    <string name="pref_conf_ini">Configuración Inicial</string>
+
+    <string name="pref_header_rutas">Cartera por Rutas</string>
+    <string name="pref_habilitar_rutas">Cartera por Rutas</string>
+
+    <string name="pref_header_transacciones">Transacciones</string>
+    <string name="pref_print_pedido">Pedido</string>
+    <string name="pref_print_oferta">Oferta</string>
+    <string name="pref_print_factura">Factura</string>
+    <string name="pref_print_nota">Nota de Venta</string>
+    <string name="pref_print_cobro">Cobro</string>
+    <string name="pref_print_transferencia">Transferencia de Bodega</string>
+    <string name="pref_print_ipt">Ingreso de Producto Terminado</string>
+    <string name="pref_print_shop">Carrito de Compras</string>
+    <string name="pref_print_visita">Visita</string>
+    <string name="pref_print_pago">Pago</string>
+
+    <string name="pref_header_etiquetas">Etiquetas</string>
+    <string name="pref_header_etiquetas_inventario">Etiquetas Inventario</string>
+    <string name="pref_etiqueta_grupo1_inventario">Grupo 1</string>
+    <string name="pref_etiqueta_grupo2_inventario">Grupo 2</string>
+    <string name="pref_etiqueta_grupo3_inventario">Grupo 3</string>
+    <string name="pref_etiqueta_grupo4_inventario">Grupo 4</string>
+    <string name="pref_etiqueta_grupo5_inventario">Grupo 5</string>
+    <string name="pref_etiqueta_grupo6_inventario">Grupo 6</string>
+    <string name="pref_etiqueta_grupo1_inventario_default">Linea</string>
+    <string name="pref_etiqueta_grupo2_inventario_default">Sub Grupo</string>
+    <string name="pref_etiqueta_grupo3_inventario_default">Grupo</string>
+    <string name="pref_etiqueta_grupo4_inventario_default">Calidad</string>
+    <string name="pref_etiqueta_grupo5_inventario_default">Proveedor</string>
+    <string name="pref_etiqueta_grupo6_inventario_default">Grupo6</string>
+    <string name="pref_header_etiquetas_clientes">Etiquetas Clientes</string>
+    <string name="pref_etiqueta_pcgrupo1_clientes">Grupo 1</string>
+    <string name="pref_etiqueta_pcgrupo2_clientes">Grupo 2</string>
+    <string name="pref_etiqueta_pcgrupo3_clientes">Grupo 3</string>
+    <string name="pref_etiqueta_pcgrupo4_clientes">Grupo 4</string>
+    <string name="pref_etiqueta_pcgrupo1_clientes_default">Sector</string>
+    <string name="pref_etiqueta_pcgrupo2_clientes_default">Actividad</string>
+    <string name="pref_etiqueta_pcgrupo3_clientes_default">Zona</string>
+    <string name="pref_etiqueta_pcgrupo4_clientes_default">Lis.Precio</string>
+    <string name="pref_title_imprimir">Habilitar impresión en las transacciones</string>
+    <string name="pref_header_menu_tittle">Configuración Menú Principal</string>
+    <string name="pref_header_impresiones">Impresiones</string>
+    <string name="pref_header_menu">Menú Principal</string>
+    <string name="pref_header_usuarios">Usuarios</string>
+    <string name="pref_header_servicios">Servicios</string>
+    <string name="pref_titulo_servicio_test">Test</string>
+    <string name="pref_titulo_servicio_provincia">Provincias</string>
+    <string name="pref_titulo_servicio_canton">Cantones</string>
+    <string name="pref_titulo_servicio_parroquia">Parroquias</string>
+    <string name="pref_titulo_servicio_bodegas">Bodegas</string>
+    <string name="pref_titulo_servicio_bancos">Bancos</string>
+    <string name="pref_titulo_servicio_formas">Formas de Cobro</string>
+    <string name="pref_titulo_servicio_gnopcion">GNOpcion</string>
+    <string name="pref_titulo_servicio_empresas">Empresas</string>
+    <string name="pref_titulo_servicio_gntrans">GNTrans</string>
+    <string name="pref_titulo_servicio_grupos">Grupos</string>
+    <string name="pref_titulo_servicio_permisos">Permisos</string>
+    <string name="pref_titulo_servicio_perxtran">Permisos x Trans</string>
+    <string name="pref_titulo_servicio_usuarios">Usuarios</string>
+    <string name="pref_titulo_servicio_vendedores">Vendedores</string>
+    <string name="pref_titulo_servicio_cartera_vendedor">Cartera x Vendedor</string>
+    <string name="pref_titulo_servicio_cartera_cobrador">Cartera x Cobrador</string>
+    <string name="pref_titulo_servicio_cartera_ruta">Cartera x Rutas</string>
+    <string name="pref_titulo_servicio_cheques">Cheques Postfechados</string>
+    <string name="pref_titulo_servicio_pcg1">PCGrupo 1</string>
+    <string name="pref_titulo_servicio_pcg2">PCGrupo 2</string>
+    <string name="pref_titulo_servicio_pcg3">PCGrupo 3</string>
+    <string name="pref_titulo_servicio_pcg4">PCGrupo 4</string>
+    <string name="pref_titulo_servicio_clientes_vendedor">Clientes x Vendedor</string>
+    <string name="pref_titulo_servicio_clientes_cobrador">Clientes x Cobrador</string>
+    <string name="pref_titulo_servicio_clientes_all">Todos los Clientes</string>
+    <string name="pref_titulo_servicio_descuentos">Descuentos</string>
+    <string name="pref_titulo_servicio_existencias">Existencias</string>
+    <string name="pref_titulo_servicio_facturas">Facturas</string>
+    <string name="pref_titulo_servicio_items_pendientes">Items Pendientes</string>
+    <string name="pref_titulo_servicio_ivkardex">IVKardex</string>
+    <string name="pref_titulo_servicio_ivg1">IVGrupo 1</string>
+    <string name="pref_titulo_servicio_ivg2">IVGrupo 2</string>
+    <string name="pref_titulo_servicio_ivg3">IVGrupo 3</string>
+    <string name="pref_titulo_servicio_ivg4">IVGrupo 4</string>
+    <string name="pref_titulo_servicio_ivg5">IVGrupo 5</string>
+    <string name="pref_titulo_servicio_ivg6">IVGrupo 6</string>
+    <string name="pref_titulo_servicio_productos">Productos</string>
+    <string name="pref_titulo_servicio_productos_all">Todos los Productos</string>
+    <string name="pref_titulo_servicio_promociones">Promociones</string>
+    <string name="pref_titulo_servicio_transacciones">Transacciones</string>
+    <string name="pref_titulo_supervisor">[supervisor]</string>
+
+    <string name="pref_ws_test">/v1/test</string>
+    <string name="pref_ws_provincias">/v1/provincia</string>
+    <string name="pref_ws_cantones">/v1/canton</string>
+    <string name="pref_ws_parroquias">/v1/parroquia</string>
+    <string name="pref_ws_bodegas">/v1/bodega</string>
+    <string name="pref_ws_bancos">/v1/banco</string>
+    <string name="pref_ws_upload_image">/v1/uploadimage/upload</string>
+    <string name="pref_ws_gncomprobante">/v1/gncomprobante</string>
+    <string name="pref_ws_ofertaaprobacion">/v1/ofertaaprobacion</string>
+    <string name="pref_ws_formas_cobro">/v1/tsformacobropago</string>
+    <string name="pref_ws_gnopcion">/v1/gnopcion/</string>
+    <string name="pref_ws_empresas">/v1/empresa</string>
+    <string name="pref_ws_gntrans">/v1/gntrans</string>
+    <string name="pref_ws_grupos">/v1/grupo</string>
+    <string name="pref_ws_permisos">/v1/permiso</string>
+    <string name="pref_ws_permisos_trans">/v1/permisotrans</string>
+    <string name="pref_ws_usuarios">/v1/usuario</string>
+    <string name="pref_ws_vendedores">/v1/vendedor</string>
+
+    <string name="pref_ws_pcg1">/v1/pcgrupo1</string>
+    <string name="pref_ws_pcg2">/v1/pcgrupo2</string>
+    <string name="pref_ws_pcg3">/v1/pcgrupo3</string>
+    <string name="pref_ws_pcg4">/v1/pcgrupo4</string>
+    <string name="pref_ws_clientes_vendedor">/v1/clientesvendedor</string>
+    <string name="pref_ws_clientes_cobrador">/v1/clientescobrador</string>
+    <string name="pref_ws_clientes_all">/v1/clientestodo</string>
+
+    <string name="pref_ws_ivg1">/v1/ivgrupo1</string>
+    <string name="pref_ws_ivg2">/v1/ivgrupo2</string>
+    <string name="pref_ws_ivg3">/v1/ivgrupo3</string>
+    <string name="pref_ws_ivg4">/v1/ivgrupo4</string>
+    <string name="pref_ws_ivg5">/v1/ivgrupo5</string>
+    <string name="pref_ws_ivg6">/v1/ivgrupo6</string>
+    <string name="pref_ws_productos">/v1/productos</string>
+    <string name="pref_ws_imagenes">/v1/imagenes</string>
+
+    <string name="pref_ws_pedidos_pendientes">/v1/pedidopendiente</string>
+    <string name="pref_ws_items_pendientes">/v1/itempendiente</string>
+    <string name="pref_ws_facturas">/v1/factura</string>
+    <string name="pref_ws_recargos">/v1/recargodescuento</string>
+    <string name="pref_ws_promociones">/v1/promocion</string>
+    <string name="pref_ws_existencias">/v1/existencia</string>
+    <string name="pref_ws_descuentos">/v1/descuento</string>
+    <string name="pref_ws_kardextransaccion">/v1/kardextransaccion</string>
+    <string name="pref_ws_cheques">/v1/cheque</string>
+    <string name="pref_ws_cartera_vendedor">/v1/carteravendedor</string>
+    <string name="pref_ws_historial">/v1/historial</string>
+    <string name="pref_ws_promedios">/v1/promedios</string>
+
+    <string name="pref_ws_cartera_ruta">/v1/carteraruta</string>
+    <string name="pref_ws_cartera_cobrador">/v1/carteracobrador</string>
+    <string name="pref_ws_transacciones">/v1/transaccion</string>
+    <string name="pref_ws_visita">/v1/visita/registrar</string>
+    <string name="pref_ws_ubicacion_gps">/v1/updategps/update</string>
+    <string name="pref_ws_cierreventas">/v1/cierreventas</string>
+    <string name="pref_ws_balance">/v1/balance</string>
+
+    <string name="pref_header_conexion">Conexión</string>
+    <string name="pref_header_decimales">Decimales</string>
+    <string name="pref_ip_default">www.megalimpio.com</string>
+    <string name="pref_port_default">81</string>
+    <string name="pref_url_default">/api.validaciones.com</string>
+    <string name="pref_header_sincronizacion">Sincronización</string>
+    <string name="pref_sinc_clientes_default">1990-01-01 12:00:00</string>
+    <string name="pref_sinc_productos_default">1990-01-01 12:00:00</string>
+    <string name="pref_sinc_inicial_default">1990-01-01 12:00:00</string>
+    <string name="pref_ip_ult_sinc_clientes">Ult. Sincronización Clientes</string>
+    <string name="pref_ip_ult_sinc_productos">Ult. Sincronización Productos</string>
+    <string name="pref_ip_ult_sinc_inicial">Ult. Sincronización Inicial</string>
+
+    <string name="pref_ip_conexion">Dirección IP</string>
+    <string name="pref_puerto_conexion">Puerto</string>
+    <string name="pref_enlace_conexion">Enlace</string>
+
+
+    <!---Claves para preferencias de sesion actual-->
+    <string name="key_act_num_dec_punitario">conf_act_num_dec_punitario</string>
+    <string name="key_act_num_dec_ptotal">conf_act_num_dec_ptotal</string>
+    <string name="key_act_user">conf_act_usr</string>
+    <string name="key_act_ven">conf_act_ven</string>
+    <string name="key_act_gru">conf_act_gru</string>
+    <string name="key_act_est">conf_act_est</string>
+    <string name="key_act_nom">conf_act_nom</string>
+    <string name="key_act_sup">conf_act_sup</string>
+    <string name="key_act_lin">conf_act_lin</string>
+    <string name="key_act_rut">conf_act_rut</string>
+    <string name="key_act_lin_vis_cat_item">conf_act_lin_vis_cat_item</string>
+    <string name="key_act_sec_vis_cat_cli">conf_act_sec_vis_cat_cli</string>
+    <string name="key_act_acc">conf_act_acc</string>
+    <string name="key_act_bod">conf_act_bod</string>
+    <string name="key_act_num_pcg">conf_act_num_pcg</string>
+    <string name="key_act_num_lin">conf_act_num_lin</string>
+    <string name="key_act_list_price">conf_act_list_price</string>
+    <string name="key_act_show_list_price">conf_act_show_list_price</string>
+    <string name="key_act_show_image_items">conf_act_show_image_items</string>
+    <string name="key_conf_column_shop">key_conf_column_shop</string>
+    <string name="key_conf_catalogo_clientes">key_conf_catalogo_clientes</string>
+    <string name="key_items_visit">conf_items_visit</string>
+    <string name="key_nombre_impresora">conf_nombre_impresora</string>
+    <string name="key_conf_descarga_cartera">conf_descarga_cartera</string>
+    <string name="key_conf_descarga_clientes">conf_descarga_clientes</string>
+    <string name="key_conf_orden_cat_trans">conf_order_cat_trans</string>
+    <string name="key_conf_orden_cat_trans_comodin">conf_order_cat_trans_comodin</string>
+    <string name="key_conf_calcula_interes">conf_calcula_interes</string>
+    <string name="key_conf_tasa_mora">conf_tasa_mora</string>
+    <string name="key_conf_orden_bodegas">conf_orden_bodegas</string>
+    <string name="key_conf_dias_gracia_mora">conf_dias_gracia_mora</string>
+    <string name="key_conf_num_decimales">conf_num_decimales</string>
+    <string name="key_conf_aplica_calculo_mensual">conf_aplica_calculo_mensual</string>
+    <string name="key_conf_ishida_movil">conf_ishida_movil</string>
+    <string name="key_conf_orden_cronologico">conf_orden_cronologico</string>
+    <string name="key_conf_kardex_transaccion">conf_kardex_transaccion</string>
+    <string name="key_conf_impresion_obligatoria">conf_impresion_obligatoria</string>
+    <string name="key_conf_filtrar_items_familia">conf_imp_filter_familia_items</string>
+    <string name="key_conf_filtrar_clientes_sectores">conf_imp_filter_sectores_clientes</string>
+    <string name="key_conf_supr_trans">conf_supr_trans</string>
+    <string name="key_conf_import_trans">conf_import_trans</string>
+    <string name="key_conf_tipo_envio_cobro">conf_tipo_envio_cobro</string>
+    <string name="key_conf_carrito_categorias">key_conf_carrito_categorias</string>
+
+    <string name="key_act_obs">conf_act_obs</string>
+    <string name="key_act_validar_duplicidad">conf_act_validar_duplicidad</string>
+    <string name="key_act_barcode">conf_act_barcode</string>
+
+    <!---Claves para preferencias de Conexion-->
+    <string name="key_pcg1">conf_pcg1</string>
+    <string name="key_pcg2">conf_pcg2</string>
+    <string name="key_pcg3">conf_pcg3</string>
+    <string name="key_pcg4">conf_pcg4</string>
+    <string name="key_g1">conf_g1</string>
+    <string name="key_g2">conf_g2</string>
+    <string name="key_g3">conf_g3</string>
+    <string name="key_g4">conf_g4</string>
+    <string name="key_g5">conf_g5</string>
+    <string name="key_g6">conf_g6</string>
+    <!---Claves para preferencias de Conexion-->
+    <string name="key_conf_ip">conf_ip</string>
+    <string name="key_conf_port">conf_port</string>
+    <string name="key_conf_url">conf_url</string>
+    <!---Claves para preferencias de Sincronizacion-->
+    <string name="key_sinc_clientes">conf_clientes</string>
+    <string name="key_sinc_productos">conf_sinc_productos</string>
+    <string name="key_sinc_inicial">conf_sinc_inicial</string>
+    <!---Claves para preferencias de Empresa-->
+    <!--Titulos defecto-->
+    <string name="pref_header_empresa">General</string>
+    <!--Valores por defecto-->
+    <string name="pref_codigo_empresa_default">ISHIDA</string>
+    <string name="pref_base_empresa_default">ISHIDA</string>
+    <string name="pref_nro_compilacion_actual">1.04</string>
+    <string name="pref_nro_compilacion_default">1.00</string>
+    <string name="pref_orden_default_cat_trans">3</string>
+    <string name="pref_orden_comodin_cat_trans_default">0</string>
+    <string name="pref_nombre_empresa_default">ISHIDA &amp; ASOCIADOS</string>
+    <string name="pref_direccion_empresa_default">AV. GONZALEZ SUAREZ Y GARCIA MORENO</string>
+    <string name="pref_telefono_empresa_default">0984816851</string>
+    <string name="pref_logo_empresa_default">/storage/emulated/0/STORAGE_ISHIDA/logo.jpg</string>
+    <!--Claves para mapeo-->
+    <string name="key_empresa_codigo">conf_nombre_codigo</string>
+    <string name="key_empresa_nro_compilacion">conf_nro_compilacion</string>
+    <string name="key_empresa_base">conf_nombre_base</string>
+    <string name="key_empresa_nombre">conf_nombre_empresa</string>
+    <string name="key_empresa_direccion">conf_direccion_empresa</string>
+    <string name="key_empresa_telefono">conf_telefono_empresa</string>
+    <string name="key_empresa_iva">conf_iva_empresa</string>
+    <string name="key_empresa_decimales">conf_decimales_empresa</string>
+
+    <string name="key_conf_ini">conf_import_ini</string>
+    <string name="key_empresa_logo">conf_logo_empresa</string>
+    <!---Claves para preferencias de WS-->
+    <string name="key_ws_test">ws_test</string>
+    <string name="key_ws_provincias">ws_provincias</string>
+    <string name="key_ws_cantones">ws_cantones</string>
+    <string name="key_ws_parroquias">ws_parroquias</string>
+    <string name="key_ws_bodegas">ws_bodegas</string>
+    <string name="key_ws_bancos">ws_bancos</string>
+    <string name="key_ws_upload_image">ws_upload_image</string>
+    <string name="key_ws_gncomprobante">ws_gncomprobante</string>
+    <string name="key_ws_ofertaaprobacion">ws_ofertaaprobacion</string>
+    <string name="key_ws_formas">ws_formas</string>
+    <string name="key_ws_gnopcion">ws_gnopcion</string>
+    <string name="key_ws_gntrans">ws_gntrans</string>
+    <string name="key_ws_empresas">ws_empresas</string>
+    <string name="key_ws_grupos">ws_grupos</string>
+    <string name="key_ws_permisos">ws_permisos</string>
+    <string name="key_ws_perxtran">ws_perxtran</string>
+    <string name="key_ws_usuarios">ws_usuarios</string>
+    <string name="key_ws_vendedores">ws_vendedores</string>
+    <string name="key_ws_cartera_vendedor">ws_cartera_vendedor</string>
+    <string name="key_ws_historial">ws_historial</string>
+    <string name="key_ws_cartera_ruta">ws_cartera_ruta</string>
+    <string name="key_ws_cartera_cobrador">ws_cobrador</string>
+    <string name="key_ws_cheques">ws_cheques</string>
+    <string name="key_ws_pcg1">ws_pcg1</string>
+    <string name="key_ws_pcg2">ws_pcg2</string>
+    <string name="key_ws_pcg3">ws_pcg3</string>
+    <string name="key_ws_pcg4">ws_pcg4</string>
+    <string name="key_ws_clientes_vendedor">ws_clientes_vendedor</string>
+    <string name="key_ws_clientes_cobrador">ws_clientes_cobrador</string>
+    <string name="key_ws_clientes_all">ws_clientes_all</string>
+    <string name="key_ws_descuentos">ws_descuentos</string>
+    <string name="key_ws_kardextransaccion">ws_kardextransaccion</string>
+    <string name="key_ws_existencias">ws_existencias</string>
+    <string name="key_ws_facturas">ws_facturas</string>
+    <string name="key_ws_recargos">ws_recargos</string>
+    <string name="key_ws_pedidos_pendientes">ws_pedidos_pendientes</string>
+    <string name="key_ws_items_pendientes">ws_items_pendientes</string>
+    <string name="key_ws_ivg1">ws_ivg1</string>
+    <string name="key_ws_ivg2">ws_ivg2</string>
+    <string name="key_ws_ivg3">ws_ivg3</string>
+    <string name="key_ws_ivg4">ws_ivg4</string>
+    <string name="key_ws_ivg5">ws_ivg5</string>
+    <string name="key_ws_ivg6">ws_ivg6</string>
+    <string name="key_ws_productos">ws_productos</string>
+    <string name="key_ws_imagenes">ws_imagenes</string>
+    <string name="key_ws_promociones">ws_promociones</string>
+    <string name="key_ws_transacciones">ws_transacciones</string>
+    <string name="key_ws_visitas">ws_visitas</string>
+    <string name="key_ws_ubicacion_gps">ws_ubicacion_gps</string>
+    <string name="key_ws_cierreventas">ws_cierreventas</string>
+    <string name="key_ws_balance">ws_balance</string>
+    <string name="key_ws_promedios">ws_promedios</string>
+    <string name="title_activity_configuracion_servidor">Conexion al Servidor</string>
+    <string name="pref_header_sesion">Sesion Actual</string>
+    <string name="pref_header_monedas">Formato decimales en transaccion</string>
+    <string name="pref_tittle_filter_items_family">Filtrar por Familias</string>
+    <string name="pref_tittle_sesion_name">Usuario</string>
+    <string name="pref_sesion_estate_detault">Conectado</string>
+    <string name="pref_act_user_default">IA</string>
+    <string name="pref_act_num_dec_p_unitario_default">0.00</string>
+    <string name="pref_act_num_dec_p_total_default">0.00</string>
+    <string name="pref_act_gru_default">IA</string>
+    <string name="pref_act_est_loggin">1</string>
+    <string name="pref_act_est_no_loggin">0</string>
+    <string name="pref_act_nom_default">Ishida &amp; Asociados</string>
+    <string name="pref_act_ven_default">Ishida</string>
+    <string name="pref_act_sup_default">0</string>
+    <string name="pref_act_lin_default"></string>
+    <string name="pref_act_rut_default"></string>
+    <string name="pref_act_acc_default">ninguna</string>
+    <string name="pref_act_bod_default">ninguna</string>
+    <string name="pref_act_num_lin_default">1</string>
+    <string name="pref_act_num_pcg_default">4</string>
+
+
+    <string name="key_menu_oferta">key_menu_oferta</string>
+    <string name="key_menu_pedido">key_menu_pedido</string>
+    <string name="key_menu_factura">key_menu_factura</string>
+    <string name="key_menu_nota">key_menu_nota</string>
+    <string name="key_menu_pago">key_menu_pago</string>
+    <string name="key_menu_cobro">key_menu_cobro</string>
+    <string name="key_menu_visita">key_menu_visita</string>
+    <string name="key_menu_transferencia">key_menu_transferencia</string>
+    <string name="key_menu_ipt">key_menu_ipt</string>
+    <string name="key_menu_shop">key_menu_shop</string>
+    <string name="key_menu_clientes">key_menu_clientes</string>
+    <string name="key_menu_productos">key_menu_productos</string>
+    <string name="key_menu_opciones">key_menu_opciones</string>
+    <string name="key_menu_cartera">key_menu_cartera</string>
+    <string name="key_menu_descuentos">key_menu_descuentos</string>
+    <string name="key_menu_ppendientes">key_menu_ppendientes</string>
+    <string name="key_menu_cventas">key_menu_cventas</string>
+    <string name="key_menu_balance">key_menu_balance</string>
+
+
+    <string name="pref_conf_ini_default">0</string>
+    <string name="pref_pass_user_default">123</string>
+    <string name="pref_title_otros">Más</string>
+    <string name="pref_title_lineas_cat_item">Lineas Visibles</string>
+    <string name="texto_largo">
+        "Facturas Fácil es una aplicación para dispositivos Android para hacer y enviar facturas fácilmente a clientes. La versión gratuita se puede utilizar para crear un número limitado de facturas, con la versión de pago, el número de facturas es ilimitado..\n\n"
+        "Revise que todos los datos sean correctos, caso contrario\n"
+        "la informacion no podra ser descargada.\n\n"
+        "Con la aplicación de FacturaDirecta puedes crear facturas, presupuestos y albaranes y gestionar gastos, clientes, proveedores y productos desde cualquier dispositivo Android. Puedes utilizarla incluso sin conexión a Internet: en el momento en que dispongas de conexión a Internet, tus datos se sincronizarán automáticamente. Es gratuita. "
+        "Facturas Fácil es una aplicación para dispositivos Android para hacer y enviar facturas fácilmente a clientes. La versión gratuita se puede utilizar para crear un número limitado de facturas, con la versión de pago, el número de facturas es ilimitado..\n\n"
+        "Revise que todos los datos sean correctos, caso contrario\n"
+        "la informacion no podra ser descargada.\n\n"
+        "Con la aplicación de FacturaDirecta puedes crear facturas, presupuestos y albaranes y gestionar gastos, clientes, proveedores y productos desde cualquier dispositivo Android. Puedes utilizarla incluso sin conexión a Internet: en el momento en que dispongas de conexión a Internet, tus datos se sincronizarán automáticamente. Es gratuita. "
+    </string>
+
+    <string name="large_text">
+        "Configuracion para conexion remota.\n\n"
+        "Revise que todos los datos sean correctos, caso contrario\n"
+        "la informacion no podra ser descargada.\n\n"
+        "Direccion IP\n"
+        "\t"
+        "localhost"
+        "\n\n"
+        "Puerto\n"
+        "\t"
+        "0000"
+        "\n\n"
+        "Servicio Web\n"
+        "\t"
+        "WS"
+        "\n\n"
+        "Ult. Importacion\n"
+        "\t"
+        "Nunca"
+        "\n\n"
+    </string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_configuracion_server">ConfiguracionServer</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="format_quantity">%1$d items</string>
+    <string name="title_activity_nuevo_pedido">Nuevo Pedido</string>
+    <string name="title_activity_nuevo_pedido_jm">Nuevo Pedido AJM</string>
+    <string name="title_activity_modifica_pedido">Modificar Pedido</string>
+    <string name="title_activity_modifica_pedido_jm">Modificar Pedido AJM</string>
+    <string name="title_activity_modifica_transferencia">Modificar Transferencia de Bodega</string>
+    <string name="title_activity_modifica_ipt">Modificar Ingreso de Producto Terminado</string>
+    <string name="title_activity_nueva_oferta">Nueva Oferta</string>
+    <string name="title_activity_nueva_oferta_jm">Nueva Oferta AJM</string>
+    <string name="title_activity_modifica_oferta">Modificar Oferta</string>
+    <string name="title_activity_modifica_oferta_jm">Modificar Oferta AJM</string>
+    <string name="title_activity_pedido_detalle">Pedido Detalle</string>
+    <string name="title_activity_oferta_detalle">Oferta Detalle</string>
+    <string name="title_activity_cobro">Nuevo Cobro</string>
+    <string name="title_activity_cobroy">Nueva Visita</string>
+    <string name="title_activity_bienvenida">Bienvenida</string>
+    <string name="title_activity_nueva_transferencia">Nueva Transferencia de Bodega</string>
+    <string name="title_activity_nueva_ipt">Nuevo Ingreso de Producto Terminado</string>
+
+    <string name="next">Siguiente</string>
+    <string name="skip">Omitir</string>
+    <string name="start">Iniciar</string>
+    <string name="title_activity_visita_detalle">Visita Detalle</string>
+    <string name="title_activity_cierre_ventas">Cierre de Ventas</string>
+    <string name="title_activity_balance_general">Balance General</string>
+
+    <!--Formas  de Cobro-->
+    <string name="cheque">CHEQUE</string>
+    <string name="efectivo">EFECTIVO</string>
+    <string name="retencion">RETENCION</string>
+    <string name="title_activity_aprobacion_oferta">Aprobación de Oferta</string>
+    <string name="title_activity_recuperar_descuentos">RecuperarDescuentos</string>
+    <string name="title_activity_recuparar_descuentos">RecupararDescuentos</string>
+    <!--Codigos de Pantalla-->
+    <string name="codmeg">MEGALIMP2014</string>
+    <string name="codgyp">CONGYP2015</string>
+    <!--Observaciones por defecto en transacciones-->
+    <string name="observacion_defecto_transferencia">Transferencia de Bodega</string>
+    <string name="observacion_defecto_ipt">Ajuste de Inventario </string>
+    <string name="observacion_defecto_cobroy">Ingreso de Tesoreria</string>
+    <string name="observacion_defecto_visitay">Visita a Cliente</string>
+    <string name="observacion_defecto_cobro">Ingreso de Tesoreria Recorrido</string>
+    <string name="title_activity_lector_codigo_barras">LectorCodigoBarras</string>
+    <!--Campos por defecto en transacciones oferta-->
+    <string name="observacion_defecto_oferta_credito">CRÉDITO</string>
+
+
+    <!--Variables para impresion-->
+
+    <!--main_activity-->
+    <string name="connect">Search for and connect a Bluetooth printer</string>
+    <string name="txt_content">&quot;&quot;</string>
+    <string name="choose_paper_width">Paper width:</string>
+    <string name="width1">58mm</string>
+    <string name="width2">80mm</string>
+    <string name="printhex">HEX</string>
+    <string name="btnSend">Send Data</string>
+    <string name="btn_test">Print Test</string>
+    <string name="btn_prtbmp">Print Picture</string>
+    <string name="printpicture">Graphical Print</string>
+    <string name="chosecommand">Please select instruction</string>
+    <string name="btnClose">Close</string>
+    <string name="contentdescription"></string>
+    <string name="btn_prttable">Print Form</string>
+    <string name="Smallticketprinting">Small Ticket Printing</string>
+    <string name="btn_prtcode">Print 1D/2D Codebar</string>
+    <string name="btn_scqr">Generate QR Code Print</string>
+    <string name="btn_dyca">Turn on the camera</string>
+    <string name="input">Please enter a print!</string>
+    <string name="choose_printcoding"></string>
+    <string name="big5">BIG5</string>
+    <string name="thai">Thai</string>
+    <string name="kor">Korean</string>
+    <string name="gbk12">Simplified</string>
+
+    <!--  DeviceListActivity -->
+    <string name="scanning">Scanning Device&#8230;</string>
+    <string name="select_device">Select the connected device</string>
+    <string name="none_paired">No matching devices</string>
+    <string name="none_found">No device found</string>
+    <string name="title_paired_devices">Match equipment</string>
+    <string name="title_other_devices">Other useful equipment</string>
+    <string name="button_scan">Scanning device</string>
+
+    <!--  Message -->
+    <string name="msg_state">Input Error!</string>
+    <string name="empty1">Input is empty, in the text box to enter the content to be converted &#8230;</string>
+    <string name="empty">Input is empty</string>
+    <string name="not_connected">Please connect a Bluetooth printer</string>
+    <string name="bt_not_enabled_leaving">Bluetooth does not start, quit the program</string>
+    <string name="title_connecting">connecting…</string>
+    <string name="title_connected_to">connected: </string>
+    <string name="title_not_connected">Is not connected</string>
+    <string name="Connecting">It is connected to a Bluetooth printer</string>
+    <string name="msg_statev1">Without a picture</string>
+    <string name="strLang">en</string>
+    <string name="camer">No pictures</string>
+    <string name="msg_error">Input errors, please check!</string>
+
+    <string name="filter_send">Enviados</string>
+    <string name="filter_no_send">No Enviados</string>
+    <string name="filter_all">Todos</string>
+
+    <string name="sort_nro">Número</string>
+    <string name="sort_fecha">F. Modificación</string>
+    <string name="sort_cliente">Cliente</string>
+    <string name="sort_trans">Transacción</string>
+    <string name="sort_creacion">F. Envio</string>
+    <string name="All">All</string>
+
+
+    <string name="format_price_discount_percents">-%1$d %%</string>
+    <string name="format_price_range">%1$d %2$s - %3$d %4$s</string>
+
+    <string name="format_plus">+ %1$s</string>
+    <string name="format_number">%1$d</string>
+
+    <!-- General strings-->
+    <string name="No_network_connection">No network connection</string>
+    <string name="Internal_error">Internal error, please try it later</string>
+    <string name="Loading">Loading …</string>
+    <string name="Retry">Retry</string>
+    <string name="Ok">OK</string>
+    <string name="Cancel">Cancelar</string>
+    <string name="Save">Guardar</string>
+    <string name="Close">Cerrar</string>
+    <string name="Clear">Limpiar</string>
+
+    <string name="FILTER">Filtrar Productos</string>
+    <string name="Apply">Aplicar</string>
+
+    <string name="Please_select_a_size">Please select a size.</string>
+    <string name="Filter_unavailable">Filter is unavailable</string>
+
+    <string name="ADD_TO_CART">AGREGAR AL CARRITO</string>
+    <string name="UPDATE_IMAGE">ACTUALIZAR IMAGENES</string>
+    <string name="Product">Product</string>
+
+
+    <string name="title_activity_shopping_car">ShoppingCar</string>
+
+    <string name="menu_action_search">Search</string>
+    <string name="menu_action_cart">Shopping cart</string>
+
+    <!-- Cart and order related strings -->
+    <string name="Shopping_cart">Shopping cart</string>
+    <string name="Your_cart_is_empty">Tu carrito está vacio</string>
+    <string name="START_SHOPPING">EMPIEZA A COMPRAR</string>
+    <string name="SHIPPING_AND_PAYMENT">PAGAR &amp; GUARDAR</string>
+    <string name="added_to_cart">added to cart</string>
+    <string name="Go_to_cart">Go to cart</string>
+    <string name="Delete">Eliminar</string>
+    <string name="Edit">Modificar</string>
+    <string name="Update_item">Actualizar:</string>
+    <string name="The_item_has_been_successfully_removed">El item ha sido eliminado correctamente</string>
+    <string name="The_item_has_been_not_removed">El item no puede ser eliminado</string>
+    <string name="Discount_code">Discount code</string>
+    <string name="Do_you_have_a_discount_code">Total a pagar</string>
+    <string name="Enter_the_discount_code">Enter the discount code</string>
+    <string name="Internal_error_reload_cart_please">Internal error. Reload cart please.</string>
+    <string name="menu_action_wishlist">Wishlist</string>
+
+    <string name="All_categories">All categories</string>
+
+    <!-- Content description strings -->
+    <string name="content_description_open_navigation_drawer">Open navigation drawer</string>
+    <string name="content_description_close_navigation_drawer">Close navigation drawer</string>
+    <string name="content_description_submenu">Populate submenu</string>
+    <string name="content_description_move_right">Move righ</string>
+    <string name="content_description_move_left">Move left</string>
+    <string name="content_description_background">Background</string>
+    <string name="content_description_back_arrow">Back arrow</string>
+    <string name="content_description_intro_screen">Intro screen</string>
+    <string name="content_description_product_image">Product image</string>
+    <string name="content_description_shipping_info">Shipping info</string>
+
+    <string name="Unknown_user">Unknown user</string>
+    <string name="Just_arrived">Grupo 1</string>
+
+    <string name="Products_not_found">Products not found.</string>
+    <string name="title_activity_image_byte">ImageByte</string>
+    <string name="title_activity_subir_imagen">SubirImagen</string>
+
+    <string name="suma">+</string>
+    <string name="resta">-</string>
+    <!--Informacion Cliente-->
+    <string name="nombres">Nombres Completos</string>
+    <string name="razon">Razon Social</string>
+    <string name="direccion">Direccion</string>
+    <string name="email">Correo</string>
+    <string name="telefono">Telefono</string>
+    <string name="observacion">Observacion</string>
+    <!--Informacion Item-->
+    <string name="descripcion">Descripcion</string>
+    <string name="presentacion">Presentación</string>
+    <string name="unidad">Unidad</string>
+    <string name="codigo">Código</string>
+    <string name="alterno">Código Alterno</string>
+    <string name="existencia">Existencias</string>
+    <string name="precios">Listado de Precios</string>
+    <string name="modificacion">Ult. Modificacion</string>
+    <string name="porcentaje">Porcentaje IVA</string>
+    <string name="paga_iva">Paga IVA</string>
+
+    <string name="precio_1">Precio 1.</string>
+    <string name="precio_2">Precio 2.</string>
+    <string name="precio_3">Precio 3.</string>
+    <string name="precio_4">Precio 4.</string>
+    <string name="precio_5">Precio 5.</string>
+    <string name="precio_6">Precio 6.</string>
+    <string name="precio_7">Precio 7.</string>
+
+    <string name="etiqueta_1">Etiqueta 1.</string>
+    <string name="etiqueta_2">Etiqueta 2.</string>
+    <string name="etiqueta_3">Etiqueta 3.</string>
+    <string name="etiqueta_4">Etiqueta 4.</string>
+    <string name="etiqueta_5">Etiqueta 5.</string>
+    <string name="etiqueta_6">Etiqueta 6.</string>
+    <string name="etiqueta_7">Etiqueta 7.</string>
+
+    <string name="si">Si</string>
+    <string name="no">No</string>
+    <!-- Others -->
+    <string name="Select">Select</string>
+    <string name="Open_source_libraries">Cliente a ser utilizado</string>
+    <string name="License_details_for_open_source_software">Seleccione un cliente a continuacion para proceder con la compra</string>
+    <string name="Privacy_policy">Parametros Iniciales</string>
+    <string name="Basic_information_about_Privacy_Policy">Informacion preliminar utilizada en la compra</string>
+    <string name="App_needs_to_be_restarted">To change the shop an app restart is needed.</string>
+    <string name="including_VAT">inc. VAT</string>
+    <string name="Thank_you_for_your_order">Thank you for your order</string>
+    <string name="Wait_for_sms_or_email_order_confirmation">Wait for &lt;b>SMS&lt;/b> or &lt;b>email&lt;/b> order confirmation.</string>
+    <string name="This_is_a_sample_app">This is a sample app</string>
+    <string name="Sample_app_description">Thank you for your time. To find out more about this project, please visit us here: <a href="http://openshop.io/">Openshop.io</a>.</string>
+    <string name="Link_is_invalid">Link is invalid</string>
+    <string name="Min">Min</string>
+    <string name="Max">Max</string>
+    <string name="Select_the_country_where_you_want_to_shop">Seleccione la transaccion y el cliente \n para continuar</string>
+    <string name="dollar">$</string>
+    <string name="title_master_list">Masters</string>
+    <string name="title_master_detail">Master Detail</string>
+    <string name="title_activity_update_images_items">UpdateImagesItems</string>
+    <string name="title_activity_actualizar_imagenes_items">ActualizarImagenesItems</string>
+
+    <string name="CANCEL">Cancelar</string>
+    <string name="ACCEPT">Aceptar</string>
+
+    <string name="DIVIDER"> | </string>
+
+    <string name="sort_asc">Asc</string>
+    <string name="sort_desc">Desc</string>
+
+    <string name="CONSUMIDOR_FINAL">9999999999999</string>
+    <string name="title_activity_oferta_simple">Nueva Proforma</string>
+
+
+
+    <!--Placeholders transacciones -->
+    <string name="placeholder_buscar_nombre_cliente">Ingrese nombre del Cliente/RUC</string>
+    <string name="placeholder_buscar_item">Descripcion del Item/Codigo</string>
+    <string name="placeholder_cliente">Cliente</string>
+    <string name="placeholder_nombre_apellido">Nombres y Apellidos</string>
+    <string name="placeholder_nombre_comercial">Nombre Comercial</string>
+    <string name="placeholder_cedula_ruc">Cedula/RUC</string>
+    <string name="placeholder_direccion">Direccion Principal</string>
+    <string name="placeholder_telefono">Teléfono</string>
+    <string name="placeholder_observacion">Observacion</string>
+    <string name="placeholder_cartera">Cartera</string>
+    <string name="placeholder_agregar_item">Detalle del Item</string>
+    <string name="placeholder_items_ingresados">Items Ingresados</string>
+    <string name="placeholder_cliente_sin_cartera">Cliente sin Cartera</string>
+    <string name="placeholder_cliente_con_facturas_pendientes">Cliente con facturas pendientes de pago</string>
+
+    <string name="ver_mas">ver más</string>
+    <string name="ocultar">ocultar</string>
+
+    <string name="agregar">agregar</string>
+    <string name="modificar">modificar</string>
+
+    <string name="cantidad">Cantidad</string>
+    <string name="ver_precios">Ver Todos</string>
+
+</resources>
+

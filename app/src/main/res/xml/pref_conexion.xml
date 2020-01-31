@@ -1,0 +1,84 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:icon="@drawable/ic_sync_black_24dp"
+        android:title="@string/pref_header_conexion">
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_ip_default"
+            android:inputType="textCapWords"
+            android:key="@string/key_conf_ip"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_ip_conexion" />
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_port_default"
+            android:inputType="textCapWords"
+            android:key="@string/key_conf_port"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_puerto_conexion" />
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_url_default"
+            android:inputType="textCapWords"
+            android:key="@string/key_conf_url"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_enlace_conexion" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:icon="@drawable/ic_sync_black_24dp"
+        android:title="@string/pref_header_sincronizacion">
+
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_sinc_clientes_default"
+            android:inputType="textCapWords"
+            android:key="@string/key_sinc_clientes"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_ip_ult_sinc_clientes" />
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_sinc_productos_default"
+            android:inputType="textCapWords"
+            android:key="@string/key_sinc_productos"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_ip_ult_sinc_productos" />
+        <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_sinc_inicial_default"
+        android:inputType="textCapWords"
+        android:key="@string/key_sinc_inicial"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_ip_ult_sinc_inicial" />
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/pref_import_ini_list_tittles"
+            android:entryValues="@array/pref_import_ini_list_values"
+            android:key="@string/key_conf_ini"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_conf_ini" />
+    </PreferenceCategory>
+<PreferenceCategory
+    android:title="@string/pref_title_otros">
+    <Preference
+        android:title="Crear &amp; Destruir"
+        android:key="import_clear">
+    </Preference>
+    <Preference
+        android:title="Importar Datos Iniciales"
+        android:key="import_ini">
+    </Preference>
+</PreferenceCategory>
+</PreferenceScreen>

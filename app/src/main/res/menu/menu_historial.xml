@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".reportes.Historial">
+    <item
+        android:id="@+id/empty"
+        android:title="Ordenar"
+        android:orderInCategory="101"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_sort"
+        >
+        <menu>
+            <item android:id="@+id/setting_desc"
+                app:showAsAction="ifRoom"
+                android:title="Descripción" />
+            <item android:id="@+id/setting_cant"
+                app:showAsAction="ifRoom"
+                android:title="Cantidad" />
+            <item android:id="@+id/setting_NTrans"
+                app:showAsAction="ifRoom"
+                android:title="Nro. Trans" />
+            <item android:id="@+id/setting_fecha"
+                app:showAsAction="ifRoom"
+                android:title="Fecha" />
+            <item android:id="@+id/setting_CTot"
+                app:showAsAction="ifRoom"
+                android:title="C. Tot" />
+            <item android:id="@+id/setting_PU"
+                app:showAsAction="ifRoom"
+                android:title="P.U" />
+        </menu>
+    </item>
+</menu>

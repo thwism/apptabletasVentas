@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/category_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/dividerColor">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/category_coordinator"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/category_appbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:paddingLeft="@dimen/base_margin_horizontal"
+            android:paddingRight="@dimen/base_margin_horizontal"
+            app:elevation="0dp">
+
+            <RelativeLayout
+                android:id="@+id/category_buttons_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:paddingTop="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.2"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:maxLines="1"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="12dp"
+                    android:text="CLIENTE"
+                    />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:enabled="false"
+                    android:layout_weight="2.7"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:text="TRANS"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/emision"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.7"
+                    android:enabled="false"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="12dp"
+                    android:text="F.EMI"/>
+
+                <TextView
+                    android:id="@+id/plazo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.8"
+                    android:enabled="false"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="12dp"
+                    android:text="PLAZO"/>
+
+                <TextView
+                    android:id="@+id/vencimiento"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:enabled="false"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="2.7"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="12dp"
+                    android:text="F.VENCI"/>
+
+                <TextView
+                    android:id="@+id/valor_factura"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:enabled="false"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="2.7"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="12dp"
+                    android:text="V.FACT"/>
+
+                <TextView
+                    android:id="@+id/valor_cancelado"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:enabled="false"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="2.7"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="12dp"
+                    android:text="V.CAN"/>
+
+                <TextView
+                    android:id="@+id/saldo_vencer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:enabled="false"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="2.7"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="12dp"
+                    android:text="SxVEN"/>
+
+                <TextView
+                    android:id="@+id/saldo_vencido"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:enabled="false"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="2.7"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="12dp"
+                    android:text="S.VENCI"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.8"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textColor="@color/color_danger"
+                    android:textSize="12dp"
+                    android:text="DV"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.8"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="12dp"
+                    android:text="CH"
+                    />
+
+</LinearLayout>
+
+            </RelativeLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_recycler_cartera"
+            android:paddingLeft="@dimen/left_recycler_padding"
+            android:paddingRight="@dimen/left_recycler_padding"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+        <TextView
+            android:id="@+id/category_products_empty"
+            style="@style/emptyLayoutText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:focusable="false"
+            android:gravity="center"
+            android:text="No encontrado"
+            android:visibility="gone"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <LinearLayout
+        android:id="@+id/category_load_more_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:paddingTop="5dp">
+            <TextView
+                android:id="@+id/catCarteraResults"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2.2"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:maxLines="1"
+                android:enabled="false"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="12dp"
+                android:text="CLIENTE"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:enabled="false"
+                android:layout_weight="2.7"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:text="TRANS"
+                android:visibility="gone"
+                android:textSize="12dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2.7"
+                android:enabled="false"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="12dp"
+                android:visibility="invisible"
+                android:text="F.EMI"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2.8"
+                android:enabled="false"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="12dp"
+                android:visibility="invisible"
+                android:text="PLAZO"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:enabled="false"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="2.7"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="12dp"
+                android:visibility="invisible"
+                android:text="F.VENCI"/>
+
+            <TextView
+                android:id="@+id/catCarteraVFact"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:enabled="false"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="2.7"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="12dp"
+                android:text="V.FACT"/>
+
+            <TextView
+                android:id="@+id/catCarteraVCan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:enabled="false"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="2.7"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="12dp"
+                android:text="V.CAN"/>
+
+            <TextView
+                android:id="@+id/catCarteraSVen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:enabled="false"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="2.7"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="12dp"
+                android:text="SxVEN"/>
+
+            <TextView
+                android:id="@+id/catCarteraSVenci"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:enabled="false"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="2.7"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="12dp"
+                android:text="S.VENCI"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2.8"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:ems="10"
+                android:enabled="false"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/color_danger"
+                android:textSize="12dp"
+                android:visibility="invisible"
+                android:text="DV"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2.8"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:ems="10"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="12dp"
+                android:visibility="invisible"
+                android:text="CH"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

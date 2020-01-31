@@ -1,0 +1,45 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_search"
+        android:title="Buscar por Cliente"
+        android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
+    <item
+        android:id="@+id/action_nuevo"
+        android:orderInCategory="100"
+        android:title="Nuevo"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/empty"
+        android:title="Opciones"
+        android:orderInCategory="101"
+        app:showAsAction="always"
+        android:icon="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha">
+        <menu>
+
+            <item
+                android:id="@+id/action_enviar"
+                android:orderInCategory="100"
+                android:title="Enviar"
+                app:showAsAction="ifRoom"
+                android:icon="@drawable/abc_ic_ab_back_mtrl_am_alpha"
+                />
+            <item
+                android:id="@+id/action_eliminar"
+                android:orderInCategory="100"
+                android:title="Eliminar"
+                app:showAsAction="ifRoom"
+                android:icon="@drawable/abc_ic_clear_mtrl_alpha"/>
+            <item
+                android:id="@+id/action_aprobacion"
+                android:orderInCategory="100"
+                android:title="Importar para Aprobación"
+                app:showAsAction="never"
+                android:visible="false"
+                android:icon="@drawable/abc_ic_menu_selectall_mtrl_alpha"/>
+
+            </menu>
+    </item>
+</menu>

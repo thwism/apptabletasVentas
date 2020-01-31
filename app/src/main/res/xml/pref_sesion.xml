@@ -1,0 +1,88 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:icon="@drawable/ic_sync_black_24dp"
+        android:title="@string/pref_header_sesion">
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_act_user_default"
+            android:inputType="textCapWords"
+            android:key="@string/key_act_user"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:editable="false"
+            android:title="Usuario Actual"
+            android:summary="@string/pref_sesion_estate_detault"/>
+
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_act_lin_default"
+            android:inputType="textCapWords"
+            android:key="@string/key_act_lin"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:editable="false"
+            android:title="Lineas"
+            android:summary="Lineas Disponibles"/>
+
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_act_acc_default"
+            android:inputType="textCapWords"
+            android:key="@string/key_act_acc"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:editable="false"
+            android:title="Accesos"
+            android:summary="Accesos Disponibles"/>
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_act_bod_default"
+            android:inputType="textCapWords"
+            android:key="@string/key_act_bod"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:editable="false"
+            android:title="Bodegas"
+            android:summary="Bodegas Utilizadas"/>
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_act_rut_default"
+            android:inputType="textCapWords"
+            android:key="@string/key_act_rut"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:editable="false"
+            android:title="Rutas"
+            android:summary="Rutas Disponibles"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_title_lineas_cat_item">
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue=""
+            android:inputType="textCapWords"
+            android:key="@string/key_act_lin_vis_cat_item"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:editable="true"
+            android:title="Lineas visibles en catálogo de items"
+            android:summary="Lineas Visibles"/>
+    </PreferenceCategory>
+  <PreferenceCategory
+      android:title="@string/pref_title_otros">
+    <Preference
+        android:title="Otras cuentas que iniciaron sesión"
+        android:key="conf_sesiones">
+        </Preference>
+      <Preference
+          android:title="Usuarios Disponibles"
+          android:key="import_ini">
+      </Preference>
+</PreferenceCategory>
+</PreferenceScreen>

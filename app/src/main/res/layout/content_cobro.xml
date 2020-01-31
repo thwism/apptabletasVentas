@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nuevoCobroScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".NuevoCobro"
+    tools:showIn="@layout/activity_cobro"
+    android:background="@color/dividerColor">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+        <!--Detalle de la transaccion-->
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            card_view:cardCornerRadius="12dp">
+            <RelativeLayout
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/formItemTxt1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:background="@drawable/line"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_alignTop="@+id/thumbnail"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:text="Detalle de la transaccion"
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+
+
+                <TableLayout
+                    android:layout_below="@+id/formItemTxt1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:dividerPadding="10dp"
+                    android:layout_weight="1">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:padding="5dip"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_margin="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="Emision"
+                            android:textColor="@color/textColorPrimary"
+                            android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/col1"
+                            android:layout_margin="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="Transaccion"
+                            android:textColor="@color/textColorPrimary"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/col3"
+                            android:layout_margin="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/textColorPrimary"
+                            android:gravity="center"
+                            android:text="Tipo Trans."
+                            android:layout_weight="1" />
+
+                        <TextView
+
+                            android:layout_margin="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/textColorPrimary"
+                            android:gravity="center"
+                            android:text="Impresora."
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/col4"
+                            android:layout_margin="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/textColorPrimary"
+                            android:gravity="center"
+                            android:text="Cobrador"
+                            android:layout_weight="1" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/nuevoCobroFecha"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="Emision"
+                            android:gravity="center"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="IT"
+                            android:textColor="@color/textColorSecondary"
+                            android:id="@+id/nuevoCobroCodTrans"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            />
+
+
+
+                        <TextView android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="empty"
+                            android:id="@+id/nuevoCobroTipo"
+                            android:textColor="@color/textColorSecondary"
+                            android:gravity="center"
+                            android:layout_weight="1" />
+                        <TextView android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="empty"
+                            android:id="@+id/nuevoCobroImpresora"
+                            android:textColor="@color/textColorSecondary"
+                            android:gravity="center"
+                            android:layout_weight="1" />
+                        <TextView android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:id="@+id/nuevoCobroVendedor"
+                            android:text="edu"
+                            android:textColor="@color/textColorSecondary"
+                            android:layout_weight="1" />
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <!--Detalle del cliente-->
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            card_view:cardCornerRadius="12dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/formItemTxt3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:background="@drawable/line"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_alignTop="@+id/thumbnail"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:text="Informacion del Cliente"
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+                <TableLayout
+                    android:layout_below="@+id/formItemTxt3"
+                    android:layout_width="match_parent"
+                    android:dividerPadding="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dip">
+                        <TextView
+                            android:layout_margin="2dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:gravity="center"
+                            android:text="Cliente"
+                            android:background="@drawable/header_fields"
+                            android:layout_weight="1"
+                            android:textColor="@color/textColorPrimary"
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteCliente"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_weight="4"
+                            style="@style/login_edit_text"
+                            android:hint="Buscar por Nombres/Razon Social"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:background="@drawable/text_field"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dip">
+                        <TextView
+                            android:layout_margin="2dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:gravity="center"
+                            android:textColor="@color/textColorPrimary"
+                            android:background="@drawable/header_fields"
+                            android:text="CI/RUC"
+
+                            android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/nuevoCobroCI_RUC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_weight="4"
+                            android:hint="Numero de Cedula/RUC"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            style="@style/login_edit_text"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dip">
+                        <TextView
+                            android:layout_margin="2dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:gravity="center"
+                            android:textColor="@color/textColorPrimary"
+                            android:background="@drawable/header_fields"
+                            android:text="Nombres"
+
+                            android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/nuevoCobroNombres"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_weight="4"
+                            android:hint="Nombres y Apellidos"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            style="@style/login_edit_text"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dip">
+                        <TextView
+                            android:layout_margin="2dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:gravity="center"
+                            android:textColor="@color/textColorPrimary"
+                            android:background="@drawable/header_fields"
+                            android:text="Nombre Comercial"
+
+                            android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/nuevoCobroNombreAlt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_weight="4"
+                            android:hint="Nombre Alterno"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            style="@style/login_edit_text"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dip">
+                        <TextView
+                            android:layout_margin="2dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:textColor="@color/textColorPrimary"
+                            android:gravity="center"
+                            android:text="Direccion"
+                            android:background="@drawable/header_fields"
+                            android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/nuevoCobroDireccion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+
+                            android:layout_weight="4"
+                            android:hint="Direccion"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            style="@style/login_edit_text"/>
+                    </TableRow>
+                    <TableRow
+                        android:id="@+id/infoTransRowTelefono"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dip">
+                        <TextView
+
+                            android:layout_margin="2dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:gravity="center"
+                            android:text="Telefono"
+                            android:textColor="@color/textColorPrimary"
+                            android:background="@drawable/header_fields"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/nuevoCobroTelefono"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+
+                            android:layout_weight="4"
+                            android:hint="Telefono"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            style="@style/login_edit_text"/>
+                    </TableRow>
+                    <TableRow
+                        android:id="@+id/infoTransRowCorreo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dip">
+                        <TextView
+                            android:layout_margin="2dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:gravity="center"
+                            android:text="Correo"
+                            android:textColor="@color/textColorPrimary"
+                            android:background="@drawable/header_fields"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/nuevoCobroCorreo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+
+                            android:layout_weight="4"
+                            android:hint="Correro Electronico"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            style="@style/login_edit_text"/>
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <!--Detalle de Cartera-->
+        <!--Detalle de Cartera-->
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/contenedorCartera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            card_view:cardCornerRadius="12dp"
+            android:visibility="gone">
+            <RelativeLayout
+
+                android:padding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView  android:id="@+id/formItemResumenCartera"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:background="@drawable/line"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_alignTop="@+id/thumbnail"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:text="Resumen Cartera"
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                <TableLayout
+                    android:id="@+id/contentInfoCartera"
+                    android:layout_below="@+id/formItemResumenCartera"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:dividerPadding="10dp"
+                    android:layout_weight="1">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:padding="5dip"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_margin="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="Docs. Venci"
+                            android:textColor="@color/textColorPrimary"
+                            android:layout_weight="1" />
+                        <TextView
+                            android:layout_margin="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="@color/textColorPrimary"
+                            android:text="S. Vencer"
+                            android:layout_weight="1" />
+                        <TextView
+                            android:layout_margin="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/textColorPrimary"
+                            android:gravity="center"
+                            android:text="S. Venci"
+                            android:layout_weight="1" />
+
+
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+                        <TextView android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/textColorSecondary"
+                            android:id="@+id/nuevoCobroDocsVencidos"
+                            android:gravity="center"
+                            android:layout_weight="1" />
+                        <TextView android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:id="@+id/nuevoCobroMondoDeudaVencer"
+                            android:textColor="@color/textColorSecondary"
+                            android:gravity="center"
+                            android:layout_weight="1" />
+
+
+                        <TextView android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:id="@+id/nuevoCobroMondoDeudaVencido"
+                            android:textColor="@color/textColorSecondary"
+                            android:gravity="center"
+                            android:layout_weight="1" />
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+
+        <!--Observaciones-->
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            android:id="@+id/contenedorObservaciones"
+            card_view:cardCornerRadius="12dp">
+            <RelativeLayout
+                android:padding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView  android:id="@+id/formItemTxtObs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:background="@drawable/line"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_alignTop="@+id/thumbnail"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:text="Observaciones"
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                <TableLayout
+                    android:layout_below="@+id/formItemTxtObs"
+                    android:layout_width="match_parent"
+                    android:dividerPadding="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dip">
+                        <TextView
+                            android:layout_margin="2dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:gravity="center"
+                            android:text="Observaciones"
+                            android:background="@drawable/header_fields"
+                            android:layout_weight="1"
+                            android:textColor="@color/textColorPrimary"
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
+                        <EditText
+                            android:id="@+id/txtnuevoCobroObservacion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_weight="4"
+                            style="@style/login_edit_text"
+                            android:hint="Observaciones.."
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:background="@drawable/text_field"/>
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!--Control Items-->
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/contenedorKardex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            card_view:cardCornerRadius="12dp">
+            <RelativeLayout
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <TextView
+                    android:id="@+id/formItemTxt4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:background="@drawable/line"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_alignTop="@+id/thumbnail"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:text="Kardex"
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                <!--Fin botones circulares-->
+                <LinearLayout
+                    android:id="@+id/controles"
+                    android:layout_below="@+id/formItemTxt4"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:layout_weight="1">
+                    <TableLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:stretchColumns="*">
+                        <TableRow
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginBottom="5dp">
+                            <TextView
+                                android:id="@+id/agregar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:gravity="center"
+                                android:text="Dinero Recibido"
+                                android:background="@drawable/header_fields"
+                                android:layout_weight="1"
+                                android:textColor="@color/textColorPrimary"
+                                android:textAppearance="?android:attr/textAppearanceSmall"/>
+                            <EditText
+                                android:id="@+id/montorecibido"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_weight="4"
+                                style="@style/login_edit_text"
+                                android:hint="Dinero recibido"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:background="@drawable/text_field"/>
+                            <Button
+                                android:id="@+id/cobrar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cobrar" />
+                            <Button
+                                android:id="@+id/guardar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Guardar"/>
+                        </TableRow>
+                    </TableLayout>
+                </LinearLayout>
+
+
+                <!--Tabla de items a cobrar-->
+                <LinearLayout
+                    android:id="@+id/nuevoCobroContenedorTabla"
+                    android:layout_below="@+id/controles"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:layout_weight="1">
+                    <TableLayout
+                        android:id="@+id/nuevoCobroTableLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:shrinkColumns="*"
+                        android:stretchColumns="1"
+                        android:layout_marginTop="5dp">
+                        <TableRow
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginBottom="5dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/header_fields"
+                                android:text="#"
+                                android:layout_marginLeft="1dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:layout_span="1"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:layout_marginLeft="1dp"
+                                android:background="@drawable/header_fields"
+                                android:text="DOCUMENTO"
+                                android:layout_span="2"
+                                ></TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:layout_marginLeft="1dp"
+                                android:background="@drawable/header_fields"
+                                android:text="CODIGO"
+                                android:layout_span="1"
+                                ></TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="5dp"
+                                android:layout_marginRight="1dp"
+                                android:layout_marginLeft="1dp"
+                                android:background="@drawable/header_fields"
+                                android:text="LETRA"
+                                android:layout_span="1"></TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="5dp"
+                                android:layout_marginRight="1dp"
+                                android:layout_marginLeft="1dp"
+                                android:background="@drawable/header_fields"
+                                android:text="EMISION"
+                                android:layout_span="1"></TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="5dp"
+                                android:layout_marginRight="1dp"
+                                android:layout_marginLeft="1dp"
+                                android:background="@drawable/header_fields"
+                                android:text="PL"
+                                android:layout_span="1"></TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="5dp"
+                                android:layout_marginRight="1dp"
+                                android:layout_marginLeft="1dp"
+                                android:background="@drawable/header_fields"
+                                android:text="VENCIMIENTO"
+                                android:layout_span="1"></TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:layout_marginLeft="1dp"
+                                android:background="@drawable/header_fields"
+                                android:text="D.V"
+                                android:layout_span="1"></TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/header_fields"
+                                android:text="V.FAC"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:layout_marginLeft="1dp"
+                                android:layout_span="1"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="5dp"
+                                android:layout_marginRight="1dp"
+                                android:layout_marginLeft="1dp"
+                                android:background="@drawable/header_fields"
+                                android:text="V.CAN"
+                                android:layout_span="1"></TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/header_fields"
+                                android:text="SALDO"
+                                android:layout_marginLeft="1dp"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:layout_span="1"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/header_fields"
+                                android:text="SxVEN"
+                                android:layout_marginLeft="1dp"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:layout_span="1"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/header_fields"
+                                android:text="S.VCI"
+                                android:layout_marginLeft="1dp"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:layout_span="1"/>
+                            <TextView
+                                android:id="@+id/col_interes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/header_fields"
+                                android:text="INT"
+                                android:layout_marginLeft="1dp"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:layout_span="1"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/header_fields"
+                                android:text="PAGO"
+                                android:layout_marginLeft="1dp"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:layout_span="1"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/header_fields"
+                                android:text="OPC"
+                                android:layout_marginLeft="1dp"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:layout_span="1"/>
+                        </TableRow>
+                    </TableLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_below="@+id/nuevoCobroContenedorTabla"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:gravity="right"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SALDO INICIAL: "
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:id="@+id/saldo_inicial"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="right|center"
+                            android:text=" 0.00"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:gravity="right"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SALDO RESTANTE: "
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:id="@+id/saldo_restante"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="right|center"
+                            android:text=" 0.00"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:paddingTop="10dp">
+                        <TextView
+                            android:textAllCaps="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total: "
+                            android:textStyle="bold"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/totalCobro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="right|center"
+                            android:text=" 0.00"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="25dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

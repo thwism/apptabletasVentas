@@ -1,0 +1,44 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+            <item
+                android:id="@+id/menu_cliente_ver"
+                android:icon="@drawable/ic_clock"
+                app:showAsAction="never"
+                android:title="Ver detalles"/>
+            <item
+                android:id="@+id/menu_cliente_ver_cartera"
+                android:icon="@drawable/ic_menu"
+                android:title="Ver Estado de Cuenta"
+                app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_cliente_ver_descuentos"
+        android:icon="@drawable/ic_menu"
+        android:title="Ver Descuentos"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_cliente_ver_promedio"
+        android:icon="@drawable/ic_menu"
+        android:title="Ver Promedio de Cobros"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_cliente_ver_historial"
+        android:icon="@drawable/ic_menu"
+        android:title="Ver Historial de Compras"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu_cliente_set_ubicacion"
+        android:icon="@drawable/ic_menu"
+        android:title="Cambiar coordenadas geográficas"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu_cliente_ver_ubicacion"
+        android:icon="@drawable/ic_menu"
+        android:title="Ver Ubicación en Google Maps"
+        app:showAsAction="never"/>
+
+</menu>

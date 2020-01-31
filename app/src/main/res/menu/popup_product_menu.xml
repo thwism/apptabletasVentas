@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/menu_producto_ver_producto"
+        android:orderInCategory="100"
+        android:title="Ver Producto"/>
+    <item
+        android:id="@+id/menu_producto_ver_existencia"
+        android:orderInCategory="100"
+        android:title="Consultar Existencia"/>
+    <item
+        android:id="@+id/menu_producto_export_img"
+        android:orderInCategory="100"
+        android:title="Exportar Imágenes"/>
+</menu>

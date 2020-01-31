@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="ibzssoft.com.ishidamovile.Catalogo_Descuentos"
+    tools:showIn="@layout/activity_catalogo__descuentos"
+    android:background="@color/dividerColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/headDescuento"
+        android:orientation="vertical"
+        android:elevation="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@color/textColorSecondary">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:maxLines="1"
+                android:enabled="false"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="10dp"
+                android:text="CLIENTE"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:enabled="false"
+                android:layout_weight="2.0"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:text="PRODUCTO"
+                android:textSize="10dp" />
+
+
+            <TextView
+                android:id="@+id/dias_vencidos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3.5"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:ems="10"
+                android:enabled="false"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="10dp"
+                android:text="%"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler_descuento"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/headDescuento"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>

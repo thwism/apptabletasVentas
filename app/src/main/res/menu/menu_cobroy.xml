@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="all">
+        <item android:id="@+id/cobrar_mora"
+            android:titleCondensed="Options"
+            android:title="Cobrar Interes x Mora"
+            android:icon="@android:drawable/ic_menu_preferences">
+        </item>
+    </group>
+</menu>

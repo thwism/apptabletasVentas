@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="4dp"
+    app:cardCornerRadius="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?attr/selectableItemBackground">
+        <TextView
+            android:id="@+id/cliente"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2.2"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/textColorPrimary"
+            android:background="@drawable/header_fields"
+            android:textSize="10dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:text="Nombre del Cliente"
+            />
+
+
+        <TextView
+            android:id="@+id/transaccion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="false"
+            android:layout_weight="2.6"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="10dp"
+            android:text="transaccion"/>
+
+        <TextView
+            android:id="@+id/emision"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2.7"
+            android:enabled="false"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="10dp"
+            android:background="@drawable/header_fields"
+            android:text="emision"/>
+
+        <TextView
+            android:id="@+id/plazo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2.8"
+            android:enabled="false"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="10dp"
+            android:text="plazo"/>
+
+        <TextView
+            android:id="@+id/vencimiento"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="false"
+            android:layout_weight="2.7"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/textColorPrimary"
+            android:background="@drawable/header_fields"
+            android:textSize="10dp"
+            android:text="vencimiento"/>
+
+        <TextView
+            android:id="@+id/valor_factura"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="false"
+            android:layout_weight="2.7"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="10dp"
+            android:text="V.Fact"/>
+
+        <TextView
+            android:id="@+id/valor_cancelado"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="false"
+            android:layout_weight="2.7"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/textColorPrimary"
+            android:background="@drawable/header_fields"
+            android:textSize="10dp"
+            android:text="V.Can"/>
+
+        <TextView
+            android:id="@+id/saldo_vencer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="false"
+            android:layout_weight="2.7"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="10dp"
+            android:text="S.Vencer"/>
+
+        <TextView
+            android:id="@+id/saldo_vencido"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="false"
+            android:layout_weight="2.7"
+            android:gravity="center"
+            android:singleLine="true"
+            android:background="@drawable/header_fields"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="10dp"
+            android:text="S.Venci"/>
+
+
+
+        <TextView
+            android:id="@+id/dias_vencidos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2.8"
+            android:enabled="false"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="10dp"
+            android:text="D.V"
+            />
+        <TextView
+            android:id="@+id/cheques"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2.8"
+            android:gravity="center"
+
+            android:singleLine="true"
+            android:textColor="@color/textColorPrimary"
+            android:background="@drawable/header_fields"
+            android:textSize="10dp"
+            android:text="CH"
+            />
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

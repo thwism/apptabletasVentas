@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dividerColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/headCartera"
+        android:orientation="vertical"
+        android:elevation="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@color/textColorSecondary">
+
+            <TextView
+                android:id="@+id/head_transaccion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:enabled="false"
+                android:layout_weight="2.4"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="14dp"
+                android:text="TRANSACCION"/>
+
+            <TextView
+                android:id="@+id/head_emision"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:enabled="false"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="14dp"
+                android:text="EMISION"/>
+
+            <TextView
+                android:id="@+id/head_vencimiento"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:enabled="false"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="2.5"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="14dp"
+                android:text="VENCIMIENTO"/>
+
+            <TextView
+                android:id="@+id/head_saldo_vencer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:enabled="false"
+                android:layout_weight="2.5"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textStyle="bold"
+                android:textColor="@color/textColor"
+                android:text="S.VENCER"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/head_saldo_vencido"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:enabled="false"
+                android:layout_weight="2.5"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textStyle="bold"
+                android:textColor="@color/textColor"
+                android:text="S.VENCIDO"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/head_dias_vencidos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2.7"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:ems="10"
+                android:enabled="false"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14dp"
+                android:text="D.V"/>
+
+            <TextView
+                android:id="@+id/head_cheques"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2.7"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:ems="10"
+                android:enabled="false"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="14dp"
+                android:text="C.H"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:paddingTop="5dp">
+        <ListView
+            android:id="@+id/vst_cartera_listado"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:dividerHeight="3dp"
+            android:background="@color/dividerColor"
+            android:layout_weight="1">
+        </ListView>
+    </LinearLayout>
+</LinearLayout>

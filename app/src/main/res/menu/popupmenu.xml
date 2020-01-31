@@ -1,0 +1,41 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/itemallEnviar"
+        android:orderInCategory="100"
+        android:title="Enviar"/>
+
+    <item
+        android:id="@+id/itemallPDF"
+        android:orderInCategory="100"
+        android:title="Generar PDF"/>
+
+    <item
+        android:id="@+id/itemallEnviarPDF"
+        android:orderInCategory="100"
+        android:title="Enviar en PDF"/>
+
+    <item
+        android:id="@+id/itemallVer"
+        android:orderInCategory="100"
+
+        android:title="Ver"/>
+    <item
+        android:id="@+id/itemallModificar"
+        android:orderInCategory="100"
+        android:title="Modificar"/>
+
+    <item
+        android:id="@+id/itemallEliminar"
+        android:orderInCategory="100"
+        android:title="Eliminar"/>
+
+    <item
+        android:id="@+id/itemallActualizar"
+        android:orderInCategory="100"
+        android:title="Actualizar"/>
+    <item
+        android:id="@+id/itemallReimprimir"
+        android:orderInCategory="100"
+        android:title="Actualizar"/>
+</menu>

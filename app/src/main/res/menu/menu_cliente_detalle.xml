@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/empty"
+        android:title="Opciones"
+        app:showAsAction="always"
+        android:icon="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha">
+        <menu>
+            <item android:id="@+id/action_enviar"
+                app:showAsAction="ifRoom"
+                android:title="Enviar ubicación(GPS)"
+                android:icon="@drawable/abc_ic_ab_back_mtrl_am_alpha"/>
+    </menu>
+    </item>
+</menu>

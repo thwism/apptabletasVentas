@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ibzssoft.com.ishidamovile.MainActivity">
+    <item
+        android:id="@+id/action_change_exportPDF"
+        android:orderInCategory="100"
+        android:title="Exportar a PDF"
+        app:showAsAction="never" />
+
+</menu>

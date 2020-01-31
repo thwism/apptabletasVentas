@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_search"
+        android:title="Buscar por Cliente"
+        android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
+    <item android:id="@+id/action_nuevo"
+        app:showAsAction="always"
+        android:title="Nuevo" />
+    <item
+        android:id="@+id/empty"
+        android:title="Opciones"
+        app:showAsAction="always"
+        android:icon="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha">
+        <menu>
+            <item android:id="@+id/action_enviar"
+                app:showAsAction="ifRoom"
+                android:title="Enviar"
+                android:icon="@drawable/abc_ic_ab_back_mtrl_am_alpha"/>
+            <item android:id="@+id/action_eliminar"
+                app:showAsAction="ifRoom"
+                android:title="Eliminar"
+                android:icon="@drawable/abc_ic_clear_mtrl_alpha"/>
+    </menu>
+    </item>
+</menu>

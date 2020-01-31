@@ -1,0 +1,98 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Transacciones">
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/key_menu_pedido"
+        android:title="@string/pref_print_pedido" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+
+        android:key="@string/key_menu_oferta"
+        android:title="@string/pref_print_oferta" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/key_menu_factura"
+        android:title="@string/pref_print_factura" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/key_menu_nota"
+        android:title="@string/pref_print_nota" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/key_menu_pago"
+        android:title="@string/pref_print_pago" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/key_menu_visita"
+        android:title="@string/pref_print_visita" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/key_menu_cobro"
+        android:title="@string/pref_print_cobro" />
+        <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/key_conf_filtrar_clientes_sectores"
+        android:title="@string/nav_sub_menu_report_item6" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_menu_transferencia"
+            android:title="@string/pref_print_transferencia" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_menu_ipt"
+            android:title="@string/pref_print_ipt" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_menu_shop"
+            android:title="@string/pref_print_shop" />
+    </PreferenceCategory>
+    <!--Catalogos-->
+    <PreferenceCategory android:title="Catálogos">
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/key_menu_clientes"
+        android:title="Clientes" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/key_menu_productos"
+            android:title="Productos" />
+    </PreferenceCategory>
+    <!--Configuraciones-->
+    <PreferenceCategory android:title="Opciones">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/key_menu_opciones"
+            android:title="Configuraciones" />
+    </PreferenceCategory>
+
+    <!--reportes-->
+    <PreferenceCategory android:title="Reportes">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/key_menu_cartera"
+            android:title="Consultar Cartera" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/key_menu_descuentos"
+           android:title="Consultar Descuentos" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/key_menu_ppendientes"
+            android:title="Pedidos Pendientes" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_menu_cventas"
+            android:title="Cierre de ventas diario" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_menu_balance"
+            android:title="Balance General" />
+    </PreferenceCategory>
+</PreferenceScreen>

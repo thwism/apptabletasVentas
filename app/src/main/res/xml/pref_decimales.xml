@@ -1,0 +1,30 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:icon="@drawable/ic_sync_black_24dp"
+        android:title="@string/pref_header_monedas">
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_act_num_dec_p_unitario_default"
+            android:inputType="textCapWords"
+            android:key="@string/key_act_num_dec_punitario"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:editable="false"
+            android:title="Precio Unitario"
+            android:summary="@string/pref_act_num_dec_p_unitario_default"/>
+
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_act_num_dec_p_total_default"
+            android:inputType="textCapWords"
+            android:key="@string/key_act_num_dec_ptotal"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:editable="false"
+            android:title="Precio Total"
+            android:summary="@string/pref_act_num_dec_p_total_default"/>
+
+    </PreferenceCategory>
+</PreferenceScreen>

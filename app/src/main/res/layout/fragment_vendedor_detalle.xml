@@ -1,0 +1,497 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/dividerColor">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TableRow
+                android:id="@+id/table1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:dividerPadding="10dp"
+                    android:layout_weight="1.5"
+                    android:padding="15dp">
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <android.support.v7.widget.CardView
+                            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/card_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            card_view:cardCornerRadius="4dp"
+                            android:layout_weight="1">
+                            <RelativeLayout
+                                android:id="@+id/field1"
+                                android:padding="8dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:id="@+id/formVendedorTxtFC"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:textColor="@color/colorPrimary"
+                                    android:background="@drawable/line"
+                                    android:textSize="15dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignTop="@+id/thumbnail"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Nombres y Apellidos"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                                <TextView
+                                    android:id="@+id/formVendedorTxt184"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
+                                    android:layout_below="@id/formVendedorTxtFC"
+                                    android:textAppearance="?android:textAppearanceLarge"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:layout_marginTop="1dip"
+                                    android:textSize="14dp"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Sin definir" />
+
+                                <TextView
+                                    android:layout_below="@+id/formVendedorTxt184"
+                                    android:id="@+id/formVendedorTxt19A"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:textColor="@color/textColorPrimary"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignTop="@+id/thumbnail"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Grupo"
+                                    android:textSize="12dp"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                                <TextView
+                                    android:id="@+id/formVendedorTxt20A"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:layout_below="@id/formVendedorTxt19A"
+                                    android:textAppearance="?android:textAppearanceLarge"
+                                    android:layout_marginTop="1dip"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Ninguno"
+                                    android:paddingTop="5dp"
+                                    android:textStyle="bold"
+                                    android:textSize="14dp"/>
+
+                                <TextView
+                                    android:layout_below="@+id/formVendedorTxt20A"
+                                    android:id="@+id/formVendedorTxt5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:textColor="@color/textColorPrimary"
+                                    android:textSize="12dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignTop="@+id/thumbnail"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Correo Electronico"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                                <TextView
+                                    android:id="@+id/formVendedorTxt6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:textSize="14dp"
+                                    android:paddingTop="5dp"
+                                    android:layout_below="@id/formVendedorTxt5"
+                                    android:textAppearance="?android:textAppearanceLarge"
+                                    android:layout_marginTop="1dip"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Sin definir"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/textColorSecondary"/>
+
+                                <TextView
+                                    android:id="@+id/formVendedorTxt98"
+                                    android:layout_below="@+id/formVendedorTxt6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:textColor="@color/textColorPrimary"
+                                    android:textSize="12dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignTop="@+id/thumbnail"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Telefono"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                                <TextView
+                                    android:id="@+id/formVendedorTxt6a"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:textSize="14dp"
+                                    android:textStyle="bold"
+                                    android:paddingTop="5dp"
+                                    android:layout_below="@id/formVendedorTxt98"
+                                    android:textAppearance="?android:textAppearanceLarge"
+                                    android:layout_marginTop="1dip"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Sin definir"
+                                    android:textColor="@color/textColorSecondary"/>
+
+                                <TextView
+                                    android:layout_below="@+id/formVendedorTxt6a"
+                                    android:id="@+id/formVendedorTxt19AA"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:textColor="@color/textColorPrimary"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignTop="@+id/thumbnail"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Supervisor"
+                                    android:textSize="12dp"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                                <TextView
+                                    android:id="@+id/formVendedorTxt186"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_below="@+id/formVendedorTxt19AA"
+                                    android:textAppearance="?android:textAppearanceSmall"
+                                    android:layout_marginTop="1dip"
+                                    android:textSize="14dp"
+                                    android:paddingLeft="10dp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="No" />
+
+                                <TextView
+                                    android:id="@+id/formVendedorTxt3"
+                                    android:layout_below="@+id/formVendedorTxt186"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:textColor="@color/textColorPrimary"
+                                    android:textSize="12dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignTop="@+id/thumbnail"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Codigo"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                                <TextView
+                                    android:id="@+id/formVendedorTxt182"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
+                                    android:textSize="14dp"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textStyle="bold"
+                                    android:layout_below="@id/formVendedorTxt3"
+                                    android:textAppearance="?android:textAppearanceLarge"
+                                    android:layout_marginTop="1dip"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Ninguna" />
+
+                                <TextView
+                                    android:id="@+id/formVendedorTxt81"
+                                    android:layout_below="@+id/formVendedorTxt182"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:textColor="@color/textColorPrimary"
+                                    android:textSize="12dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignTop="@+id/thumbnail"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Cargo"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                                <TextView
+                                    android:id="@+id/formVendedorTxt78"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:textSize="14dp"
+                                    android:paddingTop="5dp"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textStyle="bold"
+                                    android:layout_below="@id/formVendedorTxt81"
+                                    android:textAppearance="?android:textAppearanceLarge"
+                                    android:layout_marginTop="1dip"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Sin definir" />
+                            </RelativeLayout>
+
+
+                        </android.support.v7.widget.CardView>w>
+                    </TableRow>
+
+
+
+
+            <!--Fila 2-->
+                </TableLayout>
+            </TableRow>
+            <!--Fila 3-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:gravity="center">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:dividerPadding="10dp"
+                    android:padding="15dp">
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <android.support.v7.widget.CardView
+                            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/card_view4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            card_view:cardCornerRadius="8dp"
+                            android:layout_weight="1">
+                            <RelativeLayout
+                                android:padding="8dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:id="@+id/formVendedorTxt7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:textColor="@color/colorPrimary"
+                                    android:background="@drawable/line"
+                                    android:textSize="15dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignTop="@+id/thumbnail"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Informacion"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+                                <TextView
+                                    android:id="@+id/formVendedorTxt899"
+                                    android:layout_below="@+id/formVendedorTxt7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:textColor="@color/textColorPrimary"
+                                    android:textSize="12dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignTop="@+id/thumbnail"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Vendedor"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+                                <TextView
+                                    android:id="@+id/formVendedorTxt8"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:textSize="14dp"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textStyle="bold"
+                                    android:paddingTop="5dp"
+                                    android:layout_below="@id/formVendedorTxt899"
+                                    android:textAppearance="?android:textAppearanceLarge"
+                                    android:layout_marginTop="1dip"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="No" />
+                                <TextView
+                                    android:id="@+id/formVendedorTxt9"
+                                    android:layout_below="@+id/formVendedorTxt8"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="3dp"
+                                    android:textSize="12dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignTop="@+id/thumbnail"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Cobrador"
+                                    android:textColor="@color/textColorPrimary"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                                <TextView
+                                    android:id="@+id/formVendedorTxt10"
+                                    android:layout_below="@+id/formVendedorTxt9"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:textSize="14dp"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textStyle="bold"
+                                    android:paddingTop="5dp"
+                                    android:textAppearance="?android:textAppearanceLarge"
+                                    android:layout_marginTop="1dip"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="No" />
+
+                                <TextView
+                                    android:id="@+id/formVendedorTxt11"
+                                    android:layout_below="@+id/formVendedorTxt10"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:textColor="@color/textColorPrimary"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignTop="@+id/thumbnail"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Lineas Disponibles"
+                                    android:textSize="12dp"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                                <TextView
+                                    android:id="@+id/formVendedorTxt12"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:layout_below="@id/formVendedorTxt11"
+                                    android:textAppearance="?android:textAppearanceLarge"
+                                    android:layout_marginTop="1dip"
+                                    android:textSize="14dp"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textStyle="bold"
+                                    android:paddingTop="5dp"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Sin definir" />
+
+                                <TextView
+                                    android:id="@+id/formVendedorTxt15"
+                                    android:layout_below="@+id/formVendedorTxt12"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:textColor="@color/textColorPrimary"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignTop="@+id/thumbnail"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Orden Bodegas"
+                                    android:textSize="12dp"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                                <TextView
+                                    android:id="@+id/formVendedorTxt16"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:layout_below="@id/formVendedorTxt15"
+                                    android:textAppearance="?android:textAppearanceLarge"
+                                    android:layout_marginTop="1dip"
+                                    android:textSize="14dp"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textStyle="bold"
+                                    android:paddingTop="5dp"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Sin definir" />
+
+                                <TextView
+                                    android:id="@+id/formVendedorTxt17"
+                                    android:layout_below="@+id/formVendedorTxt16"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:textColor="@color/textColorPrimary"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignTop="@+id/thumbnail"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Rutas Tablet"
+                                    android:textSize="12dp"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                                <TextView
+                                    android:id="@+id/formVendedorTxt18"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:layout_below="@id/formVendedorTxt17"
+                                    android:textAppearance="?android:textAppearanceLarge"
+                                    android:layout_marginTop="1dip"
+                                    android:textSize="14dp"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textStyle="bold"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Sin definir" />
+
+                                <TextView
+                                    android:id="@+id/formVendedorTxt45"
+                                    android:layout_below="@+id/formVendedorTxt18"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:textColor="@color/textColorPrimary"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignTop="@+id/thumbnail"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Vendedores Tablet"
+                                    android:textSize="12dp"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                                <TextView
+                                    android:id="@+id/formVendedorTxt18a"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:layout_below="@id/formVendedorTxt45"
+                                    android:textAppearance="?android:textAppearanceLarge"
+                                    android:layout_marginTop="1dip"
+                                    android:textSize="14dp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Sin definir" />
+                                <TextView
+                                    android:id="@+id/formVendedorTxt34"
+                                    android:layout_below="@+id/formVendedorTxt18a"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:textColor="@color/textColorPrimary"
+                                    android:textSize="12dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_alignTop="@+id/thumbnail"
+                                    android:layout_toRightOf="@+id/thumbnail"
+                                    android:text="Fecha de Modificacion"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                                <TextView
+                                    android:id="@+id/formVendedorTxt20"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="3dp"
+                                    android:textSize="14dp"
+                                    android:paddingTop="5dp"
+                                    android:layout_below="@id/formVendedorTxt34"
+                                    android:textAppearance="?android:textAppearanceLarge"
+                                    android:layout_marginTop="1dip"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textStyle="bold"
+                                    android:paddingLeft="10dp"
+                                    android:text="Sin definir" />
+                            </RelativeLayout>
+                        </android.support.v7.widget.CardView>
+                    </TableRow>
+                    <!--Fila 4-->
+                </TableLayout>
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+</ScrollView>

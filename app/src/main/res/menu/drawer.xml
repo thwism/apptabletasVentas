@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/navigation_item_pedido"
+            android:icon="@drawable/ic_order"
+            android:title="@string/nav_item_pedidos" />
+        <item
+            android:id="@+id/navigation_item_oferta"
+            android:icon="@drawable/ic_sale"
+            android:title="@string/nav_item_ofertas" />
+        <item
+            android:id="@+id/navigation_item_factura"
+            android:icon="@drawable/ic_bill"
+            android:title="@string/nav_item_facturas" />
+        <item
+            android:id="@+id/navigation_item_nota"
+            android:icon="@drawable/ic_doc"
+            android:title="@string/nav_item_nota" />
+
+        <item
+            android:id="@+id/navigation_item_pago"
+            android:icon="@drawable/ic_visa"
+            android:title="@string/nav_item_pago" />
+        <item
+            android:id="@+id/navigation_item_cobro"
+            android:icon="@drawable/ic_cobro"
+            android:title="@string/nav_item_cobro" />
+        <item
+            android:id="@+id/navigation_item_visita"
+            android:icon="@drawable/ic_visit"
+            android:title="@string/nav_item_visita" />
+
+        <item
+            android:id="@+id/navigation_item_trans_bodega"
+            android:icon="@drawable/ic_trb"
+            android:title="@string/nav_item_trans_bodega" />
+
+        <item
+            android:id="@+id/navigation_item_ipt"
+            android:icon="@drawable/ic_ipt"
+            android:title="@string/nav_item_trans_ipt" />
+        <item
+            android:id="@+id/navigation__item_carrito"
+            android:icon="@drawable/ic_shop"
+            android:title="@string/nav_item_trans_shop" />
+
+    <item android:title="@string/nav_sub_menu_cat">
+        <menu>
+            <item android:id="@+id/navigation_item_cat_1"
+                android:icon="@drawable/ic_client"
+                android:title="@string/nav_sub_menu_cat_item1" />
+
+            <item android:id="@+id/navigation_item_cat_2"
+                android:icon="@drawable/ic_price"
+                android:title="@string/nav_sub_menu_cat_item2" />
+        </menu>
+    </item>
+
+    <item
+        android:title="@string/nav_sub_menu_sinc">
+        <menu>
+            <item android:id="@+id/navigation_item_sinc"
+                android:icon="@drawable/ic_sky"
+                android:title="@string/nav_sub_menu_sinc_item1" />
+        </menu>
+    </item>
+
+        <item
+            android:title="@string/nav_sub_menu_report">
+            <menu>
+                <item android:id="@+id/navigation_item_cartera"
+                    android:icon="@drawable/ic_doc"
+                    android:title="@string/nav_sub_menu_report_item1" />
+                <item android:id="@+id/navigation_item_descuentos"
+                    android:icon="@drawable/ic_bank"
+                    android:title="@string/nav_sub_menu_report_item2" />
+                <item android:id="@+id/navigation_item_ppendiente"
+                    android:icon="@drawable/ic_pending"
+                    android:title="@string/nav_sub_menu_report_item3" />
+                <item android:id="@+id/navigation_item_cventas"
+                    android:icon="@drawable/ic_checked"
+                    android:title="@string/nav_sub_menu_report_item4"
+                    android:visible="false"/>
+                <item android:id="@+id/navigation_item_balance"
+                    android:icon="@drawable/ic_checked"
+                    android:title="@string/nav_sub_menu_report_item5"
+                    android:visible="false"/>
+                <item android:id="@+id/navigation_item_clientes_sector"
+                    android:icon="@drawable/ic_client"
+                    android:title="@string/nav_sub_menu_report_item6" />
+            </menu>
+
+        </item>
+
+
+    <item android:title="@string/nav_sub_menu_perm"
+        android:id="@+id/nav_sub_menu_perm_item1"
+        >
+        <menu>
+            <item
+                android:id="@+id/nav_sub_menu_perm_item2"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/nav_sub_menu_perm_item2"
+                />
+        </menu>
+    </item>
+
+    <item android:title="@string/nav_sub_menu_cuenta">
+
+        <menu>
+            <item
+                android:id="@+id/nav_sub_menu_account_item1"
+                android:icon="@drawable/ic_checked"
+                android:title="@string/nav_sub_menu_salir_item1" />
+            <item
+                android:id="@+id/nav_sub_menu_account_item5"
+                android:icon="@drawable/ic_pass"
+                android:title="@string/nav_sub_menu_salir_item5" />
+            </menu>
+        </item>
+        <!--Menu para -->
+        <item android:title="@string/nav_sub_menu_informacion">
+            <menu>
+
+                <item
+                    android:id="@+id/nav_sub_menu_account_item2"
+                    android:icon="@drawable/ic_building"
+                    android:title="@string/nav_sub_menu_salir_item2" />
+                <item
+                    android:id="@+id/nav_sub_menu_account_item3"
+                    android:icon="@drawable/ic_app"
+                    android:title="@string/nav_sub_menu_salir_item3" />
+                <item
+                    android:id="@+id/nav_sub_menu_account_item4"
+                    android:icon="@drawable/ic_shut"
+                    android:title="@string/nav_sub_menu_salir_item4" />
+
+            </menu>
+        </item>
+    </group>
+</menu>
