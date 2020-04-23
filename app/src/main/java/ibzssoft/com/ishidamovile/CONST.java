@@ -46,4 +46,10 @@ public class CONST {
     public enum VISIBLE {
         EMPTY, CONTENT, PROGRESS
     }
+
+    /***
+     * Es la clave que se utiliza para desencriptar la información cifrada en la base de datos del sistema Sii4
+     * mcando 22/04/2020
+     * ***/
+    public static final String CLAVE_DESENCRIPTAR = "0102070612aq";
 }

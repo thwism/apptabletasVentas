@@ -17,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import ibzssoft.com.adaptadores.ExtraerConfiguraciones;
+import ibzssoft.com.ishidamovile.CONST;
 import ibzssoft.com.ishidamovile.R;
 import ibzssoft.com.storage.DBSistemaGestion;
 import ibzssoft.com.modelo.Cliente;
@@ -81,7 +82,8 @@ public class RecibirClientesVendedor {
                 for(int i=0;i<accesos.length;i++){
                     HttpClient httpClient = new DefaultHttpClient();
                     httpClient.getParams().setParameter("http.protocol.content-charset", HTTP.UTF_8);
-                    HttpGet del = new HttpGet("http://"+ip+":"+port+url+ws+"/"+accesos[i]+"/"+fecha1);
+                    //Se agrega un campo adicional que es la clave para desencriptar informacion 22/04/2020
+                    HttpGet del = new HttpGet("http://"+ip+":"+port+url+ws+"/"+accesos[i]+"/"+fecha1+"/"+CONST.CLAVE_DESENCRIPTAR);
                     del.setHeader("content-type", "application/json");
                     try
                     {

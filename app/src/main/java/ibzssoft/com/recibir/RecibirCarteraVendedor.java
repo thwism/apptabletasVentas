@@ -17,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import ibzssoft.com.adaptadores.ExtraerConfiguraciones;
+import ibzssoft.com.ishidamovile.CONST;
 import ibzssoft.com.ishidamovile.R;
 import ibzssoft.com.modelo.Cliente;
 import ibzssoft.com.modelo.PCKardex;
@@ -79,7 +80,8 @@ public class RecibirCarteraVendedor {
                 HttpClient httpClient = new DefaultHttpClient();
                 System.out.println("solicitando cartera: "+"http://"+ip+":"+port+url+ws+"/"+accesos[i]);
                 httpClient.getParams().setParameter("http.protocol.content-charset", HTTP.UTF_8);
-                HttpGet del = new HttpGet("http://"+ip+":"+port+url+ws+"/"+accesos[i]);
+                //Se agrega un campo adicional que es la clave para desencriptar informacion 22/04/2020
+                HttpGet del = new HttpGet("http://"+ip+":"+port+url+ws+"/"+accesos[i]+"/"+CONST.CLAVE_DESENCRIPTAR);
                 del.setHeader("content-type", "application/json");
                 try
                 {

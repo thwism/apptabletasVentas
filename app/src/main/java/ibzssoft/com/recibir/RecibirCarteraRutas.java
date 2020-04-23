@@ -17,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import ibzssoft.com.adaptadores.ExtraerConfiguraciones;
+import ibzssoft.com.ishidamovile.CONST;
 import ibzssoft.com.ishidamovile.R;
 import ibzssoft.com.modelo.PCKardex;
 import ibzssoft.com.storage.DBSistemaGestion;
@@ -78,7 +79,8 @@ public class RecibirCarteraRutas {
                 HttpClient httpClient = new DefaultHttpClient();
                 System.out.println("solicitando cartera ruta: "+"http://"+ip+":"+port+url+ws+"/"+rutas[i]);
                 httpClient.getParams().setParameter("http.protocol.content-charset", HTTP.UTF_8);
-                HttpGet del = new HttpGet("http://"+ip+":"+port+url+ws+"/"+rutas[i]);
+                //Se agrega un campo adicional que es la clave para desencriptar informacion 22/04/2020
+                HttpGet del = new HttpGet("http://"+ip+":"+port+url+ws+"/"+rutas[i]+"/"+CONST.CLAVE_DESENCRIPTAR);
                 del.setHeader("content-type", "application/json");
                 try
                 {
