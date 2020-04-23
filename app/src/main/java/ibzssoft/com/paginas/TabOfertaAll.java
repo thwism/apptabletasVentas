@@ -57,6 +57,7 @@ import ibzssoft.com.adaptadores.ValidateReferencia;
 import ibzssoft.com.enviar.IVKardex_Serialize_Envio;
 import ibzssoft.com.enviar.PKardex_Envio;
 import ibzssoft.com.enviar.Transaccion_Serialize_Envio;
+import ibzssoft.com.ishidamovile.CONST;
 import ibzssoft.com.ishidamovile.R;
 import ibzssoft.com.ishidamovile.oferta.crear.NuevaOfertaG;
 import ibzssoft.com.ishidamovile.oferta.crear.NuevaOfertaJM;
@@ -792,7 +793,8 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
             String fecha1 =ultmod.replace(" ", "%20");
             HttpClient httpClient = new DefaultHttpClient();
             httpClient.getParams().setParameter("http.protocol.content-charset", HTTP.UTF_8);
-            HttpGet del = new HttpGet("http://"+ip+":"+port+url+ws+"/"+fecha1);
+            //Se agrega un campo adicional que es la clave para desencriptar informacion 22/04/2020
+            HttpGet del = new HttpGet("http://"+ip+":"+port+url+ws+"/"+fecha1+"/"+CONST.CLAVE_DESENCRIPTAR);
             del.setHeader("content-type", "application/json");
             try
             {
