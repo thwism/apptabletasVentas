@@ -469,6 +469,7 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
                         case CONSGYP2016: intent = new Intent(getContext(),NuevaOfertaG.class);break;
                         case CONSGYP2018: intent = new Intent(getContext(),NuevaOfertaG.class);break;
                         case CONSGYP2019: intent = new Intent(getContext(),NuevaOfertaG.class);break;
+                        case CONSGYP2020: intent = new Intent(getContext(),NuevaOfertaG.class);break;
                         case JM2012: intent = new Intent(getContext(),NuevaOfertaJM.class);break;
                         case JM2013: intent = new Intent(getContext(),NuevaOfertaJM.class);break;
                         case JM2014: intent = new Intent(getContext(),NuevaOfertaJM.class);break;
