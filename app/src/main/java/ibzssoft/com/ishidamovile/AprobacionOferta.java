@@ -67,7 +67,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
     /*
           Campos de la cabecera
        */
-    private TextView emision,hora, bodega, transaccion, precio, vendedor;
+    private TextView emision, hora, bodega, transaccion, precio, vendedor;
     /*
         Campos del cliente
      */
@@ -79,9 +79,9 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
     /*
         Campos de validacion
      */
-    private int limite,count,conf_pcg,conf_max_venci,conf_dias_gracia;
-    private String  cli_id;
-    private int  consu_final;
+    private int limite, count, conf_pcg, conf_max_venci, conf_dias_gracia;
+    private String cli_id;
+    private int consu_final;
     /*
         Contenedores de la vista
      */
@@ -92,15 +92,15 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
     /*
         Campos para la tabla de items [VISTA]
      */
-    private EditText [] numero, cantidad, precio_real, descuento,solicitado, total,cospro,utilidad;
-    private int [] bandiva;
-    private int [] bandpromo,bandapro;
-    private int [] numprecio;
-    private String [] porcdesc, porcsol;
-    private String [] iditems,idpadres,keypadres,preciounitario;
-    private int [] descpromo;
+    private EditText[] numero, cantidad, precio_real, descuento, solicitado, total, cospro, utilidad;
+    private int[] bandiva;
+    private int[] bandpromo, bandapro;
+    private int[] numprecio;
+    private String[] porcdesc, porcsol;
+    private String[] iditems, idpadres, keypadres, preciounitario;
+    private int[] descpromo;
     private CheckBox[] seleccion;
-    private AutoCompleteTextView [] descripcion;
+    private AutoCompleteTextView[] descripcion;
     /*
         Recursos para inicializar tabla
      */
@@ -110,7 +110,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
     /*
         Variables total de transaccion
      */
-    private TextView tran_sub_sin_iva,tran_sub_con_iva, tran_sub,tran_sub_iva,tran_sub_total;
+    private TextView tran_sub_sin_iva, tran_sub_con_iva, tran_sub, tran_sub_iva, tran_sub_total;
     /*
         Botones de guardado y agregacion
      */
@@ -119,14 +119,14 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
     /*
         Transaccion observacion
      */
-    private TextView trans_observacion,trans_at, trans_te, trans_fp, trans_vl;
-    private TextView trans_cli_ruc, trans_cli_nombres,trans_cli_comercial, trans_cli_direccion, trans_cli_telefono;
+    private TextView trans_observacion, trans_at, trans_te, trans_fp, trans_vl;
+    private TextView trans_cli_ruc, trans_cli_nombres, trans_cli_comercial, trans_cli_direccion, trans_cli_telefono;
     private Resources resources;
 
     /**
      * Variables para preferencias
      */
-    private String impuestos,idvendedor,idusuario,lineas,bodegas;
+    private String impuestos, idvendedor, idusuario, lineas, bodegas;
     private int decimales;
 
     @Override
@@ -143,113 +143,114 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
         agregarFilasIniciales();
     }
 
-    public void cargarPreferencias(){
+    public void cargarPreferencias() {
 
         ExtraerConfiguraciones ext = new ExtraerConfiguraciones(this);
-        this.impuestos = ext.get(getString(R.string.key_empresa_iva),"12");
-        this.idvendedor = ext.get(getString(R.string.key_act_ven),getString(R.string.pref_act_ven_default));
-        this.lineas = ext.get(getString(R.string.key_act_lin),getString(R.string.pref_act_lin_default));
-        this.idusuario = ext.get(getString(R.string.key_act_user),getString(R.string.pref_act_user_default));
-        this.bodegas = ext.get(getString(R.string.key_act_bod),getString(R.string.pref_act_bod_default));
-        String dec= ext.get(getString(R.string.key_empresa_decimales),"2");
+        this.impuestos = ext.get(getString(R.string.key_empresa_iva), "12");
+        this.idvendedor = ext.get(getString(R.string.key_act_ven), getString(R.string.pref_act_ven_default));
+        this.lineas = ext.get(getString(R.string.key_act_lin), getString(R.string.pref_act_lin_default));
+        this.idusuario = ext.get(getString(R.string.key_act_user), getString(R.string.pref_act_user_default));
+        this.bodegas = ext.get(getString(R.string.key_act_bod), getString(R.string.pref_act_bod_default));
+        String dec = ext.get(getString(R.string.key_empresa_decimales), "2");
         this.decimales = Integer.parseInt(dec);
     }
 
 
-    public void inicializarCamposFormulario(){
+    public void inicializarCamposFormulario() {
      /*
         Campos de la transaccion
      */
-        this.emision= (TextView)findViewById(R.id.nuevoPedidoFecha);
-        this.hora= (TextView)findViewById(R.id.nuevoPedidoHora);
-        this.bodega= (TextView)findViewById(R.id.nuevoPedidoBodega);
-        this.precio= (TextView)findViewById(R.id.nuevoPedidoPrecio);
-        this.transaccion= (TextView)findViewById(R.id.nuevoPedidoTrans);
-        this.vendedor= (TextView)findViewById(R.id.nuevoPedidoVendedor);
+        this.emision = (TextView) findViewById(R.id.nuevoPedidoFecha);
+        this.hora = (TextView) findViewById(R.id.nuevoPedidoHora);
+        this.bodega = (TextView) findViewById(R.id.nuevoPedidoBodega);
+        this.precio = (TextView) findViewById(R.id.nuevoPedidoPrecio);
+        this.transaccion = (TextView) findViewById(R.id.nuevoPedidoTrans);
+        this.vendedor = (TextView) findViewById(R.id.nuevoPedidoVendedor);
      /*
         Campos del cliente
      */
-        this.cedula = (TextView)findViewById(R.id.nuevoPedidoCI_RUC);
-        this.nombres= (TextView)findViewById(R.id.nuevoPedidoNombres);
-        this.comercial= (TextView)findViewById(R.id.nuevoPedidoNombreAlt);
-        this.direccion= (TextView)findViewById(R.id.nuevoPedidoDireccion);
-        this.telefono= (TextView)findViewById(R.id.nuevoPedidoTelefono);
-        this.correo= (TextView)findViewById(R.id.nuevoPedidoCorreo);
-        this.observacion = (TextView)findViewById(R.id.nuevoPedidoObs);
+        this.cedula = (TextView) findViewById(R.id.nuevoPedidoCI_RUC);
+        this.nombres = (TextView) findViewById(R.id.nuevoPedidoNombres);
+        this.comercial = (TextView) findViewById(R.id.nuevoPedidoNombreAlt);
+        this.direccion = (TextView) findViewById(R.id.nuevoPedidoDireccion);
+        this.telefono = (TextView) findViewById(R.id.nuevoPedidoTelefono);
+        this.correo = (TextView) findViewById(R.id.nuevoPedidoCorreo);
+        this.observacion = (TextView) findViewById(R.id.nuevoPedidoObs);
         /*
         * Campos de validacion
         */
         this.limite = 0;
         this.count = 0;
-        this.cli_id  = "";
-        this.consu_final  = 0;
+        this.cli_id = "";
+        this.consu_final = 0;
         this.conf_pcg = 0;
         this.conf_max_venci = 0;
-        this.conf_dias_gracia= 0;
+        this.conf_dias_gracia = 0;
         /*
             Contenedores de la vista
         */
-        this.contenedor_cartera = (CardView)findViewById(R.id.contenedorCartera);
-        this.contenedor_observaciones= (CardView)findViewById(R.id.contenedorObservaciones);
-        this.contenedor_items= (CardView)findViewById(R.id.contenedorItems);
-        this.contenedor_adicional = (CardView)findViewById(R.id.contenedorAdicionales);
+        this.contenedor_cartera = (CardView) findViewById(R.id.contenedorCartera);
+        this.contenedor_observaciones = (CardView) findViewById(R.id.contenedorObservaciones);
+        this.contenedor_items = (CardView) findViewById(R.id.contenedorItems);
+        this.contenedor_adicional = (CardView) findViewById(R.id.contenedorAdicionales);
          /*
             Campos del cartera
          */
-        vencidos = (TextView)findViewById(R.id.nuevoPedidoDocsVencidos);
-        no_vencidos = (TextView)findViewById(R.id.nuevoPedidoDocsVencer);
-        saldo_vencer= (TextView)findViewById(R.id.nuevoPedidoSaldoVencer);
-        saldo_vencido = (TextView)findViewById(R.id.nuevoPedidoSaldoVencido);
+        vencidos = (TextView) findViewById(R.id.nuevoPedidoDocsVencidos);
+        no_vencidos = (TextView) findViewById(R.id.nuevoPedidoDocsVencer);
+        saldo_vencer = (TextView) findViewById(R.id.nuevoPedidoSaldoVencer);
+        saldo_vencido = (TextView) findViewById(R.id.nuevoPedidoSaldoVencido);
         /*
             Campos total transaccion
          */
-        tran_sub_con_iva = (TextView)findViewById(R.id.subtotal);
-        tran_sub_sin_iva = (TextView)findViewById(R.id.subtotal_0);
-        tran_sub = (TextView)findViewById(R.id.subtotal_total);
-        tran_sub_iva = (TextView)findViewById(R.id.iva);
-        tran_sub_total = (TextView)findViewById(R.id.total);
+        tran_sub_con_iva = (TextView) findViewById(R.id.subtotal);
+        tran_sub_sin_iva = (TextView) findViewById(R.id.subtotal_0);
+        tran_sub = (TextView) findViewById(R.id.subtotal_total);
+        tran_sub_iva = (TextView) findViewById(R.id.iva);
+        tran_sub_total = (TextView) findViewById(R.id.total);
         /*
             Campos observacion transaccion
          */
-        trans_observacion = (TextView)findViewById(R.id.txtNuevoPedidoObservacion);
-        trans_at= (TextView)findViewById(R.id.txtNuevoPedidoAT);
-        trans_te= (TextView)findViewById(R.id.txtNuevoPedidoTE);
-        trans_fp= (TextView)findViewById(R.id.txtNuevoPedidoFP);
-        trans_vl= (TextView)findViewById(R.id.txtNuevoPedidoVL);
+        trans_observacion = (TextView) findViewById(R.id.txtNuevoPedidoObservacion);
+        trans_at = (TextView) findViewById(R.id.txtNuevoPedidoAT);
+        trans_te = (TextView) findViewById(R.id.txtNuevoPedidoTE);
+        trans_fp = (TextView) findViewById(R.id.txtNuevoPedidoFP);
+        trans_vl = (TextView) findViewById(R.id.txtNuevoPedidoVL);
 
-        trans_cli_ruc = (TextView)findViewById(R.id.info_cliente_ruc);
-        trans_cli_nombres= (TextView)findViewById(R.id.info_cliente_nombres);
-        trans_cli_comercial= (TextView)findViewById(R.id.info_cliente_comercial);
-        trans_cli_direccion = (TextView)findViewById(R.id.info_cliente_direccion);
-        trans_cli_telefono= (TextView)findViewById(R.id.info_cliente_telefono);
+        trans_cli_ruc = (TextView) findViewById(R.id.info_cliente_ruc);
+        trans_cli_nombres = (TextView) findViewById(R.id.info_cliente_nombres);
+        trans_cli_comercial = (TextView) findViewById(R.id.info_cliente_comercial);
+        trans_cli_direccion = (TextView) findViewById(R.id.info_cliente_direccion);
+        trans_cli_telefono = (TextView) findViewById(R.id.info_cliente_telefono);
 
         resources = this.getResources();
     }
-    public void inicializarCamposTabla(int maximo){
+
+    public void inicializarCamposTabla(int maximo) {
         /*
             Campos de la tabla de items [VISTA]
          */
-        seleccion= new CheckBox[100];
-        numero= new EditText[100];
-        descripcion= new AutoCompleteTextView[100];
+        seleccion = new CheckBox[100];
+        numero = new EditText[100];
+        descripcion = new AutoCompleteTextView[100];
         cantidad = new EditText[100];
         precio_real = new EditText[100];
-        descuento= new EditText[100];
-        solicitado= new EditText[100];
-        cospro= new EditText[100];
-        utilidad= new EditText[100];
-        total= new EditText[100];
+        descuento = new EditText[100];
+        solicitado = new EditText[100];
+        cospro = new EditText[100];
+        utilidad = new EditText[100];
+        total = new EditText[100];
         bandiva = new int[100];
         bandpromo = new int[100];
         bandapro = new int[100];
-        numprecio  = new int[100];
-        porcdesc= new String[100];
-        porcsol= new String[100];
+        numprecio = new int[100];
+        porcdesc = new String[100];
+        porcsol = new String[100];
 
         iditems = new String[100];
         preciounitario = new String[100];
-        idpadres= new String[100];
-        keypadres= new String[100];
+        idpadres = new String[100];
+        keypadres = new String[100];
         descpromo = new int[100];
         /*
             Recursos para inicializar tabla
@@ -262,8 +263,8 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
         layoutCeldaDescripcion.span = 2;
         layoutCeldas.span = 1;
         layoutCeldaNro.span = 1;
-        aprobar= (ToggleButton) findViewById(R.id.aprobar);
-        guardar = (Button)findViewById(R.id.guardar);
+        aprobar = (ToggleButton) findViewById(R.id.aprobar);
+        guardar = (Button) findViewById(R.id.guardar);
         resources = this.getResources();
         guardar.setOnClickListener(this);
         guardar.setOnClickListener(this);
@@ -279,7 +280,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
         if (cursor.moveToFirst()) {
             cli_id = cursor.getString(cursor.getColumnIndex(Cliente.FIELD_idprovcli));
             cedula.setText(cursor.getString(cursor.getColumnIndex(Cliente.FIELD_ruc)));
-            if(cedula.getText().toString().equals("9999999999999")){
+            if (cedula.getText().toString().equals("9999999999999")) {
                 consu_final = 1;
                 mostrarContenedorAdicional();
             }
@@ -306,17 +307,18 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
                 this.limite = Integer.parseInt(conf_limite);
                 this.conf_max_venci = Integer.parseInt(max_pck);
                 //System.out.println("Filas maximas para esta transaccion: " + this.limite);
-                String conf_dg=cursor1.getString(cursor1.getColumnIndex(GNTrans.FIELD_diasgracia));
-                conf_dias_gracia =(Integer.parseInt(conf_dg));
+                String conf_dg = cursor1.getString(cursor1.getColumnIndex(GNTrans.FIELD_diasgracia));
+                conf_dias_gracia = (Integer.parseInt(conf_dg));
                 //System.out.println("Dias Gracia cartera: "+conf_dias_gracia);
                 /*Configuracion de observaciones y precios*/
                 ExtraerConfiguraciones ext = new ExtraerConfiguraciones(AprobacionOferta.this);
                 boolean conf_observacion = ext.getBoolean(getString(R.string.key_act_obs), true);
-                if (conf_observacion) mostrarContenedorObservaciones();cargarObservaciones(cursor.getString(cursor.getColumnIndex(Transaccion.FIELD_descripcion)));
+                if (conf_observacion) mostrarContenedorObservaciones();
+                cargarObservaciones(cursor.getString(cursor.getColumnIndex(Transaccion.FIELD_descripcion)));
                 if (cursor1.getString(cursor1.getColumnIndex(GNTrans.FIELD_preciopcgrupo)).equals("S")) {
                     precio.setText(getString(R.string.info_precio_pcgrupo_enabled));
                     int conf_num_pcg = ext.configuracionPreciosGrupos();
-              //      System.out.println("Numero tabla precios: " + conf_num_pcg);
+                    //      System.out.println("Numero tabla precios: " + conf_num_pcg);
                     if (precio.getText().toString().equals(getString(R.string.info_precio_pcgrupo_disable)) != true) {
                         cargarPrecio(cli_id, conf_num_pcg);
                     }
@@ -367,22 +369,22 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    public void cargarObservaciones(String datos){
+    public void cargarObservaciones(String datos) {
         //observacion,solitante,tiempo entrega,forma,validez,atencion
-        System.out.println("Observaciones Cargadas: "+datos);
-        String data[]=datos.split(";");
-        try{
-            if(data[0].isEmpty()!=true) trans_observacion.setText(data[0]);
-            if(data[1].isEmpty()!=true) trans_at.setText(data[1]);
-            if(data[2].isEmpty()!=true) trans_te.setText(data[2]);
-            if(data[3].isEmpty()!=true) trans_fp.setText(data[3]);
-            if(data[4].isEmpty()!=true) trans_vl.setText(data[4]);
-            if(data[5].isEmpty()!=true) trans_cli_ruc.setText(data[5]);
-            if(data[6].isEmpty()!=true) trans_cli_nombres.setText(data[6]);
-            if(data[7].isEmpty()!=true) trans_cli_comercial.setText(data[7]);
-            if(data[8].isEmpty()!=true) trans_cli_direccion.setText(data[8]);
-            if(data[9].isEmpty()!=true) trans_cli_telefono.setText(data[9]);
-        }catch(Exception e){
+        System.out.println("Observaciones Cargadas: " + datos);
+        String data[] = datos.split(";");
+        try {
+            if (data[0].isEmpty() != true) trans_observacion.setText(data[0]);
+            if (data[1].isEmpty() != true) trans_at.setText(data[1]);
+            if (data[2].isEmpty() != true) trans_te.setText(data[2]);
+            if (data[3].isEmpty() != true) trans_fp.setText(data[3]);
+            if (data[4].isEmpty() != true) trans_vl.setText(data[4]);
+            if (data[5].isEmpty() != true) trans_cli_ruc.setText(data[5]);
+            if (data[6].isEmpty() != true) trans_cli_nombres.setText(data[6]);
+            if (data[7].isEmpty() != true) trans_cli_comercial.setText(data[7]);
+            if (data[8].isEmpty() != true) trans_cli_direccion.setText(data[8]);
+            if (data[9].isEmpty() != true) trans_cli_telefono.setText(data[9]);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -418,9 +420,10 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
         }
         helper.close();
     }
-    public void cargarInfoCartera(Cursor cur){
+
+    public void cargarInfoCartera(Cursor cur) {
         int count1 = 0;
-        double tmp_saldo_vencer  = 0.0;
+        double tmp_saldo_vencer = 0.0;
         double tmp_saldo_vencido = 0.0;
         int count2 = 0;
         if (cur.moveToFirst()) {
@@ -455,7 +458,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
         int actions = 0;
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                actions =  cursor.getInt(cursor.getColumnIndex(GNTrans.FIELD_opciones));
+                actions = cursor.getInt(cursor.getColumnIndex(GNTrans.FIELD_opciones));
             }
         }
         helper.close();
@@ -497,6 +500,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
         System.out.println("Resultado final: " + price);
         return price;
     }
+
     /***
      * Metodos para agregar/ eliminar / editar filas de la tabla de items
      */
@@ -519,7 +523,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
 
                 this.descpromo[this.count] = cursor.getInt(cursor.getColumnIndex(IVKardex.FIELD_desc_promo));
                 this.keypadres[count] = cursor.getString(cursor.getColumnIndex(IVKardex.FIELD_keypadre));
-                this.bandapro[this.count]=cursor.getInt(cursor.getColumnIndex(IVKardex.FIELD_band_aprobado));
+                this.bandapro[this.count] = cursor.getInt(cursor.getColumnIndex(IVKardex.FIELD_band_aprobado));
 
 
                 this.preciounitario[count] = cursor.getString(cursor.getColumnIndex(IVKardex.FIELD_cos_total));
@@ -642,8 +646,9 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
                 this.utilidad[count].setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                 this.utilidad[this.count].setGravity(Gravity.CENTER);
                 this.utilidad[this.count].setEnabled(false);
-                double util=this.calcularUtilidad(redondearNumeroBase4(cursor.getDouble(cursor.getColumnIndex(IVKardex.FIELD_cos_pro))),redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVKardex.FIELD_cos_total))),cursor.getString(cursor.getColumnIndex(IVKardex.FIELD_desc_sol)),redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVKardex.FIELD_descuento))));
-                if (util<0) this.utilidad[this.count].setTextColor(getResources().getColor(R.color.color_danger));
+                double util = this.calcularUtilidad(redondearNumeroBase4(cursor.getDouble(cursor.getColumnIndex(IVKardex.FIELD_cos_pro))), redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVKardex.FIELD_cos_total))), cursor.getString(cursor.getColumnIndex(IVKardex.FIELD_desc_sol)), redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVKardex.FIELD_descuento))));
+                if (util < 0)
+                    this.utilidad[this.count].setTextColor(getResources().getColor(R.color.color_danger));
                 this.utilidad[this.count].setText(redondearNumero(util));
                 this.utilidad[this.count].setTextSize(14);
                 this.utilidad[this.count].setPadding(5, 5, 5, 5);
@@ -664,8 +669,11 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
 
                 this.seleccion[count] = new CheckBox(this);
                 this.seleccion[count].setMinimumHeight(50);
+                if (cursor.getString(cursor.getColumnIndex(IVKardex.FIELD_desc_sol)).compareTo("") == 0) {
+                    this.seleccion[count].setEnabled(false);
+                }
 
-        /*Agregando identificador por fila*/
+                /*Agregando identificador por fila*/
                 this.seleccion[count].setTag(count);
                 this.cantidad[count].setTag(count);
                 this.descuento[count].setTag(count);
@@ -675,10 +683,10 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
                     public void onClick(View v) {
                         final int position = (Integer) v.getTag();
                         if (aprobar.isChecked()) {
-                            System.out.println("aprobar fila: "+position);
-                            if(seleccion[position].isChecked()){
-                                  if(bandapro[position]!=1)aprobarFila(position);
-                            }else if(bandapro[position]!=0)desaprobarFila(position);
+                            System.out.println("aprobar fila: " + position);
+                            if (seleccion[position].isChecked()) {
+                                if (bandapro[position] != 1) aprobarFila(position);
+                            } else if (bandapro[position] != 0) desaprobarFila(position);
                         } else {
                             if (iditems[position] != null && seleccion[position].isChecked()) {
                                 crearDialogInfoItem(position);
@@ -707,23 +715,24 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
             calcularTotalTransaccion();
         }
     }
+
     /**
-     *Metodo para mostrar opciones por fila
+     * Metodo para mostrar opciones por fila
      */
-    public double calcularUtilidad(String cospro, String preciolista,String porcsolicita, String desc_org){
+    public double calcularUtilidad(String cospro, String preciolista, String porcsolicita, String desc_org) {
         double porc = 0.0;
         double pre = Double.parseDouble(preciolista);
         double cosprom = Double.parseDouble(cospro);
         double desorg = Double.parseDouble(desc_org);
-        if(!porcsolicita.isEmpty()){
-            porc = Double.parseDouble(porcsolicita)/100;
+        if (!porcsolicita.isEmpty()) {
+            porc = Double.parseDouble(porcsolicita) / 100;
         } else {
-            porc = desorg/100;
+            porc = desorg / 100;
         }
-        double pre_porc= pre*porc;
-        double val = (pre_porc-pre)*-1;
-        double res = 1-(cosprom/val);
-        return res*100;
+        double pre_porc = pre * porc;
+        double val = (pre_porc - pre) * -1;
+        double res = 1 - (cosprom / val);
+        return res * 100;
     }
 
 
@@ -760,7 +769,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
         //cargando datos
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
         Cursor cursor = helper.consultarItem(iditems[posicion]);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             code.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_cod_item)));
             nombre.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_descripcion)));
             porc_org.setText(redondearNumero(new Double(descuento[posicion].getText().toString())));
@@ -770,46 +779,46 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
             und.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_unidad)));
             double puItem = Double.parseDouble(preciounitario[posicion]);
             precio.setText(redondearNumero(puItem));
-            if (bandiva[posicion]!=1) {
+            if (bandiva[posicion] != 1) {
                 imp.setText("NO");
             }
-            if(cantidad[posicion].getText().toString()!=null && !cantidad[posicion].getText().toString().isEmpty()){//verificar que la cantidad no este vacia
+            if (cantidad[posicion].getText().toString() != null && !cantidad[posicion].getText().toString().isEmpty()) {//verificar que la cantidad no este vacia
                 double cnt = (Double.parseDouble(cantidad[posicion].getText().toString()));
-                double prc= new Double(descuento[posicion].getText().toString());
-                double porcentaje = prc/100 ;
-                double precio_total = cnt*puItem;
-                double descuento = precio_total*porcentaje;
+                double prc = new Double(descuento[posicion].getText().toString());
+                double porcentaje = prc / 100;
+                double precio_total = cnt * puItem;
+                double descuento = precio_total * porcentaje;
                 double pre_real = (precio_total - descuento) / cnt;
                 double tot = cnt * pre_real;
                 precio_real_org.setText(redondearNumero(pre_real));
                 precio_real_org_iva.setText(redondearNumero(pre_real));
                 desc_org.setText(redondearNumero(new Double(descuento)));
                 total_org.setText(redondearNumero(new Double(tot)));
-                if(bandiva[posicion]==1){
+                if (bandiva[posicion] == 1) {
                     String prf_imp = this.impuestos;
                     double porc = 0.0;
-                    if(prf_imp!=null)porc=new Double(prf_imp)/100;
-                    double pre_real_org_iva= pre_real*porc;
-                    precio_real_org_iva.setText(redondearNumero(pre_real_org_iva+pre_real));
+                    if (prf_imp != null) porc = new Double(prf_imp) / 100;
+                    double pre_real_org_iva = pre_real * porc;
+                    precio_real_org_iva.setText(redondearNumero(pre_real_org_iva + pre_real));
                 }
                 /*Calculo para descuento solicitado*/
-                if(!solicitado[posicion].getText().toString().isEmpty()){
-                    double prc_sol= new Double(solicitado[posicion].getText().toString());
-                    double porcentaje_sol = prc_sol/100 ;
-                    double precio_total_sol = cnt*puItem;
-                    double descuento_sol = precio_total_sol*porcentaje_sol;
+                if (!solicitado[posicion].getText().toString().isEmpty()) {
+                    double prc_sol = new Double(solicitado[posicion].getText().toString());
+                    double porcentaje_sol = prc_sol / 100;
+                    double precio_total_sol = cnt * puItem;
+                    double descuento_sol = precio_total_sol * porcentaje_sol;
                     double pre_real_sol = (precio_total_sol - descuento_sol) / cnt;
                     double tot_sol = cnt * pre_real_sol;
                     precio_real_sol.setText(redondearNumero(pre_real_sol));
                     precio_real_sol_iva.setText(redondearNumero(pre_real_sol));
                     desc_sol.setText(redondearNumero(new Double(descuento_sol)));
                     total_sol.setText(redondearNumero(new Double(tot_sol)));
-                    if(bandiva[posicion]==1){
+                    if (bandiva[posicion] == 1) {
                         String prf_imp = this.impuestos;
                         double porc = 0.0;
-                        if(prf_imp!=null)porc=new Double(prf_imp)/100;
-                        double pre_real_sol_iva= pre_real_sol*porc;
-                        precio_real_sol_iva.setText(redondearNumero(pre_real_sol_iva+pre_real_sol));
+                        if (prf_imp != null) porc = new Double(prf_imp) / 100;
+                        double pre_real_sol_iva = pre_real_sol * porc;
+                        precio_real_sol_iva.setText(redondearNumero(pre_real_sol_iva + pre_real_sol));
                     }
                 }
             }
@@ -818,7 +827,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
     /*Generar reporte de existencia*/
         TableRow fila;
         int pst = 0;
-        Cursor cur1 = helper.obtenerExistenciaItem(iditems[posicion],bodegas.split(","));
+        Cursor cur1 = helper.obtenerExistenciaItem(iditems[posicion], bodegas.split(","));
         if (cur1.moveToFirst()) {
             do {
                 fila = new TableRow(this);
@@ -884,7 +893,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
     public void crearDialogOptionsDescPromo(final int position) {
         android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(this);
         alertDialogBuilder.setTitle(R.string.tittle_dialog_desc_promo);
-        alertDialogBuilder.setSingleChoiceItems(new String[]{"Descuento","Promocion"}, 0, null);
+        alertDialogBuilder.setSingleChoiceItems(new String[]{"Descuento", "Promocion"}, 0, null);
         /*Cargar Listado*/
         alertDialogBuilder.setCancelable(false);
         alertDialogBuilder.setPositiveButton("Aplicar", new DialogInterface.OnClickListener() {
@@ -892,11 +901,11 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
                 dialog.dismiss();
                 ListView lv = ((AlertDialog) dialog).getListView();
                 int posicion = lv.getCheckedItemPosition();
-                System.out.println("Posicion: "+position);
+                System.out.println("Posicion: " + position);
                 switch (posicion) {
                     case 0:
                         System.out.println("Aplicando Descuento: " + iditems[position]);
-                        double desc = calcularDescuentoItem(cli_id,iditems[position],position);
+                        double desc = calcularDescuentoItem(cli_id, iditems[position], position);
                         descuento[position].setText(redondearNumero(desc));
                         cantidad[position].setEnabled(false);
                         descripcion[position].setEnabled(false);
@@ -909,7 +918,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
                     case 1:
                         System.out.println("Aplicando Promocion: " + posicion);
                         int cantidad_padre = Integer.parseInt(cantidad[position].getText().toString());
-                        calcularPromociones(iditems[position],cantidad_padre,keypadres[position],position);
+                        calcularPromociones(iditems[position], cantidad_padre, keypadres[position], position);
                         cantidad[position].setEnabled(false);
                         descripcion[position].setEnabled(false);
                         descuento[position].requestFocus();
@@ -924,6 +933,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
         final android.support.v7.app.AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
+
     public boolean calcularSubtotalItem(int row) {
         System.out.println("Calculando subtotal item");
         double cnt = Double.parseDouble(cantidad[row].getText().toString());
@@ -936,8 +946,8 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
         double subtotal = cnt * precioreal;
         precio_real[row].setText(redondearNumero(precioreal));
         total[row].setText(redondearNumero(subtotal));
-        System.out.println("Calculando subtotal item porcentaje: "+porcentaje+" precio: "+precio+" precio_real: "+precio_real);
-        if(Double.parseDouble(descuento[row].getText().toString())>0)descpromo[row] = 1;
+        System.out.println("Calculando subtotal item porcentaje: " + porcentaje + " precio: " + precio + " precio_real: " + precio_real);
+        if (Double.parseDouble(descuento[row].getText().toString()) > 0) descpromo[row] = 1;
         return true;
     }
 
@@ -965,7 +975,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
                 precio_real[fila].setText(valores[position]);
                 preciounitario[fila] = valores[position];
                 numprecio[fila] = Integer.parseInt(indices[position]);
-                System.out.println("Precio seleccionado: "+valores[position]+";"+indices[position]);
+                System.out.println("Precio seleccionado: " + valores[position] + ";" + indices[position]);
             }
         });
     }
@@ -1021,6 +1031,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
         precio_real[posicion].setText(redondearNumero(precioUnitario));
         return true;
     }
+
     public double calcularDescuentoItem(String cli_id, String item_id, int posicion) {
         double result = 0.0;
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
@@ -1046,7 +1057,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
         try {
             for (int i = 0; i < this.count; i++) {
                 //System.out.println("subtotales: " + insTotales[i] + " -> " + insDescripciones[i] + " -> " + insIDItem[i] + " -> PADRE: " + insPadre[i] + " PROMO-> " + insPromo[i]);
-                if(iditems[i]!=null)
+                if (iditems[i] != null)
                     if (this.bandiva[i] != 1) {
                         subtotal_sin_iva += Double.parseDouble(this.total[i].getText().toString());
                     } else {
@@ -1058,7 +1069,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
             this.tran_sub.setText(redondearNumero(subtotal_con_iva + subtotal_sin_iva));
             String prf_imp = this.impuestos;
             double porc = 0.0;
-            if(prf_imp!=null)porc=new Double(prf_imp)/100;
+            if (prf_imp != null) porc = new Double(prf_imp) / 100;
             total_iva = (subtotal_con_iva * porc);
             this.tran_sub_iva.setText(redondearNumero(total_iva));
             double monto = subtotal_con_iva + subtotal_sin_iva + total_iva;
@@ -1072,8 +1083,8 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
     //Validar promociones
     public boolean calcularPromociones(String id_item_padre, int cantidad_padre, String key_padre, int posicion) {
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
-        Cursor cursor = helper.consultarPromocionItem(id_item_padre,cantidad_padre);
-        if (cursor.moveToFirst()){
+        Cursor cursor = helper.consultarPromocionItem(id_item_padre, cantidad_padre);
+        if (cursor.moveToFirst()) {
             descpromo[posicion] = 0;
             int cantidad_minima = Integer.parseInt(cursor.getString(cursor.getColumnIndex(Promocion.FIELD_cantidad_min)));
             String id_hijo = cursor.getString(cursor.getColumnIndex(Promocion.FIELD_id_inven_promo));
@@ -1094,37 +1105,38 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
             for (int i = 0; i < veces; i++) {
                 cantidad_total += cantidad_item_hijo;
             }
-            sub_promo = cantidad_total*precio_item_hijo;
+            sub_promo = cantidad_total * precio_item_hijo;
         }
         cursor.close();
         helper.close();
         return true;
     }
-    public void aprobarFila(int posicion){
-        try{
-                bandapro[posicion]=1;
-                numero[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
-                descripcion[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
-                cantidad[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
-                precio_real[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
-                descuento[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
-                total[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
-                solicitado[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
-                cospro[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
-                utilidad[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
-                //calcularSubtotalItem(posicion);
+
+    public void aprobarFila(int posicion) {
+        try {
+            bandapro[posicion] = 1;
+            numero[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
+            descripcion[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
+            cantidad[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
+            precio_real[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
+            descuento[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
+            total[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
+            solicitado[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
+            cospro[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
+            utilidad[posicion].setTextColor(resources.getColor(R.color.updateCatalog));
+            //calcularSubtotalItem(posicion);
                 /*Cambiar de variables Arreglos Normales*/
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            Toast ts= Toast.makeText(getApplicationContext(),resources.getString(R.string.info_imposible_delete_row),Toast.LENGTH_SHORT);
+            Toast ts = Toast.makeText(getApplicationContext(), resources.getString(R.string.info_imposible_delete_row), Toast.LENGTH_SHORT);
             ts.show();
         }
         calcularTotalTransaccion();
     }
 
-    public void desaprobarFila(int posicion){
-        try{
-            bandapro[posicion]=0;
+    public void desaprobarFila(int posicion) {
+        try {
+            bandapro[posicion] = 0;
             numero[posicion].setTextColor(resources.getColor(R.color.textColorPrimary));
             descripcion[posicion].setTextColor(resources.getColor(R.color.textColorPrimary));
             cantidad[posicion].setTextColor(resources.getColor(R.color.textColorPrimary));
@@ -1136,22 +1148,19 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
             utilidad[posicion].setTextColor(resources.getColor(R.color.textColorPrimary));
             /*Cambiar de variables Arreglos Normales*/
             //calcularSubtotalItem(posicion);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            Toast ts= Toast.makeText(getApplicationContext(),resources.getString(R.string.info_imposible_delete_row),Toast.LENGTH_SHORT);
+            Toast ts = Toast.makeText(getApplicationContext(), resources.getString(R.string.info_imposible_delete_row), Toast.LENGTH_SHORT);
             ts.show();
         }
         calcularTotalTransaccion();
     }
 
 
-
-
     public String obtenerObservaciones() {
         //observacion,solitante,tiempo entrega,forma,validez,ruc, razon social, nombre comercial, direccion,telefono
-        return trans_observacion.getText().toString() +";" +trans_at.getText().toString()+ ";"+trans_te.getText().toString()+ ";" +trans_fp.getText().toString() + ";"  +trans_vl.getText().toString()+ ";" +trans_cli_ruc.getText().toString()+ ";"  +trans_cli_nombres.getText().toString()+ ";" +trans_cli_comercial.getText().toString()+  ";"  +trans_cli_direccion.getText().toString()+ ";"+trans_cli_telefono.getText().toString();
+        return trans_observacion.getText().toString() + ";" + trans_at.getText().toString() + ";" + trans_te.getText().toString() + ";" + trans_fp.getText().toString() + ";" + trans_vl.getText().toString() + ";" + trans_cli_ruc.getText().toString() + ";" + trans_cli_nombres.getText().toString() + ";" + trans_cli_comercial.getText().toString() + ";" + trans_cli_direccion.getText().toString() + ";" + trans_cli_telefono.getText().toString();
     }
-
 
 
     public void alertaTransaccionGuardada() {
@@ -1204,6 +1213,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
             contenedor_items.setVisibility(View.VISIBLE);
         }
     }
+
     //animar
     private void animar(boolean mostrar, CardView layout) {
         AnimationSet set = new AnimationSet(true);
@@ -1220,26 +1230,37 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
         layout.setLayoutAnimation(controller);
         layout.startAnimation(animation);
     }
+
     /*
         Metodo para redondear numero a 2 decimales
      */
     public String redondearNumero(double numero) {
-        int dec =this.decimales;
+        int dec = this.decimales;
         String clave = "";
-        switch (dec){
-            case 2:clave = "0.00";break;
-            case 3:clave = "0.000";break;
-            case 4:clave = "0.0000";break;
-            case 5:clave = "0.00000";break;
+        switch (dec) {
+            case 2:
+                clave = "0.00";
+                break;
+            case 3:
+                clave = "0.000";
+                break;
+            case 4:
+                clave = "0.0000";
+                break;
+            case 5:
+                clave = "0.00000";
+                break;
         }
         DecimalFormat formateador = new DecimalFormat(clave);
         return formateador.format(numero).replace(",", ".");
     }
+
     public String redondearNumeroBase4(double numero) {
         String clave = "0.0000";
         DecimalFormat formateador = new DecimalFormat(clave);
         return formateador.format(numero).replace(",", ".");
     }
+
     /*
     * Agregando eventos
     */
@@ -1254,10 +1275,10 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
                 gen.generarClave();
                 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
                 String fecha = sdf1.format(new Date());
-                Cursor cursor1= helper.obtenerTransaccion(getIntent().getStringExtra("transid"));
-                Transaccion trans=null;
-                if(cursor1.moveToFirst()){
-                    trans=new Transaccion(cursor1.getString(cursor1.getColumnIndex(Transaccion.FIELD_ID_Trans)),
+                Cursor cursor1 = helper.obtenerTransaccion(getIntent().getStringExtra("transid"));
+                Transaccion trans = null;
+                if (cursor1.moveToFirst()) {
+                    trans = new Transaccion(cursor1.getString(cursor1.getColumnIndex(Transaccion.FIELD_ID_Trans)),
                             transaccion.getText().toString(),
                             obtenerObservaciones(),
                             cursor1.getInt(cursor1.getColumnIndex(Transaccion.FIELD_numTransaccion)),
@@ -1265,8 +1286,8 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
                             cursor1.getString(cursor1.getColumnIndex(Transaccion.FIELD_hora_trans)),
                             cursor1.getInt(cursor1.getColumnIndex(Transaccion.FIELD_band_enviado)),
                             idvendedor,
-                            cli_id,null,
-                            cursor1.getString(cursor1.getColumnIndex(Transaccion.FIELD_referencia)),fecha);
+                            cli_id, null,
+                            cursor1.getString(cursor1.getColumnIndex(Transaccion.FIELD_referencia)), fecha);
                 }
                 helper.modificarTransaccion(trans);
                 helper.close();
@@ -1290,34 +1311,34 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.guardar:
                 //System.out.println("Intentando guardar:");
                 ExtraerConfiguraciones ext = new ExtraerConfiguraciones(AprobacionOferta.this);
-                boolean conf_observacion = ext.getBoolean(getString(R.string.key_act_obs),true);
+                boolean conf_observacion = ext.getBoolean(getString(R.string.key_act_obs), true);
                 if (conf_observacion) {
                     if (!validarCamposVacios()) {
-                        if(consu_final==1){
-                            if(!validarCamposVaciosCliente()){
+                        if (consu_final == 1) {
+                            if (!validarCamposVaciosCliente()) {
                                 guardarTransaccion();
                             }
-                        }else{
+                        } else {
                             guardarTransaccion();
                         }
                     }
                 } else guardarTransaccion();
                 break;
             case R.id.aprobar:
-                if(aprobar.isChecked()){
+                if (aprobar.isChecked()) {
                     System.out.println("Aprobando");
                     //si esta habilitado
-                    for(int i =0; i<count; i++){
+                    for (int i = 0; i < count; i++) {
                         seleccion[i].setChecked(false);
                     }
-                }else{
+                } else {
                     guardar.setEnabled(true);
-                    for(int i =0; i<count; i++){
+                    for (int i = 0; i < count; i++) {
                         seleccion[i].setChecked(false);
                     }
                 }
@@ -1326,11 +1347,11 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
 
     }
 
-    public int filasCompletadas(){
+    public int filasCompletadas() {
         int result = 0;
-        for(int i=0; i<count; i++){
-            System.out.println("Cadenas comparadas en filas completas: "+iditems[i]+";"+descripcion[i].getText().toString());
-            if(iditems[i]!=null && !descripcion[i].getText().toString().equals("FILA BORRADA")){
+        for (int i = 0; i < count; i++) {
+            System.out.println("Cadenas comparadas en filas completas: " + iditems[i] + ";" + descripcion[i].getText().toString());
+            if (iditems[i] != null && !descripcion[i].getText().toString().equals("FILA BORRADA")) {
                 result++;
             }
         }
@@ -1338,10 +1359,10 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
     }
 
 
-    public boolean guardarTransaccion(){
-        if(filasCompletadas()>0){
+    public boolean guardarTransaccion() {
+        if (filasCompletadas() > 0) {
             guardarTrans();
-        }else{
+        } else {
             android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(this);
             alertDialogBuilder.setMessage("Debe ingresar al menos un producto");
             alertDialogBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
@@ -1361,15 +1382,15 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
             trans_te.requestFocus();
             trans_te.setError(resources.getString(R.string.info_field_required));
             return true;
-        }else if (TextUtils.isEmpty(trans_vl.getText().toString())){
+        } else if (TextUtils.isEmpty(trans_vl.getText().toString())) {
             trans_vl.requestFocus();
             trans_vl.setError(resources.getString(R.string.info_field_required));
             return true;
-        }else if (TextUtils.isEmpty(trans_fp.getText().toString())){
+        } else if (TextUtils.isEmpty(trans_fp.getText().toString())) {
             trans_fp.requestFocus();
             trans_fp.setError(resources.getString(R.string.info_field_required));
             return true;
-        }else if (TextUtils.isEmpty(trans_observacion.getText().toString())){
+        } else if (TextUtils.isEmpty(trans_observacion.getText().toString())) {
             trans_observacion.requestFocus();
             trans_observacion.setError(resources.getString(R.string.info_field_required));
             return true;
@@ -1386,15 +1407,15 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
             trans_cli_nombres.requestFocus();
             trans_cli_nombres.setError(resources.getString(R.string.info_field_required));
             return true;
-        }else if (TextUtils.isEmpty(trans_cli_comercial.getText().toString())){
+        } else if (TextUtils.isEmpty(trans_cli_comercial.getText().toString())) {
             trans_cli_comercial.requestFocus();
             trans_cli_comercial.setError(resources.getString(R.string.info_field_required));
             return true;
-        }else if (TextUtils.isEmpty(trans_cli_direccion.getText().toString())){
+        } else if (TextUtils.isEmpty(trans_cli_direccion.getText().toString())) {
             trans_cli_direccion.requestFocus();
             trans_cli_direccion.setError(resources.getString(R.string.info_field_required));
             return true;
-        }else if (TextUtils.isEmpty(trans_cli_telefono.getText().toString())){
+        } else if (TextUtils.isEmpty(trans_cli_telefono.getText().toString())) {
             trans_cli_telefono.requestFocus();
             trans_cli_telefono.setError(resources.getString(R.string.info_field_required));
             return true;
@@ -1402,14 +1423,14 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
         return false;
     }
 
-    public void eliminarDetallesAnteriores(String id_trans){
+    public void eliminarDetallesAnteriores(String id_trans) {
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
-        Cursor cursor1=helper.consultarIVKardex(id_trans);
-        if(cursor1.moveToFirst()){
-            do{
-               // System.out.println("Eliminando detalle anterior: "+cursor1.getString(cursor1.getColumnIndex(IVKardex.FIELD_identificador)));
+        Cursor cursor1 = helper.consultarIVKardex(id_trans);
+        if (cursor1.moveToFirst()) {
+            do {
+                // System.out.println("Eliminando detalle anterior: "+cursor1.getString(cursor1.getColumnIndex(IVKardex.FIELD_identificador)));
                 helper.eliminarIVKardex(cursor1.getString(cursor1.getColumnIndex(IVKardex.FIELD_identificador)));
-            }while(cursor1.moveToNext());
+            } while (cursor1.moveToNext());
         }
         helper.close();
     }
@@ -1417,17 +1438,17 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
     /*
         Guardar Detalles
      */
-    public ArrayList<IVKardex> generarDetalles(String id_trans, String bodega_id){
+    public ArrayList<IVKardex> generarDetalles(String id_trans, String bodega_id) {
         ArrayList<IVKardex> ivks = new ArrayList<>();
-        GeneradorClaves gen= new GeneradorClaves();
+        GeneradorClaves gen = new GeneradorClaves();
         gen.generarClave();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
-        String fecha=sdf.format(new Date());
-        DBSistemaGestion helper= new DBSistemaGestion(AprobacionOferta.this);
+        String fecha = sdf.format(new Date());
+        DBSistemaGestion helper = new DBSistemaGestion(AprobacionOferta.this);
 //        System.out.println("Generando detalles!!");
-        for(int i=0; i<count;i++ ) {
-  //          System.out.println("iditems: "+iditems[i]+";"+descripcion[i].getText().toString());
-            if(iditems[i]!=null&&!descripcion[i].getText().toString().equals("FILA BORRADA")){
+        for (int i = 0; i < count; i++) {
+            //          System.out.println("iditems: "+iditems[i]+";"+descripcion[i].getText().toString());
+            if (iditems[i] != null && !descripcion[i].getText().toString().equals("FILA BORRADA")) {
                 /*System.out.println("cantidad: "+Double.parseDouble(cantidad[i].getText().toString()));
                 System.out.println("precio_real: "+Double.parseDouble(precio_real[i].getText().toString()));
                 System.out.println("descuento: "+Double.parseDouble(descuento[i].getText().toString()));
@@ -1441,7 +1462,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
                         Double.parseDouble(precio_real[i].getText().toString()),//precio real total
                         solicitado[i].getText().toString(),
                         Double.parseDouble(descuento[i].getText().toString()),//descuento
-                        (Double.parseDouble(preciounitario[i])*Double.parseDouble(cantidad[i].getText().toString()))*(Double.parseDouble(descuento[i].getText().toString())/100), //descuento real
+                        (Double.parseDouble(preciounitario[i]) * Double.parseDouble(cantidad[i].getText().toString())) * (Double.parseDouble(descuento[i].getText().toString()) / 100), //descuento real
                         id_trans,
                         bodega_id,
                         iditems[i],
@@ -1449,13 +1470,13 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
                         keypadres[i],
                         descpromo[i],
                         numprecio[i],
-                        Double.parseDouble(cospro[i].getText().toString()),bandapro[i],fecha);
-                System.out.println("IVKardex Generado: "+detalle.toString());
+                        Double.parseDouble(cospro[i].getText().toString()), bandapro[i], fecha);
+                System.out.println("IVKardex Generado: " + detalle.toString());
                 ivks.add(detalle);
             }
         }
         helper.close();
-        return  ivks;
+        return ivks;
     }
 
 
@@ -1490,8 +1511,8 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
             DBSistemaGestion helper = new DBSistemaGestion(AprobacionOferta.this);
             try {
                 List<IVKardex> list = generarDetalles(id_trans, bodega_id);
-                for(IVKardex ivk: list){
-                    System.out.println("IVKardex a guardar: "+ivk.toString());
+                for (IVKardex ivk : list) {
+                    System.out.println("IVKardex a guardar: " + ivk.toString());
                     helper.crearIVKardex(ivk);
                     Thread.sleep(100);
                 }
@@ -1510,20 +1531,21 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
                 onBackPressed();
                 return true;
             case R.id.action_view_carter:
-                if(!this.cli_id.isEmpty()){
+                if (!this.cli_id.isEmpty()) {
                     generarReporteCartera(this.cli_id);
                 }
                 break;
             case R.id.action_view_descuentos:
-                Intent intent19= new Intent(AprobacionOferta.this,DescuentosCliente.class);
-                intent19.putExtra("cliente",cli_id);
-                intent19.putExtra("descripcion",nombres.getText().toString());
-                intent19.putExtra("comercial",comercial.getText().toString());
+                Intent intent19 = new Intent(AprobacionOferta.this, DescuentosCliente.class);
+                intent19.putExtra("cliente", cli_id);
+                intent19.putExtra("descripcion", nombres.getText().toString());
+                intent19.putExtra("comercial", comercial.getText().toString());
                 startActivity(intent19);
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_aprobacion_oferta, menu);

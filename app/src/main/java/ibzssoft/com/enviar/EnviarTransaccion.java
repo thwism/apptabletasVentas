@@ -118,7 +118,7 @@ public class EnviarTransaccion {
             HttpParams httpParameters = new BasicHttpParams();
             int timeoutConnection = 15000;
             HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
-            int timeoutSocket = 15000;
+            int timeoutSocket = 45000;
             HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
             HttpClient httpClient = new DefaultHttpClient(httpParameters);
             httpClient.getParams().setParameter("http.protocol.content-charset", HTTP.UTF_8);

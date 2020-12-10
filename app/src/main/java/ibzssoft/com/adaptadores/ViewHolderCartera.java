@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 import ibzssoft.com.ishidamovile.R;
 import ibzssoft.com.modelo.PCKardex;
 import ibzssoft.com.recibir.RecibirCheques;
@@ -58,7 +60,10 @@ public class ViewHolderCartera extends RecyclerView.ViewHolder  implements View.
         view.setOnClickListener(this);
         view.setOnCreateContextMenuListener(this);
     }
-
+    public String redondearNumero(double numero){
+        DecimalFormat formateador = new DecimalFormat("0.00");
+        return formateador.format(numero).replace(",",".");
+    }
     public void bind(PCKardex model) {
         pck_id=model.getIdcartera();
         pck_trans=model.getTrans();
@@ -73,11 +78,11 @@ public class ViewHolderCartera extends RecyclerView.ViewHolder  implements View.
         pck_dias_vencidos.setText(String.valueOf(model.getDvencidos()));
         pck_transaccion.setText(model.getTrans());
         pck_plazo.setText(String.valueOf(model.getPlazo()));
-        pck_valor_factura.setText(String.valueOf(model.getValor()));
-        pck_valor_cancelado.setText(String.valueOf(model.getPagado()));
+        pck_valor_factura.setText(redondearNumero(model.getValor()));
+        pck_valor_cancelado.setText(redondearNumero(model.getPagado()));
         pck_emision.setText(new ParseDates().changeDateToStringSimpleYear(new ParseDates().changeStringToDateSimple(model.getFechaemision())));
-        pck_saldo_vencer.setText(String.valueOf(model.getSaldoxvence()));
-        pck_saldo_vencido.setText(String.valueOf(model.getSaldovencido()));
+        pck_saldo_vencer.setText(redondearNumero(model.getSaldoxvence()));
+        pck_saldo_vencido.setText(redondearNumero(model.getSaldovencido()));
         pck_vencimiento.setText(new ParseDates().changeDateToStringSimpleYear(new ParseDates().changeStringToDateSimple(model.getFechavenci())));
     }
 

@@ -43,7 +43,6 @@ public class Producto_Detalle extends AppCompatActivity {
         collapsingToolbar.setTitle("Info. detallada del Producto");
         if(savedInstanceState!=null){}
         else cargarContenido();
-
     }
 
 

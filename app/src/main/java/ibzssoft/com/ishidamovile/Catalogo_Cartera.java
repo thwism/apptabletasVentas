@@ -20,15 +20,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+
 import ibzssoft.com.adaptadores.CatalogoCarteraAdapter;
 import ibzssoft.com.adaptadores.ExtraerConfiguraciones;
 import ibzssoft.com.modelo.PCKardex;
 import ibzssoft.com.storage.DBSistemaGestion;
 
-public class Catalogo_Cartera extends Fragment implements android.support.v7.widget.SearchView.OnQueryTextListener{
+public class Catalogo_Cartera extends Fragment implements android.support.v7.widget.SearchView.OnQueryTextListener {
     private RecyclerView mRecyclerView;
     private CatalogoCarteraAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -41,8 +43,8 @@ public class Catalogo_Cartera extends Fragment implements android.support.v7.wid
     private TextView txtSVen;
     private TextView txtSVenci;
     private int conf_descarga_cartera;
-    private String [] rutas;
-    private String [] accesos;
+    private String[] rutas;
+    private String[] accesos;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,11 +58,11 @@ public class Catalogo_Cartera extends Fragment implements android.support.v7.wid
         mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_cartera);
         mLayoutManager = new LinearLayoutManager(getActivity());
         pckardexs = new ArrayList<>();
-        txtVFact = (TextView)view.findViewById(R.id.catCarteraVFact);
-        txtVCan = (TextView)view.findViewById(R.id.catCarteraVCan);
-        txtSVen = (TextView)view.findViewById(R.id.catCarteraSVen);
-        txtSVenci = (TextView)view.findViewById(R.id.catCarteraSVenci);
-        countResults = (TextView)view.findViewById(R.id.catCarteraResults);
+        txtVFact = (TextView) view.findViewById(R.id.catCarteraVFact);
+        txtVCan = (TextView) view.findViewById(R.id.catCarteraVCan);
+        txtSVen = (TextView) view.findViewById(R.id.catCarteraSVen);
+        txtSVenci = (TextView) view.findViewById(R.id.catCarteraSVenci);
+        countResults = (TextView) view.findViewById(R.id.catCarteraResults);
         return view;
     }
 
@@ -69,7 +71,7 @@ public class Catalogo_Cartera extends Fragment implements android.support.v7.wid
         setHasOptionsMenu(true);
         this.cargarPreferenciasCatalogo();
         this.consultarClientes();
-        mAdapter = new CatalogoCarteraAdapter(getActivity(),pckardexs);
+        mAdapter = new CatalogoCarteraAdapter(getActivity(), pckardexs);
         countResults.setText(String.valueOf(mAdapter.getItemCount()));
         mGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -80,36 +82,43 @@ public class Catalogo_Cartera extends Fragment implements android.support.v7.wid
     /**
      * Metodos de filtrado
      */
-    public void cargarPreferenciasCatalogo(){
-        ExtraerConfiguraciones extraerConfiguraciones= new ExtraerConfiguraciones(getActivity());
-        String conf = extraerConfiguraciones.get(getString(R.string.key_conf_descarga_cartera),"0");
-        conf_descarga_cartera= Integer.parseInt(conf);
-        rutas=extraerConfiguraciones.get(getString(R.string.key_act_rut),getString(R.string.pref_act_rut_default)).split(",");
-        accesos=extraerConfiguraciones.get(getString(R.string.key_act_acc),getString(R.string.pref_act_acc_default)).split(",");
+    public void cargarPreferenciasCatalogo() {
+        ExtraerConfiguraciones extraerConfiguraciones = new ExtraerConfiguraciones(getActivity());
+        String conf = extraerConfiguraciones.get(getString(R.string.key_conf_descarga_cartera), "0");
+        conf_descarga_cartera = Integer.parseInt(conf);
+        rutas = extraerConfiguraciones.get(getString(R.string.key_act_rut), getString(R.string.pref_act_rut_default)).split(",");
+        accesos = extraerConfiguraciones.get(getString(R.string.key_act_acc), getString(R.string.pref_act_acc_default)).split(",");
     }
 
 
-    public void consultarClientes(){
-        DBSistemaGestion helper= new DBSistemaGestion(getActivity());
+    public void consultarClientes() {
+        DBSistemaGestion helper = new DBSistemaGestion(getActivity());
         Cursor cursor = null;
-        switch (conf_descarga_cartera){
-            case 0:cursor=helper.consultarCarteraxVendedor(accesos, false);break;
-            case 1:cursor=helper.consultarCarteraxRutas(rutas, false);break;
-            case 2:cursor=helper.consultarCarteraxCobrador(accesos, false);break;
+        switch (conf_descarga_cartera) {
+            case 0:
+                cursor = helper.consultarCarteraxVendedor(accesos, false);
+                break;
+            case 1:
+                cursor = helper.consultarCarteraxRutas(rutas, false);
+                break;
+            case 2:
+                cursor = helper.consultarCarteraxCobrador(accesos, false);
+                break;
         }
         cargarListado(cursor);
         helper.close();
     }
-    public void cargarListado(Cursor cur){
+
+    public void cargarListado(Cursor cur) {
         double vfacts = 0.d;
         double vcans = 0.d;
         double svenc = 0.d;
         double svenci = 0.d;
 
-        PCKardex pcKardex=null;
-        if(cur.moveToFirst()){
-            do{
-                pcKardex=  new PCKardex(
+        PCKardex pcKardex = null;
+        if (cur.moveToFirst()) {
+            do {
+                pcKardex = new PCKardex(
                         cur.getString(cur.getColumnIndex(PCKardex.FIELD_idcartera)),
                         cur.getString(cur.getColumnIndex(PCKardex.FIELD_idasignado)),
                         cur.getString(cur.getColumnIndex(PCKardex.FIELD_fechavenci)),
@@ -159,10 +168,10 @@ public class Catalogo_Cartera extends Fragment implements android.support.v7.wid
                 );
                 vcans += cur.getDouble(cur.getColumnIndex(PCKardex.FIELD_pagado));
                 vfacts += cur.getDouble(cur.getColumnIndex(PCKardex.FIELD_valor));
-                svenc+= cur.getDouble(cur.getColumnIndex(PCKardex.FIELD_saldoxvence));
-                svenci+= cur.getDouble(cur.getColumnIndex(PCKardex.FIELD_saldovencido));
+                svenc += cur.getDouble(cur.getColumnIndex(PCKardex.FIELD_saldoxvence));
+                svenci += cur.getDouble(cur.getColumnIndex(PCKardex.FIELD_saldovencido));
                 pckardexs.add(pcKardex);
-            }while (cur.moveToNext());
+            } while (cur.moveToNext());
             txtSVen.setText(redondearNumero(svenc));
             txtSVenci.setText(redondearNumero(svenci));
             txtVCan.setText(redondearNumero(vcans));
@@ -171,9 +180,9 @@ public class Catalogo_Cartera extends Fragment implements android.support.v7.wid
         cur.close();
     }
 
-    public String redondearNumero(double numero){
+    public String redondearNumero(double numero) {
         DecimalFormat formateador = new DecimalFormat("0.00");
-        return formateador.format(numero).replace(",",".");
+        return formateador.format(numero).replace(",", ".");
     }
 
     @Override
@@ -186,14 +195,14 @@ public class Catalogo_Cartera extends Fragment implements android.support.v7.wid
                 new MenuItemCompat.OnActionExpandListener() {
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
-// Do something when collapsed
+                        // Do something when collapsed
                         mAdapter.setFilter(pckardexs);
                         return true; // Return true to collapse action view
                     }
 
                     @Override
                     public boolean onMenuItemActionExpand(MenuItem item) {
-// Do something when expanded
+                        // Do something when expanded
                         return true; // Return true to expand action view
                     }
                 });
@@ -216,13 +225,14 @@ public class Catalogo_Cartera extends Fragment implements android.support.v7.wid
     public boolean onQueryTextSubmit(String query) {
         return false;
     }
+
     private List<PCKardex> filter(List<PCKardex> models, String query) {
         query = query.toLowerCase();
         final List<PCKardex> filteredModelList = new ArrayList<>();
         for (PCKardex model : models) {
             final String text = model.getNombrecli().toLowerCase();
             final String text2 = model.getTrans().toLowerCase();
-            if (text.contains(query)|| text2.contains(query)){
+            if (text.contains(query) || text2.contains(query)) {
                 filteredModelList.add(model);
             }
         }

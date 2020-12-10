@@ -31,8 +31,8 @@ public class Catalogo_Clientes extends Fragment implements SearchView.OnQueryTex
     private ArrayList<Cliente> clientes;
     private TextView countClients;
     private int conf_descarga_cartera;
-    private int  conf_descarga_clientes;
-    private int  conf_mostrar_clientes;
+    private int conf_descarga_clientes;
+    private int conf_mostrar_clientes;
     private String[] rutas;
     private String[] accesos;
     private String vendedor;

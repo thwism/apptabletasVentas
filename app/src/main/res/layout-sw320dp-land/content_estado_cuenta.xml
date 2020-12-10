@@ -4,360 +4,360 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dividerColor"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".reportes.EstadoCuenta"
-    tools:showIn="@layout/activity_estado_cuenta"
-    android:background="@color/dividerColor">
+    tools:showIn="@layout/activity_estado_cuenta">
 
     <LinearLayout
+        android:id="@+id/headCartera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/headCartera"
-        android:orientation="vertical"
-        android:elevation="15dp">
+        android:elevation="15dp"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:background="@color/textColorSecondary"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:paddingTop="5dp"
-            android:background="@color/textColorSecondary">
+            android:paddingTop="5dp">
+
             <TextView
                 android:id="@+id/cliente"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2.0"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
-                android:maxLines="1"
+                android:layout_marginTop="2dp"
+                android:layout_weight="2.0"
+                android:background="#757575"
                 android:enabled="false"
                 android:gravity="center"
+                android:maxLines="1"
                 android:singleLine="true"
                 android:textColor="@color/textColor"
-                android:background="#757575"
                 android:textSize="10dp"
-                android:visibility="gone"
-                />
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/transaccion"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:enabled="false"
-                android:layout_weight="2.4"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="2.4"
+                android:background="#757575"
+                android:enabled="false"
                 android:gravity="center"
                 android:singleLine="true"
+                android:text="DOCUMENTO"
                 android:textColor="@color/textColor"
-                android:background="#757575"
-                android:textSize="10dp"
-                android:text="DOCUMENTO"/>
-
+                android:textSize="10dp" />
 
 
             <TextView
                 android:id="@+id/emision"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="2.5"
                 android:enabled="false"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
                 android:gravity="center"
                 android:singleLine="true"
+                android:text="F.E"
                 android:textColor="@color/textColor"
-                android:textSize="10dp"
-                android:text="F.E"/>
+                android:textSize="10dp" />
 
             <TextView
                 android:id="@+id/plazo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2.8"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
-                android:maxLines="1"
+                android:layout_marginTop="2dp"
+                android:layout_weight="2.8"
                 android:enabled="false"
                 android:gravity="center"
+                android:maxLines="1"
                 android:singleLine="true"
+                android:text="PLAZO"
                 android:textColor="@color/textColor"
-                android:textSize="10dp"
-                android:text="PLAZO" />
+                android:textSize="10dp" />
 
             <TextView
                 android:id="@+id/vencimiento"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:enabled="false"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="2.5"
+                android:enabled="false"
                 android:gravity="center"
                 android:singleLine="true"
+                android:text="F.V"
                 android:textColor="@color/textColor"
-                android:textSize="10dp"
-                android:text="F.V"/>
+                android:textSize="10dp" />
 
             <TextView
                 android:id="@+id/valor_factura"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:enabled="false"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="2.8"
+                android:background="#757575"
+                android:enabled="false"
                 android:gravity="center"
                 android:singleLine="true"
+                android:text="V.FACT"
                 android:textColor="@color/textColor"
-                android:background="#757575"
-                android:textSize="10dp"
-                android:text="V.FACT"/>
+                android:textSize="10dp" />
 
             <TextView
                 android:id="@+id/valor_cancelado"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:enabled="false"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="2.8"
+                android:enabled="false"
                 android:gravity="center"
                 android:singleLine="true"
+                android:text="V.CAN"
                 android:textColor="@color/textColor"
-                android:textSize="10dp"
-                android:text="V.CAN"/>
+                android:textSize="10dp" />
 
             <TextView
                 android:id="@+id/saldo_vencer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:enabled="false"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="2.8"
+                android:background="#757575"
+                android:enabled="false"
                 android:gravity="center"
                 android:singleLine="true"
+                android:text="SxVEN"
                 android:textColor="@color/textColor"
-                android:background="#757575"
-                android:textSize="10dp"
-                android:text="SxVEN"/>
+                android:textSize="10dp" />
 
             <TextView
                 android:id="@+id/saldo_vencido"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:enabled="false"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="2.8"
+                android:enabled="false"
                 android:gravity="center"
                 android:singleLine="true"
-                android:textColor="@color/textColor"
                 android:text="S.VENCI"
+                android:textColor="@color/textColor"
                 android:textSize="10dp" />
 
             <TextView
                 android:id="@+id/dias_vencidos"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2.9"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="2.9"
                 android:ems="10"
                 android:enabled="false"
                 android:gravity="center"
                 android:singleLine="true"
-                android:textColor="@color/colorPrimary"
-                android:textSize="10dp"
                 android:text="DV"
-                />
+                android:textColor="@color/colorPrimary"
+                android:textSize="10dp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2.9"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="2.9"
                 android:ems="10"
                 android:enabled="false"
                 android:gravity="center"
                 android:singleLine="true"
-                android:textColor="@color/textColor"
-                android:textSize="10dp"
                 android:text="CH"
-                />
+                android:textColor="@color/textColor"
+                android:textSize="10dp" />
         </LinearLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@+id/headCartera">
+        android:layout_below="@+id/headCartera"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/my_recycler_cartera_personal"
-                android:scrollbars="vertical"
-                android:layout_below="@+id/headCartera"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/headCartera"
+                android:scrollbars="vertical" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:background="@color/textColorSecondary">
+
             <TextView
                 android:id="@+id/estadoResults"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2.4"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
-                android:maxLines="1"
+                android:layout_marginTop="2dp"
+                android:layout_weight="2.4"
                 android:enabled="false"
                 android:gravity="center"
+                android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="@color/textColor"
-                android:textSize="12dp"
                 android:text="CLIENTE"
-                />
-
-
+                android:textColor="@color/textColor"
+                android:textSize="12dp" />
 
 
             <TextView
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="2.5"
                 android:enabled="false"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
                 android:gravity="center"
                 android:singleLine="true"
+                android:text="F.E"
                 android:textColor="@color/textColor"
                 android:textSize="12dp"
-                android:visibility="invisible"
-                android:text="F.E"/>
+                android:visibility="invisible" />
 
             <TextView
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="2.8"
                 android:enabled="false"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
                 android:gravity="center"
                 android:singleLine="true"
+                android:text="PL"
                 android:textColor="@color/textColor"
                 android:textSize="12dp"
-                android:visibility="invisible"
-                android:text="PL"/>
+                android:visibility="invisible" />
 
             <TextView
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:enabled="false"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="2.5"
+                android:enabled="false"
                 android:gravity="center"
                 android:singleLine="true"
+                android:text="F.V"
                 android:textColor="@color/textColor"
                 android:textSize="12dp"
-                android:visibility="invisible"
-                android:text="F.V"/>
+                android:visibility="invisible" />
 
             <TextView
                 android:id="@+id/estadoVFact"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:enabled="false"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="2.8"
-                android:gravity="center"
+                android:enabled="false"
+                android:gravity="right"
                 android:singleLine="true"
-                android:textSize="12dp"
+                android:text="0.00"
                 android:textColor="@color/textColor"
-                android:text="0.0"/>
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/estadoVCan"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:enabled="false"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="2.8"
-                android:gravity="center"
+                android:enabled="false"
+                android:gravity="right"
                 android:singleLine="true"
+                android:text="0.00"
                 android:textColor="@color/textColor"
-                android:textSize="12dp"
-                android:text="0.0"/>
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/estadoSVen"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:enabled="false"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="2.8"
-                android:gravity="center"
+                android:enabled="false"
+                android:gravity="right"
                 android:singleLine="true"
+                android:text="0.00"
                 android:textColor="@color/textColor"
-                android:textSize="12dp"
-                android:text="0.0"/>
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/estadoSVenci"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:enabled="false"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="2.8"
-                android:gravity="center"
+                android:enabled="false"
+                android:gravity="right"
                 android:singleLine="true"
+                android:text="0.00"
                 android:textColor="@color/textColor"
-                android:textSize="12dp"
-                android:text="0.0"/>
+                android:textSize="12dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2.9"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="2.9"
                 android:ems="10"
                 android:enabled="false"
                 android:gravity="center"
                 android:singleLine="true"
+                android:text="DV"
                 android:textColor="@color/colorPrimary"
                 android:textSize="12dp"
-                android:visibility="invisible"
-                android:text="DV"
-                />
+                android:visibility="invisible" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2.9"
-                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="2.9"
                 android:ems="10"
                 android:gravity="center"
                 android:singleLine="true"
+                android:text="CH"
                 android:textColor="@color/textColor"
                 android:textSize="12dp"
-                android:visibility="invisible"
-                android:text="CH"
-                />
+                android:visibility="invisible" />
         </LinearLayout>
     </LinearLayout>
 

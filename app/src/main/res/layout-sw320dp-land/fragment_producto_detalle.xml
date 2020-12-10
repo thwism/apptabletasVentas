@@ -317,6 +317,18 @@
                                     android:layout_toRightOf="@+id/thumbnail"
                                     android:text="Listado de Precios"
                                     android:textAppearance="?android:attr/textAppearanceMedium"/>
+                                <Button
+                                    android:id="@+id/show"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentTop="true"
+                                    android:text="@string/ver_precios"
+                                    android:textAllCaps="true"
+                                    android:textColor="@color/colorAccent"
+                                    android:background="?attr/selectableItemBackground"
+                                    android:textSize="13dip"
+                                    android:textStyle="bold" />
                                 <TextView
                                     android:id="@+id/formItemTxt28"
                                     android:layout_below="@+id/formItemTxt7"

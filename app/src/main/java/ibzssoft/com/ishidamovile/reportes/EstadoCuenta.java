@@ -64,6 +64,7 @@ public class EstadoCuenta extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         pckardexs= new ArrayList<>();
         txtVFact = (TextView)findViewById(R.id.estadoVFact);
+
         txtVCan = (TextView)findViewById(R.id.estadoVCan);
         txtSVen = (TextView)findViewById(R.id.estadoSVen);
         txtSVenci = (TextView)findViewById(R.id.estadoSVenci);
