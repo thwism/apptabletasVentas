@@ -475,7 +475,7 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
                         case JM2014: intent = new Intent(getContext(),NuevaOfertaJM.class);break;
                         case JM2015: intent = new Intent(getContext(),NuevaOfertaJM.class);break;
                         case JM2016: intent = new Intent(getContext(),NuevaOfertaJM.class);break;
-                        default:intent = new Intent(getContext(),NuevaOfertaM.class);break;
+                        default:intent = new Intent(getContext(),NuevaOfertaG.class);break;
                     }
                     intent.putExtra("transaccion",gntr[selectedPosition]);
                     intent.putExtra("identificador",catalogo);

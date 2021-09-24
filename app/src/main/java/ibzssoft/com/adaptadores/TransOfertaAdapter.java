@@ -265,7 +265,7 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                         case CONSGYP2019:intent = new Intent(activity, OfertaDetalleG.class);break;
                         case CONSGYP2020:intent = new Intent(activity, OfertaDetalleG.class);break;
                         default:
-                            intent = new Intent(activity, OfertaDetalleM.class);break;
+                            intent = new Intent(activity, OfertaDetalleG.class);break;
                     }
                     intent.putExtra("transid", idtrans);
                     intent.putExtra("opcion", opcion);
@@ -298,6 +298,10 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                             else intent2 = new Intent(activity, ModificaOfertaG.class);
                             break;
                         case CONSGYP2020:
+                            if(import_of)intent2 = new Intent(activity, AprobacionOferta.class);
+                            else intent2 = new Intent(activity, ModificaOfertaG.class);
+                            break;
+                        case CONSGYP2021:
                             if(import_of)intent2 = new Intent(activity, AprobacionOferta.class);
                             else intent2 = new Intent(activity, ModificaOfertaG.class);
                             break;
@@ -349,7 +353,7 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                 case CONSGYP2019:intent = new Intent(activity, OfertaDetalleG.class);break;
                 case CONSGYP2020:intent = new Intent(activity, OfertaDetalleG.class);break;
                 default:
-                    intent = new Intent(activity, OfertaDetalleM.class);break;
+                    intent = new Intent(activity, OfertaDetalleG.class);break;
             }
             intent.putExtra("transid", idtrans);
             intent.putExtra("opcion", opcion);
