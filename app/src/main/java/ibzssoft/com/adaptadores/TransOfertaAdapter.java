@@ -248,7 +248,7 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                         itSend.putExtra(Intent.EXTRA_EMAIL, new String[]{});
                         itSend.putExtra(Intent.EXTRA_EMAIL, to);
                         itSend.putExtra(Intent.EXTRA_SUBJECT, "OFERTA"+ " Nro. " + nro);
-                        itSend.putExtra(Intent.EXTRA_TEXT, "Transaccion  - " + "OFERTA" + " (" + nro+ ")");
+                        itSend.putExtra(Intent.EXTRA_TEXT, "Transacción  - " + "OFERTA" + " (" + nro+ ")");
                         itSend.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(file)));
                         context.startActivity(itSend);
                     } else {
