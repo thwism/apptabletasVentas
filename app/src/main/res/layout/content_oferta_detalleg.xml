@@ -42,7 +42,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_alignTop="@+id/thumbnail"
                     android:layout_toRightOf="@+id/thumbnail"
-                    android:text="Transaccion"
+                    android:text="Transacción"
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
                 <TableLayout
                     android:layout_below="@+id/infoTransTittle"
@@ -59,7 +59,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:gravity="center"
-                            android:text="Fecha Emision"
+                            android:text="Fecha Emisión"
                             android:background="@drawable/header_fields"
                             android:layout_weight="1"
                             android:textColor="@color/textColorPrimary"
@@ -120,7 +120,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_alignTop="@+id/thumbnail"
                     android:layout_toRightOf="@+id/thumbnail"
-                    android:text="Detalle de la transaccion"
+                    android:text="Detalle de la transacción"
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
                 <TableLayout
                     android:layout_below="@+id/formItemTxt1"
@@ -148,7 +148,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:background="@drawable/header_fields"
-                            android:text="Transaccion"
+                            android:text="Transacción"
                             android:layout_weight="1" />
                         <TextView
                             android:layout_margin="2dp"
@@ -234,7 +234,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_alignTop="@+id/thumbnail"
                     android:layout_toRightOf="@+id/thumbnail"
-                    android:text="Informacion del Cliente"
+                    android:text="Información del Cliente"
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
                 <TableLayout
                     android:layout_below="@+id/formItemTxt3"
@@ -252,7 +252,7 @@
                             android:layout_height="fill_parent"
                             android:background="@drawable/header_fields"
                             android:gravity="center"
-                            android:text="Cedula/RUC"
+                            android:text="Cédula/RUC"
                             android:layout_weight="1" />
                         <TextView
                             android:id="@+id/infoTransCedula"
@@ -261,7 +261,7 @@
                             android:layout_weight="4"
                             android:padding="10dp"
                             android:lines="1"
-                            android:hint="Cedula/RUC.."
+                            android:hint="Cédula/RUC.."
                             android:textColor="@color/textColorPrimary"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             />
@@ -300,7 +300,7 @@
                             android:layout_height="fill_parent"
                             android:background="@drawable/header_fields"
                             android:gravity="center"
-                            android:text="Razon Social"
+                            android:text="Razón Social"
                             android:layout_weight="1" />
                         <TextView
                             android:id="@+id/infoTransAlterno"
@@ -309,7 +309,7 @@
                             android:layout_weight="4"
                             android:maxLines="1"
                             android:padding="10dp"
-                            android:hint="Razon Social"
+                            android:hint="Razón Social"
                             android:textColor="@color/textColorPrimary"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             />
@@ -324,7 +324,7 @@
                             android:layout_height="fill_parent"
                             android:background="@drawable/header_fields"
                             android:gravity="center"
-                            android:text="Direccion"
+                            android:text="Dirección"
                             android:layout_weight="1" />
                         <TextView
                             android:id="@+id/infoTransDireccion"
@@ -332,7 +332,7 @@
                             android:layout_height="40dp"
                             android:layout_weight="4"
                             android:maxLines="1"
-                            android:hint="Direccion"
+                            android:hint="Dirección"
                             android:padding="10dp"
                             android:textColor="@color/textColorPrimary"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -349,7 +349,7 @@
                             android:layout_height="fill_parent"
                             android:background="@drawable/header_fields"
                             android:gravity="center"
-                            android:text="Telefono"
+                            android:text="Teléfono"
                             android:layout_weight="1" />
 
                         <TextView
@@ -357,7 +357,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_weight="4"
-                            android:hint="Telefono"
+                            android:hint="Teléfono"
                             android:padding="10dp"
                             android:textColor="@color/textColorPrimary"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -384,7 +384,7 @@
                             android:layout_weight="4"
                             android:padding="10dp"
                             android:textColor="@color/textColorPrimary"
-                            android:hint="Correro Electronico"
+                            android:hint="Correo Electrónico"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             />
                     </TableRow>
@@ -399,7 +399,7 @@
                             android:layout_height="fill_parent"
                             android:background="@drawable/header_fields"
                             android:gravity="center"
-                            android:text="Observacion"
+                            android:text="Observación"
                             android:layout_weight="1" />
 
                         <TextView
@@ -460,14 +460,14 @@
                             android:layout_height="fill_parent"
                             android:background="@drawable/header_fields"
                             android:gravity="center"
-                            android:text="Cedula/RUC"
+                            android:text="Cédula/RUC"
                             android:layout_weight="1" />
                         <TextView
                             android:id="@+id/info_cli_ruc"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_weight="4"
-                            android:hint="Cedula/RUC.."
+                            android:hint="Cédula/RUC.."
                             android:textColor="@color/textColorPrimary"
                             android:padding="10dp"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -529,14 +529,14 @@
                             android:layout_height="fill_parent"
                             android:background="@drawable/header_fields"
                             android:gravity="center"
-                            android:text="Direccion"
+                            android:text="Dirección"
                             android:layout_weight="1" />
                         <TextView
                             android:id="@+id/info_cli_direccion"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_weight="4"
-                            android:hint="Direccion"
+                            android:hint="Dirección"
                             android:textColor="@color/textColorPrimary"
                             android:padding="10dp"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -552,14 +552,14 @@
                             android:layout_height="fill_parent"
                             android:background="@drawable/header_fields"
                             android:gravity="center"
-                            android:text="Telefono"
+                            android:text="Teléfono"
                             android:layout_weight="1" />
                         <TextView
                             android:id="@+id/info_cli_telefono"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_weight="4"
-                            android:hint="Telefono"
+                            android:hint="Teléfono"
                             android:textColor="@color/textColorPrimary"
                             android:padding="10dp"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -611,14 +611,14 @@
                             android:layout_height="fill_parent"
                             android:background="@drawable/header_fields"
                             android:gravity="center"
-                            android:text="Atencion"
+                            android:text="Atención"
                             android:layout_weight="1" />
                         <TextView
                             android:id="@+id/infoTransAT"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_weight="4"
-                            android:hint="Atencion.."
+                            android:hint="Atención.."
                             android:textColor="@color/textColorPrimary"
                             android:padding="10dp"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -687,7 +687,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_weight="4"
-                            android:hint="Foorma de pago"
+                            android:hint="Forma de pago"
                             android:textColor="@color/textColorPrimary"
                             android:padding="10dp"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -703,14 +703,14 @@
                             android:layout_height="fill_parent"
                             android:background="@drawable/header_fields"
                             android:gravity="center"
-                            android:text="Observacion"
+                            android:text="Observación"
                             android:layout_weight="1" />
                         <TextView
                             android:id="@+id/infoTransObs"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_weight="4"
-                            android:hint="Observacion"
+                            android:hint="Observación"
                             android:textColor="@color/textColorPrimary"
                             android:padding="10dp"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -777,7 +777,7 @@
                             android:gravity="center"
                             android:layout_marginLeft="1dp"
                             android:background="@drawable/header_fields"
-                            android:text="Descripcion"
+                            android:text="Descripción"
                             android:layout_span="5"
 
                             ></TextView>
@@ -1071,7 +1071,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_alignTop="@+id/thumbnail"
                             android:layout_toRightOf="@+id/thumbnail"
-                            android:text="Ult. Modificacion"
+                            android:text="Ult. Modificación"
                             android:textAppearance="?android:attr/textAppearanceMedium"/>
                         <TextView
                             android:id="@+id/infoTransFM"

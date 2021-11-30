@@ -88,7 +88,7 @@ public class EnviarTransaccion {
             super.onPreExecute();
             progress=new ProgressDialog(context);
             progress.setCancelable(false);
-            progress.setTitle("Enviando Transaccion");
+            progress.setTitle("Enviando Transacción");
             progress.setMessage("Espere...");
             progress.show();
         }

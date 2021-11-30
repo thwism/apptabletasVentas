@@ -206,7 +206,6 @@ public class PedidoDetalle extends AppCompatActivity {
 
     public void cargarObservaciones(String datos){
         //observacion,solitante,tiempo entrega,forma,validez,atencion
-        System.out.println("Observaciones Cargadas: "+datos);
         String data[]=datos.split(";");
         try{
             if(data[0].isEmpty()!=true) obs.setText(data[0]);

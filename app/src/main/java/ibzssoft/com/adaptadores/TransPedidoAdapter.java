@@ -202,7 +202,7 @@ public class TransPedidoAdapter extends RecyclerView.Adapter<TransPedidoAdapter.
                     if(bandenviado!=1){
                         android.support.v7.app.AlertDialog.Builder quitDialog
                                 = new android.support.v7.app.AlertDialog.Builder(context);
-                        quitDialog.setTitle("Seguro deseas enviar la transaccion?");
+                        quitDialog.setTitle("Seguro desea enviar la transacción?");
                         quitDialog.setPositiveButton("Enviar", new DialogInterface.OnClickListener(){
 
                             @Override
@@ -236,7 +236,7 @@ public class TransPedidoAdapter extends RecyclerView.Adapter<TransPedidoAdapter.
                         itSend.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{});
                         itSend.putExtra(android.content.Intent.EXTRA_EMAIL, to);
                         itSend.putExtra(android.content.Intent.EXTRA_SUBJECT, "PEDIDO" + " Nro. " + nro);
-                        itSend.putExtra(android.content.Intent.EXTRA_TEXT, "Transaccion  - " + "PEDIDO"+ " (" + nro+ ")");
+                        itSend.putExtra(android.content.Intent.EXTRA_TEXT, "Transacción  - " + "PEDIDO"+ " (" + nro+ ")");
                         itSend.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(file)));
                         context.startActivity(itSend);
                     } else {
@@ -270,7 +270,7 @@ public class TransPedidoAdapter extends RecyclerView.Adapter<TransPedidoAdapter.
                             context);
                     alertDialogBuilder.setTitle("Advertencia");
                     alertDialogBuilder
-                            .setMessage("Esta seguro de eliminar la transaccion?")
+                            .setMessage("Esta seguro de eliminar la transacción?")
                             .setCancelable(false)
                             .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -313,7 +313,7 @@ public class TransPedidoAdapter extends RecyclerView.Adapter<TransPedidoAdapter.
             super.onPreExecute();
             progress=new ProgressDialog(context);
             progress.setCancelable(false);
-            progress.setTitle("Eliminando Transaccion");
+            progress.setTitle("Eliminando Transacción");
             progress.setMessage("Espere...");
             progress.show();
         }

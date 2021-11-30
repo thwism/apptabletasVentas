@@ -306,7 +306,7 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                             else intent2 = new Intent(activity, ModificaOfertaG.class);
                             break;
                         default:
-                            intent2 = new Intent(activity, ModificaOfertaM.class);break;
+                            intent2 = new Intent(activity, ModificaOfertaG.class);break;
                     }
                     intent2.putExtra("transid", idtrans);
                     intent2.putExtra("opcion", opcion);

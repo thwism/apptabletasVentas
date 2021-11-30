@@ -38,6 +38,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -84,9 +85,9 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
     /*
         Campos de validacion
      */
-    private int limite,count,conf_pcg,conf_max_venci, conf_dias_gracia, conf_modo_busqueda;
-    private String [] conf_precios_disponibles;
-    private String  cli_id;
+    private int limite, count, conf_pcg, conf_max_venci, conf_dias_gracia, conf_modo_busqueda;
+    private String[] conf_precios_disponibles;
+    private String cli_id;
     /*
         RadioGroup
      */
@@ -100,14 +101,14 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
     /*
         Campos para la tabla de items [VISTA]
      */
-    private EditText [] numero, cantidad, precio_real, descuento, total;
-    private int [] bandiva;
-    private int [] bandpromo;
-    private int [] numprecio;
-    private String [] iditems,idpadres,keypadres,preciounitario;
-    private int [] descpromo;
+    private EditText[] numero, cantidad, precio_real, descuento, total;
+    private int[] bandiva;
+    private int[] bandpromo;
+    private int[] numprecio;
+    private String[] iditems, idpadres, keypadres, preciounitario;
+    private int[] descpromo;
     private CheckBox[] seleccion;
-    private AutoCompleteTextView [] descripcion;
+    private AutoCompleteTextView[] descripcion;
     /*
         Recursos para inicializar tabla
      */
@@ -116,7 +117,7 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
     /*
         Variables total de transaccion
      */
-    private TextView tran_sub_sin_iva,tran_sub_con_iva, tran_sub,tran_sub_iva,tran_sub_total;
+    private TextView tran_sub_sin_iva, tran_sub_con_iva, tran_sub, tran_sub_iva, tran_sub_total;
     /*
         Botones de guardado y agregacion
      */
@@ -128,10 +129,11 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
     private TextView trans_observacion, trans_solicitante;
     private Resources resources;
 
-    private String impuestos,idvendedor,idusuario,lineas,bodegas;
+    private String impuestos, idvendedor, idusuario, lineas, bodegas;
     private boolean val_duplicado;
     private int decimales;
-    private String  numdec_ptotal, numdec_punitario;
+    private String numdec_ptotal, numdec_punitario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,29 +147,31 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
         load_config.execute();
         this.inicializarCamposTabla();
     }
-    public void cargarPreferencias(){
+
+    public void cargarPreferencias() {
         ExtraerConfiguraciones ext = new ExtraerConfiguraciones(this);
-        this.impuestos = ext.get(getString(R.string.key_empresa_iva),"12");
-        this.idvendedor = ext.get(getString(R.string.key_act_ven),getString(R.string.pref_act_ven_default));
-        this.lineas = ext.get(getString(R.string.key_act_lin),getString(R.string.pref_act_lin_default));
-        this.idusuario = ext.get(getString(R.string.key_act_user),getString(R.string.pref_act_user_default));
-        this.bodegas = ext.get(getString(R.string.key_act_bod),getString(R.string.pref_act_bod_default));
-        this.val_duplicado= ext.getBoolean(getString(R.string.key_act_validar_duplicidad),false);
-        String dec= ext.get(getString(R.string.key_empresa_decimales),"2");
+        this.impuestos = ext.get(getString(R.string.key_empresa_iva), "12");
+        this.idvendedor = ext.get(getString(R.string.key_act_ven), getString(R.string.pref_act_ven_default));
+        this.lineas = ext.get(getString(R.string.key_act_lin), getString(R.string.pref_act_lin_default));
+        this.idusuario = ext.get(getString(R.string.key_act_user), getString(R.string.pref_act_user_default));
+        this.bodegas = ext.get(getString(R.string.key_act_bod), getString(R.string.pref_act_bod_default));
+        this.val_duplicado = ext.getBoolean(getString(R.string.key_act_validar_duplicidad), false);
+        String dec = ext.get(getString(R.string.key_empresa_decimales), "2");
         this.decimales = Integer.parseInt(dec);
-        this.numdec_punitario = ext.get(getString(R.string.key_act_num_dec_punitario),"0.00");
-        this.numdec_ptotal= ext.get(getString(R.string.key_act_num_dec_ptotal),"0.00");
+        this.numdec_punitario = ext.get(getString(R.string.key_act_num_dec_punitario), "0.00");
+        this.numdec_ptotal = ext.get(getString(R.string.key_act_num_dec_ptotal), "0.00");
 
     }
-    public void inicializarCamposFormulario(){
+
+    public void inicializarCamposFormulario() {
      /*
         Campos de la transaccion
      */
-        this.emision= (TextView)findViewById(R.id.nuevoPedidoFecha);
-        this.bodega= (TextView)findViewById(R.id.nuevoPedidoBodega);
-        this.precio= (TextView)findViewById(R.id.nuevoPedidoPrecio);
-        this.transaccion= (TextView)findViewById(R.id.nuevoPedidoTrans);
-        this.vendedor= (TextView)findViewById(R.id.nuevoPedidoVendedor);
+        this.emision = (TextView) findViewById(R.id.nuevoPedidoFecha);
+        this.bodega = (TextView) findViewById(R.id.nuevoPedidoBodega);
+        this.precio = (TextView) findViewById(R.id.nuevoPedidoPrecio);
+        this.transaccion = (TextView) findViewById(R.id.nuevoPedidoTrans);
+        this.vendedor = (TextView) findViewById(R.id.nuevoPedidoVendedor);
      /*
         Campos del cliente
      */
@@ -176,70 +180,71 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
         this.autoCompleteCliente.setAdapter(adapter);
         this.autoCompleteCliente.setDropDownWidth(500);
         this.autoCompleteCliente.setOnItemClickListener(adapter);
-        this.cedula = (TextView)findViewById(R.id.nuevoPedidoCI_RUC);
-        this.grupo = (RadioGroup)findViewById(R.id.opc_Trans);
-        this.nombres= (TextView)findViewById(R.id.nuevoPedidoNombres);
-        this.comercial= (TextView)findViewById(R.id.nuevoPedidoNombreAlt);
-        this.direccion= (TextView)findViewById(R.id.nuevoPedidoDireccion);
-        this.telefono= (TextView)findViewById(R.id.nuevoPedidoTelefono);
-        this.correo= (TextView)findViewById(R.id.nuevoPedidoCorreo);
-        this.observacion = (TextView)findViewById(R.id.nuevoPedidoObs);
+        this.cedula = (TextView) findViewById(R.id.nuevoPedidoCI_RUC);
+        this.grupo = (RadioGroup) findViewById(R.id.opc_Trans);
+        this.nombres = (TextView) findViewById(R.id.nuevoPedidoNombres);
+        this.comercial = (TextView) findViewById(R.id.nuevoPedidoNombreAlt);
+        this.direccion = (TextView) findViewById(R.id.nuevoPedidoDireccion);
+        this.telefono = (TextView) findViewById(R.id.nuevoPedidoTelefono);
+        this.correo = (TextView) findViewById(R.id.nuevoPedidoCorreo);
+        this.observacion = (TextView) findViewById(R.id.nuevoPedidoObs);
         /*
         * Campos de validacion
         */
         this.limite = 0;
         this.count = 0;
-        this.cli_id  = "";
+        this.cli_id = "";
         this.conf_pcg = 0;
         this.conf_max_venci = 0;
-        this.conf_dias_gracia= 0;
-        this.conf_modo_busqueda= 0;
+        this.conf_dias_gracia = 0;
+        this.conf_modo_busqueda = 0;
         this.conf_precios_disponibles = new String[]{};
         /*
             Contenedores de la vista
         */
-        this.contenedor_cartera = (CardView)findViewById(R.id.contenedorCartera);
-        this.contenedor_observaciones= (CardView)findViewById(R.id.contenedorObservaciones);
-        this.contenedor_items= (CardView)findViewById(R.id.contenedorItems);
+        this.contenedor_cartera = (CardView) findViewById(R.id.contenedorCartera);
+        this.contenedor_observaciones = (CardView) findViewById(R.id.contenedorObservaciones);
+        this.contenedor_items = (CardView) findViewById(R.id.contenedorItems);
          /*
             Campos del cartera
          */
-        vencidos = (TextView)findViewById(R.id.nuevoPedidoDocsVencidos);
-        no_vencidos = (TextView)findViewById(R.id.nuevoPedidoDocsVencer);
-        saldo_vencer= (TextView)findViewById(R.id.nuevoPedidoSaldoVencer);
-        saldo_vencido = (TextView)findViewById(R.id.nuevoPedidoSaldoVencido);
+        vencidos = (TextView) findViewById(R.id.nuevoPedidoDocsVencidos);
+        no_vencidos = (TextView) findViewById(R.id.nuevoPedidoDocsVencer);
+        saldo_vencer = (TextView) findViewById(R.id.nuevoPedidoSaldoVencer);
+        saldo_vencido = (TextView) findViewById(R.id.nuevoPedidoSaldoVencido);
         /*
             Campos total transaccion
          */
-        tran_sub_con_iva = (TextView)findViewById(R.id.subtotal);
-        tran_sub_sin_iva = (TextView)findViewById(R.id.subtotal_0);
-        tran_sub = (TextView)findViewById(R.id.subtotal_total);
-        tran_sub_iva = (TextView)findViewById(R.id.iva);
-        tran_sub_total = (TextView)findViewById(R.id.total);
+        tran_sub_con_iva = (TextView) findViewById(R.id.subtotal);
+        tran_sub_sin_iva = (TextView) findViewById(R.id.subtotal_0);
+        tran_sub = (TextView) findViewById(R.id.subtotal_total);
+        tran_sub_iva = (TextView) findViewById(R.id.iva);
+        tran_sub_total = (TextView) findViewById(R.id.total);
         /*
             Campos observacion transaccion
          */
-        trans_observacion = (TextView)findViewById(R.id.txtNuevoPedidoObservacion);
-        trans_solicitante= (TextView)findViewById(R.id.txtNuevoPedidoSolicitante);
+        trans_observacion = (TextView) findViewById(R.id.txtNuevoPedidoObservacion);
+        trans_solicitante = (TextView) findViewById(R.id.txtNuevoPedidoSolicitante);
     }
-    public void inicializarCamposTabla(){
+
+    public void inicializarCamposTabla() {
         /*
             Campos de la tabla de items [VISTA]
          */
-        seleccion= new CheckBox[100];
-        numero= new EditText[100];
-        descripcion= new AutoCompleteTextView[100];
+        seleccion = new CheckBox[100];
+        numero = new EditText[100];
+        descripcion = new AutoCompleteTextView[100];
         cantidad = new EditText[100];
-        precio_real= new EditText[100];
-        descuento= new EditText[100];
-        total= new EditText[100];
+        precio_real = new EditText[100];
+        descuento = new EditText[100];
+        total = new EditText[100];
         bandiva = new int[100];
         bandpromo = new int[100];
         numprecio = new int[100];
         iditems = new String[100];
         preciounitario = new String[100];
-        idpadres= new String[100];
-        keypadres= new String[100];
+        idpadres = new String[100];
+        keypadres = new String[100];
         descpromo = new int[100];
         /*
             Recursos para inicializar tabla
@@ -252,9 +257,9 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
         layoutCeldaDescripcion.span = 2;
         layoutCeldas.span = 1;
         layoutCeldaNro.span = 1;
-        editar = (ToggleButton)findViewById(R.id.editar);
+        editar = (ToggleButton) findViewById(R.id.editar);
         eliminar = (ToggleButton) findViewById(R.id.eliminar);
-        guardar = (Button)findViewById(R.id.guardar);
+        guardar = (Button) findViewById(R.id.guardar);
         agregar = (Button) findViewById(R.id.agregar);
         resources = this.getResources();
         guardar.setOnClickListener(this);
@@ -262,20 +267,22 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
         agregar.setOnClickListener(this);
         eliminar.setOnClickListener(this);
     }
+
     /*
         * Cargar Configuracion de la Transaccion
      */
     class CargarConfiguracionTransaccion extends AsyncTask<Void, Void, Void> {
         private ProgressDialog progress;
         String conf_emision, conf_bodega, conf_transaccion, conf_precio, conf_vendedor;
-        String [] conf_precios;
-        int conf_limite, conf_num_pcg, conf_max_docs,conf_dias,conf_modo;
+        String[] conf_precios;
+        int conf_limite, conf_num_pcg, conf_max_docs, conf_dias, conf_modo;
         private boolean conf_observacion;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             progress = new ProgressDialog(NuevoPedido.this);
-            progress.setTitle("Cargando Configuracion");
+            progress.setTitle("Cargando Configuración");
             progress.setMessage("Espere...");
             progress.setCancelable(false);
             progress.show();
@@ -293,13 +300,16 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
                 transaccion.setText(this.conf_transaccion);
                 limite = this.conf_limite;
                 conf_pcg = this.conf_num_pcg;
-                conf_max_venci= this.conf_max_docs;
-                conf_dias_gracia= this.conf_dias;
-                conf_modo_busqueda= this.conf_modo;
-                conf_precios_disponibles= this.conf_precios;
-                if(conf_observacion);mostrarContenedorObservaciones();
-                editar.setEnabled(false);eliminar.setEnabled(false);
-                agregar.setEnabled(false);guardar.setEnabled(false);
+                conf_max_venci = this.conf_max_docs;
+                conf_dias_gracia = this.conf_dias;
+                conf_modo_busqueda = this.conf_modo;
+                conf_precios_disponibles = this.conf_precios;
+                if (conf_observacion) ;
+                mostrarContenedorObservaciones();
+                editar.setEnabled(false);
+                eliminar.setEnabled(false);
+                agregar.setEnabled(false);
+                guardar.setEnabled(false);
             }
         }
 
@@ -309,31 +319,31 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
                 DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
                 Cursor cursor = helper.consultarGNTrans(getIntent().getStringExtra("transaccion"));
                 conf_transaccion = getIntent().getStringExtra("transaccion");
-                conf_vendedor= idusuario;
+                conf_vendedor = idusuario;
                 if (cursor.moveToFirst()) {
                     String num_filas = cursor.getString(cursor.getColumnIndex(GNTrans.FIELD_numfilas));
                     String max_pck = cursor.getString(cursor.getColumnIndex(GNTrans.FIELD_maxdocs));
                     conf_limite = (Integer.parseInt(num_filas));
-                    if(conf_limite<=0)conf_limite = 100;
+                    if (conf_limite <= 0) conf_limite = 100;
                     conf_max_docs = (Integer.parseInt(max_pck));
-                    String conf_dg=cursor.getString(cursor.getColumnIndex(GNTrans.FIELD_diasgracia));
-                    conf_dias =(Integer.parseInt(conf_dg));
+                    String conf_dg = cursor.getString(cursor.getColumnIndex(GNTrans.FIELD_diasgracia));
+                    conf_dias = (Integer.parseInt(conf_dg));
                     Cursor cursor1 = helper.consultarBodega(cursor.getString(cursor.getColumnIndex(GNTrans.FIELD_idbodegapre)));
                     if (cursor1.moveToFirst()) {
                         conf_bodega = cursor1.getString(cursor1.getColumnIndex(Bodega.FIELD_codbodega));
                     }
                     /*Configuracion de observaciones y precios*/
                     ExtraerConfiguraciones ext = new ExtraerConfiguraciones(NuevoPedido.this);
-                    conf_observacion = ext.getBoolean(getString(R.string.key_act_obs),true);
-                    String conf =ext.get(getString(R.string.key_conf_descarga_clientes),"0");
-                    conf_precios = ext.get(getString(R.string.key_act_list_price),"1").split(",");
+                    conf_observacion = ext.getBoolean(getString(R.string.key_act_obs), true);
+                    String conf = ext.get(getString(R.string.key_conf_descarga_clientes), "0");
+                    conf_precios = ext.get(getString(R.string.key_act_list_price), "1").split(",");
                     conf_modo = Integer.parseInt(conf);
                     cursor1.close();
                     if (cursor.getString(cursor.getColumnIndex(GNTrans.FIELD_preciopcgrupo)).equals("S")) {
                         conf_precio = getString(R.string.info_precio_pcgrupo_enabled);
                         conf_num_pcg = ext.configuracionPreciosGrupos();
                     } else {
-                        conf_precio =  getString(R.string.info_precio_pcgrupo_disable);
+                        conf_precio = getString(R.string.info_precio_pcgrupo_disable);
                     }
                 }
                 cursor.close();
@@ -354,6 +364,7 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
 /*Auto text Adapter*/
     class AutoCompleteClienteSelected extends CursorAdapter implements AdapterView.OnItemClickListener {
         DBSistemaGestion dbSistemaGestion;
+
         public AutoCompleteClienteSelected(Context context) {
             super(NuevoPedido.this, null);
             dbSistemaGestion = new DBSistemaGestion(context);
@@ -364,8 +375,8 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
 
             Cursor cursor = null;
             try {
-                    cursor = dbSistemaGestion.buscarClientes(
-                            (constraint != null ? constraint.toString() : "@@@@"), getIntent().getStringArrayExtra("accesos"), conf_modo_busqueda);
+                cursor = dbSistemaGestion.buscarClientes(
+                        (constraint != null ? constraint.toString() : "@@@@"), getIntent().getStringArrayExtra("accesos"), conf_modo_busqueda);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -400,6 +411,7 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
             return view;
         }
 
+
         @Override
         public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
             Cursor cursor = (Cursor) listView.getItemAtPosition(position);
@@ -419,6 +431,10 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
             telefono.setText(itemTel);
             correo.setText(itemCor);
             observacion.setText(itemObs);
+
+            if (!itemAlterno.isEmpty()) {
+                trans_solicitante.setText(itemAlterno);
+            }
             autoCompleteCliente.setText("");
             autoCompleteCliente.setEnabled(false);
             autoCompleteCliente.setFocusable(false);
@@ -427,8 +443,8 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
                 cargarPrecio(idCliente, conf_pcg);
             }
             int actions = cargarConfiguracionCartera();
-            System.out.println("Configuracion cartera: "+actions);
-            switch (actions){
+            System.out.println("Configuración cartera: " + actions);
+            switch (actions) {
                 case 0:
                     //deshabilitar
                     mostrarContenedorItems();
@@ -443,10 +459,10 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
                     //bloquear
                     generarReporteCartera(idCliente);
                     int docs = Integer.parseInt(vencidos.getText().toString());
-                    System.out.println("Documentos vencidos: "+docs+" maximo: "+conf_max_venci);
-                    if(docs>conf_max_venci){
+                    System.out.println("Documentos vencidos: " + docs + " máximo: " + conf_max_venci);
+                    if (docs > conf_max_venci) {
                         android.support.v7.app.AlertDialog.Builder builder1 = new android.support.v7.app.AlertDialog.Builder(NuevoPedido.this);
-                        builder1.setTitle("Transaccion Bloqueada");
+                        builder1.setTitle("Transacción Bloqueada");
                         builder1.setMessage("Revise el numero de documentos vencidos");
                         builder1.setCancelable(true);
                         builder1.setNeutralButton("Continuar",
@@ -466,6 +482,7 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
             dbSistemaGestion.close();
         }
     }
+
     //fin clase autoadapter
 /*
         Clase para seleccionar cliente
@@ -474,6 +491,7 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
     class AutoCompleteProductoSelected extends CursorAdapter implements AdapterView.OnItemClickListener {
         DBSistemaGestion dbSistemaGestion;
         int posicion;
+
         public AutoCompleteProductoSelected(Context context, int row) {
             super(NuevoPedido.this, null);
             dbSistemaGestion = new DBSistemaGestion(context);
@@ -485,7 +503,7 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
             Cursor cursor = null;
             try {
                 cursor = dbSistemaGestion.buscarItemsDescripcion(
-                        (constraint != null ? constraint.toString() : "@@@@"), lineas.split(","),bodegas.split(","));
+                        (constraint != null ? constraint.toString() : "@@@@"), lineas.split(","), bodegas.split(","));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -523,8 +541,8 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
             String idItem = cursor.getString(cursor.getColumnIndexOrThrow(IVInventario.FIELD_identificador));
             int ivaItem = cursor.getInt(cursor.getColumnIndexOrThrow(IVInventario.FIELD_band_iva));
             String descItem = cursor.getString(cursor.getColumnIndexOrThrow(IVInventario.FIELD_descripcion));
-            if(val_duplicado){
-                if(!validarDuplicado(idItem)){
+            if (val_duplicado) {
+                if (!validarDuplicado(idItem)) {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.showSoftInput(descripcion[posicion], InputMethodManager.SHOW_IMPLICIT);
                     descripcion[posicion].setText(descItem);
@@ -537,7 +555,7 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
 
                     if (precio.getText().toString().equals(getString(R.string.info_precio_pcgrupo_disable))) {
                         try {
-                            crearDialogPrecios(generarListadoPrecios(idItem,conf_precios_disponibles), conf_precios_disponibles, posicion);
+                            crearDialogPrecios(generarListadoPrecios(idItem, conf_precios_disponibles), conf_precios_disponibles, posicion);
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
@@ -546,10 +564,10 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
                         cargarPrecioUnitarioItem(cursor, posicion);
                     }
                     dbSistemaGestion.close();
-                }else{
-                    new Alertas(NuevoPedido.this,"Advertencia","El item seleccionado ya fue ingresado").mostrarMensaje();
+                } else {
+                    new Alertas(NuevoPedido.this, "Advertencia", "El item seleccionado ya fue ingresado").mostrarMensaje();
                 }
-            }else{
+            } else {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.showSoftInput(descripcion[posicion], InputMethodManager.SHOW_IMPLICIT);
                 descripcion[posicion].setText(descItem);
@@ -562,7 +580,7 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
 
                 if (precio.getText().toString().equals(getString(R.string.info_precio_pcgrupo_disable))) {
                     try {
-                        crearDialogPrecios(generarListadoPrecios(idItem,conf_precios_disponibles), conf_precios_disponibles, posicion);
+                        crearDialogPrecios(generarListadoPrecios(idItem, conf_precios_disponibles), conf_precios_disponibles, posicion);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
@@ -574,19 +592,21 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
             }
         }
     }
+
     //fin clase autoadapter
     /*
         Validar si el item a ingresar ya fue registrado
      */
-    public boolean validarDuplicado(String iditem){
-        if(this.count>0){
-            for(int i=0; i<this.count; i++){
-                if(iditems[i]!=null)
-                    if (iditems[i].equals(iditem))return true;
+    public boolean validarDuplicado(String iditem) {
+        if (this.count > 0) {
+            for (int i = 0; i < this.count; i++) {
+                if (iditems[i] != null)
+                    if (iditems[i].equals(iditem)) return true;
             }
         }
         return false;
     }
+
     /*
          Metodo para cargar precios
      */
@@ -630,26 +650,40 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
                 precio_real[fila].setText(valores[position]);
                 preciounitario[fila] = valores[position];
                 numprecio[fila] = Integer.parseInt(indices[position]);
-                System.out.println("Precio seleccionado: "+valores[position]+";"+indices[position]);
+                System.out.println("Precio seleccionado: " + valores[position] + ";" + indices[position]);
             }
         });
     }
 
-    public String[] generarListadoPrecios(String item,String [] listprecio) throws SQLException {
+    public String[] generarListadoPrecios(String item, String[] listprecio) throws SQLException {
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
         Cursor cursor = helper.consultarItem(item);
         String[] result = new String[listprecio.length];
         if (cursor != null) {
-            if (cursor.moveToFirst()){
-                for(int i=0; i<result.length;i++){
-                    switch (Integer.parseInt(listprecio[i])){
-                        case 1:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio1)),this.numdec_punitario);break;
-                        case 2:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio2)),this.numdec_punitario);break;
-                        case 3:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio3)),this.numdec_punitario);break;
-                        case 4:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio4)),this.numdec_punitario);break;
-                        case 5:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio5)),this.numdec_punitario);break;
-                        case 6:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio6)),this.numdec_punitario);break;
-                        case 7:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio7)),this.numdec_punitario);break;
+            if (cursor.moveToFirst()) {
+                for (int i = 0; i < result.length; i++) {
+                    switch (Integer.parseInt(listprecio[i])) {
+                        case 1:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio1)), this.numdec_punitario);
+                            break;
+                        case 2:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio2)), this.numdec_punitario);
+                            break;
+                        case 3:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio3)), this.numdec_punitario);
+                            break;
+                        case 4:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio4)), this.numdec_punitario);
+                            break;
+                        case 5:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio5)), this.numdec_punitario);
+                            break;
+                        case 6:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio6)), this.numdec_punitario);
+                            break;
+                        case 7:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio7)), this.numdec_punitario);
+                            break;
                     }
                 }
             }
@@ -686,29 +720,30 @@ public class NuevoPedido extends AppCompatActivity implements View.OnClickListen
         }
         //cargando precio a la tabla
         numprecio[posicion] = precioPCgrupo;
-        preciounitario[posicion] = redondearNumero(precioUnitario,this.numdec_punitario);
-        precio_real[posicion].setText(redondearNumero(precioUnitario,this.numdec_punitario));
+        preciounitario[posicion] = redondearNumero(precioUnitario, this.numdec_punitario);
+        precio_real[posicion].setText(redondearNumero(precioUnitario, this.numdec_punitario));
         return true;
     }
+
     /*
         Metodo para cargar descuento
      */
-public double calcularDescuentoItem(String cli_id, String item_id, int posicion) {
-    double result = 0.0;
-    DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
-    Cursor cursor = helper.consultarDescuentoItem(cli_id, item_id);
-    if (cursor != null) {
-        if (cursor.moveToFirst()) {
-            result = cursor.getDouble(cursor.getColumnIndex(Descuento.FIELD_porcentaje));
-            Toast ts = Toast.makeText(getApplicationContext(), getString(R.string.info_descuento) + redondearNumero(result,"0.00") + "%", Toast.LENGTH_SHORT);
-            ts.show();
-            descpromo[posicion] = 1;
+    public double calcularDescuentoItem(String cli_id, String item_id, int posicion) {
+        double result = 0.0;
+        DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
+        Cursor cursor = helper.consultarDescuentoItem(cli_id, item_id);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                result = cursor.getDouble(cursor.getColumnIndex(Descuento.FIELD_porcentaje));
+                Toast ts = Toast.makeText(getApplicationContext(), getString(R.string.info_descuento) + redondearNumero(result, "0.00") + "%", Toast.LENGTH_SHORT);
+                ts.show();
+                descpromo[posicion] = 1;
+            }
         }
+        cursor.close();
+        helper.close();
+        return result;
     }
-    cursor.close();
-    helper.close();
-    return result;
-}
 
     public String obtenerNumeroPrecio(String inf_price) {
         String price = "";
@@ -722,6 +757,7 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
         System.out.println("Resultado final: " + price);
         return price;
     }
+
     /*
         Metodos para cargar la cartera del cliente
      */
@@ -731,12 +767,13 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
         int actions = 0;
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-               actions =  cursor.getInt(cursor.getColumnIndex(GNTrans.FIELD_opciones));
+                actions = cursor.getInt(cursor.getColumnIndex(GNTrans.FIELD_opciones));
             }
         }
         helper.close();
         return actions;
     }
+
     public void generarReporteCartera(String cliente) {
         LayoutInflater li = LayoutInflater.from(this);
         View promptsView = li.inflate(R.layout.cartera, null);
@@ -768,9 +805,10 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
         }
         helper.close();
     }
-    public void cargarInfoCartera(Cursor cur){
+
+    public void cargarInfoCartera(Cursor cur) {
         int count1 = 0;
-        double tmp_saldo_vencer  = 0.0;
+        double tmp_saldo_vencer = 0.0;
         double tmp_saldo_vencido = 0.0;
         int count2 = 0;
         if (cur.moveToFirst()) {
@@ -780,24 +818,25 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
                     tmp_saldo_vencido += cur.getDouble(cur.getColumnIndex(PCKardex.FIELD_saldovencido));
                     count1++;
                     vencidos.setText(String.valueOf(count1));
-                    saldo_vencido.setText(redondearNumero(tmp_saldo_vencido,"0.00"));
-                }else{
+                    saldo_vencido.setText(redondearNumero(tmp_saldo_vencido, "0.00"));
+                } else {
                     vencidos.setText(String.valueOf(0));
-                    saldo_vencido.setText(redondearNumero(0.00,"0.00"));
+                    saldo_vencido.setText(redondearNumero(0.00, "0.00"));
                 }
                 //verificar si el documento no esta vencido
                 if (cur.getInt(cur.getColumnIndex(PCKardex.FIELD_dvencidos)) <= 0) {
                     tmp_saldo_vencer += cur.getDouble(cur.getColumnIndex(PCKardex.FIELD_saldoxvence));
                     count2++;
                     no_vencidos.setText(String.valueOf(count2));
-                    saldo_vencer.setText(redondearNumero(tmp_saldo_vencer,"0.00"));
+                    saldo_vencer.setText(redondearNumero(tmp_saldo_vencer, "0.00"));
                 } else {
                     no_vencidos.setText(String.valueOf(0));
-                    saldo_vencer.setText(redondearNumero(0.00,"0.00"));
+                    saldo_vencer.setText(redondearNumero(0.00, "0.00"));
                 }
             } while (cur.moveToNext());
         }
     }
+
     /*
         Metodos para ocultar contenedores
      */
@@ -825,13 +864,13 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
     }
 
 
-
     public void mostrarContenedorItems() {
         if (contenedor_items.getVisibility() == View.GONE) {
             animar(false, contenedor_items);
             contenedor_items.setVisibility(View.VISIBLE);
         }
     }
+
     //animar
     private void animar(boolean mostrar, CardView layout) {
         AnimationSet set = new AnimationSet(true);
@@ -848,6 +887,7 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
         layout.setLayoutAnimation(controller);
         layout.startAnimation(animation);
     }
+
     /*
         Metodo para redondear numero a 2 decimales
      */
@@ -855,15 +895,19 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
         DecimalFormat formateador = new DecimalFormat(clave);
         return formateador.format(numero).replace(",", ".");
     }
+
     /***
      * Metodos para agregar/ eliminar / editar filas de la tabla de items
      */
-    public void agregarFila(){
+    public void agregarFila() {
 
-        if(this.count<this.limite){
-            editar.setEnabled(false);guardar.setEnabled(false);
-            eliminar.setEnabled(false);agregar.setEnabled(false);
-            editar.setChecked(false);eliminar.setChecked(false);
+        if (this.count < this.limite) {
+            editar.setEnabled(false);
+            guardar.setEnabled(false);
+            eliminar.setEnabled(false);
+            agregar.setEnabled(false);
+            editar.setChecked(false);
+            eliminar.setChecked(false);
 
             TableRow fila = new TableRow(this);
             fila.setLayoutParams(layoutFila);
@@ -881,7 +925,7 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
             AutoCompleteProductoSelected adapter = this.new AutoCompleteProductoSelected(getApplicationContext(), count);
             this.descripcion[count] = new AutoCompleteTextView(this);
             this.descripcion[count].setTextColor(resources.getColor(R.color.textColorPrimary));
-            this.descripcion[count].setHint(getString( R.string.hint_producto));
+            this.descripcion[count].setHint(getString(R.string.hint_producto));
             this.descripcion[count].setDropDownWidth(600);
             this.descripcion[count].setEnabled(true);
             this.descripcion[count].setLayoutParams(layoutCeldaDescripcion);
@@ -945,19 +989,20 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
                 @Override
                 public void onClick(View v) {
                     final int position = (Integer) v.getTag();
-                    if(new Validaciones().validar_enteros(cantidad[position].getText().toString())){
+                    if (new Validaciones().validar_enteros(cantidad[position].getText().toString())) {
                         int cant = Integer.parseInt(cantidad[position].getText().toString());
                         validarExistencia(iditems[position], bodega.getText().toString(), cant);
-                        if(verificarExistenciaDescuento(cli_id, iditems[position]) && verificarExistenciaPromocion(iditems[position], cant)) {
+                        if (verificarExistenciaDescuento(cli_id, iditems[position]) && verificarExistenciaPromocion(iditems[position], cant)) {
                             crearDialogOptionsDescPromo(position);
                         } else if (verificarExistenciaDescuento(cli_id, iditems[position])) {
 
-                            double desc = calcularDescuentoItem(cli_id, iditems[position],position);
-                            descuento[position].setText(redondearNumero(desc,"0.00"));
+                            double desc = calcularDescuentoItem(cli_id, iditems[position], position);
+                            descuento[position].setText(redondearNumero(desc, "0.00"));
                             calcularSubtotalItem(position);
                             cantidad[position].setEnabled(false);
                             descripcion[position].setEnabled(false);
-                            editar.setEnabled(true);guardar.setEnabled(true);
+                            editar.setEnabled(true);
+                            guardar.setEnabled(true);
                             eliminar.setEnabled(true);
                             agregar.setEnabled(true);
                             editar.setChecked(false);
@@ -968,17 +1013,19 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
                             calcularSubtotalItem(position);
                             cantidad[position].setEnabled(false);
                             descripcion[position].setEnabled(false);
-                            editar.setEnabled(true);guardar.setEnabled(true);
+                            editar.setEnabled(true);
+                            guardar.setEnabled(true);
                             eliminar.setEnabled(true);
                             agregar.setEnabled(true);
                             editar.setChecked(false);
                             calcularTotalTransaccion();
                             agregarFilaOpcional();
-                        }else{
+                        } else {
                             calcularSubtotalItem(position);
                             cantidad[position].setEnabled(false);
                             descripcion[position].setEnabled(false);
-                            editar.setEnabled(true);guardar.setEnabled(true);
+                            editar.setEnabled(true);
+                            guardar.setEnabled(true);
                             eliminar.setEnabled(true);
                             agregar.setEnabled(true);
                             editar.setChecked(false);
@@ -986,7 +1033,7 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
                             calcularTotalTransaccion();
                             agregarFilaOpcional();
                         }
-                    }else{
+                    } else {
                         cantidad[position].requestFocus();
                         cantidad[position].setError(getString(R.string.info_field_no_valid));
                     }
@@ -997,23 +1044,23 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
                 @Override
                 public void onClick(View v) {
                     final int position = (Integer) v.getTag();
-                    if(eliminar.isChecked()){
+                    if (eliminar.isChecked()) {
                         eliminarFila(position);
-                    }else if(editar.isChecked()){
-                        System.out.println("Intentando editar fila: "+position);
-                        if(numeroSeleccionados()==1 && numeroEditados()==0 && iditems[position]!=null){
-                            System.out.println("Numeros de editados: "+numeroEditados());
+                    } else if (editar.isChecked()) {
+                        System.out.println("Intentando editar fila: " + position);
+                        if (numeroSeleccionados() == 1 && numeroEditados() == 0 && iditems[position] != null) {
+                            System.out.println("Numeros de editados: " + numeroEditados());
                             modificarFila(position);
                         }
-                    }else{
-                        if(iditems[position]!=null && seleccion[position].isChecked()){
+                    } else {
+                        if (iditems[position] != null && seleccion[position].isChecked()) {
                             crearDialogInfoItem(position);
                         }
                     }
                 }
             });
 
-            fila.setPadding(0,5,0,5);
+            fila.setPadding(0, 5, 0, 5);
             fila.setMinimumHeight(50);
 
             fila.addView(numero[count]);
@@ -1025,43 +1072,48 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
             fila.addView(seleccion[count]);
             tabla.addView(fila);
             count++;
-        }else{
+        } else {
             Toast ts = Toast.makeText(getApplicationContext(), resources.getString(R.string.info_max_row_trans), Toast.LENGTH_SHORT);
             ts.show();
         }
     }
 
-    public int numeroSeleccionados(){
-        int result = 0 ;
-        for(int i=0; i<count;i++){
-            if(seleccion[i].isChecked()){
+    public int numeroSeleccionados() {
+        int result = 0;
+        for (int i = 0; i < count; i++) {
+            if (seleccion[i].isChecked()) {
                 result++;
             }
         }
         return result;
     }
 
-    public int numeroEditados(){
-        int result = 0 ;
-        for(int i=0; i<count;i++){
-            if(descripcion[i].isEnabled()||cantidad[i].isEnabled()){
+    public int numeroEditados() {
+        int result = 0;
+        for (int i = 0; i < count; i++) {
+            if (descripcion[i].isEnabled() || cantidad[i].isEnabled()) {
                 result++;
             }
         }
         return result;
     }
 
-    public void eliminarFila(int posicion){
-        try{
-            if(iditems[posicion]!=null){
-                if(bandpromo[posicion]!=1){
+    public void eliminarFila(int posicion) {
+        try {
+            if (iditems[posicion] != null) {
+                if (bandpromo[posicion] != 1) {
                     eliminarHijos(iditems[posicion], keypadres[posicion]);
                     numero[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    descripcion[posicion].setText("FILA BORRADA");descripcion[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    cantidad[posicion].setText("XXX");cantidad[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    precio_real[posicion].setText("XXX");precio_real[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    descuento[posicion].setText("XXX");descuento[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    total[posicion].setText("XXX");total[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    descripcion[posicion].setText("FILA BORRADA");
+                    descripcion[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    cantidad[posicion].setText("XXX");
+                    cantidad[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    precio_real[posicion].setText("XXX");
+                    precio_real[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    descuento[posicion].setText("XXX");
+                    descuento[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    total[posicion].setText("XXX");
+                    total[posicion].setTextColor(resources.getColor(R.color.color_danger));
                 /*Cambiar de variables Arreglos Normales*/
                     bandiva[posicion] = 0;
                     bandpromo[posicion] = 0;
@@ -1073,25 +1125,31 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
                     preciounitario[posicion] = null;
                     descpromo[posicion] = 0;
                     limite++;
-                }else Toast.makeText(getApplicationContext(),resources.getString(R.string.info_fila_promocion_del),Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(getApplicationContext(), resources.getString(R.string.info_fila_promocion_del), Toast.LENGTH_SHORT).show();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            Toast ts= Toast.makeText(getApplicationContext(),resources.getString(R.string.info_imposible_delete_row),Toast.LENGTH_SHORT);
+            Toast ts = Toast.makeText(getApplicationContext(), resources.getString(R.string.info_imposible_delete_row), Toast.LENGTH_SHORT);
             ts.show();
         }
         calcularTotalTransaccion();
     }
 
-    public void eliminarHijos(String id_padre, String keypadre){
-        for(int i =0; i<count; i++){
-            if(idpadres[i]!=null && idpadres[i].equals(id_padre) && keypadres[i].equals(keypadre)){
+    public void eliminarHijos(String id_padre, String keypadre) {
+        for (int i = 0; i < count; i++) {
+            if (idpadres[i] != null && idpadres[i].equals(id_padre) && keypadres[i].equals(keypadre)) {
                 numero[i].setTextColor(resources.getColor(R.color.color_danger));
-                descripcion[i].setText("FILA BORRADA");descripcion[i].setTextColor(resources.getColor(R.color.color_danger));
-                cantidad[i].setText("XXX");cantidad[i].setTextColor(resources.getColor(R.color.color_danger));
-                precio_real[i].setText("XXX");precio_real[i].setTextColor(resources.getColor(R.color.color_danger));
-                descuento[i].setText("XXX");descuento[i].setTextColor(resources.getColor(R.color.color_danger));
-                total[i].setText("XXX");total[i].setTextColor(resources.getColor(R.color.color_danger));
+                descripcion[i].setText("FILA BORRADA");
+                descripcion[i].setTextColor(resources.getColor(R.color.color_danger));
+                cantidad[i].setText("XXX");
+                cantidad[i].setTextColor(resources.getColor(R.color.color_danger));
+                precio_real[i].setText("XXX");
+                precio_real[i].setTextColor(resources.getColor(R.color.color_danger));
+                descuento[i].setText("XXX");
+                descuento[i].setTextColor(resources.getColor(R.color.color_danger));
+                total[i].setText("XXX");
+                total[i].setTextColor(resources.getColor(R.color.color_danger));
 
                 bandiva[i] = 0;
                 bandpromo[i] = 0;
@@ -1115,8 +1173,8 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
             idpadres[count] = id_item_padre;
             keypadres[count] = keypadre;
             descpromo[count] = 2;
-            bandpromo[count]=1;
-            preciounitario[count] = redondearNumero(precio_item_hijo,this.numdec_punitario);
+            bandpromo[count] = 1;
+            preciounitario[count] = redondearNumero(precio_item_hijo, this.numdec_punitario);
             numprecio[count] = Integer.parseInt(precio.getText().toString());
             if (band_iva != 0) {
                 bandiva[count] = 1;
@@ -1151,7 +1209,7 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
             this.cantidad[count].setLayoutParams(layoutCeldas);
             this.cantidad[count].setBackgroundResource(R.drawable.text_field);
             this.cantidad[count].setGravity(Gravity.CENTER);
-            this.cantidad[count].setText(redondearNumero(cantidad_total,"0.00"));
+            this.cantidad[count].setText(redondearNumero(cantidad_total, "0.00"));
             this.cantidad[count].setInputType(InputType.TYPE_CLASS_NUMBER);
             this.cantidad[count].setEnabled(false);
             this.cantidad[count].setTextSize(14);
@@ -1160,7 +1218,7 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
             this.precio_real[count] = new EditText(this);
             this.precio_real[count].setTextColor(resources.getColor(R.color.successfull));
             this.precio_real[count].setLayoutParams(layoutCeldas);
-            this.precio_real[count].setText(redondearNumero(precio_item_hijo,this.numdec_ptotal));
+            this.precio_real[count].setText(redondearNumero(precio_item_hijo, this.numdec_ptotal));
             this.precio_real[count].setBackgroundResource(R.drawable.text_field);
             this.precio_real[count].setGravity(Gravity.CENTER);
             this.precio_real[count].setEnabled(false);
@@ -1180,7 +1238,7 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
             this.total[count] = new EditText(this);
             this.total[count].setTextColor(resources.getColor(R.color.successfull));
             this.total[count].setLayoutParams(layoutCeldas);
-            this.total[count].setText(redondearNumero(sub,this.numdec_ptotal));
+            this.total[count].setText(redondearNumero(sub, this.numdec_ptotal));
             this.total[count].setBackgroundResource(R.drawable.text_field);
             this.total[count].setGravity(Gravity.CENTER);
             this.total[count].setEnabled(false);
@@ -1197,16 +1255,16 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
                 @Override
                 public void onClick(View v) {
                     final int position = (Integer) v.getTag();
-                    if(eliminar.isChecked()){
+                    if (eliminar.isChecked()) {
                         eliminarFila(position);
-                    }else if(editar.isChecked()){
-                        System.out.println("Intentando editar fila: "+position);
-                        if(numeroSeleccionados()==1 && numeroEditados()==0 && iditems[position]!=null){
-                            System.out.println("Numeros de editados: "+numeroEditados());
+                    } else if (editar.isChecked()) {
+                        System.out.println("Intentando editar fila: " + position);
+                        if (numeroSeleccionados() == 1 && numeroEditados() == 0 && iditems[position] != null) {
+                            System.out.println("Numeros de editados: " + numeroEditados());
                             modificarFila(position);
                         }
-                    }else{
-                        if(iditems[position]!=null && seleccion[position].isChecked()){
+                    } else {
+                        if (iditems[position] != null && seleccion[position].isChecked()) {
                             crearDialogInfoItem(position);
                         }
                     }
@@ -1225,7 +1283,7 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
             tabla.addView(fila);
             calcularSubtotalItem(count);
             count++;
-        }else{
+        } else {
             Toast ts = Toast.makeText(getApplicationContext(), resources.getString(R.string.info_max_row_trans), Toast.LENGTH_SHORT);
             ts.show();
         }
@@ -1266,15 +1324,16 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
         double desc = precio_total * porcentaje;
         double precioreal = (precio_total - desc) / cnt;
         double subtotal = cnt * precioreal;
-        precio_real[row].setText(redondearNumero(precioreal,this.numdec_punitario));
-        total[row].setText(redondearNumero(subtotal,this.numdec_punitario));
-        System.out.println("Calculando subtotal item porcentaje: "+porcentaje+" precio: "+precio+" precio_real: "+precio_real[row].getText().toString());
+        precio_real[row].setText(redondearNumero(precioreal, this.numdec_punitario));
+        total[row].setText(redondearNumero(subtotal, this.numdec_punitario));
+        System.out.println("Calculando subtotal item porcentaje: " + porcentaje + " precio: " + precio + " precio_real: " + precio_real[row].getText().toString());
         return true;
     }
+
     public void crearDialogOptionsDescPromo(final int position) {
         android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(this);
         alertDialogBuilder.setTitle(R.string.tittle_dialog_desc_promo);
-        alertDialogBuilder.setSingleChoiceItems(new String[]{"Descuento","Promocion"}, 0, null);
+        alertDialogBuilder.setSingleChoiceItems(new String[]{"Descuento", "Promocion"}, 0, null);
         /*Cargar Listado*/
         alertDialogBuilder.setCancelable(false);
         alertDialogBuilder.setPositiveButton("Aplicar", new DialogInterface.OnClickListener() {
@@ -1282,16 +1341,17 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
                 dialog.dismiss();
                 ListView lv = ((AlertDialog) dialog).getListView();
                 int posicion = lv.getCheckedItemPosition();
-                System.out.println("Posicion: "+position);
+                System.out.println("Posicion: " + position);
                 switch (posicion) {
                     case 0:
                         System.out.println("Aplicando Descuento: " + iditems[position]);
-                        double desc = calcularDescuentoItem(cli_id,iditems[position],position);
-                        descuento[position].setText(redondearNumero(desc,"0.00"));
+                        double desc = calcularDescuentoItem(cli_id, iditems[position], position);
+                        descuento[position].setText(redondearNumero(desc, "0.00"));
                         calcularSubtotalItem(position);
                         cantidad[position].setEnabled(false);
                         descripcion[position].setEnabled(false);
-                        editar.setEnabled(true);guardar.setEnabled(true);
+                        editar.setEnabled(true);
+                        guardar.setEnabled(true);
                         eliminar.setEnabled(true);
                         agregar.setEnabled(true);
                         editar.setChecked(false);
@@ -1301,11 +1361,12 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
                     case 1:
                         System.out.println("Aplicando Promocion: " + posicion);
                         int cantidad_padre = Integer.parseInt(cantidad[position].getText().toString());
-                        calcularPromociones(iditems[position],cantidad_padre,keypadres[position],position);
+                        calcularPromociones(iditems[position], cantidad_padre, keypadres[position], position);
                         calcularSubtotalItem(position);
                         cantidad[position].setEnabled(false);
                         descripcion[position].setEnabled(false);
-                        editar.setEnabled(true);guardar.setEnabled(true);
+                        editar.setEnabled(true);
+                        guardar.setEnabled(true);
                         eliminar.setEnabled(true);
                         agregar.setEnabled(true);
                         editar.setChecked(false);
@@ -1321,10 +1382,11 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
 
     public boolean verificarExistenciaDescuento(String id_cli, String id_item) {
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
-            boolean result = helper.existeDescuentoItem(id_item, id_cli);
+        boolean result = helper.existeDescuentoItem(id_item, id_cli);
         helper.close();
         return result;
     }
+
     public boolean verificarExistenciaPromocion(String id_item, double cantidad) {
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
         boolean result = helper.existePromocionItem(id_item, cantidad);
@@ -1352,7 +1414,7 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
                 String modificacion = sdf3.format(new Date());
                 Transaccion trans = new Transaccion(gen.generarClave(), transaccion.getText().toString() + "-" + getIntent().getStringExtra("identificador"), obtenerObservaciones(), helper.numeroTransacciones(getIntent().getStringExtra("transaccion") + "-" + getIntent().getStringExtra("identificador"), idvendedor), fecha, hora, 0, idvendedor, cli_id, null, "0000", modificacion);
                 helper.crearTransaccion(trans);
-                System.out.println("Transaccion guardada: "+trans.toString());
+                System.out.println("Transaccion guardada revisión: " + trans.toString());
                 helper.close();
                 GuardarDetallesTask taskSaveDetalles = new GuardarDetallesTask();
                 taskSaveDetalles.execute(trans.getId_trans(), bodega.getText().toString());
@@ -1374,15 +1436,15 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
     /*
         Guardar Detalles
      */
-    public ArrayList<IVKardex> generarDetalles(String id_trans, String bodega_id){
+    public ArrayList<IVKardex> generarDetalles(String id_trans, String bodega_id) {
         ArrayList<IVKardex> ivks = new ArrayList<>();
-        GeneradorClaves gen= new GeneradorClaves();
+        GeneradorClaves gen = new GeneradorClaves();
         gen.generarClave();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
-        String fecha=sdf.format(new Date());
-        DBSistemaGestion helper= new DBSistemaGestion(NuevoPedido.this);
-        for(int i=0; i<count;i++ ) {
-            if(iditems[i]!=null&&!descripcion[i].equals("FILA BORRADA")){
+        String fecha = sdf.format(new Date());
+        DBSistemaGestion helper = new DBSistemaGestion(NuevoPedido.this);
+        for (int i = 0; i < count; i++) {
+            if (iditems[i] != null && !descripcion[i].equals("FILA BORRADA")) {
                 IVKardex detalle = new IVKardex(
                         gen.generarClave(),
                         Double.parseDouble(cantidad[i].getText().toString()),
@@ -1392,19 +1454,19 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
                         Double.parseDouble(precio_real[i].getText().toString()), //precio real total
                         "", //descuento solicitado
                         Double.parseDouble(descuento[i].getText().toString()), //descuento original
-                        (Double.parseDouble(preciounitario[i])*Double.parseDouble(cantidad[i].getText().toString()))*(Double.parseDouble(descuento[i].getText().toString())/100), //descuento real en dolares
+                        (Double.parseDouble(preciounitario[i]) * Double.parseDouble(cantidad[i].getText().toString())) * (Double.parseDouble(descuento[i].getText().toString()) / 100), //descuento real en dolares
                         id_trans,
                         bodega_id,
                         iditems[i],
                         idpadres[i],
                         keypadres[i],
                         descpromo[i],
-                        numprecio[i], 0.0,0,fecha);
+                        numprecio[i], 0.0, 0, fecha);
                 ivks.add(detalle);
             }
         }
         helper.close();
-        return  ivks;
+        return ivks;
     }
 
     class GuardarDetallesTask extends AsyncTask<String, Void, Void> {
@@ -1438,8 +1500,8 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
             DBSistemaGestion helper = new DBSistemaGestion(NuevoPedido.this);
             try {
                 List<IVKardex> list = generarDetalles(id_trans, bodega_id);
-                for(IVKardex ivk: list){
-                    System.out.println("IVKardex a guardar: "+ivk.toString());
+                for (IVKardex ivk : list) {
+                    System.out.println("IVKardex a guardar: " + ivk.toString());
                     helper.crearIVKardex(ivk);
                     Thread.sleep(100);
                 }
@@ -1452,153 +1514,153 @@ public double calcularDescuentoItem(String cli_id, String item_id, int posicion)
     }
 
 
+    //calcular total de la transaccion
+    public boolean calcularTotalTransaccion() {
+        double subtotal_sin_iva = 0.0;
+        double subtotal_con_iva = 0.0;
+        double total_iva = 0.0;
+        try {
 
-//calcular total de la transaccion
-public boolean calcularTotalTransaccion() {
-    double subtotal_sin_iva = 0.0;
-    double subtotal_con_iva = 0.0;
-    double total_iva = 0.0;
-    try {
+            for (int i = 0; i < this.count; i++) {
+                if (iditems[i] != null)
+                    if (this.bandiva[i] != 1) {
+                        subtotal_sin_iva += Double.parseDouble(this.total[i].getText().toString());
+                    } else {
+                        subtotal_con_iva += Double.parseDouble(this.total[i].getText().toString());
+                    }
+            }
+            this.tran_sub_sin_iva.setText(redondearNumero(subtotal_sin_iva, "0.00"));
+            this.tran_sub_con_iva.setText(redondearNumero(subtotal_con_iva, "0.00"));
+            this.tran_sub.setText(redondearNumero((subtotal_con_iva + subtotal_sin_iva), "0.00"));
+            String prf_imp = impuestos;
+            double porc = 0.0;
+            if (prf_imp != null) porc = new Double(prf_imp) / 100;
+            total_iva = (subtotal_con_iva * porc);
+            this.tran_sub_iva.setText(redondearNumero(total_iva, "0.00"));
+            double monto = subtotal_con_iva + subtotal_sin_iva + total_iva;
+            this.tran_sub_total.setText(redondearNumero(monto, "0.00"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 
-        for (int i = 0; i < this.count; i++) {
-            if(iditems[i]!=null)
-            if (this.bandiva[i]!=1) {
-                subtotal_sin_iva += Double.parseDouble(this.total[i].getText().toString());
-            } else {
-                subtotal_con_iva += Double.parseDouble(this.total[i].getText().toString());
+    //Mostrar Info items
+    public void crearDialogInfoItem(int posicion) {
+        LayoutInflater li = LayoutInflater.from(this);
+        View promptsView = li.inflate(R.layout.info_detalle_item, null);
+        android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(this);
+        alertDialogBuilder.setView(promptsView);
+        alertDialogBuilder.setTitle(R.string.tittle_dialog_show_detalle);
+        //Variables de la vista
+        TextView code = (TextView) promptsView.findViewById(R.id.info_item_code);
+        TextView nombre = (TextView) promptsView.findViewById(R.id.info_item_nombre);
+        TextView precio_real = (TextView) promptsView.findViewById(R.id.info_item_precio_real);
+        TextView cant = (TextView) promptsView.findViewById(R.id.info_item_cantidad);
+        TextView porc = (TextView) promptsView.findViewById(R.id.info_item_porcentaje);
+        TextView total = (TextView) promptsView.findViewById(R.id.info_item_total);
+        TextView precio = (TextView) promptsView.findViewById(R.id.info_item_precio);
+        TextView presenta = (TextView) promptsView.findViewById(R.id.info_item_presentacion);
+        TextView und = (TextView) promptsView.findViewById(R.id.info_item_unidad);
+        TextView desc = (TextView) promptsView.findViewById(R.id.info_item_descuento);
+        TextView imp = (TextView) promptsView.findViewById(R.id.info_item_iva);
+        TableLayout tablaExistencia = (TableLayout) promptsView.findViewById(R.id.infoExiTableLayoutProm);
+        TableRow.LayoutParams layoutRow = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, 50, 1);
+        TableRow.LayoutParams layoutCell = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1);
+        //cargando datos
+        DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
+        Cursor cursor = helper.consultarItem(iditems[posicion]);
+        if (cursor.moveToFirst()) {
+            code.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_cod_item)));
+            nombre.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_descripcion)));
+            porc.setText(descuento[posicion].getText().toString());
+            cant.setText(cantidad[posicion].getText().toString());
+            presenta.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_presentacion)));
+            und.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_unidad)));
+            double puItem = Double.parseDouble(preciounitario[posicion]);
+            precio.setText(redondearNumero(puItem, this.numdec_punitario));
+            if (bandiva[posicion] != 1) {
+                imp.setText("NO");
+            }
+            if (cantidad[posicion].getText().toString() != null && !cantidad[posicion].getText().toString().isEmpty()) {//verificar que la cantidad no este vacia
+                double cnt = (Double.parseDouble(cantidad[posicion].getText().toString()));
+                double prc = new Double(descuento[posicion].getText().toString());
+                double porcentaje = prc / 100;
+                double precio_total = cnt * puItem;
+                double descuento = precio_total * porcentaje;
+                double pre_real = (precio_total - descuento) / cnt;
+                double tot = cnt * pre_real;
+                precio_real.setText(redondearNumero(pre_real, this.numdec_punitario));
+                desc.setText(redondearNumero(new Double(descuento), "0.00"));
+                total.setText(redondearNumero(new Double(tot), this.numdec_ptotal));
+
             }
         }
-        this.tran_sub_sin_iva.setText(redondearNumero(subtotal_sin_iva,"0.00"));
-        this.tran_sub_con_iva.setText(redondearNumero(subtotal_con_iva,"0.00"));
-        this.tran_sub.setText(redondearNumero((subtotal_con_iva + subtotal_sin_iva),"0.00"));
-        String prf_imp = impuestos;
-        double porc = 0.0;
-        if(prf_imp!=null)porc=new Double(prf_imp)/100;
-        total_iva = (subtotal_con_iva * porc);
-        this.tran_sub_iva.setText(redondearNumero(total_iva,"0.00"));
-        double monto = subtotal_con_iva + subtotal_sin_iva + total_iva;
-        this.tran_sub_total.setText(redondearNumero(monto,"0.00"));
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-    return true;
-}
-//Mostrar Info items
-public void crearDialogInfoItem(int posicion) {
-    LayoutInflater li = LayoutInflater.from(this);
-    View promptsView = li.inflate(R.layout.info_detalle_item, null);
-    android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(this);
-    alertDialogBuilder.setView(promptsView);
-    alertDialogBuilder.setTitle(R.string.tittle_dialog_show_detalle);
-    //Variables de la vista
-    TextView code = (TextView) promptsView.findViewById(R.id.info_item_code);
-    TextView nombre = (TextView) promptsView.findViewById(R.id.info_item_nombre);
-    TextView precio_real = (TextView) promptsView.findViewById(R.id.info_item_precio_real);
-    TextView cant = (TextView) promptsView.findViewById(R.id.info_item_cantidad);
-    TextView porc = (TextView) promptsView.findViewById(R.id.info_item_porcentaje);
-    TextView total = (TextView) promptsView.findViewById(R.id.info_item_total);
-    TextView precio = (TextView) promptsView.findViewById(R.id.info_item_precio);
-    TextView presenta = (TextView) promptsView.findViewById(R.id.info_item_presentacion);
-    TextView und = (TextView) promptsView.findViewById(R.id.info_item_unidad);
-    TextView desc = (TextView) promptsView.findViewById(R.id.info_item_descuento);
-    TextView imp = (TextView) promptsView.findViewById(R.id.info_item_iva);
-    TableLayout tablaExistencia = (TableLayout) promptsView.findViewById(R.id.infoExiTableLayoutProm);
-    TableRow.LayoutParams layoutRow = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, 50, 1);
-    TableRow.LayoutParams layoutCell = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1);
-    //cargando datos
-    DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
-    Cursor cursor = helper.consultarItem(iditems[posicion]);
-    if(cursor.moveToFirst()){
-        code.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_cod_item)));
-        nombre.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_descripcion)));
-        porc.setText(descuento[posicion].getText().toString());
-        cant.setText(cantidad[posicion].getText().toString());
-        presenta.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_presentacion)));
-        und.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_unidad)));
-        double puItem = Double.parseDouble(preciounitario[posicion]);
-        precio.setText(redondearNumero(puItem,this.numdec_punitario));
-        if (bandiva[posicion]!=1) {
-            imp.setText("NO");
-        }
-        if(cantidad[posicion].getText().toString()!=null && !cantidad[posicion].getText().toString().isEmpty()){//verificar que la cantidad no este vacia
-            double cnt = (Double.parseDouble(cantidad[posicion].getText().toString()));
-            double prc = new Double(descuento[posicion].getText().toString());
-            double porcentaje = prc/100 ;
-            double precio_total = cnt*puItem;
-            double descuento = precio_total*porcentaje;
-            double pre_real = (precio_total - descuento) / cnt;
-            double tot = cnt * pre_real;
-            precio_real.setText(redondearNumero(pre_real,this.numdec_punitario));
-            desc.setText(redondearNumero(new Double(descuento),"0.00"));
-            total.setText(redondearNumero(new Double(tot),this.numdec_ptotal));
-
-        }
-    }
-    cursor.close();
+        cursor.close();
     /*Generar reporte de existencia*/
-    TableRow fila;
-    int pst = 0;
-    Cursor cur1 = helper.obtenerExistenciaItem(iditems[posicion],bodegas.split(","));
-    if (cur1.moveToFirst()) {
-        do {
+        TableRow fila;
+        int pst = 0;
+        Cursor cur1 = helper.obtenerExistenciaItem(iditems[posicion], bodegas.split(","));
+        if (cur1.moveToFirst()) {
+            do {
+                fila = new TableRow(this);
+                fila.setLayoutParams(layoutRow);
+
+                layoutCell.span = 1;
+                TextView nro = new TextView(this);
+                nro.setTextSize(12);
+                nro.setText(String.valueOf(pst + 1));
+                nro.setTextColor(resources.getColor(R.color.textColorPrimary));
+                nro.setLayoutParams(layoutCeldas);
+                nro.setGravity(Gravity.CENTER);
+                nro.setPadding(5, 5, 5, 5);
+
+                TextView bod = new TextView(this);
+                bod.setTextSize(12);
+                bod.setText(cur1.getString(cur1.getColumnIndex(Bodega.FIELD_codbodega)));
+                bod.setTextColor(resources.getColor(R.color.textColorPrimary));
+                bod.setLayoutParams(layoutCeldas);
+                bod.setGravity(Gravity.CENTER);
+                bod.setPadding(5, 5, 5, 5);
+
+                TextView stock = new TextView(this);
+                stock.setTextSize(12);
+                stock.setText(cur1.getString(cur1.getColumnIndex(Existencia.FIELD_existencia)));
+                stock.setTextColor(resources.getColor(R.color.textColorPrimary));
+                stock.setLayoutParams(layoutCeldas);
+                stock.setGravity(Gravity.CENTER);
+                stock.setPadding(5, 5, 5, 5);
+
+                fila.addView(nro);
+                fila.addView(bod);
+                fila.addView(stock);
+                tablaExistencia.addView(fila);
+                pst++;
+            } while (cur1.moveToNext());
+        } else {
             fila = new TableRow(this);
             fila.setLayoutParams(layoutRow);
-
-            layoutCell.span = 1;
-            TextView nro = new TextView(this);
-            nro.setTextSize(12);
-            nro.setText(String.valueOf(pst + 1));
-            nro.setTextColor(resources.getColor(R.color.textColorPrimary));
-            nro.setLayoutParams(layoutCeldas);
-            nro.setGravity(Gravity.CENTER);
-            nro.setPadding(5, 5, 5, 5);
-
-            TextView bod = new TextView(this);
-            bod.setTextSize(12);
-            bod.setText(cur1.getString(cur1.getColumnIndex(Bodega.FIELD_codbodega)));
-            bod.setTextColor(resources.getColor(R.color.textColorPrimary));
-            bod.setLayoutParams(layoutCeldas);
-            bod.setGravity(Gravity.CENTER);
-            bod.setPadding(5, 5, 5, 5);
-
-            TextView stock = new TextView(this);
-            stock.setTextSize(12);
-            stock.setText(cur1.getString(cur1.getColumnIndex(Existencia.FIELD_existencia)));
-            stock.setTextColor(resources.getColor(R.color.textColorPrimary));
-            stock.setLayoutParams(layoutCeldas);
-            stock.setGravity(Gravity.CENTER);
-            stock.setPadding(5, 5, 5, 5);
-
-            fila.addView(nro);
-            fila.addView(bod);
-            fila.addView(stock);
+            TextView info = new TextView(this);
+            info.setText("PRODUCTO SIN STOCK");
+            info.setLayoutParams(layoutCell);
+            info.setGravity(Gravity.CENTER);
+            fila.setPadding(10, 20, 10, 20);
+            fila.addView(info);
             tablaExistencia.addView(fila);
-            pst++;
-        } while (cur1.moveToNext());
-    } else {
-        fila = new TableRow(this);
-        fila.setLayoutParams(layoutRow);
-        TextView info = new TextView(this);
-        info.setText("PRODUCTO SIN STOCK");
-        info.setLayoutParams(layoutCell);
-        info.setGravity(Gravity.CENTER);
-        fila.setPadding(10, 20, 10, 20);
-        fila.addView(info);
-        tablaExistencia.addView(fila);
-    }
-    cur1.close();
-    helper.close();
+        }
+        cur1.close();
+        helper.close();
     /*Generar reporte de existencia*/
     /*Cargar Listado*/
-    alertDialogBuilder.setCancelable(true);
-    alertDialogBuilder.setNegativeButton("Salir", new DialogInterface.OnClickListener() {
-        public void onClick(DialogInterface dialog, int id) {
-            dialog.cancel();
-        }
-    });
-    final android.support.v7.app.AlertDialog alertDialog = alertDialogBuilder.create();
-    alertDialog.show();
-}
+        alertDialogBuilder.setCancelable(true);
+        alertDialogBuilder.setNegativeButton("Salir", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+        final android.support.v7.app.AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
 
 
     public boolean validarExistencia(String id_item, String id_bodega, int cantidad) {
@@ -1626,39 +1688,40 @@ public void crearDialogInfoItem(int posicion) {
     //Validar promociones
     public boolean calcularPromociones(String id_item_padre, int cantidad_padre, String key_padre, int posicion) {
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
-        Cursor cursor = helper.consultarPromocionItem(id_item_padre,cantidad_padre);
-        if (cursor.moveToFirst()){
-                descpromo[posicion] = 0;
-                int cantidad_minima = Integer.parseInt(cursor.getString(cursor.getColumnIndex(Promocion.FIELD_cantidad_min)));
-                String id_hijo = cursor.getString(cursor.getColumnIndex(Promocion.FIELD_id_inven_promo));
-                double precio_item_hijo = cursor.getDouble(cursor.getColumnIndex(Promocion.FIELD_precio_promo));
-                int cantidad_item_hijo = cursor.getInt(cursor.getColumnIndex(Promocion.FIELD_cantidad_promo));
-                String desc_item_hijo = "";
-                int iva_item_hijo = 0;
-                Cursor cursor1 = helper.obtenerItem(id_hijo);
-                if (cursor1.moveToFirst()) {
-                    iva_item_hijo = cursor1.getInt(cursor1.getColumnIndex(IVInventario.FIELD_band_iva));
-                    desc_item_hijo = cursor1.getString(cursor1.getColumnIndex(IVInventario.FIELD_descripcion));
-                }
-                cursor1.close();
+        Cursor cursor = helper.consultarPromocionItem(id_item_padre, cantidad_padre);
+        if (cursor.moveToFirst()) {
+            descpromo[posicion] = 0;
+            int cantidad_minima = Integer.parseInt(cursor.getString(cursor.getColumnIndex(Promocion.FIELD_cantidad_min)));
+            String id_hijo = cursor.getString(cursor.getColumnIndex(Promocion.FIELD_id_inven_promo));
+            double precio_item_hijo = cursor.getDouble(cursor.getColumnIndex(Promocion.FIELD_precio_promo));
+            int cantidad_item_hijo = cursor.getInt(cursor.getColumnIndex(Promocion.FIELD_cantidad_promo));
+            String desc_item_hijo = "";
+            int iva_item_hijo = 0;
+            Cursor cursor1 = helper.obtenerItem(id_hijo);
+            if (cursor1.moveToFirst()) {
+                iva_item_hijo = cursor1.getInt(cursor1.getColumnIndex(IVInventario.FIELD_band_iva));
+                desc_item_hijo = cursor1.getString(cursor1.getColumnIndex(IVInventario.FIELD_descripcion));
+            }
+            cursor1.close();
                 /*cargando arreglos globales*/
-                int veces = (int) (cantidad_padre / cantidad_minima);
-                int cantidad_total = 0;
-                double sub_promo = 0.0;
-                for (int i = 0; i < veces; i++) {
-                    cantidad_total += cantidad_item_hijo;
-                }
-                sub_promo = cantidad_total*precio_item_hijo;
-                agregarFilaPromocion(id_item_padre,key_padre,id_hijo,desc_item_hijo,iva_item_hijo,precio_item_hijo,cantidad_total,sub_promo);
-                System.out.println("Codigo padre: "+id_item_padre+";"+cantidad_padre+"; a regalar: "+cantidad_total+";keypadre: "+key_padre);
+            int veces = (int) (cantidad_padre / cantidad_minima);
+            int cantidad_total = 0;
+            double sub_promo = 0.0;
+            for (int i = 0; i < veces; i++) {
+                cantidad_total += cantidad_item_hijo;
+            }
+            sub_promo = cantidad_total * precio_item_hijo;
+            agregarFilaPromocion(id_item_padre, key_padre, id_hijo, desc_item_hijo, iva_item_hijo, precio_item_hijo, cantidad_total, sub_promo);
+            System.out.println("Codigo padre: " + id_item_padre + ";" + cantidad_padre + "; a regalar: " + cantidad_total + ";keypadre: " + key_padre);
         }
         cursor.close();
         helper.close();
         return true;
     }
+
     public String obtenerObservaciones() {
 
-        String dirTransporte="",trans="No", nroDireccion="";
+        String dirTransporte = "", trans = "No", nroDireccion = "";
 
         SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar fecha_actual = Calendar.getInstance();
@@ -1666,10 +1729,10 @@ public void crearDialogInfoItem(int posicion) {
         double tiempoEstEntrega = 0.00;
 
         if (grupo.getCheckedRadioButtonId() == R.id.si_Trans) {
-            tiempoEstEntrega=1;
-            trans="Si";
-            nroDireccion="0";
-            dirTransporte =helper.getDirCliente(cli_id).replace("/", ":").replace("#", "Nro.");
+            tiempoEstEntrega = 1;
+            trans = "Si";
+            nroDireccion = "0";
+            dirTransporte = helper.getDirCliente(cli_id).replace("/", ":").replace("#", "Nro.");
             fecha_actual.add(Calendar.DATE, 1);
         }
 
@@ -1677,10 +1740,8 @@ public void crearDialogInfoItem(int posicion) {
         String fechaEntrega = sdf3.format(fecha);
 
         //observacion,solitante,tiempo entrega,forma,validez,ruc, razon social, nombre comercial, direccion,telefono,bodega origen, bodega destino,fecha de entrega, tiempo estimado de entrega, dir de transporte, número de dirección, transporte(Si o No)
-        return trans_observacion.getText().toString() +";" +trans_solicitante .getText().toString() + ";"+ ";" + ";" + ";" + ";" + ";" + ";"  + ";" +";"+";" +";"+fechaEntrega+";"+tiempoEstEntrega+";"+dirTransporte+";"+nroDireccion+";"+trans;
+        return trans_observacion.getText().toString() + ";" + trans_solicitante.getText().toString() + ";" + ";" + ";" + ";" + ";" + ";" + ";" + ";" + ";" + ";" + ";" + fechaEntrega + ";" + tiempoEstEntrega + ";" + dirTransporte + ";" + nroDireccion + ";" + trans;
     }
-
-
 
 
     public void alertaExistenciaItem(int cantidad, String bodega) {
@@ -1707,19 +1768,19 @@ public void crearDialogInfoItem(int posicion) {
         toast.setView(layout);
         toast.show();
     }
+
     public void alertaTransaccionGuardada() {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.save_success_transaction,
                 (ViewGroup) findViewById(R.id.custom_toast_layout_id3));
-        ((TextView) layout.findViewById(R.id.toast_tittle)).setText("Transaccion Registrada");
-        ((TextView) layout.findViewById(R.id.toast_subtittle)).setText("la transaccion ha sido registrada correctamente!");
+        ((TextView) layout.findViewById(R.id.toast_tittle)).setText("Transacción Registrada");
+        ((TextView) layout.findViewById(R.id.toast_subtittle)).setText("La transacción ha sido registrada correctamente!");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.BOTTOM, 0, 0);
         toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
-
 
 
     @Override
@@ -1729,7 +1790,7 @@ public void crearDialogInfoItem(int posicion) {
                 onBackPressed();
                 return true;
             case R.id.action_change_client:
-                if(!cli_id.isEmpty()){
+                if (!cli_id.isEmpty()) {
                     android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(NuevoPedido.this);
                     alertDialogBuilder
                             .setTitle("Cambiar Cliente")
@@ -1750,9 +1811,9 @@ public void crearDialogInfoItem(int posicion) {
                 }
                 break;
             case R.id.action_view_carter:
-                    if(!this.cli_id.isEmpty()){
-                        generarReporteCartera(this.cli_id);
-                    }
+                if (!this.cli_id.isEmpty()) {
+                    generarReporteCartera(this.cli_id);
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -1760,68 +1821,77 @@ public void crearDialogInfoItem(int posicion) {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.agregar:
-                if(count>0){
+                if (count > 0) {
                     agregarFila();
-                }else{
-                    if(cli_id!=null){
+                } else {
+                    if (cli_id != null) {
                         agregarFila();
-                    }else{
+                    } else {
                         autoCompleteCliente.requestFocus();
                         autoCompleteCliente.setError(getString(R.string.info_no_select_cli));
                     }
                 }
                 break;
             case R.id.editar:
-                if(editar.isChecked()){
+                if (editar.isChecked()) {
                     System.out.println("Editando");
                     //si esta habilitado
-                    eliminar.setEnabled(false);eliminar.setChecked(false);
-                    for(int i =0; i<count; i++){
+                    eliminar.setEnabled(false);
+                    eliminar.setChecked(false);
+                    for (int i = 0; i < count; i++) {
                         seleccion[i].setChecked(false);
                     }
-                }else{
-                    agregar.setEnabled(true);guardar.setEnabled(true);
+                } else {
+                    agregar.setEnabled(true);
+                    guardar.setEnabled(true);
                     eliminar.setEnabled(true);
                     System.out.println("Editar");
-                    eliminar.setEnabled(true);eliminar.setChecked(false);
-                    for(int i =0; i<count; i++){
+                    eliminar.setEnabled(true);
+                    eliminar.setChecked(false);
+                    for (int i = 0; i < count; i++) {
                         seleccion[i].setChecked(false);
                     }
                 }
                 break;
             case R.id.eliminar:
-                if(eliminar.isChecked()){
-                //si esta habilitado
-                    editar.setEnabled(false);editar.setChecked(false);
-                    for(int i =0; i<count; i++){
+                if (eliminar.isChecked()) {
+                    //si esta habilitado
+                    editar.setEnabled(false);
+                    editar.setChecked(false);
+                    for (int i = 0; i < count; i++) {
                         seleccion[i].setChecked(false);
                     }
-                }else{
-                    agregar.setEnabled(true);guardar.setEnabled(true);
+                } else {
+                    agregar.setEnabled(true);
+                    guardar.setEnabled(true);
                     editar.setEnabled(true);
-                    eliminar.setEnabled(true);eliminar.setChecked(false);
-                    for(int i =0; i<count; i++){
+                    eliminar.setEnabled(true);
+                    eliminar.setChecked(false);
+                    for (int i = 0; i < count; i++) {
                         seleccion[i].setChecked(false);
                     }
                 }
                 break;
             case R.id.guardar:
-                ExtraerConfiguraciones ext = new ExtraerConfiguraciones(NuevoPedido.this);
-                boolean conf_observacion = ext.getBoolean(getString(R.string.key_act_obs),true);
-                if (conf_observacion) {
-                    if (!validarCamposVacios()) {
-                        guardarTransaccion();
-                    }
-                } else guardarTransaccion();
+                guardarTransaccion();
                 break;
+//                ExtraerConfiguraciones ext = new ExtraerConfiguraciones(NuevoPedido.this);
+//                boolean conf_observacion = ext.getBoolean(getString(R.string.key_act_obs), true);
+//                if (conf_observacion) {
+//                    if (!validarCamposVacios()) {
+//                        guardarTransaccion();
+//                    }
+//                } else guardarTransaccion();
+
         }
     }
-    public boolean guardarTransaccion(){
-        if(filasCompletadas()>0){
+
+    public boolean guardarTransaccion() {
+        if (filasCompletadas() > 0) {
             guardarTrans();
-        }else{
+        } else {
             android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(this);
             alertDialogBuilder.setMessage("Debe ingresar al menos un producto");
             alertDialogBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
@@ -1836,10 +1906,10 @@ public void crearDialogInfoItem(int posicion) {
         return true;
     }
 
-    public int filasCompletadas(){
+    public int filasCompletadas() {
         int result = 0;
-        for(int i=0; i<count; i++){
-            if(iditems[i]!=null && !descripcion[i].equals("FILA BORRADA")){
+        for (int i = 0; i < count; i++) {
+            if (iditems[i] != null && !descripcion[i].equals("FILA BORRADA")) {
                 result++;
             }
         }
@@ -1851,17 +1921,16 @@ public void crearDialogInfoItem(int posicion) {
             trans_solicitante.requestFocus();
             trans_solicitante.setError(resources.getString(R.string.info_field_required));
             return true;
-        }
-        /*else if (TextUtils.isEmpty(trans_observacion.getText().toString())){
+        } else if (TextUtils.isEmpty(trans_observacion.getText().toString())) {
             trans_observacion.requestFocus();
             trans_observacion.setError(resources.getString(R.string.info_field_required));
             return true;
-        }*/
+        }
         return false;
     }
 
-    public void modificarFila(int posicion){
-        if(bandpromo[posicion]!=1){
+    public void modificarFila(int posicion) {
+        if (bandpromo[posicion] != 1) {
             eliminarHijos(iditems[posicion], keypadres[posicion]);
             /*Bloqueando botones*/
             agregar.setEnabled(false);
@@ -1883,8 +1952,8 @@ public void crearDialogInfoItem(int posicion) {
             descripcion[posicion].setSelection(descripcion[posicion].getText().length());
             descuento[posicion].setText("0.00");
             cantidad[posicion].setEnabled(false);
-        }else{
-            Toast ts= Toast.makeText(getApplicationContext(),resources.getString(R.string.info_fila_promocion_del),Toast.LENGTH_SHORT);
+        } else {
+            Toast ts = Toast.makeText(getApplicationContext(), resources.getString(R.string.info_fila_promocion_del), Toast.LENGTH_SHORT);
             ts.show();
         }
         calcularTotalTransaccion();
@@ -1902,6 +1971,7 @@ public void crearDialogInfoItem(int posicion) {
         startActivity(intent);
         finish();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_nuevo_pedido, menu);

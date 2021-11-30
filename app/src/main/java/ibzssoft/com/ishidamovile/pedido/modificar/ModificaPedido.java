@@ -70,11 +70,11 @@ import ibzssoft.com.modelo.Transaccion;
 import ibzssoft.com.modelo.Usuario;
 import ibzssoft.com.storage.DBSistemaGestion;
 
-public class ModificaPedido extends AppCompatActivity implements View.OnClickListener{
+public class ModificaPedido extends AppCompatActivity implements View.OnClickListener {
     /*
         Campos de la cabecera
      */
-    private TextView emision,hora, bodega, transaccion, precio, vendedor;
+    private TextView emision, hora, bodega, transaccion, precio, vendedor;
     /*
         Campos del cliente
      */
@@ -86,8 +86,8 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
     /*
         Campos de validacion
      */
-    private int limite,count,conf_pcg,conf_max_venci,conf_dias_gracia;
-    private String  cli_id;
+    private int limite, count, conf_pcg, conf_max_venci, conf_dias_gracia;
+    private String cli_id;
     /*
        RadioGroup
     */
@@ -101,15 +101,15 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
     /*
         Campos para la tabla de items [VISTA]
      */
-    private EditText [] numero, cantidad, precio_real, descuento, total;
-    private int [] bandiva;
-    private int [] bandpromo;
-    private int [] numprecio;
-    private String [] porcdesc;
-    private String [] iditems,idpadres,keypadres,preciounitario;
-    private int [] descpromo;
+    private EditText[] numero, cantidad, precio_real, descuento, total;
+    private int[] bandiva;
+    private int[] bandpromo;
+    private int[] numprecio;
+    private String[] porcdesc;
+    private String[] iditems, idpadres, keypadres, preciounitario;
+    private int[] descpromo;
     private CheckBox[] seleccion;
-    private AutoCompleteTextView [] descripcion;
+    private AutoCompleteTextView[] descripcion;
     /*
         Recursos para inicializar tabla
      */
@@ -118,7 +118,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
     /*
         Variables total de transaccion
      */
-    private TextView tran_sub_sin_iva,tran_sub_con_iva, tran_sub,tran_sub_iva,tran_sub_total;
+    private TextView tran_sub_sin_iva, tran_sub_con_iva, tran_sub, tran_sub_iva, tran_sub_total;
     /*
         Botones de guardado y agregacion
      */
@@ -128,12 +128,13 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         Transaccion observacion
      */
     private TextView trans_observacion, trans_solicitante;
-    private String [] conf_precios_disponibles;
+    private String[] conf_precios_disponibles;
     private Resources resources;
 
-    private String impuestos,idvendedor,idusuario,lineas,bodegas;
+    private String impuestos, idvendedor, idusuario, lineas, bodegas;
     private boolean val_duplicado;
     private int decimales;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,45 +149,45 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         this.agregarFilasIniciales();
     }
 
-    public void cargarPreferencias(){
+    public void cargarPreferencias() {
         ExtraerConfiguraciones ext = new ExtraerConfiguraciones(this);
-        this.impuestos = ext.get(getString(R.string.key_empresa_iva),"12");
-        this.idvendedor = ext.get(getString(R.string.key_act_ven),getString(R.string.pref_act_ven_default));
-        this.lineas = ext.get(getString(R.string.key_act_lin),getString(R.string.pref_act_lin_default));
-        this.idusuario = ext.get(getString(R.string.key_act_user),getString(R.string.pref_act_user_default));
-        this.bodegas = ext.get(getString(R.string.key_act_bod),getString(R.string.pref_act_bod_default));
-        this.val_duplicado= ext.getBoolean(getString(R.string.key_act_validar_duplicidad),false);
-        String dec= ext.get(getString(R.string.key_empresa_decimales),"2");
+        this.impuestos = ext.get(getString(R.string.key_empresa_iva), "12");
+        this.idvendedor = ext.get(getString(R.string.key_act_ven), getString(R.string.pref_act_ven_default));
+        this.lineas = ext.get(getString(R.string.key_act_lin), getString(R.string.pref_act_lin_default));
+        this.idusuario = ext.get(getString(R.string.key_act_user), getString(R.string.pref_act_user_default));
+        this.bodegas = ext.get(getString(R.string.key_act_bod), getString(R.string.pref_act_bod_default));
+        this.val_duplicado = ext.getBoolean(getString(R.string.key_act_validar_duplicidad), false);
+        String dec = ext.get(getString(R.string.key_empresa_decimales), "2");
         this.decimales = Integer.parseInt(dec);
     }
 
-    public void inicializarCamposFormulario(){
+    public void inicializarCamposFormulario() {
      /*
         Campos de la transaccion
      */
-        this.emision= (TextView)findViewById(R.id.nuevoPedidoFecha);
-        this.hora= (TextView)findViewById(R.id.nuevoPedidoHora);
-        this.bodega= (TextView)findViewById(R.id.nuevoPedidoBodega);
-        this.precio= (TextView)findViewById(R.id.nuevoPedidoPrecio);
-        this.transaccion= (TextView)findViewById(R.id.nuevoPedidoTrans);
-        this.vendedor= (TextView)findViewById(R.id.nuevoPedidoVendedor);
+        this.emision = (TextView) findViewById(R.id.nuevoPedidoFecha);
+        this.hora = (TextView) findViewById(R.id.nuevoPedidoHora);
+        this.bodega = (TextView) findViewById(R.id.nuevoPedidoBodega);
+        this.precio = (TextView) findViewById(R.id.nuevoPedidoPrecio);
+        this.transaccion = (TextView) findViewById(R.id.nuevoPedidoTrans);
+        this.vendedor = (TextView) findViewById(R.id.nuevoPedidoVendedor);
      /*
         Campos del cliente
      */
-        this.cedula = (TextView)findViewById(R.id.nuevoPedidoCI_RUC);
-        this.nombres= (TextView)findViewById(R.id.nuevoPedidoNombres);
-        this.comercial= (TextView)findViewById(R.id.nuevoPedidoNombreAlt);
-        this.direccion= (TextView)findViewById(R.id.nuevoPedidoDireccion);
-        this.telefono= (TextView)findViewById(R.id.nuevoPedidoTelefono);
-        this.correo= (TextView)findViewById(R.id.nuevoPedidoCorreo);
-        this.observacion = (TextView)findViewById(R.id.nuevoPedidoObs);
-        this.grupo = (RadioGroup)findViewById(R.id.opc_Trans);
+        this.cedula = (TextView) findViewById(R.id.nuevoPedidoCI_RUC);
+        this.nombres = (TextView) findViewById(R.id.nuevoPedidoNombres);
+        this.comercial = (TextView) findViewById(R.id.nuevoPedidoNombreAlt);
+        this.direccion = (TextView) findViewById(R.id.nuevoPedidoDireccion);
+        this.telefono = (TextView) findViewById(R.id.nuevoPedidoTelefono);
+        this.correo = (TextView) findViewById(R.id.nuevoPedidoCorreo);
+        this.observacion = (TextView) findViewById(R.id.nuevoPedidoObs);
+        this.grupo = (RadioGroup) findViewById(R.id.opc_Trans);
         /*
         * Campos de validacion
         */
         this.limite = 0;
         this.count = 0;
-        this.cli_id  = "";
+        this.cli_id = "";
         this.conf_pcg = 0;
         this.conf_max_venci = 0;
         this.conf_dias_gracia = 0;
@@ -194,49 +195,50 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         /*
             Contenedores de la vista
         */
-        this.contenedor_cartera = (CardView)findViewById(R.id.contenedorCartera);
-        this.contenedor_observaciones= (CardView)findViewById(R.id.contenedorObservaciones);
-        this.contenedor_items= (CardView)findViewById(R.id.contenedorItems);
+        this.contenedor_cartera = (CardView) findViewById(R.id.contenedorCartera);
+        this.contenedor_observaciones = (CardView) findViewById(R.id.contenedorObservaciones);
+        this.contenedor_items = (CardView) findViewById(R.id.contenedorItems);
          /*
             Campos del cartera
          */
-        vencidos = (TextView)findViewById(R.id.nuevoPedidoDocsVencidos);
-        no_vencidos = (TextView)findViewById(R.id.nuevoPedidoDocsVencer);
-        saldo_vencer= (TextView)findViewById(R.id.nuevoPedidoSaldoVencer);
-        saldo_vencido = (TextView)findViewById(R.id.nuevoPedidoSaldoVencido);
+        vencidos = (TextView) findViewById(R.id.nuevoPedidoDocsVencidos);
+        no_vencidos = (TextView) findViewById(R.id.nuevoPedidoDocsVencer);
+        saldo_vencer = (TextView) findViewById(R.id.nuevoPedidoSaldoVencer);
+        saldo_vencido = (TextView) findViewById(R.id.nuevoPedidoSaldoVencido);
         /*
             Campos total transaccion
          */
-        tran_sub_con_iva = (TextView)findViewById(R.id.subtotal);
-        tran_sub_sin_iva = (TextView)findViewById(R.id.subtotal_0);
-        tran_sub = (TextView)findViewById(R.id.subtotal_total);
-        tran_sub_iva = (TextView)findViewById(R.id.iva);
-        tran_sub_total = (TextView)findViewById(R.id.total);
+        tran_sub_con_iva = (TextView) findViewById(R.id.subtotal);
+        tran_sub_sin_iva = (TextView) findViewById(R.id.subtotal_0);
+        tran_sub = (TextView) findViewById(R.id.subtotal_total);
+        tran_sub_iva = (TextView) findViewById(R.id.iva);
+        tran_sub_total = (TextView) findViewById(R.id.total);
         /*
             Campos observacion transaccion
          */
-        trans_observacion = (TextView)findViewById(R.id.txtNuevoPedidoObservacion);
-        trans_solicitante= (TextView)findViewById(R.id.txtNuevoPedidoSolicitante);
+        trans_observacion = (TextView) findViewById(R.id.txtNuevoPedidoObservacion);
+        trans_solicitante = (TextView) findViewById(R.id.txtNuevoPedidoSolicitante);
         resources = this.getResources();
         this.conf_precios_disponibles = new String[]{};
     }
-    public void inicializarCamposTabla(int maximo){
+
+    public void inicializarCamposTabla(int maximo) {
         /* Campos de la tabla de items [VISTA] */
-        seleccion= new CheckBox[100];
-        numero= new EditText[100];
-        descripcion= new AutoCompleteTextView[100];
+        seleccion = new CheckBox[100];
+        numero = new EditText[100];
+        descripcion = new AutoCompleteTextView[100];
         cantidad = new EditText[100];
         precio_real = new EditText[100];
-        descuento= new EditText[100];
-        total= new EditText[100];
+        descuento = new EditText[100];
+        total = new EditText[100];
         bandiva = new int[100];
         bandpromo = new int[100];
-        numprecio  = new int[100];
-        porcdesc= new String[100];
+        numprecio = new int[100];
+        porcdesc = new String[100];
         iditems = new String[100];
         preciounitario = new String[100];
-        idpadres= new String[100];
-        keypadres= new String[100];
+        idpadres = new String[100];
+        keypadres = new String[100];
         descpromo = new int[100];
         /* Recursos para inicializar tabla */
         tabla = (TableLayout) findViewById(R.id.nuevoPedidoTableLayout);
@@ -247,9 +249,9 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         layoutCeldaDescripcion.span = 2;
         layoutCeldas.span = 1;
         layoutCeldaNro.span = 1;
-        editar = (ToggleButton)findViewById(R.id.editar);
+        editar = (ToggleButton) findViewById(R.id.editar);
         eliminar = (ToggleButton) findViewById(R.id.eliminar);
-        guardar = (Button)findViewById(R.id.guardar);
+        guardar = (Button) findViewById(R.id.guardar);
         agregar = (Button) findViewById(R.id.agregar);
         resources = this.getResources();
         guardar.setOnClickListener(this);
@@ -258,6 +260,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         eliminar.setOnClickListener(this);
         guardar.setOnClickListener(this);
     }
+
     /*
         * Cargar Configuracion de la Transaccion
      */
@@ -287,15 +290,16 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                 String conf_limite = cursor1.getString(cursor1.getColumnIndex(GNTrans.FIELD_numfilas));
                 String max_pck = cursor1.getString(cursor1.getColumnIndex(GNTrans.FIELD_maxdocs));
                 this.limite = Integer.parseInt(conf_limite);
-                if(limite<=0)limite = 100;
+                if (limite <= 0) limite = 100;
                 this.conf_max_venci = Integer.parseInt(max_pck);
-                String conf_dg=cursor1.getString(cursor1.getColumnIndex(GNTrans.FIELD_diasgracia));
-                conf_dias_gracia =(Integer.parseInt(conf_dg));
+                String conf_dg = cursor1.getString(cursor1.getColumnIndex(GNTrans.FIELD_diasgracia));
+                conf_dias_gracia = (Integer.parseInt(conf_dg));
                 /*Configuracion de observaciones y precios*/
                 ExtraerConfiguraciones ext = new ExtraerConfiguraciones(ModificaPedido.this);
                 boolean conf_observacion = ext.getBoolean(getString(R.string.key_act_obs), true);
-                conf_precios_disponibles = ext.get(getString(R.string.key_act_list_price),"1").split(",");
-                if (conf_observacion) mostrarContenedorObservaciones();cargarObservaciones(cursor.getString(cursor.getColumnIndex(Transaccion.FIELD_descripcion)));
+                conf_precios_disponibles = ext.get(getString(R.string.key_act_list_price), "1").split(",");
+                if (conf_observacion) mostrarContenedorObservaciones();
+                cargarObservaciones(cursor.getString(cursor.getColumnIndex(Transaccion.FIELD_descripcion)));
                 if (cursor1.getString(cursor1.getColumnIndex(GNTrans.FIELD_preciopcgrupo)).equals("S")) {
                     precio.setText(getString(R.string.info_precio_pcgrupo_enabled));
                     int conf_num_pcg = ext.configuracionPreciosGrupos();
@@ -327,8 +331,8 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                     int docs = Integer.parseInt(vencidos.getText().toString());
                     if (docs > conf_max_venci) {
                         android.support.v7.app.AlertDialog.Builder builder1 = new android.support.v7.app.AlertDialog.Builder(ModificaPedido.this);
-                        builder1.setTitle("Transaccion Bloqueada");
-                        builder1.setMessage("Revise el numero de documentos vencidos");
+                        builder1.setTitle("Transacción Bloqueada");
+                        builder1.setMessage("Revise el número de documentos vencidos");
                         builder1.setCancelable(true);
                         builder1.setNeutralButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -348,25 +352,28 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public void cargarObservaciones(String datos){
+    public void cargarObservaciones(String datos) {
         //observacion,solitante,tiempo entrega,forma,validez,atencion
-        String data[]=datos.split(";");
-        RadioButton si,no;
-        no=(RadioButton)findViewById(R.id.no_Trans);
-        si=(RadioButton)findViewById(R.id.si_Trans);
-        try{
-            if(data[0].isEmpty()!=true) trans_observacion.setText(data[0]);
-            if(data[1].isEmpty()!=true) trans_solicitante.setText(data[1]);
-            if(data[10].isEmpty()!=true)
-                if (data[10].equalsIgnoreCase("Si")) {
+        String data[] = datos.split(";");
+        RadioButton si, no;
+        no = (RadioButton) findViewById(R.id.no_Trans);
+        si = (RadioButton) findViewById(R.id.si_Trans);
+        try {
+            if (data[0].isEmpty() != true) trans_observacion.setText(data[0]);
+            if (data[1].isEmpty() != true) trans_solicitante.setText(data[1]);
+            if (data[16].isEmpty() != true) {
+                if (data[16].equalsIgnoreCase("Si")) {
                     si.setChecked(true);
                     no.setChecked(false);
-                }
-                else if(data[10].equalsIgnoreCase("No")) {
+                } else if (data[16].equalsIgnoreCase("No")) {
                     no.setChecked(true);
                     si.setChecked(false);
                 }
-        }catch(Exception e){
+            }else{
+                no.setChecked(true);
+                si.setChecked(false);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -402,9 +409,10 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         }
         helper.close();
     }
-    public void cargarInfoCartera(Cursor cur){
+
+    public void cargarInfoCartera(Cursor cur) {
         int count1 = 0;
-        double tmp_saldo_vencer  = 0.0;
+        double tmp_saldo_vencer = 0.0;
         double tmp_saldo_vencido = 0.0;
         int count2 = 0;
         if (cur.moveToFirst()) {
@@ -439,7 +447,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         int actions = 0;
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                actions =  cursor.getInt(cursor.getColumnIndex(GNTrans.FIELD_opciones));
+                actions = cursor.getInt(cursor.getColumnIndex(GNTrans.FIELD_opciones));
             }
         }
         helper.close();
@@ -450,8 +458,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
          Metodo para cargar precios
      */
     public boolean cargarPrecio(String cliente, int numgrupo) {
-        System.out.println("Parame");
-        try {
+         try {
             DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
             Cursor cursor1 = helper.consultarPCGrupo(numgrupo, cliente);
             if (cursor1.moveToFirst()) {
@@ -479,14 +486,15 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         price = price.substring(0, price.length() - 1);
         return price;
     }
+
     /***
      * Metodos para agregar/ eliminar / editar filas de la tabla de items
      */
     public void agregarFilasIniciales() {
-        DBSistemaGestion helper= new DBSistemaGestion(getApplicationContext());
-        Cursor cursor=helper.consultarIVKardex(getIntent().getStringExtra("transid"));
-        this.count=0;
-        if(cursor.moveToFirst()){
+        DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
+        Cursor cursor = helper.consultarIVKardex(getIntent().getStringExtra("transid"));
+        this.count = 0;
+        if (cursor.moveToFirst()) {
             do {
                 TableRow fila = new TableRow(this);
                 fila.setLayoutParams(layoutFila);
@@ -525,12 +533,13 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                             preciounitario[count] = cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_precio7));
                             break;
                     }
-            }
-                if(this.idpadres[this.count]!=null) this.bandpromo[this.count] =  1;
+                }
+                if (this.idpadres[this.count] != null) this.bandpromo[this.count] = 1;
                 this.numero[this.count] = new EditText(this);
                 this.numero[this.count].setText(String.valueOf(this.count + 1));
                 this.numero[this.count].setTextColor(getResources().getColor(R.color.textColorPrimary));
-                if(bandpro) this.numero[this.count].setTextColor(getResources().getColor(R.color.successfull));
+                if (bandpro)
+                    this.numero[this.count].setTextColor(getResources().getColor(R.color.successfull));
                 this.numero[this.count].setLayoutParams(layoutCeldas);
                 this.numero[this.count].setBackgroundResource(R.drawable.text_field);
                 this.numero[this.count].setGravity(Gravity.CENTER);
@@ -541,9 +550,10 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                 AutoCompleteProductoSelected adapter = this.new AutoCompleteProductoSelected(getApplicationContext(), count);
                 this.descripcion[this.count] = new AutoCompleteTextView(this);
                 this.descripcion[this.count].setTextColor(getResources().getColor(R.color.textColorPrimary));
-                this.descripcion[this.count].setHint(getString( R.string.hint_producto));
+                this.descripcion[this.count].setHint(getString(R.string.hint_producto));
                 this.descripcion[this.count].setDropDownWidth(600);
-                if(bandpro)  this.descripcion[this.count].setTextColor(getResources().getColor(R.color.successfull));
+                if (bandpro)
+                    this.descripcion[this.count].setTextColor(getResources().getColor(R.color.successfull));
                 this.descripcion[this.count].setEnabled(false);
                 this.descripcion[this.count].setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_descripcion)));
                 this.descripcion[this.count].setLayoutParams(layoutCeldaDescripcion);
@@ -557,7 +567,8 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
 
                 this.cantidad[this.count] = new EditText(this);
                 this.cantidad[this.count].setTextColor(getResources().getColor(R.color.textColorPrimary));
-                if(bandpro) this.cantidad[this.count].setTextColor(getResources().getColor(R.color.successfull));
+                if (bandpro)
+                    this.cantidad[this.count].setTextColor(getResources().getColor(R.color.successfull));
                 this.cantidad[this.count].setLayoutParams(layoutCeldas);
                 this.cantidad[this.count].setBackgroundResource(R.drawable.text_field);
                 this.cantidad[this.count].setGravity(Gravity.CENTER);
@@ -570,7 +581,8 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
 
                 this.precio_real[this.count] = new EditText(this);
                 this.precio_real[this.count].setTextColor(getResources().getColor(R.color.textColorPrimary));
-                if(bandpro) this.precio_real[this.count].setTextColor(getResources().getColor(R.color.successfull));
+                if (bandpro)
+                    this.precio_real[this.count].setTextColor(getResources().getColor(R.color.successfull));
                 this.precio_real[this.count].setLayoutParams(layoutCeldas);
                 this.precio_real[this.count].setBackgroundResource(R.drawable.text_field);
                 this.precio_real[this.count].setGravity(Gravity.CENTER);
@@ -581,7 +593,8 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
 
                 this.descuento[this.count] = new EditText(this);
                 this.descuento[this.count].setTextColor(getResources().getColor(R.color.textColorPrimary));
-                if(bandpro) this.descuento[this.count].setTextColor(getResources().getColor(R.color.successfull));
+                if (bandpro)
+                    this.descuento[this.count].setTextColor(getResources().getColor(R.color.successfull));
                 this.descuento[this.count].setLayoutParams(layoutCeldas);
                 this.descuento[this.count].setBackgroundResource(R.drawable.text_field);
                 this.descuento[this.count].setGravity(Gravity.CENTER);
@@ -592,12 +605,13 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
 
                 this.total[this.count] = new EditText(this);
                 this.total[this.count].setTextColor(getResources().getColor(R.color.textColorPrimary));
-                if(bandpro) this.total[this.count].setTextColor(getResources().getColor(R.color.successfull));
+                if (bandpro)
+                    this.total[this.count].setTextColor(getResources().getColor(R.color.successfull));
                 this.total[this.count].setLayoutParams(layoutCeldas);
                 this.total[this.count].setBackgroundResource(R.drawable.text_field);
                 this.total[this.count].setGravity(Gravity.CENTER);
                 this.total[this.count].setEnabled(false);
-                this.total[this.count].setText(redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVKardex.FIELD_pre_real_total))*cursor.getInt(cursor.getColumnIndex(IVKardex.FIELD_cantidad))));
+                this.total[this.count].setText(redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVKardex.FIELD_pre_real_total)) * cursor.getInt(cursor.getColumnIndex(IVKardex.FIELD_cantidad))));
                 this.total[this.count].setTextSize(14);
                 this.total[this.count].setPadding(5, 5, 5, 5);
 
@@ -612,18 +626,19 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onClick(View v) {
                         final int position = (Integer) v.getTag();
-                        if(new Validaciones().validar_enteros(cantidad[position].getText().toString())){
+                        if (new Validaciones().validar_enteros(cantidad[position].getText().toString())) {
                             int cant = Integer.parseInt(cantidad[position].getText().toString());
                             validarExistencia(iditems[position], bodega.getText().toString(), cant);
-                            if(verificarExistenciaDescuento(cli_id, iditems[position]) && verificarExistenciaPromocion(iditems[position], cant)) {
+                            if (verificarExistenciaDescuento(cli_id, iditems[position]) && verificarExistenciaPromocion(iditems[position], cant)) {
                                 crearDialogOptionsDescPromo(position);
                             } else if (verificarExistenciaDescuento(cli_id, iditems[position])) {
-                                double desc = calcularDescuentoItem(cli_id, iditems[position],position);
+                                double desc = calcularDescuentoItem(cli_id, iditems[position], position);
                                 descuento[position].setText(redondearNumero(desc));
                                 calcularSubtotalItem(position);
                                 cantidad[position].setEnabled(false);
                                 descripcion[position].setEnabled(false);
-                                editar.setEnabled(true);guardar.setEnabled(true);
+                                editar.setEnabled(true);
+                                guardar.setEnabled(true);
                                 eliminar.setEnabled(true);
                                 agregar.setEnabled(true);
                                 editar.setChecked(false);
@@ -634,17 +649,19 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                                 calcularSubtotalItem(position);
                                 cantidad[position].setEnabled(false);
                                 descripcion[position].setEnabled(false);
-                                editar.setEnabled(true);guardar.setEnabled(true);
+                                editar.setEnabled(true);
+                                guardar.setEnabled(true);
                                 eliminar.setEnabled(true);
                                 agregar.setEnabled(true);
                                 editar.setChecked(false);
                                 calcularTotalTransaccion();
                                 agregarFilaOpcional();
-                            }else{
+                            } else {
                                 calcularSubtotalItem(position);
                                 cantidad[position].setEnabled(false);
                                 descripcion[position].setEnabled(false);
-                                editar.setEnabled(true);guardar.setEnabled(true);
+                                editar.setEnabled(true);
+                                guardar.setEnabled(true);
                                 eliminar.setEnabled(true);
                                 agregar.setEnabled(true);
                                 editar.setChecked(false);
@@ -652,7 +669,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                                 calcularTotalTransaccion();
                                 agregarFilaOpcional();
                             }
-                        }else{
+                        } else {
                             cantidad[position].requestFocus();
                             cantidad[position].setError(getString(R.string.info_field_no_valid));
                         }
@@ -663,23 +680,23 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onClick(View v) {
                         final int position = (Integer) v.getTag();
-                        if(eliminar.isChecked()){
+                        if (eliminar.isChecked()) {
                             eliminarFila(position);
-                        }else if(editar.isChecked()){
-                            System.out.println("Intentando editar fila: "+position);
-                            if(numeroSeleccionados()==1 && numeroEditados()==0 && iditems[position]!=null){
-                                System.out.println("Numeros de editados: "+numeroEditados());
+                        } else if (editar.isChecked()) {
+                            System.out.println("Intentando editar fila: " + position);
+                            if (numeroSeleccionados() == 1 && numeroEditados() == 0 && iditems[position] != null) {
+                                System.out.println("Numeros de editados: " + numeroEditados());
                                 modificarFila(position);
                             }
-                        }else{
-                            if(iditems[position]!=null && seleccion[position].isChecked()){
+                        } else {
+                            if (iditems[position] != null && seleccion[position].isChecked()) {
                                 crearDialogInfoItem(position);
                             }
                         }
                     }
                 });
 
-                fila.setPadding(0,5,0,5);
+                fila.setPadding(0, 5, 0, 5);
                 fila.setMinimumHeight(50);
 
                 fila.addView(numero[this.count]);
@@ -692,16 +709,19 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                 tabla.addView(fila);
                 this.count++;
                 this.calcularTotalTransaccion();
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
     }
 
-    public void agregarFila(){
+    public void agregarFila() {
 
-        if(this.count<this.limite){
-            editar.setEnabled(false);guardar.setEnabled(false);
-            eliminar.setEnabled(false);agregar.setEnabled(false);
-            editar.setChecked(false);eliminar.setChecked(false);
+        if (this.count < this.limite) {
+            editar.setEnabled(false);
+            guardar.setEnabled(false);
+            eliminar.setEnabled(false);
+            agregar.setEnabled(false);
+            editar.setChecked(false);
+            eliminar.setChecked(false);
 
             TableRow fila = new TableRow(this);
             fila.setLayoutParams(layoutFila);
@@ -720,7 +740,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
             this.descripcion[count] = new AutoCompleteTextView(this);
             this.descripcion[count].setTextColor(resources.getColor(R.color.textColorPrimary));
             this.descripcion[count].setDropDownWidth(600);
-            this.descripcion[count].setHint(getString( R.string.hint_producto));
+            this.descripcion[count].setHint(getString(R.string.hint_producto));
             this.descripcion[count].setEnabled(true);
             this.descripcion[count].setLayoutParams(layoutCeldaDescripcion);
             this.descripcion[count].setBackgroundResource(R.drawable.text_field);
@@ -783,19 +803,20 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void onClick(View v) {
                     final int position = (Integer) v.getTag();
-                    if(new Validaciones().validar_enteros(cantidad[position].getText().toString())){
+                    if (new Validaciones().validar_enteros(cantidad[position].getText().toString())) {
                         int cant = Integer.parseInt(cantidad[position].getText().toString());
                         validarExistencia(iditems[position], bodega.getText().toString(), cant);
-                        if(verificarExistenciaDescuento(cli_id, iditems[position]) && verificarExistenciaPromocion(iditems[position], cant)) {
+                        if (verificarExistenciaDescuento(cli_id, iditems[position]) && verificarExistenciaPromocion(iditems[position], cant)) {
                             crearDialogOptionsDescPromo(position);
                         } else if (verificarExistenciaDescuento(cli_id, iditems[position])) {
 
-                            double desc = calcularDescuentoItem(cli_id, iditems[position],position);
+                            double desc = calcularDescuentoItem(cli_id, iditems[position], position);
                             descuento[position].setText(redondearNumero(desc));
                             calcularSubtotalItem(position);
                             cantidad[position].setEnabled(false);
                             descripcion[position].setEnabled(false);
-                            editar.setEnabled(true);guardar.setEnabled(true);
+                            editar.setEnabled(true);
+                            guardar.setEnabled(true);
                             eliminar.setEnabled(true);
                             agregar.setEnabled(true);
                             editar.setChecked(false);
@@ -806,17 +827,19 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                             calcularSubtotalItem(position);
                             cantidad[position].setEnabled(false);
                             descripcion[position].setEnabled(false);
-                            editar.setEnabled(true);guardar.setEnabled(true);
+                            editar.setEnabled(true);
+                            guardar.setEnabled(true);
                             eliminar.setEnabled(true);
                             agregar.setEnabled(true);
                             editar.setChecked(false);
                             calcularTotalTransaccion();
                             agregarFilaOpcional();
-                        }else{
+                        } else {
                             calcularSubtotalItem(position);
                             cantidad[position].setEnabled(false);
                             descripcion[position].setEnabled(false);
-                            editar.setEnabled(true);guardar.setEnabled(true);
+                            editar.setEnabled(true);
+                            guardar.setEnabled(true);
                             eliminar.setEnabled(true);
                             agregar.setEnabled(true);
                             editar.setChecked(false);
@@ -824,7 +847,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                             calcularTotalTransaccion();
                             agregarFilaOpcional();
                         }
-                    }else{
+                    } else {
                         cantidad[position].requestFocus();
                         cantidad[position].setError(getString(R.string.info_field_no_valid));
                     }
@@ -835,23 +858,23 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void onClick(View v) {
                     final int position = (Integer) v.getTag();
-                    if(eliminar.isChecked()){
+                    if (eliminar.isChecked()) {
                         eliminarFila(position);
-                    }else if(editar.isChecked()){
-                        System.out.println("Intentando editar fila: "+position);
-                        if(numeroSeleccionados()==1 && numeroEditados()==0 && iditems[position]!=null){
-                            System.out.println("Numeros de editados: "+numeroEditados());
+                    } else if (editar.isChecked()) {
+                        System.out.println("Intentando editar fila: " + position);
+                        if (numeroSeleccionados() == 1 && numeroEditados() == 0 && iditems[position] != null) {
+                            System.out.println("Numeros de editados: " + numeroEditados());
                             modificarFila(position);
                         }
-                    }else{
-                        if(iditems[position]!=null && seleccion[position].isChecked()){
+                    } else {
+                        if (iditems[position] != null && seleccion[position].isChecked()) {
                             crearDialogInfoItem(position);
                         }
                     }
                 }
             });
 
-            fila.setPadding(0,5,0,5);
+            fila.setPadding(0, 5, 0, 5);
             fila.setMinimumHeight(50);
 
             fila.addView(numero[count]);
@@ -863,17 +886,17 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
             fila.addView(seleccion[count]);
             tabla.addView(fila);
             count++;
-        }else{
+        } else {
             Toast ts = Toast.makeText(getApplicationContext(), resources.getString(R.string.info_max_row_trans), Toast.LENGTH_SHORT);
             ts.show();
         }
     }
 
     /**
-     *Metodo para mostrar opciones por fila
+     * Metodo para mostrar opciones por fila
      */
-    public void modificarFila(int posicion){
-        if(bandpromo[posicion]!=1){
+    public void modificarFila(int posicion) {
+        if (bandpromo[posicion] != 1) {
             eliminarHijos(iditems[posicion], keypadres[posicion]);
             /*Bloqueando botones*/
             agregar.setEnabled(false);
@@ -895,27 +918,27 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
             descripcion[posicion].setSelection(descripcion[posicion].getText().length());
             descuento[posicion].setText("0.00");
             cantidad[posicion].setEnabled(false);
-        }else{
-            Toast ts= Toast.makeText(getApplicationContext(),resources.getString(R.string.info_fila_promocion_del),Toast.LENGTH_SHORT);
+        } else {
+            Toast ts = Toast.makeText(getApplicationContext(), resources.getString(R.string.info_fila_promocion_del), Toast.LENGTH_SHORT);
             ts.show();
         }
         calcularTotalTransaccion();
     }
 
-    public int numeroSeleccionados(){
-        int result = 0 ;
-        for(int i=0; i<count;i++){
-            if(seleccion[i].isChecked()){
+    public int numeroSeleccionados() {
+        int result = 0;
+        for (int i = 0; i < count; i++) {
+            if (seleccion[i].isChecked()) {
                 result++;
             }
         }
         return result;
     }
 
-    public int numeroEditados(){
-        int result = 0 ;
-        for(int i=0; i<count;i++){
-            if(descripcion[i].isEnabled()||cantidad[i].isEnabled()){
+    public int numeroEditados() {
+        int result = 0;
+        for (int i = 0; i < count; i++) {
+            if (descripcion[i].isEnabled() || cantidad[i].isEnabled()) {
                 result++;
             }
         }
@@ -925,7 +948,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
     public void agregarFilaOpcional() {
         android.support.v7.app.AlertDialog.Builder quitDialog
                 = new android.support.v7.app.AlertDialog.Builder(this);
-        quitDialog.setTitle("Deseas ingresar otra fila?");
+        quitDialog.setTitle("Desea ingresar otra fila?");
 
         quitDialog.setPositiveButton("Si", new DialogInterface.OnClickListener() {
 
@@ -947,6 +970,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
 
         quitDialog.show();
     }
+
     //Mostrar Info items
     public void crearDialogInfoItem(int posicion) {
         LayoutInflater li = LayoutInflater.from(this);
@@ -972,7 +996,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         //cargando datos
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
         Cursor cursor = helper.consultarItem(iditems[posicion]);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             code.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_cod_item)));
             nombre.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_descripcion)));
             porc.setText(descuento[posicion].getText().toString());
@@ -982,15 +1006,15 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
             und.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_unidad)));
             double puItem = Double.parseDouble(preciounitario[posicion]);
             precio.setText(redondearNumero(puItem));
-            if (bandiva[posicion]!=1) {
+            if (bandiva[posicion] != 1) {
                 imp.setText("NO");
             }
-            if(cantidad[posicion].getText().toString()!=null && !cantidad[posicion].getText().toString().isEmpty()){//verificar que la cantidad no este vacia
+            if (cantidad[posicion].getText().toString() != null && !cantidad[posicion].getText().toString().isEmpty()) {//verificar que la cantidad no este vacia
                 double cnt = (Double.parseDouble(cantidad[posicion].getText().toString()));
                 double prc = new Double(descuento[posicion].getText().toString());
-                double porcentaje = prc/100 ;
-                double precio_total = cnt*puItem;
-                double descuento = precio_total*porcentaje;
+                double porcentaje = prc / 100;
+                double precio_total = cnt * puItem;
+                double descuento = precio_total * porcentaje;
                 double pre_real = (precio_total - descuento) / cnt;
                 double tot = cnt * pre_real;
                 precio_real.setText(redondearNumero(pre_real));
@@ -1002,7 +1026,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
     /*Generar reporte de existencia*/
         TableRow fila;
         int pst = 0;
-        Cursor cur1 = helper.obtenerExistenciaItem(iditems[posicion],bodegas.split(","));
+        Cursor cur1 = helper.obtenerExistenciaItem(iditems[posicion], bodegas.split(","));
         if (cur1.moveToFirst()) {
             do {
                 fila = new TableRow(this);
@@ -1068,7 +1092,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
     public void crearDialogOptionsDescPromo(final int position) {
         android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(this);
         alertDialogBuilder.setTitle(R.string.tittle_dialog_desc_promo);
-        alertDialogBuilder.setSingleChoiceItems(new String[]{"Descuento","Promocion"}, 0, null);
+        alertDialogBuilder.setSingleChoiceItems(new String[]{"Descuento", "Promocion"}, 0, null);
         /*Cargar Listado*/
         alertDialogBuilder.setCancelable(false);
         alertDialogBuilder.setPositiveButton("Aplicar", new DialogInterface.OnClickListener() {
@@ -1076,16 +1100,17 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                 dialog.dismiss();
                 ListView lv = ((AlertDialog) dialog).getListView();
                 int posicion = lv.getCheckedItemPosition();
-                System.out.println("Posicion: "+position);
+                System.out.println("Posicion: " + position);
                 switch (posicion) {
                     case 0:
                         System.out.println("Aplicando Descuento: " + iditems[position]);
-                        double desc = calcularDescuentoItem(cli_id,iditems[position],position);
+                        double desc = calcularDescuentoItem(cli_id, iditems[position], position);
                         descuento[position].setText(redondearNumero(desc));
                         calcularSubtotalItem(position);
                         cantidad[position].setEnabled(false);
                         descripcion[position].setEnabled(false);
-                        editar.setEnabled(true);guardar.setEnabled(true);
+                        editar.setEnabled(true);
+                        guardar.setEnabled(true);
                         eliminar.setEnabled(true);
                         agregar.setEnabled(true);
                         editar.setChecked(false);
@@ -1095,11 +1120,12 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                     case 1:
                         System.out.println("Aplicando Promocion: " + posicion);
                         int cantidad_padre = Integer.parseInt(cantidad[position].getText().toString());
-                        calcularPromociones(iditems[position],cantidad_padre,keypadres[position], position);
+                        calcularPromociones(iditems[position], cantidad_padre, keypadres[position], position);
                         calcularSubtotalItem(position);
                         cantidad[position].setEnabled(false);
                         descripcion[position].setEnabled(false);
-                        editar.setEnabled(true);guardar.setEnabled(true);
+                        editar.setEnabled(true);
+                        guardar.setEnabled(true);
                         eliminar.setEnabled(true);
                         agregar.setEnabled(true);
                         editar.setChecked(false);
@@ -1125,7 +1151,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         double subtotal = cnt * precioreal;
         precio_real[row].setText(redondearNumero(precioreal));
         total[row].setText(redondearNumero(subtotal));
-        System.out.println("Calculando subtotal item porcentaje: "+porcentaje+" precio: "+precio+" precio_real: "+precio_real);
+        System.out.println("Calculando subtotal item porcentaje: " + porcentaje + " precio: " + precio + " precio_real: " + precio_real);
         return true;
     }
 
@@ -1157,6 +1183,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         helper.close();
         return result;
     }
+
     public boolean verificarExistenciaPromocion(String id_item, double cantidad) {
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
         boolean result = helper.existePromocionItem(id_item, cantidad);
@@ -1165,14 +1192,14 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
     }
 
 
-
     class AutoCompleteProductoSelected extends CursorAdapter implements AdapterView.OnItemClickListener {
         DBSistemaGestion dbSistemaGestion;
         int posicion;
+
         public AutoCompleteProductoSelected(Context context, int row) {
             super(ModificaPedido.this, null);
             dbSistemaGestion = new DBSistemaGestion(context);
-            this.posicion= row;
+            this.posicion = row;
         }
 
         @Override
@@ -1180,7 +1207,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
             Cursor cursor = null;
             try {
                 cursor = dbSistemaGestion.buscarItemsDescripcion(
-                        (constraint != null ? constraint.toString() : "@@@@"), lineas.split(","),bodegas.split(","));
+                        (constraint != null ? constraint.toString() : "@@@@"), lineas.split(","), bodegas.split(","));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -1219,8 +1246,8 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
             String idItem = cursor.getString(cursor.getColumnIndexOrThrow(IVInventario.FIELD_identificador));
             int ivaItem = cursor.getInt(cursor.getColumnIndexOrThrow(IVInventario.FIELD_band_iva));
             String descItem = cursor.getString(cursor.getColumnIndexOrThrow(IVInventario.FIELD_descripcion));
-            if(val_duplicado){
-                if(!validarDuplicado(idItem)){
+            if (val_duplicado) {
+                if (!validarDuplicado(idItem)) {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.showSoftInput(descripcion[posicion], InputMethodManager.SHOW_IMPLICIT);
                     descripcion[posicion].setText(descItem);
@@ -1233,7 +1260,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
 
                     if (precio.getText().toString().equals(getString(R.string.info_precio_pcgrupo_disable))) {
                         try {
-                            crearDialogPrecios(generarListadoPrecios(idItem,conf_precios_disponibles), conf_precios_disponibles, posicion);
+                            crearDialogPrecios(generarListadoPrecios(idItem, conf_precios_disponibles), conf_precios_disponibles, posicion);
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
@@ -1242,10 +1269,10 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                         cargarPrecioUnitarioItem(cursor, posicion);
                     }
                     dbSistemaGestion.close();
-                }else{
-                    new Alertas(ModificaPedido.this,"Advertencia","El item seleccionado ya fue ingresado").mostrarMensaje();
+                } else {
+                    new Alertas(ModificaPedido.this, "Advertencia", "El item seleccionado ya fue ingresado").mostrarMensaje();
                 }
-            }else{
+            } else {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.showSoftInput(descripcion[posicion], InputMethodManager.SHOW_IMPLICIT);
                 descripcion[posicion].setText(descItem);
@@ -1258,7 +1285,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
 
                 if (precio.getText().toString().equals(getString(R.string.info_precio_pcgrupo_disable))) {
                     try {
-                        crearDialogPrecios(generarListadoPrecios(idItem,conf_precios_disponibles), conf_precios_disponibles, posicion);
+                        crearDialogPrecios(generarListadoPrecios(idItem, conf_precios_disponibles), conf_precios_disponibles, posicion);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
@@ -1270,19 +1297,21 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
             }
         }
     }
+
     //fin clase autoadapter
 /*
         Validar si el item a ingresar ya fue registrado
      */
-    public boolean validarDuplicado(String iditem){
-        if(this.count>0){
-            for(int i=0; i<this.count; i++){
-                if(iditems[i]!=null)
-                    if (iditems[i].equals(iditem))return true;
+    public boolean validarDuplicado(String iditem) {
+        if (this.count > 0) {
+            for (int i = 0; i < this.count; i++) {
+                if (iditems[i] != null)
+                    if (iditems[i].equals(iditem)) return true;
             }
         }
         return false;
     }
+
     /*
     Metodo para cargar descuento
  */
@@ -1307,26 +1336,40 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                 precio_real[fila].setText(valores[position]);
                 preciounitario[fila] = valores[position];
                 numprecio[fila] = Integer.parseInt(indices[position]);
-                System.out.println("Precio seleccionado: "+valores[position]+";"+indices[position]);
+                System.out.println("Precio seleccionado: " + valores[position] + ";" + indices[position]);
             }
         });
     }
 
-    public String[] generarListadoPrecios(String item,String [] listprecio) throws SQLException {
+    public String[] generarListadoPrecios(String item, String[] listprecio) throws SQLException {
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
         Cursor cursor = helper.consultarItem(item);
         String[] result = new String[listprecio.length];
         if (cursor != null) {
-            if (cursor.moveToFirst()){
-                for(int i=0; i<result.length;i++){
-                    switch (Integer.parseInt(listprecio[i])){
-                        case 1:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio1)));break;
-                        case 2:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio2)));break;
-                        case 3:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio3)));break;
-                        case 4:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio4)));break;
-                        case 5:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio5)));break;
-                        case 6:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio6)));break;
-                        case 7:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio7)));break;
+            if (cursor.moveToFirst()) {
+                for (int i = 0; i < result.length; i++) {
+                    switch (Integer.parseInt(listprecio[i])) {
+                        case 1:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio1)));
+                            break;
+                        case 2:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio2)));
+                            break;
+                        case 3:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio3)));
+                            break;
+                        case 4:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio4)));
+                            break;
+                        case 5:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio5)));
+                            break;
+                        case 6:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio6)));
+                            break;
+                        case 7:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio7)));
+                            break;
                     }
                 }
             }
@@ -1368,6 +1411,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         precio_real[posicion].setText(redondearNumero(precioUnitario));
         return true;
     }
+
     public double calcularDescuentoItem(String cli_id, String item_id, int posicion) {
         double result = 0.0;
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
@@ -1393,19 +1437,19 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         try {
             for (int i = 0; i < this.count; i++) {
                 //System.out.println("subtotales: " + insTotales[i] + " -> " + insDescripciones[i] + " -> " + insIDItem[i] + " -> PADRE: " + insPadre[i] + " PROMO-> " + insPromo[i]);
-                if(iditems[i]!=null)
-                if (this.bandiva[i] != 1) {
-                    subtotal_sin_iva += Double.parseDouble(this.total[i].getText().toString());
-                } else {
-                    subtotal_con_iva += Double.parseDouble(this.total[i].getText().toString());
-                }
+                if (iditems[i] != null)
+                    if (this.bandiva[i] != 1) {
+                        subtotal_sin_iva += Double.parseDouble(this.total[i].getText().toString());
+                    } else {
+                        subtotal_con_iva += Double.parseDouble(this.total[i].getText().toString());
+                    }
             }
             this.tran_sub_sin_iva.setText(redondearNumero(subtotal_sin_iva));
             this.tran_sub_con_iva.setText(redondearNumero(subtotal_con_iva));
             this.tran_sub.setText(redondearNumero(subtotal_con_iva + subtotal_sin_iva));
             String prf_imp = impuestos;
             double porc = 0.0;
-            if(prf_imp!=null)porc=new Double(prf_imp)/100;
+            if (prf_imp != null) porc = new Double(prf_imp) / 100;
             total_iva = (subtotal_con_iva * porc);
             this.tran_sub_iva.setText(redondearNumero(total_iva));
             double monto = subtotal_con_iva + subtotal_sin_iva + total_iva;
@@ -1419,8 +1463,8 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
     //Validar promociones
     public boolean calcularPromociones(String id_item_padre, int cantidad_padre, String key_padre, int posicion) {
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
-        Cursor cursor = helper.consultarPromocionItem(id_item_padre,cantidad_padre);
-        if (cursor.moveToFirst()){
+        Cursor cursor = helper.consultarPromocionItem(id_item_padre, cantidad_padre);
+        if (cursor.moveToFirst()) {
             descpromo[posicion] = 0;
             int cantidad_minima = Integer.parseInt(cursor.getString(cursor.getColumnIndex(Promocion.FIELD_cantidad_min)));
             String id_hijo = cursor.getString(cursor.getColumnIndex(Promocion.FIELD_id_inven_promo));
@@ -1441,25 +1485,31 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
             for (int i = 0; i < veces; i++) {
                 cantidad_total += cantidad_item_hijo;
             }
-            sub_promo = cantidad_total*precio_item_hijo;
-            agregarFilaPromocion(id_item_padre,key_padre,id_hijo,desc_item_hijo,iva_item_hijo,precio_item_hijo,cantidad_total,sub_promo);
-            System.out.println("Codigo padre: "+id_item_padre+";"+cantidad_padre+"; a regalar: "+cantidad_total+";keypadre: "+key_padre);
+            sub_promo = cantidad_total * precio_item_hijo;
+            agregarFilaPromocion(id_item_padre, key_padre, id_hijo, desc_item_hijo, iva_item_hijo, precio_item_hijo, cantidad_total, sub_promo);
+            System.out.println("Codigo padre: " + id_item_padre + ";" + cantidad_padre + "; a regalar: " + cantidad_total + ";keypadre: " + key_padre);
         }
         cursor.close();
         helper.close();
         return true;
     }
-    public void eliminarFila(int posicion){
-        try{
-            if(iditems[posicion]!=null){
-                if(bandpromo[posicion]!=1){
+
+    public void eliminarFila(int posicion) {
+        try {
+            if (iditems[posicion] != null) {
+                if (bandpromo[posicion] != 1) {
                     eliminarHijos(iditems[posicion], keypadres[posicion]);
                     numero[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    descripcion[posicion].setText("FILA BORRADA");descripcion[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    cantidad[posicion].setText("XXX");cantidad[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    precio_real[posicion].setText("XXX");precio_real[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    descuento[posicion].setText("XXX");descuento[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    total[posicion].setText("XXX");total[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    descripcion[posicion].setText("FILA BORRADA");
+                    descripcion[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    cantidad[posicion].setText("XXX");
+                    cantidad[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    precio_real[posicion].setText("XXX");
+                    precio_real[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    descuento[posicion].setText("XXX");
+                    descuento[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    total[posicion].setText("XXX");
+                    total[posicion].setTextColor(resources.getColor(R.color.color_danger));
                 /*Cambiar de variables Arreglos Normales*/
                     bandiva[posicion] = 0;
                     bandpromo[posicion] = 0;
@@ -1472,31 +1522,37 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                     descpromo[posicion] = 0;
                     this.limite++;
                     // System.out.println("Limite luego de eliminar: "+this.limite);
-                }else Toast.makeText(getApplicationContext(),resources.getString(R.string.info_fila_promocion_del),Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(getApplicationContext(), resources.getString(R.string.info_fila_promocion_del), Toast.LENGTH_SHORT).show();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            Toast ts= Toast.makeText(getApplicationContext(),resources.getString(R.string.info_imposible_delete_row),Toast.LENGTH_SHORT);
+            Toast ts = Toast.makeText(getApplicationContext(), resources.getString(R.string.info_imposible_delete_row), Toast.LENGTH_SHORT);
             ts.show();
         }
         calcularTotalTransaccion();
     }
 
-    public void eliminarHijos(String id_padre, String keypadre){
-       // System.out.println("Intentando eliminar hijos de: "+id_padre);
-        for(int i =0; i<count; i++){
+    public void eliminarHijos(String id_padre, String keypadre) {
+        // System.out.println("Intentando eliminar hijos de: "+id_padre);
+        for (int i = 0; i < count; i++) {
             /*System.out.println("posicion: "+i+" id_hijo: "
                     +iditems[i]+" keypadre: "
                     +keypadre+" bandpromo: "
                     +bandpromo[i]+" keypadre_hijo: "
                     +keypadres[i]);*/
-            if(idpadres[i]!=null && idpadres[i].equals(id_padre) && keypadres[i].equals(keypadre)){
+            if (idpadres[i] != null && idpadres[i].equals(id_padre) && keypadres[i].equals(keypadre)) {
                 numero[i].setTextColor(resources.getColor(R.color.color_danger));
-                descripcion[i].setText("FILA BORRADA");descripcion[i].setTextColor(resources.getColor(R.color.color_danger));
-                cantidad[i].setText("XXX");cantidad[i].setTextColor(resources.getColor(R.color.color_danger));
-                precio_real[i].setText("XXX");precio_real[i].setTextColor(resources.getColor(R.color.color_danger));
-                descuento[i].setText("XXX");descuento[i].setTextColor(resources.getColor(R.color.color_danger));
-                total[i].setText("XXX");total[i].setTextColor(resources.getColor(R.color.color_danger));
+                descripcion[i].setText("FILA BORRADA");
+                descripcion[i].setTextColor(resources.getColor(R.color.color_danger));
+                cantidad[i].setText("XXX");
+                cantidad[i].setTextColor(resources.getColor(R.color.color_danger));
+                precio_real[i].setText("XXX");
+                precio_real[i].setTextColor(resources.getColor(R.color.color_danger));
+                descuento[i].setText("XXX");
+                descuento[i].setTextColor(resources.getColor(R.color.color_danger));
+                total[i].setText("XXX");
+                total[i].setTextColor(resources.getColor(R.color.color_danger));
 
                 bandiva[i] = 0;
                 bandpromo[i] = 0;
@@ -1639,7 +1695,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
 
     public String obtenerObservaciones() {
 
-        String dirTransporte="",trans="No", nroDireccion="";
+        String dirTransporte = "", trans = "No", nroDireccion = "";
 
         SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar fecha_actual = Calendar.getInstance();
@@ -1647,10 +1703,10 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         double tiempoEstEntrega = 0.00;
 
         if (grupo.getCheckedRadioButtonId() == R.id.si_Trans) {
-            tiempoEstEntrega=1;
-            trans="Si";
-            nroDireccion="0";
-            dirTransporte =helper.getDirCliente(cli_id).replace("/", ":").replace("#", "Nro.");
+            tiempoEstEntrega = 1;
+            trans = "Si";
+            nroDireccion = "0";
+            dirTransporte = helper.getDirCliente(cli_id).replace("/", ":").replace("#", "Nro.");
             fecha_actual.add(Calendar.DATE, 1);
         }
 
@@ -1658,7 +1714,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         String fechaEntrega = sdf3.format(fecha);
 
         //observacion,solitante,tiempo entrega,forma,validez,ruc, razon social, nombre comercial, direccion,telefono,bodega origen, bodega destino, fecha de entrega, tiempo estimado de entrega, dir de transporte, numero de dirección, transporte (Si o No)
-        return trans_observacion.getText().toString() +";" +trans_solicitante .getText().toString() + ";"+ ";" + ";" + ";" + ";" + ";" + ";"  + ";" +";"+";" +";"+fechaEntrega+";"+tiempoEstEntrega+";"+dirTransporte+";"+nroDireccion+";"+trans;
+        return trans_observacion.getText().toString() + ";" + trans_solicitante.getText().toString() + ";" + ";" + ";" + ";" + ";" + ";" + ";" + ";" + ";" + ";" + ";" + fechaEntrega + ";" + tiempoEstEntrega + ";" + dirTransporte + ";" + nroDireccion + ";" + trans;
     }
 
     public void alertaExistenciaItem(int cantidad, String bodega) {
@@ -1685,12 +1741,13 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         toast.setView(layout);
         toast.show();
     }
+
     public void alertaTransaccionGuardada() {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.save_success_transaction,
                 (ViewGroup) findViewById(R.id.custom_toast_layout_id3));
-        ((TextView) layout.findViewById(R.id.toast_tittle)).setText("Transaccion Registrada");
-        ((TextView) layout.findViewById(R.id.toast_subtittle)).setText("la transaccion ha sido registrada correctamente!");
+        ((TextView) layout.findViewById(R.id.toast_tittle)).setText("Transacción Registrada");
+        ((TextView) layout.findViewById(R.id.toast_subtittle)).setText("La transacción ha sido registrada correctamente!");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.BOTTOM, 0, 0);
         toast.setDuration(Toast.LENGTH_LONG);
@@ -1728,6 +1785,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
             contenedor_items.setVisibility(View.VISIBLE);
         }
     }
+
     //animar
     private void animar(boolean mostrar, CardView layout) {
         AnimationSet set = new AnimationSet(true);
@@ -1744,17 +1802,26 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
         layout.setLayoutAnimation(controller);
         layout.startAnimation(animation);
     }
+
     /*
         Metodo para redondear numero a 2 decimales
      */
     public String redondearNumero(double numero) {
-        int dec =this.decimales;
+        int dec = this.decimales;
         String clave = "";
-        switch (dec){
-            case 2:clave = "0.00";break;
-            case 3:clave = "0.000";break;
-            case 4:clave = "0.0000";break;
-            case 5:clave = "0.00000";break;
+        switch (dec) {
+            case 2:
+                clave = "0.00";
+                break;
+            case 3:
+                clave = "0.000";
+                break;
+            case 4:
+                clave = "0.0000";
+                break;
+            case 5:
+                clave = "0.00000";
+                break;
         }
         DecimalFormat formateador = new DecimalFormat(clave);
         return formateador.format(numero).replace(",", ".");
@@ -1765,7 +1832,7 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
 
     public boolean guardarTrans() {
         android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Esta seguro de guardar la transaccion?");
+        alertDialogBuilder.setMessage("Esta seguro de guardar la transacción?");
         alertDialogBuilder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
@@ -1774,10 +1841,10 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                 gen.generarClave();
                 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
                 String fecha = sdf1.format(new Date());
-                Cursor cursor1= helper.obtenerTransaccion(getIntent().getStringExtra("transid"));
-                Transaccion trans=null;
-                if(cursor1.moveToFirst()){
-                    trans=new Transaccion(
+                Cursor cursor1 = helper.obtenerTransaccion(getIntent().getStringExtra("transid"));
+                Transaccion trans = null;
+                if (cursor1.moveToFirst()) {
+                    trans = new Transaccion(
                             cursor1.getString(cursor1.getColumnIndex(Transaccion.FIELD_ID_Trans)),
                             transaccion.getText().toString(),
                             obtenerObservaciones(),
@@ -1786,8 +1853,8 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                             cursor1.getString(cursor1.getColumnIndex(Transaccion.FIELD_hora_trans)),
                             cursor1.getInt(cursor1.getColumnIndex(Transaccion.FIELD_band_enviado)),
                             cursor1.getString(cursor1.getColumnIndex(Transaccion.FIELD_vendedor_id)),
-                            cli_id,null,
-                            cursor1.getString(cursor1.getColumnIndex(Transaccion.FIELD_referencia)),fecha);
+                            cli_id, null,
+                            cursor1.getString(cursor1.getColumnIndex(Transaccion.FIELD_referencia)), fecha);
                 }
                 helper.modificarTransaccion(trans);
                 helper.close();
@@ -1811,65 +1878,74 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.agregar:
-                    agregarFila();
+                agregarFila();
                 break;
             case R.id.editar:
-                if(editar.isChecked()){
+                if (editar.isChecked()) {
                     System.out.println("Editando");
                     //si esta habilitado
-                    eliminar.setEnabled(false);eliminar.setChecked(false);
-                    for(int i =0; i<count; i++){
+                    eliminar.setEnabled(false);
+                    eliminar.setChecked(false);
+                    for (int i = 0; i < count; i++) {
                         seleccion[i].setChecked(false);
                     }
-                }else{
-                    agregar.setEnabled(true);guardar.setEnabled(true);
+                } else {
+                    agregar.setEnabled(true);
+                    guardar.setEnabled(true);
                     eliminar.setEnabled(true);
                     System.out.println("Editar");
-                    eliminar.setEnabled(true);eliminar.setChecked(false);
-                    for(int i =0; i<count; i++){
+                    eliminar.setEnabled(true);
+                    eliminar.setChecked(false);
+                    for (int i = 0; i < count; i++) {
                         seleccion[i].setChecked(false);
                     }
                 }
                 break;
             case R.id.eliminar:
                 System.out.println("Metodo borrar");
-                if(eliminar.isChecked()){
+                if (eliminar.isChecked()) {
                     System.out.println("Borrando");
                     //si esta habilitado
-                    editar.setEnabled(false);editar.setChecked(false);
-                    for(int i =0; i<count; i++){
+                    editar.setEnabled(false);
+                    editar.setChecked(false);
+                    for (int i = 0; i < count; i++) {
                         seleccion[i].setChecked(false);
                     }
-                }else{
-                    agregar.setEnabled(true);guardar.setEnabled(true);
+                } else {
+                    agregar.setEnabled(true);
+                    guardar.setEnabled(true);
                     editar.setEnabled(true);
                     System.out.println("Borrar");
-                    eliminar.setEnabled(true);eliminar.setChecked(false);
-                    for(int i =0; i<count; i++){
+                    eliminar.setEnabled(true);
+                    eliminar.setChecked(false);
+                    for (int i = 0; i < count; i++) {
                         seleccion[i].setChecked(false);
                     }
                 }
                 break;
             case R.id.guardar:
-                System.out.println("Intentando guardar:");
-                ExtraerConfiguraciones ext = new ExtraerConfiguraciones(ModificaPedido.this);
-                boolean conf_observacion = ext.getBoolean(getString(R.string.key_act_obs),true);
-                if (conf_observacion) {
-                    if (!validarCamposVacios()) {
-                        guardarTransaccion();
-                    }
-                } else guardarTransaccion();
+                guardarTransaccion();
                 break;
+
+//                System.out.println("Intentando guardar:");
+//                ExtraerConfiguraciones ext = new ExtraerConfiguraciones(ModificaPedido.this);
+//                boolean conf_observacion = ext.getBoolean(getString(R.string.key_act_obs),true);
+//                if (conf_observacion) {
+//                    if (!validarCamposVacios()) {
+//                        guardarTransaccion();
+//                    }
+//                } else guardarTransaccion();
+//                break;
         }
     }
 
-    public int filasCompletadas(){
+    public int filasCompletadas() {
         int result = 0;
-        for(int i=0; i<count; i++){
-            System.out.println("Cadenas comparadas en filas completas: "+iditems[i]+";"+descripcion[i].getText().toString());
-            if(iditems[i]!=null && !descripcion[i].equals("FILA BORRADA")){
+        for (int i = 0; i < count; i++) {
+            System.out.println("Cadenas comparadas en filas completas: " + iditems[i] + ";" + descripcion[i].getText().toString());
+            if (iditems[i] != null && !descripcion[i].equals("FILA BORRADA")) {
                 result++;
             }
         }
@@ -1877,10 +1953,10 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    public boolean guardarTransaccion(){
-        if(filasCompletadas()>0){
+    public boolean guardarTransaccion() {
+        if (filasCompletadas() > 0) {
             guardarTrans();
-        }else{
+        } else {
             android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(this);
             alertDialogBuilder.setMessage("Debe ingresar al menos un producto");
             alertDialogBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
@@ -1900,23 +1976,22 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
             trans_solicitante.requestFocus();
             trans_solicitante.setError(resources.getString(R.string.info_field_required));
             return true;
-        }
-        /*else if (TextUtils.isEmpty(trans_observacion.getText().toString())){
+        } else if (TextUtils.isEmpty(trans_observacion.getText().toString())) {
             trans_observacion.requestFocus();
             trans_observacion.setError(resources.getString(R.string.info_field_required));
             return true;
-        }*/
+        }
         return false;
     }
 
-    public void eliminarDetallesAnteriores(String id_trans){
+    public void eliminarDetallesAnteriores(String id_trans) {
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
-        Cursor cursor1=helper.consultarIVKardex(id_trans);
-        if(cursor1.moveToFirst()){
-            do{
-                System.out.println("IVKardex a eliminar: "+cursor1.getString(cursor1.getColumnIndex(IVKardex.FIELD_identificador)));
+        Cursor cursor1 = helper.consultarIVKardex(id_trans);
+        if (cursor1.moveToFirst()) {
+            do {
+                System.out.println("IVKardex a eliminar: " + cursor1.getString(cursor1.getColumnIndex(IVKardex.FIELD_identificador)));
                 helper.eliminarIVKardex(cursor1.getString(cursor1.getColumnIndex(IVKardex.FIELD_identificador)));
-            }while(cursor1.moveToNext());
+            } while (cursor1.moveToNext());
         }
         helper.close();
     }
@@ -1924,16 +1999,16 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
     /*
         Guardar Detalles
      */
-    public ArrayList<IVKardex> generarDetalles(String id_trans, String bodega_id){
+    public ArrayList<IVKardex> generarDetalles(String id_trans, String bodega_id) {
         ArrayList<IVKardex> ivks = new ArrayList<>();
-        GeneradorClaves gen= new GeneradorClaves();
+        GeneradorClaves gen = new GeneradorClaves();
         gen.generarClave();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
-        String fecha=sdf.format(new Date());
-        DBSistemaGestion helper= new DBSistemaGestion(ModificaPedido.this);
-        for(int i=0; i<count;i++ ) {
-            if(iditems[i]!=null&&!descripcion[i].equals("FILA BORRADA")){
-                System.out.println("Precio unitario: "+Double.parseDouble(preciounitario[i]));
+        String fecha = sdf.format(new Date());
+        DBSistemaGestion helper = new DBSistemaGestion(ModificaPedido.this);
+        for (int i = 0; i < count; i++) {
+            if (iditems[i] != null && !descripcion[i].equals("FILA BORRADA")) {
+                System.out.println("Precio unitario: " + Double.parseDouble(preciounitario[i]));
                 IVKardex detalle = new IVKardex(
                         gen.generarClave(),
                         Double.parseDouble(cantidad[i].getText().toString()),
@@ -1943,19 +2018,19 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                         Double.parseDouble(precio_real[i].getText().toString()),//precio real total
                         "",
                         Double.parseDouble(descuento[i].getText().toString()),//descuento
-                        (Double.parseDouble(preciounitario[i])*Double.parseDouble(cantidad[i].getText().toString()))*(Double.parseDouble(descuento[i].getText().toString())/100), //descuento real
+                        (Double.parseDouble(preciounitario[i]) * Double.parseDouble(cantidad[i].getText().toString())) * (Double.parseDouble(descuento[i].getText().toString()) / 100), //descuento real
                         id_trans,
                         bodega_id,
                         iditems[i],
                         idpadres[i],
                         keypadres[i],
                         descpromo[i],
-                        numprecio[i],0.0,0, fecha);
+                        numprecio[i], 0.0, 0, fecha);
                 ivks.add(detalle);
             }
         }
         helper.close();
-        return  ivks;
+        return ivks;
     }
 
 
@@ -1990,8 +2065,8 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
             DBSistemaGestion helper = new DBSistemaGestion(ModificaPedido.this);
             try {
                 List<IVKardex> list = generarDetalles(id_trans, bodega_id);
-                for(IVKardex ivk: list){
-                    System.out.println("IVKardex a guardar: "+ivk.toString());
+                for (IVKardex ivk : list) {
+                    System.out.println("IVKardex a guardar: " + ivk.toString());
                     helper.crearIVKardex(ivk);
                     Thread.sleep(100);
                 }
@@ -2010,13 +2085,14 @@ public class ModificaPedido extends AppCompatActivity implements View.OnClickLis
                 onBackPressed();
                 return true;
             case R.id.action_view_carter:
-                if(!this.cli_id.isEmpty()){
+                if (!this.cli_id.isEmpty()) {
                     generarReporteCartera(this.cli_id);
                 }
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_modificar_pedido, menu);

@@ -66,7 +66,7 @@ import ibzssoft.com.modelo.Promocion;
 import ibzssoft.com.modelo.Transaccion;
 import ibzssoft.com.storage.DBSistemaGestion;
 
-public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListener{
+public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListener {
     /*
         Campos de la cabecera
      */
@@ -83,10 +83,10 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
     /*
         Campos de validacion
      */
-    private int limite,count,conf_pcg,conf_max_venci,conf_dias_gracia, conf_modo_busqueda;
-    private String [] conf_precios_disponibles;
-    private String  cli_id;
-    private int  consu_final;
+    private int limite, count, conf_pcg, conf_max_venci, conf_dias_gracia, conf_modo_busqueda;
+    private String[] conf_precios_disponibles;
+    private String cli_id;
+    private int consu_final;
     /*
         Contenedores de la vista
      */
@@ -97,15 +97,15 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
     /*
         Campos para la tabla de items [VISTA]
      */
-    private EditText [] numero, cantidad, precio_real, solicitado, total;
-    private EditText [] descuento;
-    private int [] bandiva;
-    private int [] bandpromo;
-    private int [] numprecio;
-    private String [] iditems,idpadres,keypadres,preciounitario;
-    private int [] descpromo;
+    private EditText[] numero, cantidad, precio_real, solicitado, total;
+    private EditText[] descuento;
+    private int[] bandiva;
+    private int[] bandpromo;
+    private int[] numprecio;
+    private String[] iditems, idpadres, keypadres, preciounitario;
+    private int[] descpromo;
     private CheckBox[] seleccion;
-    private AutoCompleteTextView [] descripcion;
+    private AutoCompleteTextView[] descripcion;
     /*
         Recursos para inicializar tabla
      */
@@ -114,7 +114,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
     /*
         Variables total de transaccion
      */
-    private TextView tran_sub_sin_iva,tran_sub_con_iva, tran_sub,tran_sub_iva,tran_sub_total;
+    private TextView tran_sub_sin_iva, tran_sub_con_iva, tran_sub, tran_sub_iva, tran_sub_total;
     /*
         Botones de guardado y agregacion
      */
@@ -123,14 +123,14 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
     /*
         Transaccion observacion
      */
-    private TextView trans_observacion, trans_te,trans_at, trans_vl, trans_fp ;
-    private TextView trans_cli_ruc, trans_cli_nombres,trans_cli_comercial, trans_cli_direccion, trans_cli_telefono;
+    private TextView trans_observacion, trans_te, trans_at, trans_vl, trans_fp;
+    private TextView trans_cli_ruc, trans_cli_nombres, trans_cli_comercial, trans_cli_direccion, trans_cli_telefono;
     private Resources resources;
 
-    private String impuestos,idvendedor,idusuario,lineas,bodegas;
+    private String impuestos, idvendedor, idusuario, lineas, bodegas;
     private boolean val_duplicado;
     private int decimales;
-    private String  numdec_ptotal, numdec_punitario;
+    private String numdec_ptotal, numdec_punitario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,29 +145,30 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         load_config.execute();
         this.inicializarCamposTabla();
     }
-    public void cargarPreferencias(){
+
+    public void cargarPreferencias() {
         ExtraerConfiguraciones ext = new ExtraerConfiguraciones(this);
-        this.impuestos = ext.get(getString(R.string.key_empresa_iva),"12");
-        this.idvendedor = ext.get(getString(R.string.key_act_ven),getString(R.string.pref_act_ven_default));
-        this.lineas = ext.get(getString(R.string.key_act_lin),getString(R.string.pref_act_lin_default));
-        this.idusuario = ext.get(getString(R.string.key_act_user),getString(R.string.pref_act_user_default));
-        this.bodegas = ext.get(getString(R.string.key_act_bod),getString(R.string.pref_act_bod_default));
-        this.val_duplicado= ext.getBoolean(getString(R.string.key_act_validar_duplicidad),false);
-        String dec= ext.get(getString(R.string.key_empresa_decimales),"2");
+        this.impuestos = ext.get(getString(R.string.key_empresa_iva), "12");
+        this.idvendedor = ext.get(getString(R.string.key_act_ven), getString(R.string.pref_act_ven_default));
+        this.lineas = ext.get(getString(R.string.key_act_lin), getString(R.string.pref_act_lin_default));
+        this.idusuario = ext.get(getString(R.string.key_act_user), getString(R.string.pref_act_user_default));
+        this.bodegas = ext.get(getString(R.string.key_act_bod), getString(R.string.pref_act_bod_default));
+        this.val_duplicado = ext.getBoolean(getString(R.string.key_act_validar_duplicidad), false);
+        String dec = ext.get(getString(R.string.key_empresa_decimales), "2");
         this.decimales = Integer.parseInt(dec);
-        this.numdec_punitario = ext.get(getString(R.string.key_act_num_dec_punitario),"0.00");
-        this.numdec_ptotal= ext.get(getString(R.string.key_act_num_dec_ptotal),"0.00");
+        this.numdec_punitario = ext.get(getString(R.string.key_act_num_dec_punitario), "0.00");
+        this.numdec_ptotal = ext.get(getString(R.string.key_act_num_dec_ptotal), "0.00");
     }
 
-    public void inicializarCamposFormulario(){
+    public void inicializarCamposFormulario() {
      /*
         Campos de la transaccion
      */
-        this.emision= (TextView)findViewById(R.id.nuevoPedidoFecha);
-        this.bodega= (TextView)findViewById(R.id.nuevoPedidoBodega);
-        this.precio= (TextView)findViewById(R.id.nuevoPedidoPrecio);
-        this.transaccion= (TextView)findViewById(R.id.nuevoPedidoTrans);
-        this.vendedor= (TextView)findViewById(R.id.nuevoPedidoVendedor);
+        this.emision = (TextView) findViewById(R.id.nuevoPedidoFecha);
+        this.bodega = (TextView) findViewById(R.id.nuevoPedidoBodega);
+        this.precio = (TextView) findViewById(R.id.nuevoPedidoPrecio);
+        this.transaccion = (TextView) findViewById(R.id.nuevoPedidoTrans);
+        this.vendedor = (TextView) findViewById(R.id.nuevoPedidoVendedor);
      /*
         Campos del cliente
      */
@@ -176,81 +177,82 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         this.autoCompleteCliente.setAdapter(adapter);
         this.autoCompleteCliente.setDropDownWidth(500);
         this.autoCompleteCliente.setOnItemClickListener(adapter);
-        this.cedula = (TextView)findViewById(R.id.nuevoPedidoCI_RUC);
-        this.nombres= (TextView)findViewById(R.id.nuevoPedidoNombres);
-        this.comercial= (TextView)findViewById(R.id.nuevoPedidoNombreAlt);
-        this.direccion= (TextView)findViewById(R.id.nuevoPedidoDireccion);
-        this.telefono= (TextView)findViewById(R.id.nuevoPedidoTelefono);
-        this.correo= (TextView)findViewById(R.id.nuevoPedidoCorreo);
-        this.observacion = (TextView)findViewById(R.id.nuevoPedidoObs);
+        this.cedula = (TextView) findViewById(R.id.nuevoPedidoCI_RUC);
+        this.nombres = (TextView) findViewById(R.id.nuevoPedidoNombres);
+        this.comercial = (TextView) findViewById(R.id.nuevoPedidoNombreAlt);
+        this.direccion = (TextView) findViewById(R.id.nuevoPedidoDireccion);
+        this.telefono = (TextView) findViewById(R.id.nuevoPedidoTelefono);
+        this.correo = (TextView) findViewById(R.id.nuevoPedidoCorreo);
+        this.observacion = (TextView) findViewById(R.id.nuevoPedidoObs);
         /*
         * Campos de validacion
         */
         this.limite = 0;
         this.count = 0;
-        this.cli_id  = "";
-        this.consu_final= 0;
+        this.cli_id = "";
+        this.consu_final = 0;
         this.conf_pcg = 0;
         this.conf_max_venci = 0;
-        this.conf_dias_gracia= 0;
-        this.conf_modo_busqueda= 0;
+        this.conf_dias_gracia = 0;
+        this.conf_modo_busqueda = 0;
         this.conf_precios_disponibles = new String[]{};
         /*
             Contenedores de la vista
         */
-        this.contenedor_cartera = (CardView)findViewById(R.id.contenedorCartera);
-        this.contenedor_adicional = (CardView)findViewById(R.id.contenedorAdicionales);
-        this.contenedor_observaciones= (CardView)findViewById(R.id.contenedorObservaciones);
-        this.contenedor_items= (CardView)findViewById(R.id.contenedorItems);
+        this.contenedor_cartera = (CardView) findViewById(R.id.contenedorCartera);
+        this.contenedor_adicional = (CardView) findViewById(R.id.contenedorAdicionales);
+        this.contenedor_observaciones = (CardView) findViewById(R.id.contenedorObservaciones);
+        this.contenedor_items = (CardView) findViewById(R.id.contenedorItems);
          /*
             Campos del cartera
          */
-        vencidos = (TextView)findViewById(R.id.nuevoPedidoDocsVencidos);
-        no_vencidos = (TextView)findViewById(R.id.nuevoPedidoDocsVencer);
-        saldo_vencer= (TextView)findViewById(R.id.nuevoPedidoSaldoVencer);
-        saldo_vencido = (TextView)findViewById(R.id.nuevoPedidoSaldoVencido);
+        vencidos = (TextView) findViewById(R.id.nuevoPedidoDocsVencidos);
+        no_vencidos = (TextView) findViewById(R.id.nuevoPedidoDocsVencer);
+        saldo_vencer = (TextView) findViewById(R.id.nuevoPedidoSaldoVencer);
+        saldo_vencido = (TextView) findViewById(R.id.nuevoPedidoSaldoVencido);
         /*
             Campos total transaccion
          */
-        tran_sub_con_iva = (TextView)findViewById(R.id.subtotal);
-        tran_sub_sin_iva = (TextView)findViewById(R.id.subtotal_0);
-        tran_sub = (TextView)findViewById(R.id.subtotal_total);
-        tran_sub_iva = (TextView)findViewById(R.id.iva);
-        tran_sub_total = (TextView)findViewById(R.id.total);
+        tran_sub_con_iva = (TextView) findViewById(R.id.subtotal);
+        tran_sub_sin_iva = (TextView) findViewById(R.id.subtotal_0);
+        tran_sub = (TextView) findViewById(R.id.subtotal_total);
+        tran_sub_iva = (TextView) findViewById(R.id.iva);
+        tran_sub_total = (TextView) findViewById(R.id.total);
         /*
             Campos observacion transaccion
          */
-        trans_observacion = (TextView)findViewById(R.id.txtNuevoPedidoObservacion);
-        trans_vl= (TextView)findViewById(R.id.txtNuevoPedidoVL);
-        trans_fp= (TextView)findViewById(R.id.txtNuevoPedidoFP);
-        trans_te= (TextView)findViewById(R.id.txtNuevoPedidoTE);
-        trans_at= (TextView)findViewById(R.id.txtNuevoPedidoAT);
+        trans_observacion = (TextView) findViewById(R.id.txtNuevoPedidoObservacion);
+        trans_vl = (TextView) findViewById(R.id.txtNuevoPedidoVL);
+        trans_fp = (TextView) findViewById(R.id.txtNuevoPedidoFP);
+        trans_te = (TextView) findViewById(R.id.txtNuevoPedidoTE);
+        trans_at = (TextView) findViewById(R.id.txtNuevoPedidoAT);
 
-        trans_cli_ruc = (TextView)findViewById(R.id.info_cliente_ruc);
-        trans_cli_nombres= (TextView)findViewById(R.id.info_cliente_nombres);
-        trans_cli_comercial= (TextView)findViewById(R.id.info_cliente_comercial);
-        trans_cli_direccion = (TextView)findViewById(R.id.info_cliente_direccion);
-        trans_cli_telefono= (TextView)findViewById(R.id.info_cliente_telefono);
+        trans_cli_ruc = (TextView) findViewById(R.id.info_cliente_ruc);
+        trans_cli_nombres = (TextView) findViewById(R.id.info_cliente_nombres);
+        trans_cli_comercial = (TextView) findViewById(R.id.info_cliente_comercial);
+        trans_cli_direccion = (TextView) findViewById(R.id.info_cliente_direccion);
+        trans_cli_telefono = (TextView) findViewById(R.id.info_cliente_telefono);
     }
-    public void inicializarCamposTabla(){
+
+    public void inicializarCamposTabla() {
         /*
             Campos de la tabla de items [VISTA]
          */
-        seleccion= new CheckBox[100];
-        numero= new EditText[100];
-        descripcion= new AutoCompleteTextView[100];
+        seleccion = new CheckBox[100];
+        numero = new EditText[100];
+        descripcion = new AutoCompleteTextView[100];
         cantidad = new EditText[100];
-        precio_real= new EditText[100];
-        solicitado= new EditText[100];
-        total= new EditText[100];
+        precio_real = new EditText[100];
+        solicitado = new EditText[100];
+        total = new EditText[100];
         descuento = new EditText[100];
         bandiva = new int[100];
         bandpromo = new int[100];
         numprecio = new int[100];
         iditems = new String[100];
         preciounitario = new String[100];
-        idpadres= new String[100];
-        keypadres= new String[100];
+        idpadres = new String[100];
+        keypadres = new String[100];
         descpromo = new int[100];
         /*
             Recursos para inicializar tabla
@@ -263,9 +265,9 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         layoutCeldaDescripcion.span = 2;
         layoutCeldas.span = 1;
         layoutCeldaNro.span = 1;
-        editar = (ToggleButton)findViewById(R.id.editar);
+        editar = (ToggleButton) findViewById(R.id.editar);
         eliminar = (ToggleButton) findViewById(R.id.eliminar);
-        guardar = (Button)findViewById(R.id.guardar);
+        guardar = (Button) findViewById(R.id.guardar);
         agregar = (Button) findViewById(R.id.agregar);
         resources = this.getResources();
         guardar.setOnClickListener(this);
@@ -273,20 +275,22 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         agregar.setOnClickListener(this);
         eliminar.setOnClickListener(this);
     }
+
     /*
         * Cargar Configuracion de la Transaccion
      */
     class CargarConfiguracionTransaccion extends AsyncTask<Void, Void, Void> {
         private ProgressDialog progress;
         String conf_emision, conf_bodega, conf_transaccion, conf_precio, conf_vendedor, conf_descripcion;
-        String []conf_precios;
-        int conf_limite, conf_num_pcg, conf_max_docs,conf_dias,conf_modo;
+        String[] conf_precios;
+        int conf_limite, conf_num_pcg, conf_max_docs, conf_dias, conf_modo;
         boolean conf_observacion;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             progress = new ProgressDialog(NuevaOfertaG.this);
-            progress.setTitle("Cargando Configuracion");
+            progress.setTitle("Cargando Configuración");
             progress.setMessage("Espere...");
             progress.setCancelable(false);
             progress.show();
@@ -304,15 +308,17 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                 transaccion.setText(this.conf_transaccion);
                 limite = this.conf_limite;
                 conf_pcg = this.conf_num_pcg;
-                conf_max_venci= this.conf_max_docs;
-                conf_dias_gracia= this.conf_dias;
-                conf_modo_busqueda= this.conf_modo;
-                conf_precios_disponibles= this.conf_precios;
-                if(conf_observacion)mostrarContenedorObservaciones();
+                conf_max_venci = this.conf_max_docs;
+                conf_dias_gracia = this.conf_dias;
+                conf_modo_busqueda = this.conf_modo;
+                conf_precios_disponibles = this.conf_precios;
+                if (conf_observacion) mostrarContenedorObservaciones();
                 //trans_observacion.setText(conf_descripcion);
                 trans_fp.setText(getString(R.string.observacion_defecto_oferta_credito));
-                editar.setEnabled(false);eliminar.setEnabled(false);
-                agregar.setEnabled(false);guardar.setEnabled(false);
+                editar.setEnabled(false);
+                eliminar.setEnabled(false);
+                agregar.setEnabled(false);
+                guardar.setEnabled(false);
             }
         }
 
@@ -322,15 +328,15 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                 DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
                 Cursor cursor = helper.consultarGNTrans(getIntent().getStringExtra("transaccion"));
                 conf_transaccion = getIntent().getStringExtra("transaccion");
-                conf_vendedor= idusuario;
+                conf_vendedor = idusuario;
                 if (cursor.moveToFirst()) {
                     String num_filas = cursor.getString(cursor.getColumnIndex(GNTrans.FIELD_numfilas));
                     String max_pck = cursor.getString(cursor.getColumnIndex(GNTrans.FIELD_maxdocs));
                     conf_limite = (Integer.parseInt(num_filas));
-                    if(conf_limite<=0)conf_limite = 100;
+                    if (conf_limite <= 0) conf_limite = 100;
                     conf_max_docs = (Integer.parseInt(max_pck));
-                    String conf_dg=cursor.getString(cursor.getColumnIndex(GNTrans.FIELD_diasgracia));
-                    conf_dias =(Integer.parseInt(conf_dg));
+                    String conf_dg = cursor.getString(cursor.getColumnIndex(GNTrans.FIELD_diasgracia));
+                    conf_dias = (Integer.parseInt(conf_dg));
                     conf_descripcion = cursor.getString(cursor.getColumnIndex(GNTrans.FIELD_descripcion));
                     Cursor cursor1 = helper.consultarBodega(cursor.getString(cursor.getColumnIndex(GNTrans.FIELD_idbodegapre)));
                     if (cursor1.moveToFirst()) {
@@ -338,16 +344,16 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                     }
                     /*Configuracion de observaciones y precios*/
                     ExtraerConfiguraciones ext = new ExtraerConfiguraciones(NuevaOfertaG.this);
-                    conf_observacion = ext.getBoolean(getString(R.string.key_act_obs),true);
-                    String conf =ext.get(getString(R.string.key_conf_descarga_clientes),"0");
-                    conf_precios = ext.get(getString(R.string.key_act_list_price),"1").split(",");
+                    conf_observacion = ext.getBoolean(getString(R.string.key_act_obs), true);
+                    String conf = ext.get(getString(R.string.key_conf_descarga_clientes), "0");
+                    conf_precios = ext.get(getString(R.string.key_act_list_price), "1").split(",");
                     conf_modo = Integer.parseInt(conf);
                     cursor1.close();
                     if (cursor.getString(cursor.getColumnIndex(GNTrans.FIELD_preciopcgrupo)).equals("S")) {
                         conf_precio = getString(R.string.info_precio_pcgrupo_enabled);
                         conf_num_pcg = ext.configuracionPreciosGrupos();
                     } else {
-                        conf_precio =  getString(R.string.info_precio_pcgrupo_disable);
+                        conf_precio = getString(R.string.info_precio_pcgrupo_disable);
                     }
                 }
                 cursor.close();
@@ -368,6 +374,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
 /*Auto text Adapter*/
     class AutoCompleteClienteSelected extends CursorAdapter implements AdapterView.OnItemClickListener {
         DBSistemaGestion dbSistemaGestion;
+
         public AutoCompleteClienteSelected(Context context) {
             super(NuevaOfertaG.this, null);
             dbSistemaGestion = new DBSistemaGestion(context);
@@ -426,7 +433,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             String itemCor = cursor.getString(cursor.getColumnIndexOrThrow(Cliente.FIELD_email));
             String itemObs = cursor.getString(cursor.getColumnIndexOrThrow(Cliente.FIELD_observacion));
             String itemVL = cursor.getString(cursor.getColumnIndexOrThrow(Cliente.FIELD_diasplazo));
-            if(itemCI.equals("9999999999999")){
+            if (itemCI.equals("9999999999999")) {
                 consu_final = 1;
                 mostrarContenedorAdicional();
             }
@@ -448,8 +455,8 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                 cargarPrecio(idCliente, conf_pcg);
             }
             int actions = cargarConfiguracionCartera();
-            System.out.println("Configuracion cartera: "+actions);
-            switch (actions){
+            System.out.println("Configuracion cartera: " + actions);
+            switch (actions) {
                 case 0:
                     //deshabilitar
                     mostrarContenedorItems();
@@ -464,10 +471,10 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                     //bloquear
                     generarReporteCartera(idCliente);
                     int docs = Integer.parseInt(vencidos.getText().toString());
-                    System.out.println("Documentos vencidos: "+docs+" maximo: "+conf_max_venci);
-                    if(docs>conf_max_venci){
+                    System.out.println("Documentos vencidos: " + docs + " maximo: " + conf_max_venci);
+                    if (docs > conf_max_venci) {
                         android.support.v7.app.AlertDialog.Builder builder1 = new android.support.v7.app.AlertDialog.Builder(NuevaOfertaG.this);
-                        builder1.setTitle("Transaccion Bloqueada");
+                        builder1.setTitle("Transacción Bloqueada");
                         builder1.setMessage("Revise el numero de documentos vencidos");
                         builder1.setCancelable(true);
                         builder1.setNeutralButton("Continuar",
@@ -490,21 +497,35 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
     //fin clase autoadapter
 
 
-    public String[] generarListadoPrecios(String item,String [] listprecio) throws SQLException {
+    public String[] generarListadoPrecios(String item, String[] listprecio) throws SQLException {
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
         Cursor cursor = helper.consultarItem(item);
         String[] result = new String[listprecio.length];
         if (cursor != null) {
-            if (cursor.moveToFirst()){
-                for(int i=0; i<result.length;i++){
-                    switch (Integer.parseInt(listprecio[i])){
-                        case 1:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio1)),this.numdec_punitario);break;
-                        case 2:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio2)),this.numdec_punitario);break;
-                        case 3:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio3)),this.numdec_punitario);break;
-                        case 4:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio4)),this.numdec_punitario);break;
-                        case 5:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio5)),this.numdec_punitario);break;
-                        case 6:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio6)),this.numdec_punitario);break;
-                        case 7:result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio7)),this.numdec_punitario);break;
+            if (cursor.moveToFirst()) {
+                for (int i = 0; i < result.length; i++) {
+                    switch (Integer.parseInt(listprecio[i])) {
+                        case 1:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio1)), this.numdec_punitario);
+                            break;
+                        case 2:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio2)), this.numdec_punitario);
+                            break;
+                        case 3:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio3)), this.numdec_punitario);
+                            break;
+                        case 4:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio4)), this.numdec_punitario);
+                            break;
+                        case 5:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio5)), this.numdec_punitario);
+                            break;
+                        case 6:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio6)), this.numdec_punitario);
+                            break;
+                        case 7:
+                            result[i] = redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio7)), this.numdec_punitario);
+                            break;
                     }
                 }
             }
@@ -541,10 +562,11 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         }
         //cargando precio a la tabla
         numprecio[posicion] = precioPCgrupo;
-        preciounitario[posicion] = redondearNumero(precioUnitario,this.numdec_punitario);
-        precio_real[posicion].setText(redondearNumero(precioUnitario,this.numdec_punitario));
+        preciounitario[posicion] = redondearNumero(precioUnitario, this.numdec_punitario);
+        precio_real[posicion].setText(redondearNumero(precioUnitario, this.numdec_punitario));
         return true;
     }
+
     /*
         Metodo para cargar descuento
      */
@@ -555,7 +577,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 result = cursor.getDouble(cursor.getColumnIndex(Descuento.FIELD_porcentaje));
-                Toast ts = Toast.makeText(getApplicationContext(), getString(R.string.info_descuento) + redondearNumero(result,"0.00") + "%", Toast.LENGTH_SHORT);
+                Toast ts = Toast.makeText(getApplicationContext(), getString(R.string.info_descuento) + redondearNumero(result, "0.00") + "%", Toast.LENGTH_SHORT);
                 ts.show();
                 descpromo[posicion] = 1;
             }
@@ -577,6 +599,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         System.out.println("Resultado final: " + price);
         return price;
     }
+
     /*
         Metodos para cargar la cartera del cliente
      */
@@ -586,12 +609,13 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         int actions = 0;
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                actions =  cursor.getInt(cursor.getColumnIndex(GNTrans.FIELD_opciones));
+                actions = cursor.getInt(cursor.getColumnIndex(GNTrans.FIELD_opciones));
             }
         }
         helper.close();
         return actions;
     }
+
     public void generarReporteCartera(String cliente) {
         LayoutInflater li = LayoutInflater.from(this);
         View promptsView = li.inflate(R.layout.cartera, null);
@@ -623,9 +647,10 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         }
         helper.close();
     }
-    public void cargarInfoCartera(Cursor cur){
+
+    public void cargarInfoCartera(Cursor cur) {
         int count1 = 0;
-        double tmp_saldo_vencer  = 0.0;
+        double tmp_saldo_vencer = 0.0;
         double tmp_saldo_vencido = 0.0;
         int count2 = 0;
         if (cur.moveToFirst()) {
@@ -635,24 +660,25 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                     tmp_saldo_vencido += cur.getDouble(cur.getColumnIndex(PCKardex.FIELD_saldovencido));
                     count1++;
                     vencidos.setText(String.valueOf(count1));
-                    saldo_vencido.setText(redondearNumero(tmp_saldo_vencido,"0.00"));
-                }else{
+                    saldo_vencido.setText(redondearNumero(tmp_saldo_vencido, "0.00"));
+                } else {
                     vencidos.setText(String.valueOf(0));
-                    saldo_vencido.setText(redondearNumero(0.00,"0.00"));
+                    saldo_vencido.setText(redondearNumero(0.00, "0.00"));
                 }
                 //verificar si el documento no esta vencido
                 if (cur.getInt(cur.getColumnIndex(PCKardex.FIELD_dvencidos)) <= 0) {
                     tmp_saldo_vencer += cur.getDouble(cur.getColumnIndex(PCKardex.FIELD_saldoxvence));
                     count2++;
                     no_vencidos.setText(String.valueOf(count2));
-                    saldo_vencer.setText(redondearNumero(tmp_saldo_vencer,"0.00"));
+                    saldo_vencer.setText(redondearNumero(tmp_saldo_vencer, "0.00"));
                 } else {
                     no_vencidos.setText(String.valueOf(0));
-                    saldo_vencer.setText(redondearNumero(0.00,"0.00"));
+                    saldo_vencer.setText(redondearNumero(0.00, "0.00"));
                 }
             } while (cur.moveToNext());
         }
     }
+
     /*
         Metodos para ocultar contenedores
      */
@@ -687,13 +713,13 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
     public void mostrarContenedorItems() {
         if (contenedor_items.getVisibility() == View.GONE) {
             animar(false, contenedor_items);
             contenedor_items.setVisibility(View.VISIBLE);
         }
     }
+
     //animar
     private void animar(boolean mostrar, CardView layout) {
         AnimationSet set = new AnimationSet(true);
@@ -710,22 +736,27 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         layout.setLayoutAnimation(controller);
         layout.startAnimation(animation);
     }
+
     /*
         Metodo para redondear numero a 2 decimales
      */
-    public String redondearNumero(double numero,String clave) {
+    public String redondearNumero(double numero, String clave) {
         DecimalFormat formateador = new DecimalFormat(clave);
         return formateador.format(numero).replace(",", ".");
     }
+
     /***
      * Metodos para agregar/ eliminar / editar filas de la tabla de items
      */
-    public void agregarFila(){
+    public void agregarFila() {
 
-        if(this.count<this.limite){
-            editar.setEnabled(false);guardar.setEnabled(false);
-            eliminar.setEnabled(false);agregar.setEnabled(false);
-            editar.setChecked(false);eliminar.setChecked(false);
+        if (this.count < this.limite) {
+            editar.setEnabled(false);
+            guardar.setEnabled(false);
+            eliminar.setEnabled(false);
+            agregar.setEnabled(false);
+            editar.setChecked(false);
+            eliminar.setChecked(false);
 
             TableRow fila = new TableRow(this);
             fila.setLayoutParams(layoutFila);
@@ -744,7 +775,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             this.descripcion[count] = new AutoCompleteTextView(this);
             this.descripcion[count].setTextColor(resources.getColor(R.color.textColorPrimary));
             this.descripcion[count].setDropDownWidth(600);
-            this.descripcion[count].setHint(getString( R.string.hint_producto));
+            this.descripcion[count].setHint(getString(R.string.hint_producto));
             this.descripcion[count].setEnabled(true);
             this.descripcion[count].setLayoutParams(layoutCeldaDescripcion);
             this.descripcion[count].setBackgroundResource(R.drawable.text_field);
@@ -794,7 +825,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             this.solicitado[count].setGravity(Gravity.CENTER);
             this.solicitado[count].setEnabled(false);
             this.solicitado[count].setTextSize(14);
-            this.solicitado[count].setText("");
+            this.solicitado[count].setText("0.0");
             this.solicitado[count].setPadding(5, 5, 5, 5);
 
             this.total[count] = new EditText(this);
@@ -819,16 +850,16 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onClick(View v) {
                     final int position = (Integer) v.getTag();
-                    if(new Validaciones().validar_enteros(cantidad[position].getText().toString())){
+                    if (new Validaciones().validar_enteros(cantidad[position].getText().toString())) {
                         int cant = Integer.parseInt(cantidad[position].getText().toString());
                         validarExistencia(iditems[position], bodega.getText().toString(), cant);
-                        if(verificarExistenciaDescuento(cli_id, iditems[position]) && verificarExistenciaPromocion(iditems[position], cant)) {
+                        if (verificarExistenciaDescuento(cli_id, iditems[position]) && verificarExistenciaPromocion(iditems[position], cant)) {
                             crearDialogOptionsDescPromo(position);
                         } else if (verificarExistenciaDescuento(cli_id, iditems[position])) {
-                            double desc = calcularDescuentoItem(cli_id, iditems[position],position);
-                            descuento[position].setText(redondearNumero(desc,"0.00"));
+                            double desc = calcularDescuentoItem(cli_id, iditems[position], position);
+                            descuento[position].setText(redondearNumero(desc, "0.00"));
                             //solicitado[position].setText(redondearNumero(desc));
-                            cantidad[position].setEnabled(false);
+                            cantidad[position].setEnabled(true);
                             descripcion[position].setEnabled(false);
                             solicitado[position].requestFocus();
                             solicitado[position].setSelection(solicitado[position].getText().length());
@@ -837,15 +868,15 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                             imm.showSoftInput(solicitado[position], InputMethodManager.SHOW_IMPLICIT);
                         } else if (verificarExistenciaPromocion(iditems[position], cant)) {
                             calcularPromociones(iditems[position], cant, keypadres[position], position);
-                            cantidad[position].setEnabled(false);
+                            cantidad[position].setEnabled(true);
                             descripcion[position].setEnabled(false);
                             solicitado[position].requestFocus();
                             solicitado[position].setSelection(solicitado[position].getText().length());
                             solicitado[position].setEnabled(true);
                             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                             imm.showSoftInput(solicitado[position], InputMethodManager.SHOW_IMPLICIT);
-                        }else{
-                            cantidad[position].setEnabled(false);
+                        } else {
+                            cantidad[position].setEnabled(true);
                             descripcion[position].setEnabled(false);
                             solicitado[position].requestFocus();
                             solicitado[position].setSelection(solicitado[position].getText().length());
@@ -853,7 +884,9 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                             imm.showSoftInput(solicitado[position], InputMethodManager.SHOW_IMPLICIT);
                         }
-                    }else{
+                        calcularSubtotalItem(position);
+                        calcularTotalTransaccion();
+                    } else {
                         cantidad[position].requestFocus();
                         cantidad[position].setError(getString(R.string.info_field_no_valid));
                     }
@@ -863,29 +896,31 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onClick(View v) {
                     final int position = (Integer) v.getTag();
-                    if(!solicitado[position].getText().toString().isEmpty()){
-                        double valor  = Double.parseDouble(solicitado[position].getText().toString());
-                        if(valor >= 0.0 && valor <= 100){
+                    if (!solicitado[position].getText().toString().isEmpty()) {
+                        double valor = Double.parseDouble(solicitado[position].getText().toString());
+                        if (valor >= 0.0 && valor <= 100) {
                             calcularSubtotalItem(position);
-                            editar.setEnabled(true);guardar.setEnabled(true);
+                            editar.setEnabled(true);
+                            guardar.setEnabled(true);
                             eliminar.setEnabled(true);
                             agregar.setEnabled(true);
                             editar.setChecked(false);
-                            solicitado[position].setEnabled(false);
+                            solicitado[position].setEnabled(true);
                             calcularTotalTransaccion();
                             agregarFilaOpcional();
 
-                        }else{
+                        } else {
                             solicitado[position].requestFocus();
                             solicitado[position].setError(getString(R.string.info_field_no_valid));
                         }
-                    }else{
+                    } else {
                         calcularSubtotalItem(position);
-                        editar.setEnabled(true);guardar.setEnabled(true);
+                        editar.setEnabled(true);
+                        guardar.setEnabled(true);
                         eliminar.setEnabled(true);
                         agregar.setEnabled(true);
                         editar.setChecked(false);
-                        solicitado[position].setEnabled(false);
+                        solicitado[position].setEnabled(true);
                         calcularTotalTransaccion();
                         agregarFilaOpcional();
                     }
@@ -895,21 +930,21 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onClick(View v) {
                     final int position = (Integer) v.getTag();
-                    if(eliminar.isChecked()){
+                    if (eliminar.isChecked()) {
                         eliminarFila(position);
-                    }else if(editar.isChecked()){
-                        if(numeroSeleccionados()==1 && numeroEditados()==0 && iditems[position]!=null){
+                    } else if (editar.isChecked()) {
+                        if (numeroSeleccionados() == 1 && numeroEditados() == 0 && iditems[position] != null) {
                             modificarFila(position);
                         }
-                    }else{
-                        if(iditems[position]!=null && seleccion[position].isChecked()){
+                    } else {
+                        if (iditems[position] != null && seleccion[position].isChecked()) {
                             crearDialogInfoItem(position);
                         }
                     }
                 }
             });
 
-            fila.setPadding(0,5,0,5);
+            fila.setPadding(0, 5, 0, 5);
             fila.setMinimumHeight(50);
 
             fila.addView(numero[count]);
@@ -922,19 +957,21 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             fila.addView(seleccion[count]);
             tabla.addView(fila);
             count++;
-        }else{
+        } else {
             Toast ts = Toast.makeText(getApplicationContext(), resources.getString(R.string.info_max_row_trans), Toast.LENGTH_SHORT);
             ts.show();
         }
     }
+
     /*Auto text Adapter*/
     class AutoCompleteProductoSelected extends CursorAdapter implements AdapterView.OnItemClickListener {
         DBSistemaGestion dbSistemaGestion;
         int posicion;
+
         public AutoCompleteProductoSelected(Context context, int row) {
             super(NuevaOfertaG.this, null);
             dbSistemaGestion = new DBSistemaGestion(context);
-            this.posicion= row;
+            this.posicion = row;
         }
 
         @Override
@@ -942,7 +979,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             Cursor cursor = null;
             try {
                 cursor = dbSistemaGestion.buscarItemsDescripcion(
-                        (constraint != null ? constraint.toString() : "@@@@"), lineas.split(","),bodegas.split(","));
+                        (constraint != null ? constraint.toString() : "@@@@"), lineas.split(","), bodegas.split(","));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -982,8 +1019,8 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             int ivaItem = cursor.getInt(cursor.getColumnIndexOrThrow(IVInventario.FIELD_band_iva));
             String descItem = cursor.getString(cursor.getColumnIndexOrThrow(IVInventario.FIELD_descripcion));
 
-            if(val_duplicado){
-                if(!validarDuplicado(idItem)){
+            if (val_duplicado) {
+                if (!validarDuplicado(idItem)) {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.showSoftInput(descripcion[posicion], InputMethodManager.SHOW_IMPLICIT);
                     descripcion[posicion].setText(descItem);
@@ -996,7 +1033,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
 
                     if (precio.getText().toString().equals(getString(R.string.info_precio_pcgrupo_disable))) {
                         try {
-                            crearDialogPrecios(generarListadoPrecios(idItem,conf_precios_disponibles), conf_precios_disponibles, posicion);
+                            crearDialogPrecios(generarListadoPrecios(idItem, conf_precios_disponibles), conf_precios_disponibles, posicion);
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
@@ -1005,10 +1042,10 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                         cargarPrecioUnitarioItem(cursor, posicion);
                     }
                     dbSistemaGestion.close();
-                }else{
-                    new Alertas(NuevaOfertaG.this,"Advertencia","El item seleccionado ya fue ingresado").mostrarMensaje();
+                } else {
+                    new Alertas(NuevaOfertaG.this, "Advertencia", "El item seleccionado ya fue ingresado").mostrarMensaje();
                 }
-            }else{
+            } else {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.showSoftInput(descripcion[posicion], InputMethodManager.SHOW_IMPLICIT);
                 descripcion[posicion].setText(descItem);
@@ -1021,7 +1058,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
 
                 if (precio.getText().toString().equals(getString(R.string.info_precio_pcgrupo_disable))) {
                     try {
-                        crearDialogPrecios(generarListadoPrecios(idItem,conf_precios_disponibles), conf_precios_disponibles, posicion);
+                        crearDialogPrecios(generarListadoPrecios(idItem, conf_precios_disponibles), conf_precios_disponibles, posicion);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
@@ -1033,22 +1070,23 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
+
     //fin clase autoadapter
     /*
         Validar si el item a ingresar ya fue registrado
      */
-    public boolean validarDuplicado(String iditem){
-        if(this.count>0){
-            for(int i=0; i<this.count; i++){
-                if(iditems[i]!=null)
-                    if (iditems[i].equals(iditem))return true;
+    public boolean validarDuplicado(String iditem) {
+        if (this.count > 0) {
+            for (int i = 0; i < this.count; i++) {
+                if (iditems[i] != null)
+                    if (iditems[i].equals(iditem)) return true;
             }
         }
         return false;
     }
 
-    public void modificarFila(int posicion){
-        if(bandpromo[posicion]!=1){
+    public void modificarFila(int posicion) {
+        if (bandpromo[posicion] != 1) {
             eliminarHijos(iditems[posicion], keypadres[posicion]);
             /*Bloqueando botones*/
             agregar.setEnabled(false);
@@ -1070,8 +1108,8 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             descripcion[posicion].requestFocus();
             descripcion[posicion].setSelection(descripcion[posicion].getText().length());
             cantidad[posicion].setEnabled(false);
-        }else{
-            Toast ts= Toast.makeText(getApplicationContext(),resources.getString(R.string.info_fila_promocion_del),Toast.LENGTH_SHORT);
+        } else {
+            Toast ts = Toast.makeText(getApplicationContext(), resources.getString(R.string.info_fila_promocion_del), Toast.LENGTH_SHORT);
             ts.show();
         }
         calcularTotalTransaccion();
@@ -1080,7 +1118,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
     public void crearDialogOptionsDescPromo(final int position) {
         android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(this);
         alertDialogBuilder.setTitle(R.string.tittle_dialog_desc_promo);
-        alertDialogBuilder.setSingleChoiceItems(new String[]{"Descuento","Promocion"}, 0, null);
+        alertDialogBuilder.setSingleChoiceItems(new String[]{"Descuento", "Promocion"}, 0, null);
         /*Cargar Listado*/
         alertDialogBuilder.setCancelable(false);
         alertDialogBuilder.setPositiveButton("Aplicar", new DialogInterface.OnClickListener() {
@@ -1090,9 +1128,9 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                 int posicion = lv.getCheckedItemPosition();
                 switch (posicion) {
                     case 0:
-                        double desc = calcularDescuentoItem(cli_id,iditems[position],position);
-                        descuento[position].setText(redondearNumero(desc,"0.00"));
-                       // solicitado[position].setText(redondearNumero(desc));
+                        double desc = calcularDescuentoItem(cli_id, iditems[position], position);
+                        descuento[position].setText(redondearNumero(desc, "0.00"));
+                        // solicitado[position].setText(redondearNumero(desc));
                         cantidad[position].setEnabled(false);
                         descripcion[position].setEnabled(false);
                         solicitado[position].requestFocus();
@@ -1101,7 +1139,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                         break;
                     case 1:
                         int cantidad_padre = Integer.parseInt(cantidad[position].getText().toString());
-                        calcularPromociones(iditems[position],cantidad_padre,keypadres[position],position);
+                        calcularPromociones(iditems[position], cantidad_padre, keypadres[position], position);
                         cantidad[position].setEnabled(false);
                         descripcion[position].setEnabled(false);
                         solicitado[position].requestFocus();
@@ -1114,6 +1152,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         final android.support.v7.app.AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
+
     //calcular total de la transaccion
     public boolean calcularTotalTransaccion() {
         double subtotal_sin_iva = 0.0;
@@ -1121,40 +1160,43 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         double total_iva = 0.0;
         try {
             for (int i = 0; i < this.count; i++) {
-                if(iditems[i]!=null)
-                    if (this.bandiva[i]!=1) {
+                if (iditems[i] != null)
+                    if (this.bandiva[i] != 1) {
                         subtotal_sin_iva += Double.parseDouble(this.total[i].getText().toString());
                     } else {
                         subtotal_con_iva += Double.parseDouble(this.total[i].getText().toString());
                     }
             }
-            this.tran_sub_sin_iva.setText(redondearNumero(subtotal_sin_iva,"0.00"));
-            this.tran_sub_con_iva.setText(redondearNumero(subtotal_con_iva,"0.00"));
-            this.tran_sub.setText(redondearNumero((subtotal_con_iva + subtotal_sin_iva),"0.00"));
+            this.tran_sub_sin_iva.setText(redondearNumero(subtotal_sin_iva, "0.00"));
+            this.tran_sub_con_iva.setText(redondearNumero(subtotal_con_iva, "0.00"));
+            this.tran_sub.setText(redondearNumero((subtotal_con_iva + subtotal_sin_iva), "0.00"));
             String prf_imp = impuestos;
             double porc = 0.0;
-            if(prf_imp!=null)porc=new Double(prf_imp)/100;
+            if (prf_imp != null) porc = new Double(prf_imp) / 100;
             total_iva = (subtotal_con_iva * porc);
-            this.tran_sub_iva.setText(redondearNumero(total_iva,"0.00"));
+            this.tran_sub_iva.setText(redondearNumero(total_iva, "0.00"));
             double monto = subtotal_con_iva + subtotal_sin_iva + total_iva;
-            this.tran_sub_total.setText(redondearNumero(monto,"0.00"));
+            this.tran_sub_total.setText(redondearNumero(monto, "0.00"));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return true;
     }
+
     public boolean calcularSubtotalItem(int row) {
         double cnt = Double.parseDouble(cantidad[row].getText().toString());
         double precio = Double.parseDouble(preciounitario[row]);
-        double porcentaje = Double.parseDouble(descuento[row].getText().toString()) / 100;
+        double porcentaje = Double.parseDouble(solicitado[row].getText().toString()) / 100;
+//        double porcentaje = Double.parseDouble(descuento[row].getText().toString()) / 100;
 
         double precio_total = cnt * precio;
         double desc = precio_total * porcentaje;
         double precioreal = (precio_total - desc) / cnt;
         double subtotal = cnt * precioreal;
-        precio_real[row].setText(redondearNumero(precioreal,this.numdec_punitario));
-        total[row].setText(redondearNumero(subtotal,this.numdec_ptotal));
-        if(Double.parseDouble(descuento[row].getText().toString())>0)descpromo[row] = 1;
+        precio_real[row].setText(redondearNumero(precioreal, this.numdec_punitario));
+        total[row].setText(redondearNumero(subtotal, this.numdec_ptotal));
+        if (Double.parseDouble(solicitado[row].getText().toString()) > 0) descpromo[row] = 1;
+//        if (Double.parseDouble(descuento[row].getText().toString()) > 0) descpromo[row] = 1;
         return true;
     }
 
@@ -1164,6 +1206,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         helper.close();
         return result;
     }
+
     public boolean verificarExistenciaPromocion(String id_item, double cantidad) {
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
         boolean result = helper.existePromocionItem(id_item, cantidad);
@@ -1193,6 +1236,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         }
         return result;
     }
+
     public void alertaStockInsuficiente(String idbodega) {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.info_stock_insuficiente,
@@ -1204,18 +1248,20 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         toast.setView(layout);
         toast.show();
     }
+
     public void alertaTransaccionGuardada() {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.save_success_transaction,
                 (ViewGroup) findViewById(R.id.custom_toast_layout_id3));
-        ((TextView) layout.findViewById(R.id.toast_tittle)).setText("Transaccion Registrada");
-        ((TextView) layout.findViewById(R.id.toast_subtittle)).setText("la transaccion ha sido registrada correctamente!");
+        ((TextView) layout.findViewById(R.id.toast_tittle)).setText("Transacción Registrada");
+        ((TextView) layout.findViewById(R.id.toast_subtittle)).setText("La transacción ha sido registrada correctamente!");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.BOTTOM, 0, 0);
         toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
+
     public void alertaExistenciaItem(int cantidad, String bodega) {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.info_existencia_producto,
@@ -1230,38 +1276,44 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    public int numeroSeleccionados(){
-        int result = 0 ;
-        for(int i=0; i<count;i++){
-            if(seleccion[i].isChecked()){
+    public int numeroSeleccionados() {
+        int result = 0;
+        for (int i = 0; i < count; i++) {
+            if (seleccion[i].isChecked()) {
                 result++;
             }
         }
         return result;
     }
 
-    public int numeroEditados(){
-        int result = 0 ;
-        for(int i=0; i<count;i++){
-            if(descripcion[i].isEnabled()||cantidad[i].isEnabled()){
+    public int numeroEditados() {
+        int result = 0;
+        for (int i = 0; i < count; i++) {
+            if (descripcion[i].isEnabled() || cantidad[i].isEnabled()) {
                 result++;
             }
         }
         return result;
     }
 
-    public void eliminarFila(int posicion){
-        try{
-            if(iditems[posicion]!=null){
-                if(bandpromo[posicion]!=1){
+    public void eliminarFila(int posicion) {
+        try {
+            if (iditems[posicion] != null) {
+                if (bandpromo[posicion] != 1) {
                     eliminarHijos(iditems[posicion], keypadres[posicion]);
                     numero[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    descripcion[posicion].setText("FILA BORRADA");descripcion[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    cantidad[posicion].setText("XXX");cantidad[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    precio_real[posicion].setText("XXX");precio_real[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    solicitado[posicion].setText("XXX");solicitado[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    total[posicion].setText("XXX");total[posicion].setTextColor(resources.getColor(R.color.color_danger));
-                    descuento[posicion].setText("XXX");descuento[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    descripcion[posicion].setText("FILA BORRADA");
+                    descripcion[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    cantidad[posicion].setText("XXX");
+                    cantidad[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    precio_real[posicion].setText("XXX");
+                    precio_real[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    solicitado[posicion].setText("XXX");
+                    solicitado[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    total[posicion].setText("XXX");
+                    total[posicion].setTextColor(resources.getColor(R.color.color_danger));
+                    descuento[posicion].setText("XXX");
+                    descuento[posicion].setTextColor(resources.getColor(R.color.color_danger));
                 /*Cambiar de variables Arreglos Normales*/
                     bandiva[posicion] = 0;
                     bandpromo[posicion] = 0;
@@ -1273,27 +1325,33 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                     preciounitario[posicion] = null;
                     descpromo[posicion] = 0;
                     this.limite++;
-                }else Toast.makeText(getApplicationContext(),resources.getString(R.string.info_fila_promocion_del),Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(getApplicationContext(), resources.getString(R.string.info_fila_promocion_del), Toast.LENGTH_SHORT).show();
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            Toast ts= Toast.makeText(getApplicationContext(),resources.getString(R.string.info_imposible_delete_row),Toast.LENGTH_SHORT);
+            Toast ts = Toast.makeText(getApplicationContext(), resources.getString(R.string.info_imposible_delete_row), Toast.LENGTH_SHORT);
             ts.show();
         }
         calcularTotalTransaccion();
     }
 
-    public void eliminarHijos(String id_padre, String keypadre){
-        for(int i =0; i<count; i++){
-            if(idpadres[i]!=null && idpadres[i].equals(id_padre) && keypadres[i].equals(keypadre)){
+    public void eliminarHijos(String id_padre, String keypadre) {
+        for (int i = 0; i < count; i++) {
+            if (idpadres[i] != null && idpadres[i].equals(id_padre) && keypadres[i].equals(keypadre)) {
 
                 numero[i].setTextColor(resources.getColor(R.color.color_danger));
-                descripcion[i].setText("FILA BORRADA");descripcion[i].setTextColor(resources.getColor(R.color.color_danger));
-                cantidad[i].setText("XXX");cantidad[i].setTextColor(resources.getColor(R.color.color_danger));
-                precio_real[i].setText("XXX");precio_real[i].setTextColor(resources.getColor(R.color.color_danger));
-                solicitado[i].setText("XXX");solicitado[i].setTextColor(resources.getColor(R.color.color_danger));
-                total[i].setText("XXX");total[i].setTextColor(resources.getColor(R.color.color_danger));
+                descripcion[i].setText("FILA BORRADA");
+                descripcion[i].setTextColor(resources.getColor(R.color.color_danger));
+                cantidad[i].setText("XXX");
+                cantidad[i].setTextColor(resources.getColor(R.color.color_danger));
+                precio_real[i].setText("XXX");
+                precio_real[i].setTextColor(resources.getColor(R.color.color_danger));
+                solicitado[i].setText("XXX");
+                solicitado[i].setTextColor(resources.getColor(R.color.color_danger));
+                total[i].setText("XXX");
+                total[i].setTextColor(resources.getColor(R.color.color_danger));
 
                 bandiva[i] = 0;
                 bandpromo[i] = 0;
@@ -1317,8 +1375,8 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             idpadres[count] = id_item_padre;
             keypadres[count] = keypadre;
             descpromo[count] = 2;
-            bandpromo[count]=1;
-            preciounitario[count] = redondearNumero(precio_item_hijo,this.numdec_punitario);
+            bandpromo[count] = 1;
+            preciounitario[count] = redondearNumero(precio_item_hijo, this.numdec_punitario);
             numprecio[count] = Integer.parseInt(precio.getText().toString());
             if (band_iva != 0) {
                 bandiva[count] = 1;
@@ -1353,7 +1411,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             this.cantidad[count].setLayoutParams(layoutCeldas);
             this.cantidad[count].setBackgroundResource(R.drawable.text_field);
             this.cantidad[count].setGravity(Gravity.CENTER);
-            this.cantidad[count].setText(redondearNumero(cantidad_total,"0.00"));
+            this.cantidad[count].setText(redondearNumero(cantidad_total, "0.00"));
             this.cantidad[count].setInputType(InputType.TYPE_CLASS_NUMBER);
             this.cantidad[count].setEnabled(false);
             this.cantidad[count].setTextSize(14);
@@ -1362,7 +1420,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             this.precio_real[count] = new EditText(this);
             this.precio_real[count].setTextColor(resources.getColor(R.color.successfull));
             this.precio_real[count].setLayoutParams(layoutCeldas);
-            this.precio_real[count].setText(redondearNumero(precio_item_hijo,this.numdec_punitario));
+            this.precio_real[count].setText(redondearNumero(precio_item_hijo, this.numdec_punitario));
             this.precio_real[count].setBackgroundResource(R.drawable.text_field);
             this.precio_real[count].setGravity(Gravity.CENTER);
             this.precio_real[count].setEnabled(false);
@@ -1382,7 +1440,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             this.total[count] = new EditText(this);
             this.total[count].setTextColor(resources.getColor(R.color.successfull));
             this.total[count].setLayoutParams(layoutCeldas);
-            this.total[count].setText(redondearNumero(sub,this.numdec_ptotal));
+            this.total[count].setText(redondearNumero(sub, this.numdec_ptotal));
             this.total[count].setBackgroundResource(R.drawable.text_field);
             this.total[count].setGravity(Gravity.CENTER);
             this.total[count].setEnabled(false);
@@ -1399,14 +1457,14 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onClick(View v) {
                     final int position = (Integer) v.getTag();
-                    if(eliminar.isChecked()){
+                    if (eliminar.isChecked()) {
                         eliminarFila(position);
-                    }else if(editar.isChecked()){
-                        if(numeroSeleccionados()==1 && numeroEditados()==0 && iditems[position]!=null){
+                    } else if (editar.isChecked()) {
+                        if (numeroSeleccionados() == 1 && numeroEditados() == 0 && iditems[position] != null) {
                             modificarFila(position);
                         }
-                    }else{
-                        if(iditems[position]!=null && seleccion[position].isChecked()){
+                    } else {
+                        if (iditems[position] != null && seleccion[position].isChecked()) {
                             crearDialogInfoItem(position);
                         }
                     }
@@ -1425,11 +1483,12 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             tabla.addView(fila);
             calcularSubtotalItem(count);
             this.count++;
-        }else{
+        } else {
             Toast ts = Toast.makeText(getApplicationContext(), resources.getString(R.string.info_max_row_trans), Toast.LENGTH_SHORT);
             ts.show();
         }
     }
+
     //Mostrar Info items
     public void crearDialogInfoItem(int posicion) {
         LayoutInflater li = LayoutInflater.from(this);
@@ -1464,56 +1523,56 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         //cargando datos
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
         Cursor cursor = helper.consultarItem(iditems[posicion]);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             code.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_cod_item)));
             nombre.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_descripcion)));
-            porc_org.setText(redondearNumero(new Double(descuento[posicion].getText().toString()),"0.00"));
+            porc_org.setText(redondearNumero(new Double(descuento[posicion].getText().toString()), "0.00"));
             porc_sol.setText(solicitado[posicion].getText().toString());
             cant.setText(cantidad[posicion].getText().toString());
             presenta.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_presentacion)));
             und.setText(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_unidad)));
             double puItem = Double.parseDouble(preciounitario[posicion]);
-            precio.setText(redondearNumero(puItem,this.numdec_punitario));
-            if (bandiva[posicion]!=1) {
+            precio.setText(redondearNumero(puItem, this.numdec_punitario));
+            if (bandiva[posicion] != 1) {
                 imp.setText("NO");
             }
-            if(cantidad[posicion].getText().toString()!=null && !cantidad[posicion].getText().toString().isEmpty()){//verificar que la cantidad no este vacia
+            if (cantidad[posicion].getText().toString() != null && !cantidad[posicion].getText().toString().isEmpty()) {//verificar que la cantidad no este vacia
                 double cnt = (Double.parseDouble(cantidad[posicion].getText().toString()));
-                double prc= new Double(descuento[posicion].getText().toString());
-                double porcentaje = prc/100 ;
-                double precio_total = cnt*puItem;
-                double descuento = precio_total*porcentaje;
+                double prc = new Double(descuento[posicion].getText().toString());
+                double porcentaje = prc / 100;
+                double precio_total = cnt * puItem;
+                double descuento = precio_total * porcentaje;
                 double pre_real = (precio_total - descuento) / cnt;
                 double tot = cnt * pre_real;
-                precio_real_org.setText(redondearNumero(pre_real,this.numdec_punitario));
-                precio_real_org_iva.setText(redondearNumero(pre_real,this.numdec_punitario));
-                desc_org.setText(redondearNumero(new Double(descuento),"0.00"));
-                total_org.setText(redondearNumero(new Double(tot),this.numdec_ptotal));
-                if(bandiva[posicion]==1){
+                precio_real_org.setText(redondearNumero(pre_real, this.numdec_punitario));
+                precio_real_org_iva.setText(redondearNumero(pre_real, this.numdec_punitario));
+                desc_org.setText(redondearNumero(new Double(descuento), "0.00"));
+                total_org.setText(redondearNumero(new Double(tot), this.numdec_ptotal));
+                if (bandiva[posicion] == 1) {
                     String prf_imp = this.impuestos;
                     double porc = 0.0;
-                    if(prf_imp!=null)porc=new Double(prf_imp)/100;
-                    double pre_real_org_iva= pre_real*porc;
-                    precio_real_org_iva.setText(redondearNumero((pre_real_org_iva+pre_real),this.numdec_punitario));
+                    if (prf_imp != null) porc = new Double(prf_imp) / 100;
+                    double pre_real_org_iva = pre_real * porc;
+                    precio_real_org_iva.setText(redondearNumero((pre_real_org_iva + pre_real), this.numdec_punitario));
                 }
                 /*Calculo para descuento solicitado*/
-                if(!solicitado[posicion].getText().toString().isEmpty()){
-                    double prc_sol= new Double(solicitado[posicion].getText().toString());
-                    double porcentaje_sol = prc_sol/100 ;
-                    double precio_total_sol = cnt*puItem;
-                    double descuento_sol = precio_total_sol*porcentaje_sol;
+                if (!solicitado[posicion].getText().toString().isEmpty()) {
+                    double prc_sol = new Double(solicitado[posicion].getText().toString());
+                    double porcentaje_sol = prc_sol / 100;
+                    double precio_total_sol = cnt * puItem;
+                    double descuento_sol = precio_total_sol * porcentaje_sol;
                     double pre_real_sol = (precio_total_sol - descuento_sol) / cnt;
                     double tot_sol = cnt * pre_real_sol;
-                    precio_real_sol.setText(redondearNumero(pre_real_sol,this.numdec_punitario));
-                    precio_real_sol_iva.setText(redondearNumero(pre_real_sol,this.numdec_punitario));
-                    desc_sol.setText(redondearNumero(new Double(descuento_sol),"0.00"));
-                    total_sol.setText(redondearNumero(new Double(tot_sol),this.numdec_ptotal));
-                    if(bandiva[posicion]==1){
+                    precio_real_sol.setText(redondearNumero(pre_real_sol, this.numdec_punitario));
+                    precio_real_sol_iva.setText(redondearNumero(pre_real_sol, this.numdec_punitario));
+                    desc_sol.setText(redondearNumero(new Double(descuento_sol), "0.00"));
+                    total_sol.setText(redondearNumero(new Double(tot_sol), this.numdec_ptotal));
+                    if (bandiva[posicion] == 1) {
                         String prf_imp = this.impuestos;
                         double porc = 0.0;
-                        if(prf_imp!=null)porc=new Double(prf_imp)/100;
-                        double pre_real_sol_iva= pre_real_sol*porc;
-                        precio_real_sol_iva.setText(redondearNumero((pre_real_sol_iva+pre_real_sol),this.numdec_punitario));
+                        if (prf_imp != null) porc = new Double(prf_imp) / 100;
+                        double pre_real_sol_iva = pre_real_sol * porc;
+                        precio_real_sol_iva.setText(redondearNumero((pre_real_sol_iva + pre_real_sol), this.numdec_punitario));
                     }
                 }
             }
@@ -1522,7 +1581,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
     /*Generar reporte de existencia*/
         TableRow fila;
         int pst = 0;
-        Cursor cur1 = helper.obtenerExistenciaItem(iditems[posicion],bodegas.split(","));
+        Cursor cur1 = helper.obtenerExistenciaItem(iditems[posicion], bodegas.split(","));
         if (cur1.moveToFirst()) {
             do {
                 fila = new TableRow(this);
@@ -1583,11 +1642,12 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         final android.support.v7.app.AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
+
     //Validar promociones
     public boolean calcularPromociones(String id_item_padre, int cantidad_padre, String key_padre, int posicion) {
         DBSistemaGestion helper = new DBSistemaGestion(getApplicationContext());
-        Cursor cursor = helper.consultarPromocionItem(id_item_padre,cantidad_padre);
-        if (cursor.moveToFirst()){
+        Cursor cursor = helper.consultarPromocionItem(id_item_padre, cantidad_padre);
+        if (cursor.moveToFirst()) {
             descpromo[posicion] = 0;
             int cantidad_minima = Integer.parseInt(cursor.getString(cursor.getColumnIndex(Promocion.FIELD_cantidad_min)));
             String id_hijo = cursor.getString(cursor.getColumnIndex(Promocion.FIELD_id_inven_promo));
@@ -1608,13 +1668,14 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             for (int i = 0; i < veces; i++) {
                 cantidad_total += cantidad_item_hijo;
             }
-            sub_promo = cantidad_total*precio_item_hijo;
-            agregarFilaPromocion(id_item_padre,key_padre,id_hijo,desc_item_hijo,iva_item_hijo,precio_item_hijo,cantidad_total,sub_promo);
+            sub_promo = cantidad_total * precio_item_hijo;
+            agregarFilaPromocion(id_item_padre, key_padre, id_hijo, desc_item_hijo, iva_item_hijo, precio_item_hijo, cantidad_total, sub_promo);
         }
         cursor.close();
         helper.close();
         return true;
     }
+
     /*
          Metodo para cargar precios
      */
@@ -1665,7 +1726,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
     public void agregarFilaOpcional() {
         android.support.v7.app.AlertDialog.Builder quitDialog
                 = new android.support.v7.app.AlertDialog.Builder(this);
-        quitDialog.setTitle("Deseas ingresar otra fila?");
+        quitDialog.setTitle("Desea ingresar otra fila?");
         quitDialog.setPositiveButton("Si", new DialogInterface.OnClickListener() {
 
             @Override
@@ -1683,20 +1744,22 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         });
         quitDialog.show();
     }
+
     public boolean validarCamposVacios() {
-        if (TextUtils.isEmpty(trans_at.getText().toString())) {
-            trans_at.requestFocus();
-            trans_at.setError(resources.getString(R.string.info_field_required));
-            return true;
-        } else if (TextUtils.isEmpty(trans_te.getText().toString())) {
+//        if (TextUtils.isEmpty(trans_at.getText().toString())) {
+//            trans_at.requestFocus();
+//            trans_at.setError(resources.getString(R.string.info_field_required));
+//            return true;
+//        } else
+        if (TextUtils.isEmpty(trans_te.getText().toString())) {
             trans_te.requestFocus();
             trans_te.setError(resources.getString(R.string.info_field_required));
             return true;
-        }else if (TextUtils.isEmpty(trans_vl.getText().toString())){
+        } else if (TextUtils.isEmpty(trans_vl.getText().toString())) {
             trans_vl.requestFocus();
             trans_vl.setError(resources.getString(R.string.info_field_required));
             return true;
-        }else if (TextUtils.isEmpty(trans_fp.getText().toString())){
+        } else if (TextUtils.isEmpty(trans_fp.getText().toString())) {
             trans_fp.requestFocus();
             trans_fp.setError(resources.getString(R.string.info_field_required));
             return true;
@@ -1708,6 +1771,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         }*/
         return false;
     }
+
     public boolean validarCamposVaciosCliente() {
         if (TextUtils.isEmpty(trans_cli_ruc.getText().toString())) {
             trans_cli_ruc.requestFocus();
@@ -1717,25 +1781,26 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             trans_cli_nombres.requestFocus();
             trans_cli_nombres.setError(resources.getString(R.string.info_field_required));
             return true;
-        }else if (TextUtils.isEmpty(trans_cli_comercial.getText().toString())){
+        } else if (TextUtils.isEmpty(trans_cli_comercial.getText().toString())) {
             trans_cli_comercial.requestFocus();
             trans_cli_comercial.setError(resources.getString(R.string.info_field_required));
             return true;
-        }else if (TextUtils.isEmpty(trans_cli_direccion.getText().toString())){
+        } else if (TextUtils.isEmpty(trans_cli_direccion.getText().toString())) {
             trans_cli_direccion.requestFocus();
             trans_cli_direccion.setError(resources.getString(R.string.info_field_required));
             return true;
-        }else if (TextUtils.isEmpty(trans_cli_telefono.getText().toString())){
+        } else if (TextUtils.isEmpty(trans_cli_telefono.getText().toString())) {
             trans_cli_telefono.requestFocus();
             trans_cli_telefono.setError(resources.getString(R.string.info_field_required));
             return true;
         }
         return false;
     }
-    public boolean guardarTransaccion(){
-        if(filasCompletadas()>0){
+
+    public boolean guardarTransaccion() {
+        if (filasCompletadas() > 0) {
             guardarTrans();
-        }else{
+        } else {
             android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(this);
             alertDialogBuilder.setMessage("Debe ingresar al menos un producto");
             alertDialogBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
@@ -1750,15 +1815,16 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
-    public int filasCompletadas(){
+    public int filasCompletadas() {
         int result = 0;
-        for(int i=0; i<count; i++){
-            if(iditems[i]!=null && !descripcion[i].getText().toString().equals("FILA BORRADA")){
+        for (int i = 0; i < count; i++) {
+            if (iditems[i] != null && !descripcion[i].getText().toString().equals("FILA BORRADA")) {
                 result++;
             }
         }
         return result;
     }
+
     /*
     Metodos para guardar transaccion
      */
@@ -1796,21 +1862,23 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         alertDialog.show();
         return true;
     }
+
     public String obtenerObservaciones() {
-        return trans_observacion.getText().toString() +";" +trans_at.getText().toString()+ ";"+trans_te.getText().toString()+ ";" +trans_fp.getText().toString() + ";"  +trans_vl.getText().toString()+ ";" +trans_cli_ruc.getText().toString()+ ";"  +trans_cli_nombres.getText().toString()+ ";" +trans_cli_comercial.getText().toString()+  ";"  +trans_cli_direccion.getText().toString()+ ";"+trans_cli_telefono.getText().toString();
+        return trans_observacion.getText().toString() + ";" + trans_at.getText().toString() + ";" + trans_te.getText().toString() + ";" + trans_fp.getText().toString() + ";" + trans_vl.getText().toString() + ";" + trans_cli_ruc.getText().toString() + ";" + trans_cli_nombres.getText().toString() + ";" + trans_cli_comercial.getText().toString() + ";" + trans_cli_direccion.getText().toString() + ";" + trans_cli_telefono.getText().toString();
     }
+
     /*
         Guardar Detalles
      */
-    public ArrayList<IVKardex> generarDetalles(String id_trans, String bodega_id){
+    public ArrayList<IVKardex> generarDetalles(String id_trans, String bodega_id) {
         ArrayList<IVKardex> ivks = new ArrayList<>();
-        GeneradorClaves gen= new GeneradorClaves();
+        GeneradorClaves gen = new GeneradorClaves();
         gen.generarClave();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
-        String fecha=sdf.format(new Date());
-        DBSistemaGestion helper= new DBSistemaGestion(NuevaOfertaG.this);
-        for(int i=0; i<count;i++) {
-            if(iditems[i]!=null&&!descripcion[i].getText().toString().equals("FILA BORRADA")){
+        String fecha = sdf.format(new Date());
+        DBSistemaGestion helper = new DBSistemaGestion(NuevaOfertaG.this);
+        for (int i = 0; i < count; i++) {
+            if (iditems[i] != null && !descripcion[i].getText().toString().equals("FILA BORRADA")) {
                 IVKardex detalle = new IVKardex(
                         gen.generarClave(),
                         Double.parseDouble(cantidad[i].getText().toString()),
@@ -1820,20 +1888,20 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                         Double.parseDouble(precio_real[i].getText().toString()),//precio real total
                         solicitado[i].getText().toString(),//descuento solicitado
                         Double.parseDouble(descuento[i].getText().toString()),//descuento solicitado
-                        (Double.parseDouble(preciounitario[i])*Double.parseDouble(cantidad[i].getText().toString()))*(Double.parseDouble(descuento[i].getText().toString())/100), //descuento real en dolares
+                        (Double.parseDouble(preciounitario[i]) * Double.parseDouble(cantidad[i].getText().toString())) * (Double.parseDouble(descuento[i].getText().toString()) / 100), //descuento real en dolares
                         id_trans,
                         bodega_id,
                         iditems[i],
                         idpadres[i],
                         keypadres[i],
                         descpromo[i],
-                        numprecio[i],0.0,0,fecha);
-                System.out.println("IVKardex generado: "+detalle.toString());
+                        numprecio[i], 0.0, 0, fecha);
+                System.out.println("IVKardex generado: " + detalle.toString());
                 ivks.add(detalle);
             }
         }
         helper.close();
-        return  ivks;
+        return ivks;
     }
 
     class GuardarDetallesTask extends AsyncTask<String, Void, Void> {
@@ -1867,7 +1935,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             DBSistemaGestion helper = new DBSistemaGestion(NuevaOfertaG.this);
             try {
                 List<IVKardex> list = generarDetalles(id_trans, bodega_id);
-                for(IVKardex ivk: list){
+                for (IVKardex ivk : list) {
                     helper.crearIVKardex(ivk);
                     Thread.sleep(100);
                 }
@@ -1882,52 +1950,58 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.agregar:
-                if(count>0){
+                if (count > 0) {
                     agregarFila();
-                }else{
-                    if(cli_id!=null){
+                } else {
+                    if (cli_id != null) {
                         agregarFila();
-                    }else{
+                    } else {
                         autoCompleteCliente.requestFocus();
                         autoCompleteCliente.setError(getString(R.string.info_no_select_cli));
                     }
                 }
                 break;
             case R.id.editar:
-                if(editar.isChecked()){
+                if (editar.isChecked()) {
                     System.out.println("Editando");
                     //si esta habilitado
-                    eliminar.setEnabled(false);eliminar.setChecked(false);
-                    for(int i =0; i<count; i++){
+                    eliminar.setEnabled(false);
+                    eliminar.setChecked(false);
+                    for (int i = 0; i < count; i++) {
                         seleccion[i].setChecked(false);
                     }
-                }else{
-                    agregar.setEnabled(true);guardar.setEnabled(true);
+                } else {
+                    agregar.setEnabled(true);
+                    guardar.setEnabled(true);
                     eliminar.setEnabled(true);
                     System.out.println("Editar");
-                    eliminar.setEnabled(true);eliminar.setChecked(false);
-                    for(int i =0; i<count; i++){
+                    eliminar.setEnabled(true);
+                    eliminar.setChecked(false);
+                    for (int i = 0; i < count; i++) {
                         seleccion[i].setChecked(false);
                     }
                 }
                 break;
             case R.id.eliminar:
                 System.out.println("Metodo borrar");
-                if(eliminar.isChecked()){
+                if (eliminar.isChecked()) {
                     System.out.println("Borrando");
                     //si esta habilitado
-                    editar.setEnabled(false);editar.setChecked(false);
-                    for(int i =0; i<count; i++){
+                    editar.setEnabled(false);
+                    editar.setChecked(false);
+                    for (int i = 0; i < count; i++) {
                         seleccion[i].setChecked(false);
                     }
-                }else{
-                    agregar.setEnabled(true);guardar.setEnabled(true);
+                } else {
+                    agregar.setEnabled(true);
+                    guardar.setEnabled(true);
                     editar.setEnabled(true);
                     System.out.println("Borrar");
-                    eliminar.setEnabled(true);eliminar.setChecked(false);
-                    for(int i =0; i<count; i++){
+                    eliminar.setEnabled(true);
+                    eliminar.setChecked(false);
+                    for (int i = 0; i < count; i++) {
                         seleccion[i].setChecked(false);
                     }
                 }
@@ -1935,14 +2009,14 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             case R.id.guardar:
                 System.out.println("Intentando guardar:");
                 ExtraerConfiguraciones ext = new ExtraerConfiguraciones(NuevaOfertaG.this);
-                boolean conf_observacion = ext.getBoolean(getString(R.string.key_act_obs),true);
+                boolean conf_observacion = ext.getBoolean(getString(R.string.key_act_obs), true);
                 if (conf_observacion) {
                     if (!validarCamposVacios()) {
-                        if(consu_final==1){
-                            if(!validarCamposVaciosCliente()){
+                        if (consu_final == 1) {
+                            if (!validarCamposVaciosCliente()) {
                                 guardarTransaccion();
                             }
-                        }else{
+                        } else {
                             guardarTransaccion();
                         }
                     }
@@ -1950,6 +2024,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_nueva_oferta, menu);
@@ -1973,7 +2048,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                 onBackPressed();
                 return true;
             case R.id.action_change_client:
-                if(!cli_id.isEmpty()){
+                if (!cli_id.isEmpty()) {
                     android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(NuevaOfertaG.this);
                     alertDialogBuilder
                             .setTitle("Cambiar Cliente")
@@ -1994,7 +2069,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.action_view_carter:
-                if(!this.cli_id.isEmpty()){
+                if (!this.cli_id.isEmpty()) {
                     generarReporteCartera(this.cli_id);
                 }
                 break;

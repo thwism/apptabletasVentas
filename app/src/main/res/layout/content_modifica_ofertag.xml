@@ -42,7 +42,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_alignTop="@+id/thumbnail"
                     android:layout_toRightOf="@+id/thumbnail"
-                    android:text="Config. Transaccion"
+                    android:text="Config. Transacción"
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
 
                 <TableLayout
@@ -63,7 +63,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="Emision"
+                            android:text="Emisión"
                             android:textColor="@color/textColorPrimary"
                             android:layout_weight="1" />
                         <TextView
@@ -90,7 +90,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:textColor="@color/textColorPrimary"
-                            android:text="Transaccion"
+                            android:text="Transacción"
                             android:layout_weight="1" />
                         <TextView
                             android:id="@+id/col3"
@@ -193,7 +193,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_alignTop="@+id/thumbnail"
                     android:layout_toRightOf="@+id/thumbnail"
-                    android:text="Informacion del Cliente"
+                    android:text="Información del Cliente"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_marginBottom="5dp"/>
 
@@ -216,7 +216,7 @@
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:gravity="center_vertical"
                             android:textColor="@color/textColorPrimary"
-                            android:text="Cedula/RUC"
+                            android:text="Cédula/RUC"
                             android:paddingLeft="16dp"
                             android:layout_weight="1" />
                         <TextView
@@ -228,7 +228,7 @@
                             android:ems="15"
                             android:maxEms="15"
                             android:textColor="@color/textColorPrimary"
-                            android:hint="Numero de Cedula/RUC"
+                            android:hint="Número de Cédula/RUC"
                             android:textAppearance="?android:attr/textAppearanceSmall" />
                     </TableRow>
                     <TableRow
@@ -294,7 +294,7 @@
                             android:textColor="@color/textColorPrimary"
                             android:gravity="center_vertical"
                             android:paddingLeft="16dp"
-                            android:text="Direccion"
+                            android:text="Dirección"
                             android:layout_weight="1" />
                         <TextView
                             android:id="@+id/nuevoPedidoDireccion"
@@ -305,7 +305,7 @@
                             android:ems="15"
                             android:maxEms="15"
                             android:textColor="@color/textColorPrimary"
-                            android:hint="Direccion"
+                            android:hint="Dirección"
                             android:textAppearance="?android:attr/textAppearanceSmall" />
                     </TableRow>
                     <TableRow
@@ -319,7 +319,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:gravity="center_vertical"
-                            android:text="Telefono"
+                            android:text="Teléfono"
                             android:paddingLeft="16dp"
                             android:textColor="@color/textColorPrimary"
                             android:layout_weight="1" />
@@ -329,7 +329,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_weight="4"
-                            android:hint="Telefono"
+                            android:hint="Teléfono"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             style="@style/login_edit_text"/>
                     </TableRow>
@@ -357,7 +357,7 @@
                             android:ems="15"
                             android:maxEms="15"
                             android:textColor="@color/textColorPrimary"
-                            android:hint="Correro Electronico"
+                            android:hint="Correo Electrónico"
                             android:textAppearance="?android:attr/textAppearanceSmall" />
                     </TableRow>
                     <TableRow
@@ -370,7 +370,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:gravity="center_vertical"
-                            android:text="Observacion"
+                            android:text="Observación"
                             android:paddingLeft="16dp"
                             android:textColor="@color/textColorPrimary"
                             android:layout_weight="1" />
@@ -576,7 +576,7 @@
                             android:ems="15"
                             android:maxEms="15"
                             android:textColor="@color/textColorPrimary"
-                            android:hint="Numero de Cedula/RUC"
+                            android:hint="Número de Cédula/RUC"
                             android:textAppearance="?android:attr/textAppearanceSmall" />
                     </TableRow>
                     <TableRow
@@ -642,7 +642,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:gravity="center_vertical"
-                            android:text="Direccion"
+                            android:text="Dirección"
                             android:paddingLeft="16dp"
                             android:textColor="@color/textColorPrimary"
                             android:layout_weight="1" />
@@ -657,7 +657,7 @@
                             android:ems="15"
                             android:maxEms="15"
                             android:textColor="@color/textColorPrimary"
-                            android:hint="Direccion"
+                            android:hint="Dirección"
                             android:textAppearance="?android:attr/textAppearanceSmall" />
                     </TableRow>
                     <TableRow
@@ -669,7 +669,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:gravity="center_vertical"
-                            android:text="Telefono"
+                            android:text="Teléfono"
                             android:paddingLeft="16dp"
                             android:textColor="@color/textColorPrimary"
                             android:layout_weight="1" />
@@ -685,7 +685,7 @@
                             android:ems="15"
                             android:maxEms="15"
                             android:textColor="@color/textColorPrimary"
-                            android:hint="Telefono"
+                            android:hint="Teléfono"
                             android:textAppearance="?android:attr/textAppearanceSmall"/>
                     </TableRow>
                 </TableLayout>
@@ -746,7 +746,7 @@
                             android:ems="12"
                             android:layout_marginRight="5dp"
                             android:textColor="@color/textColorPrimary"
-                            android:hint="Atencion"
+                            android:hint="Atención"
                             android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
