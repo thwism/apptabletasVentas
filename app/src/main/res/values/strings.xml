@@ -612,6 +612,7 @@
     <string name="pref_ws_ubicacion_gps">/v1/updategps/update</string>
     <string name="pref_ws_cierreventas">/v1/cierreventas</string>
     <string name="pref_ws_balance">/v1/balance</string>
+    <string name="pref_ws_get_estados_trans">/v1/consultarestadostrans</string>
 
     <string name="pref_header_conexion">Conexión</string>
     <string name="pref_header_decimales">Decimales</string>
@@ -778,6 +779,7 @@
     <string name="key_ws_cierreventas">ws_cierreventas</string>
     <string name="key_ws_balance">ws_balance</string>
     <string name="key_ws_promedios">ws_promedios</string>
+    <string name="key_ws_get_estados_trans">ws_get_estados_trans</string>
     <string name="title_activity_configuracion_servidor">Conexion al Servidor</string>
     <string name="pref_header_sesion">Sesion Actual</string>
     <string name="pref_header_monedas">Formato decimales en transaccion</string>

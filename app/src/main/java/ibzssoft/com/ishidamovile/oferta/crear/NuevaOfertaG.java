@@ -490,7 +490,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                     }
                     break;
             }
-            agregarFila();
+            agregarFila(false);
             dbSistemaGestion.close();
         }
     }
@@ -748,7 +748,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
     /***
      * Metodos para agregar/ eliminar / editar filas de la tabla de items
      */
-    public void agregarFila() {
+    public void agregarFila(boolean descripcion_activa) {
 
         if (this.count < this.limite) {
             editar.setEnabled(false);
@@ -782,6 +782,11 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             this.descripcion[count].setGravity(Gravity.CENTER_VERTICAL);
             this.descripcion[count].setTextSize(14);
             this.descripcion[count].setPadding(5, 5, 5, 5);
+            if (descripcion_activa) {
+                this.descripcion[count].requestFocus();
+                this.descripcion[count].setSelection(this.descripcion[count].getText().length());
+            }
+
             this.descripcion[count].setOnItemClickListener(adapter);
             this.descripcion[count].setAdapter(adapter);
 
@@ -825,7 +830,6 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             this.solicitado[count].setGravity(Gravity.CENTER);
             this.solicitado[count].setEnabled(false);
             this.solicitado[count].setTextSize(14);
-            this.solicitado[count].setText("0.0");
             this.solicitado[count].setPadding(5, 5, 5, 5);
 
             this.total[count] = new EditText(this);
@@ -840,12 +844,14 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
 
             this.seleccion[count] = new CheckBox(this);
             this.seleccion[count].setMinimumHeight(50);
-        /*Agregando identificador por fila*/
+
+            /*Agregando identificador por fila*/
             this.seleccion[count].setTag(count);
             this.cantidad[count].setTag(count);
             this.solicitado[count].setTag(count);
             this.keypadres[count] = new GeneradorClaves().generarClave();
-        /*listener para campo cantidad*/
+
+            /*listener para campo cantidad*/
             this.cantidad[count].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -858,7 +864,6 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                         } else if (verificarExistenciaDescuento(cli_id, iditems[position])) {
                             double desc = calcularDescuentoItem(cli_id, iditems[position], position);
                             descuento[position].setText(redondearNumero(desc, "0.00"));
-                            //solicitado[position].setText(redondearNumero(desc));
                             cantidad[position].setEnabled(true);
                             descripcion[position].setEnabled(false);
                             solicitado[position].requestFocus();
@@ -906,9 +911,10 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                             agregar.setEnabled(true);
                             editar.setChecked(false);
                             solicitado[position].setEnabled(true);
+                            solicitado[position].clearFocus();
+
                             calcularTotalTransaccion();
                             agregarFilaOpcional();
-
                         } else {
                             solicitado[position].requestFocus();
                             solicitado[position].setError(getString(R.string.info_field_no_valid));
@@ -921,6 +927,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                         agregar.setEnabled(true);
                         editar.setChecked(false);
                         solicitado[position].setEnabled(true);
+                        solicitado[position].clearFocus();
                         calcularTotalTransaccion();
                         agregarFilaOpcional();
                     }
@@ -1094,20 +1101,21 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             eliminar.setEnabled(false);
             editar.setEnabled(false);
 
-            bandiva[posicion] = 0;
-            bandpromo[posicion] = 0;
-            numprecio[posicion] = 0;
-            iditems[posicion] = null;
-            numprecio[posicion] = 0;
-            preciounitario[posicion] = null;
-            descpromo[posicion] = 0;
-            descuento[posicion].setText("0.00");
-            solicitado[posicion].setText("");
-            //idpadres[posicion] = null;
+//            bandiva[posicion] = 0;
+//            bandpromo[posicion] = 0;
+//            numprecio[posicion] = 0;
+//            iditems[posicion] = null;
+//            numprecio[posicion] = 0;
+//            preciounitario[posicion] = null;
+//            descpromo[posicion] = 0;
+//            descuento[posicion].setText("0.00");
+//            solicitado[posicion].setText("");
+//            idpadres[posicion] = null;
+
             descripcion[posicion].setEnabled(true);
             descripcion[posicion].requestFocus();
             descripcion[posicion].setSelection(descripcion[posicion].getText().length());
-            cantidad[posicion].setEnabled(false);
+//            cantidad[posicion].setEnabled(false);
         } else {
             Toast ts = Toast.makeText(getApplicationContext(), resources.getString(R.string.info_fila_promocion_del), Toast.LENGTH_SHORT);
             ts.show();
@@ -1186,16 +1194,22 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
     public boolean calcularSubtotalItem(int row) {
         double cnt = Double.parseDouble(cantidad[row].getText().toString());
         double precio = Double.parseDouble(preciounitario[row]);
-        double porcentaje = Double.parseDouble(solicitado[row].getText().toString()) / 100;
 //        double porcentaje = Double.parseDouble(descuento[row].getText().toString()) / 100;
 
-        double precio_total = cnt * precio;
-        double desc = precio_total * porcentaje;
-        double precioreal = (precio_total - desc) / cnt;
-        double subtotal = cnt * precioreal;
-        precio_real[row].setText(redondearNumero(precioreal, this.numdec_punitario));
+        /*** Se cambia por el descuento solicitado ya que el cliente desea que el precio real se calcule en base a este. ***/
+        double p_solicitado = Double.parseDouble(solicitado[row].getText().toString().isEmpty() ? "0" : solicitado[row].getText().toString());
+        double porcentaje = p_solicitado / 100;
+
+        double desc = precio * porcentaje;
+
+        double precioreal = precio - desc;
+        String v_precioreal = redondearNumero(precioreal, this.numdec_punitario);
+        precio_real[row].setText(v_precioreal);
+
+        double subtotal = cnt * Double.parseDouble(v_precioreal);
         total[row].setText(redondearNumero(subtotal, this.numdec_ptotal));
-        if (Double.parseDouble(solicitado[row].getText().toString()) > 0) descpromo[row] = 1;
+
+        if (p_solicitado > 0) descpromo[row] = 1;
 //        if (Double.parseDouble(descuento[row].getText().toString()) > 0) descpromo[row] = 1;
         return true;
     }
@@ -1289,7 +1303,8 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
     public int numeroEditados() {
         int result = 0;
         for (int i = 0; i < count; i++) {
-            if (descripcion[i].isEnabled() || cantidad[i].isEnabled()) {
+//            if (descripcion[i].isEnabled() || cantidad[i].isEnabled()) {
+            if (descripcion[i].isEnabled()) {
                 result++;
             }
         }
@@ -1732,7 +1747,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
-                agregarFila();
+                agregarFila(true);
             }
         });
         quitDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -1843,7 +1858,7 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
                 String hora = sdf2.format(new Date());
                 SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
                 String modificacion = sdf3.format(new Date());
-                Transaccion trans = new Transaccion(gen.generarClave(), transaccion.getText().toString() + "-" + getIntent().getStringExtra("identificador"), obtenerObservaciones(), helper.numeroTransacciones(getIntent().getStringExtra("transaccion") + "-" + getIntent().getStringExtra("identificador"), idvendedor), fecha, hora, 0, idvendedor, cli_id, null, "0000", modificacion);
+                Transaccion trans = new Transaccion(gen.generarClave(), transaccion.getText().toString() + "-" + getIntent().getStringExtra("identificador"), obtenerObservaciones(), helper.numeroTransacciones(getIntent().getStringExtra("transaccion") + "-" + getIntent().getStringExtra("identificador"), idvendedor), fecha, hora, 0, idvendedor, cli_id, null, "0000", modificacion, 0); //Aqui cambiar no dejar quemado 0 que corresponde a estado desaprobado
                 helper.crearTransaccion(trans);
                 helper.close();
                 GuardarDetallesTask taskSaveDetalles = new GuardarDetallesTask();
@@ -1953,10 +1968,10 @@ public class NuevaOfertaG extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.agregar:
                 if (count > 0) {
-                    agregarFila();
+                    agregarFila(true);
                 } else {
                     if (cli_id != null) {
-                        agregarFila();
+                        agregarFila(true);
                     } else {
                         autoCompleteCliente.requestFocus();
                         autoCompleteCliente.setError(getString(R.string.info_no_select_cli));

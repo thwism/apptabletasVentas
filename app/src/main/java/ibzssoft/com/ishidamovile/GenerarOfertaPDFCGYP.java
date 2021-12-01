@@ -38,9 +38,7 @@ import ibzssoft.com.modelo.IVKardex;
 import ibzssoft.com.modelo.Transaccion;
 import ibzssoft.com.storage.DBSistemaGestion;
 
-/**
- * Created by Eduardo
- **/
+
 public class GenerarOfertaPDFCGYP {
     private SimpleDateFormat sdf;
     private Transaccion transaccion;

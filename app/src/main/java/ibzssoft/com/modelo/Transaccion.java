@@ -21,6 +21,7 @@ public class Transaccion {
     public static final String FIELD_forma_cobro_id= "tra_forma_cobro_id";
     public static final String FIELD_fecha_grabado = "tra_fecha_grabado";
     public static final String FIELD_fecha_envio= "tra_fecha_envio";
+    public static final String FIELD_estado= "tra_estado";
     public static final String TRIGGER_UPDATE_FECHA_ENVIO = "trigger_update_fecha_envio";
 
     public static final String CREATE_DB_TABLE="create table "+TABLE_NAME+"( "+
@@ -37,7 +38,8 @@ public class Transaccion {
             FIELD_cliente_id+ " text not null,"+
             FIELD_forma_cobro_id+ " text,"+
             FIELD_fecha_grabado+" datetime not null,"+
-            FIELD_fecha_envio+" datetime default null,"
+            FIELD_fecha_envio+" datetime default null," +
+            FIELD_estado+" integer default 0, "
             +"FOREIGN KEY("+FIELD_cliente_id+") REFERENCES "+ Cliente.TABLE_NAME+"("+Cliente.FIELD_idprovcli+"),"
             +"FOREIGN KEY("+FIELD_vendedor_id+") REFERENCES "+ Vendedor.TABLE_NAME+"("+Vendedor.FIELD_idvendedor+")"
             +"FOREIGN KEY("+FIELD_forma_cobro_id+") REFERENCES "+ TSFormaCobroPago.TABLE_NAME+"("+TSFormaCobroPago.FIELD_idforma+")"
@@ -57,6 +59,7 @@ public class Transaccion {
     private String referencia;
     private String fecha_grabado;
     private String fecha_envio;
+    private int estado;
     /**
      * estado de cuenta
      * cuales son las facturas
@@ -89,6 +92,22 @@ public class Transaccion {
         this.forma_cobro_id=forma_cobro_id;
         this.referencia=referencia;
         this.fecha_grabado = fecha_grabado;
+    }
+
+    public Transaccion(String id_trans,String identificador, String descripcion,int numTransaccion, String fecha_trans, String hora_trans, int band_enviado, String vendedor_id, String cliente_id, String forma_cobro_id,String referencia,String fecha_grabado, int estado) {
+        this.id_trans=id_trans;
+        this.identificador = identificador;
+        this.descripcion = descripcion;
+        this.numTransaccion = numTransaccion;
+        this.fecha_trans = fecha_trans;
+        this.hora_trans = hora_trans;
+        this.band_enviado = band_enviado;
+        this.vendedor_id=vendedor_id;
+        this.cliente_id = cliente_id;
+        this.forma_cobro_id=forma_cobro_id;
+        this.referencia=referencia;
+        this.fecha_grabado = fecha_grabado;
+        this.estado = estado;
     }
 
     public Transaccion() {
@@ -207,6 +226,14 @@ public class Transaccion {
         this.fecha_envio = fecha_envio;
     }
 
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
     @Override
     public String toString() {
         return "Transaccion{" +
@@ -224,6 +251,7 @@ public class Transaccion {
                 ", referencia='" + referencia + '\'' +
                 ", fecha_grabado='" + fecha_grabado + '\'' +
                 ", fecha_envio='" + fecha_envio + '\'' +
+                ", estado=" + estado +
                 '}';
     }
 }

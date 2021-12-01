@@ -671,8 +671,7 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                             } else if (verificarExistenciaDescuento(cli_id, iditems[position])) {
                                 double desc = calcularDescuentoItem(cli_id, iditems[position], position);
                                 descuento[position].setText(redondearNumero(desc));
-                                //solicitado[position].setText(redondearNumero(desc));
-                                cantidad[position].setEnabled(false);
+                                cantidad[position].setEnabled(true);
                                 descripcion[position].setEnabled(false);
                                 solicitado[position].requestFocus();
                                 solicitado[position].setSelection(solicitado[position].getText().length());
@@ -681,7 +680,7 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                                 imm.showSoftInput(solicitado[position], InputMethodManager.SHOW_IMPLICIT);
                             } else if (verificarExistenciaPromocion(iditems[position], cant)) {
                                 calcularPromociones(iditems[position], cant, keypadres[position], position);
-                                cantidad[position].setEnabled(false);
+                                cantidad[position].setEnabled(true);
                                 descripcion[position].setEnabled(false);
                                 solicitado[position].requestFocus();
                                 solicitado[position].setSelection(solicitado[position].getText().length());
@@ -689,7 +688,7 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                                 imm.showSoftInput(solicitado[position], InputMethodManager.SHOW_IMPLICIT);
                             } else {
-                                cantidad[position].setEnabled(false);
+                                cantidad[position].setEnabled(true);
                                 descripcion[position].setEnabled(false);
                                 solicitado[position].requestFocus();
                                 solicitado[position].setSelection(solicitado[position].getText().length());
@@ -697,6 +696,8 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                                 imm.showSoftInput(solicitado[position], InputMethodManager.SHOW_IMPLICIT);
                             }
+                            calcularSubtotalItem(position);
+                            calcularTotalTransaccion();
                         } else {
                             cantidad[position].requestFocus();
                             cantidad[position].setError(getString(R.string.info_field_no_valid));
@@ -716,7 +717,9 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                                 eliminar.setEnabled(true);
                                 agregar.setEnabled(true);
                                 editar.setChecked(false);
-                                solicitado[position].setEnabled(false);
+                                solicitado[position].setEnabled(true);
+                                solicitado[position].clearFocus();
+
                                 calcularTotalTransaccion();
                                 agregarFilaOpcional();
 
@@ -731,7 +734,8 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                             eliminar.setEnabled(true);
                             agregar.setEnabled(true);
                             editar.setChecked(false);
-                            solicitado[position].setEnabled(false);
+                            solicitado[position].setEnabled(true);
+                            solicitado[position].clearFocus();
                             calcularTotalTransaccion();
                             agregarFilaOpcional();
                         }
@@ -744,9 +748,7 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                         if (eliminar.isChecked()) {
                             eliminarFila(position);
                         } else if (editar.isChecked()) {
-                            System.out.println("Intentando editar fila: " + position);
                             if (numeroSeleccionados() == 1 && numeroEditados() == 0 && iditems[position] != null) {
-                                System.out.println("Numeros de editados: " + numeroEditados());
                                 modificarFila(position);
                             }
                         } else {
@@ -851,7 +853,6 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
             this.solicitado[count].setGravity(Gravity.CENTER);
             this.solicitado[count].setEnabled(false);
             this.solicitado[count].setTextSize(14);
-            this.solicitado[count].setText("");
             this.solicitado[count].setPadding(5, 5, 5, 5);
 
             this.total[count] = new EditText(this);
@@ -883,9 +884,8 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                             crearDialogOptionsDescPromo(position);
                         } else if (verificarExistenciaDescuento(cli_id, iditems[position])) {
                             double desc = calcularDescuentoItem(cli_id, iditems[position], position);
-                            //solicitado[position].setText(redondearNumero(desc));
                             descuento[position].setText(redondearNumero(desc));
-                            cantidad[position].setEnabled(false);
+                            cantidad[position].setEnabled(true);
                             descripcion[position].setEnabled(false);
                             solicitado[position].requestFocus();
                             solicitado[position].setSelection(solicitado[position].getText().length());
@@ -894,7 +894,7 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                             imm.showSoftInput(solicitado[position], InputMethodManager.SHOW_IMPLICIT);
                         } else if (verificarExistenciaPromocion(iditems[position], cant)) {
                             calcularPromociones(iditems[position], cant, keypadres[position], position);
-                            cantidad[position].setEnabled(false);
+                            cantidad[position].setEnabled(true);
                             descripcion[position].setEnabled(false);
                             solicitado[position].requestFocus();
                             solicitado[position].setSelection(solicitado[position].getText().length());
@@ -902,7 +902,7 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                             imm.showSoftInput(solicitado[position], InputMethodManager.SHOW_IMPLICIT);
                         } else {
-                            cantidad[position].setEnabled(false);
+                            cantidad[position].setEnabled(true);
                             descripcion[position].setEnabled(false);
                             solicitado[position].requestFocus();
                             solicitado[position].setSelection(solicitado[position].getText().length());
@@ -910,6 +910,8 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                             imm.showSoftInput(solicitado[position], InputMethodManager.SHOW_IMPLICIT);
                         }
+                        calcularSubtotalItem(position);
+                        calcularTotalTransaccion();
                     } else {
                         cantidad[position].requestFocus();
                         cantidad[position].setError(getString(R.string.info_field_no_valid));
@@ -929,7 +931,10 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                             eliminar.setEnabled(true);
                             agregar.setEnabled(true);
                             editar.setChecked(false);
-                            solicitado[position].setEnabled(false);
+
+                            solicitado[position].setEnabled(true);
+                            solicitado[position].clearFocus();
+
                             calcularTotalTransaccion();
                             agregarFilaOpcional();
                         } else {
@@ -943,7 +948,10 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                         eliminar.setEnabled(true);
                         agregar.setEnabled(true);
                         editar.setChecked(false);
-                        solicitado[position].setEnabled(false);
+
+                        solicitado[position].setEnabled(true);
+                        solicitado[position].clearFocus();
+
                         calcularTotalTransaccion();
                         agregarFilaOpcional();
                     }
@@ -956,9 +964,7 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                     if (eliminar.isChecked()) {
                         eliminarFila(position);
                     } else if (editar.isChecked()) {
-                        System.out.println("Intentando editar fila: " + position);
                         if (numeroSeleccionados() == 1 && numeroEditados() == 0 && iditems[position] != null) {
-                            System.out.println("Numeros de editados: " + numeroEditados());
                             modificarFila(position);
                         }
                     } else {
@@ -1000,21 +1006,22 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
             eliminar.setEnabled(false);
             editar.setEnabled(false);
 
-            bandiva[posicion] = 0;
-            bandpromo[posicion] = 0;
-            numprecio[posicion] = 0;
-            iditems[posicion] = null;
-            numprecio[posicion] = 0;
-            preciounitario[posicion] = null;
-            descpromo[posicion] = 0;
-            descuento[posicion].setText("0.00");
-            solicitado[posicion].setText("");
-            //idpadres[posicion] = null;
+//            bandiva[posicion] = 0;
+//            bandpromo[posicion] = 0;
+//            numprecio[posicion] = 0;
+//            iditems[posicion] = null;
+//            numprecio[posicion] = 0;
+//            preciounitario[posicion] = null;
+//            descpromo[posicion] = 0;
+//            descuento[posicion].setText("0.00");
+//            solicitado[posicion].setText("");
+//            idpadres[posicion] = null;
 
             descripcion[posicion].setEnabled(true);
             descripcion[posicion].requestFocus();
             descripcion[posicion].setSelection(descripcion[posicion].getText().length());
-            cantidad[posicion].setEnabled(false);
+            cantidad[posicion].setEnabled(true);
+            solicitado[posicion].setEnabled(true);
         } else {
             Toast ts = Toast.makeText(getApplicationContext(), resources.getString(R.string.info_fila_promocion_del), Toast.LENGTH_SHORT);
             ts.show();
@@ -1035,7 +1042,8 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
     public int numeroEditados() {
         int result = 0;
         for (int i = 0; i < count; i++) {
-            if (descripcion[i].isEnabled() || cantidad[i].isEnabled()) {
+//            if (descripcion[i].isEnabled() || cantidad[i].isEnabled()) {
+            if (descripcion[i].isEnabled()) {
                 result++;
             }
         }
@@ -1269,16 +1277,22 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
         System.out.println("Calculando subtotal item");
         double cnt = Double.parseDouble(cantidad[row].getText().toString());
         double precio = Double.parseDouble(preciounitario[row]);
-        double porcentaje = Double.parseDouble(descuento[row].getText().toString()) / 100;
+//        double porcentaje = Double.parseDouble(descuento[row].getText().toString()) / 100;
 
-        double precio_total = cnt * precio;
-        double desc = precio_total * porcentaje;
-        double precioreal = (precio_total - desc) / cnt;
-        double subtotal = cnt * precioreal;
-        precio_real[row].setText(redondearNumero(precioreal));
+        /*** Se cambia por el descuento solicitado ya que el cliente desea que el precio real se calcule en base a este. ***/
+        double p_solicitado = Double.parseDouble(solicitado[row].getText().toString().isEmpty() ? "0" : solicitado[row].getText().toString());
+        double porcentaje = p_solicitado / 100;
+
+        double desc = precio * porcentaje;
+
+        double precioreal = precio - desc;
+        String v_precioreal = redondearNumero(precioreal);
+        precio_real[row].setText(v_precioreal);
+
+        double subtotal = cnt * Double.parseDouble(v_precioreal);
         total[row].setText(redondearNumero(subtotal));
-        //System.out.println("Calculando subtotal item porcentaje: "+porcentaje+" precio: "+precio+" precio_real: "+precio_real);
-        if (Double.parseDouble(descuento[row].getText().toString()) > 0) descpromo[row] = 1;
+
+//        if (Double.parseDouble(descuento[row].getText().toString()) > 0) descpromo[row] = 1;
         return true;
     }
 
@@ -1790,9 +1804,7 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                     if (eliminar.isChecked()) {
                         eliminarFila(position);
                     } else if (editar.isChecked()) {
-                        System.out.println("Intentando editar fila: " + position);
                         if (numeroSeleccionados() == 1 && numeroEditados() == 0 && iditems[position] != null) {
-                            System.out.println("Numeros de editados: " + numeroEditados());
                             modificarFila(position);
                         }
                     } else {
@@ -1920,6 +1932,7 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
         layout.startAnimation(animation);
     }
 
+
     /*
         Metodo para redondear numero a 2 decimales
      */
@@ -1970,7 +1983,7 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                             cursor1.getInt(cursor1.getColumnIndex(Transaccion.FIELD_band_enviado)),
                             cursor1.getString(cursor1.getColumnIndex(Transaccion.FIELD_vendedor_id)),
                             cli_id, null,
-                            cursor1.getString(cursor1.getColumnIndex(Transaccion.FIELD_referencia)), fecha);
+                            cursor1.getString(cursor1.getColumnIndex(Transaccion.FIELD_referencia)), fecha, 0);
                 }
                 helper.modificarTransaccion(trans);
                 helper.close();
