@@ -24,6 +24,7 @@ import java.util.List;
 import ibzssoft.com.enviar.EnviarTransaccion;
 import ibzssoft.com.ishidamovile.AprobacionOferta;
 import ibzssoft.com.ishidamovile.GenerarOfertaPDF;
+import ibzssoft.com.ishidamovile.GenerarOfertaPDFCGYP;
 import ibzssoft.com.ishidamovile.MainActivity;
 import ibzssoft.com.ishidamovile.R;
 import ibzssoft.com.ishidamovile.oferta.modificar.ModificaOfertaG;
@@ -235,7 +236,7 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                     }else Toast.makeText(context,context.getString(R.string.title_transaction_send_already),Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.itemallPDF:
-                    GenerarOfertaPDF generarPDF1 = new GenerarOfertaPDF(context,idtrans);
+                    GenerarOfertaPDFCGYP generarPDF1 = new GenerarOfertaPDFCGYP(context,idtrans);
                     generarPDF1.ejecutarProceso();
                     break;
                 case R.id.itemallEnviarPDF:
