@@ -69,7 +69,6 @@ import ibzssoft.com.modelo.IVKardex;
 import ibzssoft.com.modelo.PCKardex;
 import ibzssoft.com.modelo.Transaccion;
 import ibzssoft.com.recibir.RecibirOfertaAprobacion;
-import ibzssoft.com.recibir.RecibirTransaccionesConEstado;
 import ibzssoft.com.storage.DBSistemaGestion;
 
 public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextListener {
@@ -125,8 +124,14 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        transacciones = new ArrayList<>();
+
         this.consultarEstadoTransacciones();
+
+
+    }
+
+    public void crearVista() {
+        transacciones = new ArrayList<>();
         this.consultarTransacciones();
         mAdapter = new TransOfertaAdapter(getActivity(), this.transacciones, this.empresa, this.opcion, this.import_of);
         countTrans.setText(String.valueOf(mAdapter.getItemCount()));
@@ -134,6 +139,7 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
         prepareFilterSpinner();
         prepareSortSpinner();
         prepareComodinSpinner();
+
     }
 
     private void prepareFilterSpinner() {
@@ -223,8 +229,6 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
         Cursor cursor = helper.consultarTransacciones(accesos, 0, catalogo, orden, comodin);
         obtenerTransaccionesEnviadas(cursor);
         helper.close();
-
-
     }
 
     @Override
@@ -279,9 +283,14 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
             } while (cur.moveToNext());
         }
         cur.close();
-        numTrans = numTrans.substring(0, numTrans.length() - 1);
-        RecibirTransaccionesConEstado recibirTransEstado = new RecibirTransaccionesConEstado(getActivity(), codTrans, numTrans);
-        recibirTransEstado.ejecutarTarea();
+        if (numTrans.isEmpty()) {
+            crearVista();
+        } else {
+            numTrans = numTrans.substring(0, numTrans.length() - 1);
+            RecibirEstadoTransacciones recibirTransEstado = new RecibirEstadoTransacciones(getActivity(), codTrans, numTrans);
+            recibirTransEstado.ejecutarTarea();
+        }
+
     }
 
     /**
@@ -965,4 +974,83 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
             return result;
         }
     }
+
+    class RecibirEstadoTransacciones {
+        private Context context;
+        private String ip;
+        private String port;
+        private String url;
+        private String ws;
+        private String codigoTrans;
+        private String numTrans;
+
+
+        public RecibirEstadoTransacciones(Context context, String codigoTrans, String numTrans) {
+            this.context = context;
+            this.codigoTrans = codigoTrans;
+            this.numTrans = numTrans;
+            cargarPreferenciasConexion();
+        }
+
+        public void cargarPreferenciasConexion() {
+            ExtraerConfiguraciones extraerConfiguraciones = new ExtraerConfiguraciones(context);
+            ip = extraerConfiguraciones.get(context.getString(R.string.key_conf_ip), context.getString(R.string.pref_ip_default));
+            port = extraerConfiguraciones.get(context.getString(R.string.key_conf_port), context.getString(R.string.pref_port_default));
+            url = extraerConfiguraciones.get(context.getString(R.string.key_conf_url), context.getString(R.string.pref_url_default));
+            ws = extraerConfiguraciones.get(context.getString(R.string.key_ws_get_estados_trans), context.getString(R.string.pref_ws_get_estados_trans));
+
+        }
+
+        public void ejecutarTarea() {
+            RecibirEstadoTransaccionesTask taskRecibirTrans = new RecibirEstadoTransaccionesTask();
+            taskRecibirTrans.execute();
+        }
+
+        private class RecibirEstadoTransaccionesTask extends AsyncTask<String, Integer, Boolean> {
+
+
+            @Override
+            protected Boolean doInBackground(String... params) {
+                boolean result = false;
+                DBSistemaGestion helper = new DBSistemaGestion(context);
+                HttpClient httpClient = new DefaultHttpClient();
+                httpClient.getParams().setParameter("http.protocol.content-charset", HTTP.UTF_8);
+                HttpGet del = new HttpGet("http://" + ip + ":" + port + url + ws + "/" + codigoTrans + "/" + numTrans);
+                del.setHeader("content-type", "application/json");
+                try {
+                    HttpResponse resp = httpClient.execute(del);
+                    String respStr = EntityUtils.toString(resp.getEntity());
+                    JSONArray respJSON = new JSONArray(respStr);
+                    Gson gson = new Gson();
+                    String numReferencia = null;
+                    int count = 0;
+                    for (int i = 0; i < respJSON.length(); i++) {
+                        JSONObject obj = respJSON.getJSONObject(i);
+                        numReferencia = obj.getString("CodTrans") + "-" + obj.getString("NumTrans");
+                        if (helper.buscarTransaccionPorReferencia(numReferencia)) {
+                            helper.actualizarEstadoTransaccion(numReferencia, Integer.parseInt(obj.getString("estado")));
+                        }
+
+                        count++;
+                        System.out.println("Lo que recibe de la consulta al servicio web: " + count);
+                    }
+                    helper.close();
+                    Thread.sleep(50);
+                    result = true;
+                } catch (Exception ex) {
+                    Log.e("ServicioRest", "Error!", ex);
+                    result = false;
+                }
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean s) {
+                crearVista();
+//                Toast.makeText(context, "Estados de las transacciones descargados correctamente.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
 }
