@@ -205,13 +205,25 @@
             android:layout_marginRight="25dip"
             android:textSize="14dip"
             android:textStyle="bold" />
+        <TextView
+            android:id="@+id/filaTransaccionEstadoT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/filaTransaccionNro"
+            android:gravity="center_horizontal"
+            android:textColor="@color/successfull"
+            android:layout_marginRight="180dip"
+            android:textSize="14dp"
+            android:text="EST: "
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
 
         <TextView
             android:id="@+id/filaTransaccionReferencia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignBottom="@id/filaTransaccionNro"
+            android:layout_alignBottom="@id/filaTransaccionEstadoT"
             android:gravity="right"
             android:textColor="@color/colorPrimary"
             android:layout_marginRight="15dip"

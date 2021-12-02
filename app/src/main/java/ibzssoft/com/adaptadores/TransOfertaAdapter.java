@@ -146,7 +146,7 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
         private int bandenviado;
         private int opcion;
         private int estadoTrans;
-        private TextView nro_text, cli_text, est_text, mod_text, ref_text, fecha_envio;
+        private TextView nro_text, cli_text, est_text, mod_text, ref_text, fecha_envio, estadoTrans_text;
         private Context context;
 
         public ViewHolderTransOferta(View view, Context context) {
@@ -157,6 +157,7 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
             mod_text = (TextView) itemView.findViewById(R.id.filaTransaccionFecha);
             fecha_envio = (TextView) itemView.findViewById(R.id.filaTransaccionFechaEnvio);
             ref_text = (TextView) itemView.findViewById(R.id.filaTransaccionReferencia);
+            estadoTrans_text = (TextView) itemView.findViewById(R.id.filaTransaccionEstadoT);
             this.context = context;
             view.setOnClickListener(this);
             view.setOnCreateContextMenuListener(this);
@@ -187,6 +188,16 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
             } else {
                 est_text.setText(R.string.info_no_send);
                 est_text.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+            }
+
+            if(estadoTrans == 0){
+                estadoTrans_text.setText("EST: DESAPROBADO");
+            }else{
+                if(estadoTrans == 1){
+                    estadoTrans_text.setText("EST: APROBADO");
+                }else{
+                    estadoTrans_text.setText("EST: ");
+                }
             }
         }
 
