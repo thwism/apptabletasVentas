@@ -5,6 +5,9 @@ package ibzssoft.com.ishidamovile.general;
  */
 
 public enum EstadosTransaccion {
-    ESTADO_APROBADO,
-
+    ESTADO_0, //Desaprobado
+    ESTADO_1, // Aprobado
+    ESTADO_2, // Despachado
+    ESTADO_3, // Anulado
+    ESTADO_4 // Semidespachado
 }

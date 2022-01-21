@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
@@ -59,6 +60,7 @@ import ibzssoft.com.enviar.PKardex_Envio;
 import ibzssoft.com.enviar.Transaccion_Serialize_Envio;
 import ibzssoft.com.ishidamovile.CONST;
 import ibzssoft.com.ishidamovile.R;
+import ibzssoft.com.ishidamovile.Sincronizacion;
 import ibzssoft.com.ishidamovile.oferta.crear.NuevaOfertaG;
 import ibzssoft.com.ishidamovile.oferta.crear.NuevaOfertaJM;
 import ibzssoft.com.ishidamovile.oferta.crear.NuevaOfertaM;
@@ -79,11 +81,12 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
     private String[] accesos;
     private int opcion, orden, comodin;
     private static final String catalogo = "OFERTA";
-    private String empresa, grupo, ip, port, url, ws, ultmod;
+    private String empresa, grupo, ip, port, url, ws, ws_test, ultmod;
     private boolean import_of;
     private Spinner filterSpinner;
     private Spinner sortSpinner;
     private Spinner comodinSpinner;
+    boolean estado = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -118,16 +121,14 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
         ExtraerConfiguraciones ext = new ExtraerConfiguraciones(getActivity());
         this.import_of = ext.getBoolean(getString(R.string.key_conf_import_trans), false);
         this.ws = ext.get(getString(R.string.key_ws_clientes_all), getString(R.string.pref_ws_clientes_all));
+        this.ws_test = ext.get(getString(R.string.key_ws_test), getString(R.string.pref_ws_test));
         this.ultmod = ext.get(getString(R.string.key_sinc_clientes), getString(R.string.pref_sinc_clientes_default));
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-
         this.consultarEstadoTransacciones();
-
-
     }
 
     public void crearVista() {
@@ -273,7 +274,7 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
 
         if (cur.moveToFirst()) {
             do {
-                if (cur.getInt(cur.getColumnIndex(Transaccion.FIELD_band_enviado)) == 1 && cur.getInt(cur.getColumnIndex(Transaccion.FIELD_estado)) == 0) {
+                if (cur.getInt(cur.getColumnIndex(Transaccion.FIELD_band_enviado)) == 1) {
                     String referencia = cur.getString(cur.getColumnIndex(Transaccion.FIELD_referencia));
                     if (codTrans.isEmpty()) {
                         codTrans = referencia.substring(0, referencia.indexOf('-'));
@@ -286,9 +287,17 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
         if (numTrans.isEmpty()) {
             crearVista();
         } else {
-            numTrans = numTrans.substring(0, numTrans.length() - 1);
-            RecibirEstadoTransacciones recibirTransEstado = new RecibirEstadoTransacciones(getActivity(), codTrans, numTrans);
-            recibirTransEstado.ejecutarTarea();
+            // Aquí hacer la validación para cuando no hay conexión de internet
+            TareaProbarConexion taskTestConection = new TareaProbarConexion();
+            taskTestConection.execute(ip, port, url);
+            if (estado) {
+                numTrans = numTrans.substring(0, numTrans.length() - 1);
+                RecibirEstadoTransacciones recibirTransEstado = new RecibirEstadoTransacciones(getActivity(), codTrans, numTrans);
+                recibirTransEstado.ejecutarTarea();
+            } else {
+                crearVista();
+            }
+
         }
 
     }
@@ -336,7 +345,7 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
                 break;
             case R.id.action_enviar:
                 android.support.v7.app.AlertDialog.Builder quitDialog = new android.support.v7.app.AlertDialog.Builder(getActivity());
-                quitDialog.setTitle("Seguro deseas enviar todas las ofertas no enviadas?");
+                quitDialog.setTitle("Seguro desea enviar todas las ofertas no enviadas?");
                 quitDialog.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
 
                     @Override
@@ -359,7 +368,7 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
                 break;
             case R.id.action_eliminar:
                 android.support.v7.app.AlertDialog.Builder quitDialog2 = new android.support.v7.app.AlertDialog.Builder(getActivity());
-                quitDialog2.setTitle("Seguro deseas eliminar todas las ofertas?");
+                quitDialog2.setTitle("Seguro desea eliminar todas las ofertas?");
                 quitDialog2.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
 
                     @Override
@@ -668,7 +677,7 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
                             if (new ValidateReferencia().validate(response)) {
                                 modificarTransaccion(trans.getId_trans(), response);
                             } else {
-                                Toast.makeText(context, "No es posible enviar la transaccion", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "No es posible enviar la transacción", Toast.LENGTH_SHORT).show();
                                 break;
                             }
                         } catch (Exception e) {
@@ -1008,8 +1017,7 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
 
         private class RecibirEstadoTransaccionesTask extends AsyncTask<String, Integer, Boolean> {
 
-
-            @Override
+           @Override
             protected Boolean doInBackground(String... params) {
                 boolean result = false;
                 DBSistemaGestion helper = new DBSistemaGestion(context);
@@ -1052,5 +1060,50 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
         }
     }
 
+    private class TareaProbarConexion extends AsyncTask<String, Float, Boolean> {
+        @Override
+        protected Boolean doInBackground(String... urls) {
+            Boolean result = false;
+            HttpParams httpParameters = new BasicHttpParams();
+            int timeoutConnection = 5000;
+            HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+            int timeoutSocket = 5000;
+            HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+            HttpClient httpClient = new DefaultHttpClient(httpParameters);
+            httpClient.getParams().setParameter("http.protocol.content-charset", HTTP.UTF_8);
+            HttpGet get = new HttpGet("http://" + ip + ":" + port + url + ws_test);
+            System.out.println("http://" + ip + ":" + port + url + ws_test);
+            get.setHeader("content-type", "application/json");
+            try {
+                HttpResponse resp = httpClient.execute(get);
+                String respStr = EntityUtils.toString(resp.getEntity());
+                JSONObject obj = new JSONObject(respStr);
+                System.out.println("Response: " + respStr);
+                int response = obj.getInt("estado");
+
+                if (response == 1) {
+                    result = true;
+                }
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                result = false;
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean s) {
+            estado = s;
+            if (!estado) {
+                Toast.makeText(getActivity(), "No se puede conectar al servidor, no se podrá actualizar el estado de las transacciones.", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    }
 
 }

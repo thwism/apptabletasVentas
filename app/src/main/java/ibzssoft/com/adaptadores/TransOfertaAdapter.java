@@ -190,15 +190,18 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                 est_text.setTextColor(context.getResources().getColor(R.color.colorPrimary));
             }
 
-            if(estadoTrans == 0){
-                estadoTrans_text.setText("EST: DESAPROBADO");
-            }else{
-                if(estadoTrans == 1){
-                    estadoTrans_text.setText("EST: APROBADO");
-                }else{
+            //Para verificar el estado de las ofertas
+            switch(estadoTrans){
+                case 0: estadoTrans_text.setText("EST: DESAPROBADO");break;
+                case 1: estadoTrans_text.setText("EST: APROBADO");break;
+                case 2: estadoTrans_text.setText("EST: DESPACHADO");break;
+                case 3: estadoTrans_text.setText("EST: ANULADO");break;
+                case 4: estadoTrans_text.setText("EST: SEMIDESPACHADO");break;
+                default:
                     estadoTrans_text.setText("EST: ");
-                }
             }
+
+
         }
 
         @Override
@@ -228,7 +231,7 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                     if (bandenviado != 1) {
                         android.support.v7.app.AlertDialog.Builder quitDialog
                                 = new android.support.v7.app.AlertDialog.Builder(context);
-                        quitDialog.setTitle("Seguro deseas enviar la transacción?");
+                        quitDialog.setTitle("Seguro desea enviar la transacción?");
                         quitDialog.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
 
                             @Override
@@ -252,11 +255,11 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                         Toast.makeText(context, context.getString(R.string.title_transaction_send_already), Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.itemallPDF:
-                    if(estadoTrans == 1){
+                    if(estadoTrans != 0 && estadoTrans != 3){
                         GenerarOfertaPDFCGYP generarPDF1 = new GenerarOfertaPDFCGYP(context, idtrans);
                         generarPDF1.ejecutarProceso();
                     }else{
-                        Toast.makeText(context, "La transacción debe estar Aprobada.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "No se puede generar el PDF, la transacción no se encuentra en un estado válido.", Toast.LENGTH_SHORT).show();
                     }
 
                     break;
