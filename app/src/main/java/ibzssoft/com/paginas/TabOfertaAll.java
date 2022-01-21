@@ -87,6 +87,8 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
     private Spinner sortSpinner;
     private Spinner comodinSpinner;
     boolean estado = false;
+    String codTrans;
+    String numTrans;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -269,8 +271,8 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
 
     public void obtenerTransaccionesEnviadas(Cursor cur) {
 
-        String codTrans = "";
-        String numTrans = "";
+        codTrans = "";
+        numTrans = "";
 
         if (cur.moveToFirst()) {
             do {
@@ -290,13 +292,6 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
             // Aquí hacer la validación para cuando no hay conexión de internet
             TareaProbarConexion taskTestConection = new TareaProbarConexion();
             taskTestConection.execute(ip, port, url);
-            if (estado) {
-                numTrans = numTrans.substring(0, numTrans.length() - 1);
-                RecibirEstadoTransacciones recibirTransEstado = new RecibirEstadoTransacciones(getActivity(), codTrans, numTrans);
-                recibirTransEstado.ejecutarTarea();
-            } else {
-                crearVista();
-            }
 
         }
 
@@ -1055,12 +1050,17 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
             @Override
             protected void onPostExecute(Boolean s) {
                 crearVista();
-//                Toast.makeText(context, "Estados de las transacciones descargados correctamente.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Estado de las transacciones actualizado correctamente.", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     private class TareaProbarConexion extends AsyncTask<String, Float, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+            Toast.makeText(getActivity(), "Realizando validaciones de conexión, por favor espere.", Toast.LENGTH_SHORT).show();
+        }
         @Override
         protected Boolean doInBackground(String... urls) {
             Boolean result = false;
@@ -1099,8 +1099,14 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
         @Override
         protected void onPostExecute(Boolean s) {
             estado = s;
-            if (!estado) {
-                Toast.makeText(getActivity(), "No se puede conectar al servidor, no se podrá actualizar el estado de las transacciones.", Toast.LENGTH_SHORT).show();
+            if (estado) {
+                    numTrans = numTrans.substring(0, numTrans.length() - 1);
+                    RecibirEstadoTransacciones recibirTransEstado = new RecibirEstadoTransacciones(getActivity(), codTrans, numTrans);
+                    recibirTransEstado.ejecutarTarea();
+
+            }else{
+                crearVista();
+                Toast.makeText(getActivity(), "Error de conexión, no se podrá actualizar el estado de las transacciones.", Toast.LENGTH_SHORT).show();
             }
 
         }
