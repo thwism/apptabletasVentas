@@ -59,6 +59,7 @@ import ibzssoft.com.enviar.IVKardex_Serialize_Envio;
 import ibzssoft.com.enviar.PKardex_Envio;
 import ibzssoft.com.enviar.Transaccion_Serialize_Envio;
 import ibzssoft.com.ishidamovile.CONST;
+import ibzssoft.com.ishidamovile.CargandoDatos;
 import ibzssoft.com.ishidamovile.R;
 import ibzssoft.com.ishidamovile.Sincronizacion;
 import ibzssoft.com.ishidamovile.oferta.crear.NuevaOfertaG;
@@ -1056,10 +1057,14 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
     }
 
     private class TareaProbarConexion extends AsyncTask<String, Float, Boolean> {
-
+        ProgressDialog progress;
         @Override
         protected void onPreExecute() {
-            Toast.makeText(getActivity(), "Realizando validaciones de conexión, por favor espere.", Toast.LENGTH_SHORT).show();
+            progress=new ProgressDialog(getActivity());
+            progress.setTitle("Validando conexión al servidor");
+            progress.setMessage("Realizando validaciones de conexión, por favor espere.");
+            progress.show();
+//            Toast.makeText(getActivity(), "Realizando validaciones de conexión, por favor espere.", Toast.LENGTH_SHORT).show();
         }
         @Override
         protected Boolean doInBackground(String... urls) {
@@ -1105,6 +1110,9 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
                     recibirTransEstado.ejecutarTarea();
 
             }else{
+                if(progress.isShowing()) {
+                   progress.dismiss();
+                }
                 crearVista();
                 Toast.makeText(getActivity(), "Error de conexión, no se podrá actualizar el estado de las transacciones.", Toast.LENGTH_SHORT).show();
             }
