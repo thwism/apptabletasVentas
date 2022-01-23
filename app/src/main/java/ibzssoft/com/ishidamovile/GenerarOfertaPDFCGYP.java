@@ -59,6 +59,7 @@ public class GenerarOfertaPDFCGYP {
     private int filas = 0;
     private int[] iva;
     private double[] totales;
+    private double[] totales_sin_descuento;
     private double[] descuentos;
     private static final int LIMITE = 50;
     private double PORC_IVA = 0.0;
@@ -81,6 +82,7 @@ public class GenerarOfertaPDFCGYP {
         this.telefonoempresa = "";
         logoempresa = "";
         this.totales = new double[LIMITE];
+        this.totales_sin_descuento = new double[LIMITE];
         this.descuentos = new double[LIMITE];
         this.iva = new int[LIMITE];
 
@@ -719,7 +721,6 @@ public class GenerarOfertaPDFCGYP {
         celda.setBackgroundColor(BaseColor.LIGHT_GRAY);
         celda.setBorderColorLeft(BaseColor.WHITE);
         celda.setBorderColorRight(BaseColor.WHITE);
-        celda.setColspan(8);
 
         tablapedido.addCell(celda);
         return tablapedido;
@@ -913,6 +914,8 @@ public class GenerarOfertaPDFCGYP {
                 this.descuentos[pst] = desc;
                 //totales
                 this.totales[pst] = subtotal;
+                //totales sin descuento
+                this.totales_sin_descuento[pst] = precio_total;
                 celda = new PdfPCell(new Paragraph(redondearNumero(subtotal, this.numdec_ptotal), FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
                 celda.setHorizontalAlignment(Element.ALIGN_RIGHT);
                 celda.setPaddingLeft(10);
@@ -952,14 +955,8 @@ public class GenerarOfertaPDFCGYP {
 
         //FILA 1
 
-        PdfPCell celda = new PdfPCell(new Paragraph("Nuestras cuentas corrientes son: Bco.Pichincha #3168391004, Bco.Austro #0300181384, Bco.Bolivariano #4005022427", FontFactory.getFont("arial", 7, Font.BOLD, BaseColor.BLACK)));
-        celda.setColspan(4);
-        celda.setBackgroundColor(BaseColor.WHITE);
-        celda.setBorderColor(BaseColor.WHITE);
-        tablapedido.addCell(celda);
-
-        celda = new PdfPCell(new Paragraph(" "));
-        celda.setColspan(1);
+        PdfPCell celda = new PdfPCell(new Paragraph(" "));
+        celda.setColspan(5);
         celda.setBorderColor(BaseColor.WHITE);
         tablapedido.addCell(celda);
 
@@ -975,15 +972,8 @@ public class GenerarOfertaPDFCGYP {
 
         // FILA 2
 
-        celda = new PdfPCell(new Paragraph("FECHA VALIDEZ", FontFactory.getFont("arial", 8, Font.BOLD, BaseColor.BLACK)));
-        celda.setColspan(2);
-        celda.setBackgroundColor(BaseColor.WHITE);
-        celda.setBorderColor(BaseColor.WHITE);
-        tablapedido.addCell(celda);
-
-
-        celda = new PdfPCell(new Paragraph(fecha_validez, FontFactory.getFont("arial", 8, Font.NORMAL, BaseColor.BLACK)));
-        celda.setColspan(2);
+        celda = new PdfPCell(new Paragraph("Nuestras cuentas corrientes son: Bco.Pichincha #3168391004, Bco.Austro #0300181384, Bco.Bolivariano #4005022427", FontFactory.getFont("arial", 7, Font.BOLD, BaseColor.BLACK)));
+        celda.setColspan(4);
         celda.setBackgroundColor(BaseColor.WHITE);
         celda.setBorderColor(BaseColor.WHITE);
         tablapedido.addCell(celda);
@@ -1005,13 +995,14 @@ public class GenerarOfertaPDFCGYP {
 
         //FILA 3
 
-        celda = new PdfPCell(new Paragraph("TIEMPO DE ENTREGA", FontFactory.getFont("arial", 8, Font.BOLD, BaseColor.BLACK)));
+        celda = new PdfPCell(new Paragraph("FECHA VALIDEZ", FontFactory.getFont("arial", 8, Font.BOLD, BaseColor.BLACK)));
         celda.setColspan(2);
         celda.setBackgroundColor(BaseColor.WHITE);
         celda.setBorderColor(BaseColor.WHITE);
         tablapedido.addCell(celda);
 
-        celda = new PdfPCell(new Paragraph(String.valueOf(tiempo_entrega) + " DIA(S)", FontFactory.getFont("arial", 8, Font.NORMAL, BaseColor.BLACK)));
+
+        celda = new PdfPCell(new Paragraph(fecha_validez, FontFactory.getFont("arial", 8, Font.NORMAL, BaseColor.BLACK)));
         celda.setColspan(2);
         celda.setBackgroundColor(BaseColor.WHITE);
         celda.setBorderColor(BaseColor.WHITE);
@@ -1034,13 +1025,13 @@ public class GenerarOfertaPDFCGYP {
 
         //FILA 4
 
-        celda = new PdfPCell(new Paragraph("FORMA DE PAGO", FontFactory.getFont("arial", 8, Font.BOLD, BaseColor.BLACK)));
+        celda = new PdfPCell(new Paragraph("TIEMPO DE ENTREGA", FontFactory.getFont("arial", 8, Font.BOLD, BaseColor.BLACK)));
         celda.setColspan(2);
         celda.setBackgroundColor(BaseColor.WHITE);
         celda.setBorderColor(BaseColor.WHITE);
         tablapedido.addCell(celda);
 
-        celda = new PdfPCell(new Paragraph(forma_pago, FontFactory.getFont("arial", 8, Font.NORMAL, BaseColor.BLACK)));
+        celda = new PdfPCell(new Paragraph(String.valueOf(tiempo_entrega) + " DIA(S)", FontFactory.getFont("arial", 8, Font.NORMAL, BaseColor.BLACK)));
         celda.setColspan(2);
         celda.setBackgroundColor(BaseColor.WHITE);
         celda.setBorderColor(BaseColor.WHITE);
@@ -1063,8 +1054,20 @@ public class GenerarOfertaPDFCGYP {
 
         //FILA 5
 
+        celda = new PdfPCell(new Paragraph("FORMA DE PAGO", FontFactory.getFont("arial", 8, Font.BOLD, BaseColor.BLACK)));
+        celda.setColspan(2);
+        celda.setBackgroundColor(BaseColor.WHITE);
+        celda.setBorderColor(BaseColor.WHITE);
+        tablapedido.addCell(celda);
+
+        celda = new PdfPCell(new Paragraph(forma_pago, FontFactory.getFont("arial", 8, Font.NORMAL, BaseColor.BLACK)));
+        celda.setColspan(2);
+        celda.setBackgroundColor(BaseColor.WHITE);
+        celda.setBorderColor(BaseColor.WHITE);
+        tablapedido.addCell(celda);
+
         celda = new PdfPCell(new Paragraph(" "));
-        celda.setColspan(5);
+        celda.setColspan(1);
         celda.setBorderColor(BaseColor.WHITE);
         tablapedido.addCell(celda);
 
@@ -1163,23 +1166,27 @@ public class GenerarOfertaPDFCGYP {
     public void cargarTotales() {
         double subtotal12 = 0;
         double subtotal0 = 0;
+        double subtotal_real_12 = 0;
+        double subtotal_real_0 = 0;
         double impuestos = 0;
         double total = 0;
         double descuento_total = 0;
 
         for (int i = 0; i < filas; i++) {
             if (iva[i] != 0) {
-                subtotal12 += totales[i];
+                subtotal12 += totales_sin_descuento[i];
+                subtotal_real_12 += totales[i];
             } else {
-                subtotal0 += totales[i];
+                subtotal0 += totales_sin_descuento[i];
+                subtotal_real_0 += totales[i];
             }
             descuento_total += descuentos[i];
         }
         subtotal_12 = redondearNumero(subtotal12, "0.00");
         subtotal_0 = redondearNumero(subtotal0, "0.00");
-        subtotal = redondearNumero((subtotal0 + subtotal12), "0.00");
-        impuestos = (subtotal12 * PORC_IVA);
-        total = (subtotal0 + subtotal12 + impuestos);
+        subtotal = redondearNumero((subtotal_real_0 + subtotal_real_12), "0.00");
+        impuestos = (subtotal_real_12 * PORC_IVA);
+        total = (subtotal_real_0 + subtotal_real_12 + impuestos);
         descuento_trans = redondearNumero(descuento_total, "0.00");
         total_iva = redondearNumero(impuestos, "0.00");
         total_trans = redondearNumero(total, "0.00");

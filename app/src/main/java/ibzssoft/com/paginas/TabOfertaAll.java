@@ -1012,8 +1012,18 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
         }
 
         private class RecibirEstadoTransaccionesTask extends AsyncTask<String, Integer, Boolean> {
+            ProgressDialog progress;
 
-           @Override
+            @Override
+            protected void onPreExecute() {
+                progress = new ProgressDialog(getActivity());
+                progress.setTitle("Actualización estado de las transacciones");
+                progress.setMessage("Actualizando el estado de las transacciones, por favor espere...");
+                progress.show();
+
+            }
+
+            @Override
             protected Boolean doInBackground(String... params) {
                 boolean result = false;
                 DBSistemaGestion helper = new DBSistemaGestion(context);
@@ -1027,6 +1037,7 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
                     JSONArray respJSON = new JSONArray(respStr);
                     Gson gson = new Gson();
                     String numReferencia = null;
+                    progress.setMax(respJSON.length());
                     int count = 0;
                     for (int i = 0; i < respJSON.length(); i++) {
                         JSONObject obj = respJSON.getJSONObject(i);
@@ -1036,7 +1047,8 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
                         }
 
                         count++;
-                        System.out.println("Lo que recibe de la consulta al servicio web: " + count);
+                        publishProgress(count);
+
                     }
                     helper.close();
                     Thread.sleep(50);
@@ -1050,22 +1062,33 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
 
             @Override
             protected void onPostExecute(Boolean s) {
+                if (progress.isShowing()) {
+                    progress.dismiss();
+                }
                 crearVista();
-                Toast.makeText(getActivity(), "Estado de las transacciones actualizado correctamente.", Toast.LENGTH_SHORT).show();
+                if (s) {
+                    Toast.makeText(getActivity(), "Estado de las transacciones actualizado correctamente.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), "Error, no fue posible actualizar el estado de las transacciones.", Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         }
     }
 
     private class TareaProbarConexion extends AsyncTask<String, Float, Boolean> {
         ProgressDialog progress;
+
         @Override
         protected void onPreExecute() {
-            progress=new ProgressDialog(getActivity());
-            progress.setTitle("Validando conexión al servidor");
-            progress.setMessage("Realizando validaciones de conexión, por favor espere.");
+            progress = new ProgressDialog(getActivity());
+            progress.setTitle("Validación conexión al servidor");
+            progress.setMessage("Realizando validaciones de conexión, por favor espere...");
             progress.show();
-//            Toast.makeText(getActivity(), "Realizando validaciones de conexión, por favor espere.", Toast.LENGTH_SHORT).show();
+
         }
+
         @Override
         protected Boolean doInBackground(String... urls) {
             Boolean result = false;
@@ -1104,15 +1127,15 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
         @Override
         protected void onPostExecute(Boolean s) {
             estado = s;
+            if (progress.isShowing()) {
+                progress.dismiss();
+            }
             if (estado) {
-                    numTrans = numTrans.substring(0, numTrans.length() - 1);
-                    RecibirEstadoTransacciones recibirTransEstado = new RecibirEstadoTransacciones(getActivity(), codTrans, numTrans);
-                    recibirTransEstado.ejecutarTarea();
+                numTrans = numTrans.substring(0, numTrans.length() - 1);
+                RecibirEstadoTransacciones recibirTransEstado = new RecibirEstadoTransacciones(getActivity(), codTrans, numTrans);
+                recibirTransEstado.ejecutarTarea();
 
-            }else{
-                if(progress.isShowing()) {
-                   progress.dismiss();
-                }
+            } else {
                 crearVista();
                 Toast.makeText(getActivity(), "Error de conexión, no se podrá actualizar el estado de las transacciones.", Toast.LENGTH_SHORT).show();
             }
