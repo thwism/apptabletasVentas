@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -16,6 +17,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -32,6 +47,7 @@ import ibzssoft.com.ishidamovile.oferta.modificar.ModificaOfertaJM;
 import ibzssoft.com.ishidamovile.oferta.screens.CodigosOferta;
 import ibzssoft.com.ishidamovile.oferta.visualizar.OfertaDetalleG;
 import ibzssoft.com.modelo.Transaccion;
+import ibzssoft.com.paginas.TabOfertaAll;
 import ibzssoft.com.storage.DBSistemaGestion;
 
 /**
@@ -49,6 +65,7 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
     private int opcion;
     private boolean import_of;
     private String codemp;
+    private String ip, port, url, ws, ws_test;
 
     public TransOfertaAdapter(Context context, List<Transaccion> models, String codemp, int opcion, boolean import_of) {
         mInflater = LayoutInflater.from(context);
@@ -419,6 +436,17 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
             activity.startActivity(intent);
             activity.finish();
         }
+
+        public void extraerConfigConexionServidor(){
+            ExtraerConfiguraciones e = new ExtraerConfiguraciones(context);
+
+            ip = e.get(context.getString(R.string.key_conf_ip), context.getString(R.string.pref_ip_default));
+            port = e.get(context.getString(R.string.key_conf_port), context.getString(R.string.pref_port_default));
+            url = e.get(context.getString(R.string.key_conf_url), context.getString(R.string.pref_url_default));
+            ws = e.get(context.getString(R.string.key_ws_transacciones), context.getString(R.string.pref_ws_transacciones));
+            ws_test = e.get(context.getString(R.string.key_ws_get_detalle_trans_aprobada), context.getString(R.string.pref_ws_get_detalle_trans_aprobada));
+
+        }
     }
 
     /**
@@ -471,6 +499,136 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                 result = false;
             }
             return result;
+        }
+    }
+
+    private class TareaProbarConexion extends AsyncTask<String, Float, Boolean> {
+        ProgressDialog progress;
+
+        @Override
+        protected void onPreExecute() {
+            progress = new ProgressDialog(context);
+            progress.setTitle("Validación conexión al servidor");
+            progress.setMessage("Realizando validaciones de conexión, por favor espere...");
+            progress.show();
+
+        }
+
+        @Override
+        protected Boolean doInBackground(String... urls) {
+            Boolean result = false;
+            HttpParams httpParameters = new BasicHttpParams();
+            int timeoutConnection = 5000;
+            HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+            int timeoutSocket = 5000;
+            HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+            HttpClient httpClient = new DefaultHttpClient(httpParameters);
+            httpClient.getParams().setParameter("http.protocol.content-charset", HTTP.UTF_8);
+            HttpGet get = new HttpGet("http://" + ip + ":" + port + url + ws_test);
+            System.out.println("http://" + ip + ":" + port + url + ws_test);
+            get.setHeader("content-type", "application/json");
+            try {
+                HttpResponse resp = httpClient.execute(get);
+                String respStr = EntityUtils.toString(resp.getEntity());
+                JSONObject obj = new JSONObject(respStr);
+                System.out.println("Response: " + respStr);
+                int response = obj.getInt("estado");
+
+                if (response == 1) {
+                    result = true;
+                }
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                result = false;
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean s) {
+            estado = s;
+            if (progress.isShowing()) {
+                progress.dismiss();
+            }
+            if (estado) {
+                numTrans = numTrans.substring(0, numTrans.length() - 1);
+                TabOfertaAll.RecibirEstadoTransacciones recibirTransEstado = new TabOfertaAll.RecibirEstadoTransacciones(getActivity(), codTrans, numTrans);
+                recibirTransEstado.ejecutarTarea();
+
+            } else {
+                crearVista();
+                Toast.makeText(getActivity(), "Error de conexión, no se podrá actualizar el estado de las transacciones.", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    }
+
+    private class RecibirEstadoTransaccionesTask extends AsyncTask<String, Integer, Boolean> {
+        ProgressDialog progress;
+
+        @Override
+        protected void onPreExecute() {
+            progress = new ProgressDialog(getActivity());
+            progress.setTitle("Actualización estado de las transacciones");
+            progress.setMessage("Actualizando el estado de las transacciones, por favor espere...");
+            progress.show();
+        }
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            boolean result = false;
+            DBSistemaGestion helper = new DBSistemaGestion(context);
+            HttpClient httpClient = new DefaultHttpClient();
+            httpClient.getParams().setParameter("http.protocol.content-charset", HTTP.UTF_8);
+            HttpGet del = new HttpGet("http://" + ip + ":" + port + url + ws + "/" + codigoTrans + "/" + numTrans);
+            del.setHeader("content-type", "application/json");
+            try {
+                HttpResponse resp = httpClient.execute(del);
+                String respStr = EntityUtils.toString(resp.getEntity());
+                JSONArray respJSON = new JSONArray(respStr);
+                Gson gson = new Gson();
+                String numReferencia = null;
+                progress.setMax(respJSON.length());
+                int count = 0;
+                for (int i = 0; i < respJSON.length(); i++) {
+                    JSONObject obj = respJSON.getJSONObject(i);
+                    numReferencia = obj.getString("CodTrans") + "-" + obj.getString("NumTrans");
+                    if (helper.buscarTransaccionPorReferencia(numReferencia)) {
+                        helper.actualizarEstadoTransaccion(numReferencia, Integer.parseInt(obj.getString("estado")));
+                    }
+
+                    count++;
+                    publishProgress(count);
+
+                }
+                helper.close();
+                Thread.sleep(50);
+                result = true;
+            } catch (Exception ex) {
+                Log.e("ServicioRest", "Error!", ex);
+                result = false;
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean s) {
+            if (progress.isShowing()) {
+                progress.dismiss();
+            }
+            crearVista();
+            if (s) {
+                Toast.makeText(getActivity(), "Estado de las transacciones actualizado correctamente.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity(), "Error, no fue posible actualizar el estado de las transacciones.", Toast.LENGTH_SHORT).show();
+            }
+
+
         }
     }
 

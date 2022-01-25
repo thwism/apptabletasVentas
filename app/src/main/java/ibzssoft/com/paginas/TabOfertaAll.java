@@ -1020,7 +1020,6 @@ public class TabOfertaAll extends Fragment implements SearchView.OnQueryTextList
                 progress.setTitle("Actualización estado de las transacciones");
                 progress.setMessage("Actualizando el estado de las transacciones, por favor espere...");
                 progress.show();
-
             }
 
             @Override

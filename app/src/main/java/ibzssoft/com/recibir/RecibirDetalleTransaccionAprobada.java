@@ -24,7 +24,7 @@ import ibzssoft.com.storage.DBSistemaGestion;
 /**
  * Created by root on 18/11/15.
  */
-public class RecibirDetalleOfertaAprobada {
+public class RecibirDetalleTransaccionAprobada {
     private Context context;
     private String ip;
     private String port;
@@ -32,7 +32,8 @@ public class RecibirDetalleOfertaAprobada {
     private String ws;
 
 
-    public RecibirDetalleOfertaAprobada(Context context) {
+
+    public RecibirDetalleTransaccionAprobada(Context context) {
         this.context = context;
         cargarPreferenciasConexion();
     }
@@ -42,16 +43,16 @@ public class RecibirDetalleOfertaAprobada {
         ip=extraerConfiguraciones.get(context.getString(R.string.key_conf_ip),context.getString(R.string.pref_ip_default));
         port=extraerConfiguraciones.get(context.getString(R.string.key_conf_port),context.getString(R.string.pref_port_default));
         url=extraerConfiguraciones.get(context.getString(R.string.key_conf_url),context.getString(R.string.pref_url_default));
-        ws=extraerConfiguraciones.get(context.getString(R.string.key_ws_cantones),context.getString(R.string.pref_ws_cantones));
+        ws=extraerConfiguraciones.get(context.getString(R.string.key_ws_get_detalle_trans_aprobada),context.getString(R.string.pref_ws_get_detalle_trans_aprobada));
 
     }
     public void ejecutartarea(){
-        RecibirCantonsTask taskRecibirCantons= new RecibirCantonsTask();
+        RecibirDetalleTransAprobadaTask taskRecibirCantons= new RecibirDetalleTransAprobadaTask();
         taskRecibirCantons.execute();
     }
 
 
-    private class RecibirCantonsTask extends AsyncTask<String,Integer,Boolean> {
+    private class RecibirDetalleTransAprobadaTask extends AsyncTask<String,Integer,Boolean> {
         private ProgressDialog progress;
         int nItems=0;
         @Override
@@ -59,7 +60,7 @@ public class RecibirDetalleOfertaAprobada {
             super.onPreExecute();
             progress=new ProgressDialog(context);
             progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            progress.setTitle("Descargando Cantones");
+            progress.setTitle("Descargando Detalle");
             progress.setMessage("Espere...");
             progress.setCancelable(false);
             progress.show();

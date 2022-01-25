@@ -43,7 +43,7 @@ import ibzssoft.com.modelo.Vendedor;
 import ibzssoft.com.storage.DBSistemaGestion;
 
 
-public class GenerarOfertaPDFCGYP {
+public class GenerarOfertaPDFCGYPSII4 {
     private SimpleDateFormat sdf;
     private Transaccion transaccion;
     private Cliente cliente;
@@ -72,7 +72,7 @@ public class GenerarOfertaPDFCGYP {
     private String fecha_trans, fecha_validez;
 
 
-    public GenerarOfertaPDFCGYP(Context context, String id_trans) {
+    public GenerarOfertaPDFCGYPSII4(Context context, String id_trans) {
         this.context = context;
         this.id_trans = id_trans;
         this.tipo_trans = "PROFORMA";
