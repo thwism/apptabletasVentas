@@ -37,8 +37,6 @@ import java.util.List;
 import ibzssoft.com.adaptadores.ExtraerConfiguraciones;
 import ibzssoft.com.modelo.Cliente;
 import ibzssoft.com.modelo.GNTrans;
-import ibzssoft.com.modelo.IVInventario;
-import ibzssoft.com.modelo.IVKardex;
 import ibzssoft.com.modelo.Transaccion;
 import ibzssoft.com.modelo.Vendedor;
 import ibzssoft.com.modelo.vista.DetalleOfertaSii4;
@@ -61,10 +59,12 @@ public class GenerarOfertaPDFCGYPSII4 {
     private int filas = 0;
     private double[] iva;
     private double[] totales;
+    private double[] totales_sin_descuento;
     private double[] descuentos;
     private static final int LIMITE = 50;
     private double PORC_IVA = 0.0;
     private String numdec_ptotal, numdec_punitario;
+    private String numTransAprobada, emailVendedor, telefonoVendedor;
 
     //totales
     private String subtotal_12, subtotal_0, descuento_trans, subtotal, total_iva, total_trans;
@@ -84,6 +84,7 @@ public class GenerarOfertaPDFCGYPSII4 {
         this.telefonoempresa = "";
         logoempresa = "";
         this.totales = new double[LIMITE];
+        this.totales_sin_descuento = new double[LIMITE];
         this.descuentos = new double[LIMITE];
         this.iva = new double[LIMITE];
 
@@ -92,12 +93,25 @@ public class GenerarOfertaPDFCGYPSII4 {
         this.total_iva = "";
         this.total_trans = "";
 
+        this.llenarInformacionAdicionalTransAprobada();
         this.cargarPreferenciasEmpresa();
         this.cargarPreferencias();
         this.PORC_IVA = Double.parseDouble(impuestos) / 100;
         this.transaccion = loadTransaccion();
         this.cliente = loadCliente();
-//        this.cargarPrecio(this.cliente.getIdprovcli(), this.transaccion.getIdentificador().split("-")[0]);
+
+    }
+
+    public void llenarInformacionAdicionalTransAprobada(){
+        if(detalleTransaccion.size() > 0){
+            numTransAprobada = detalleTransaccion.get(0).getNumTrans();
+            emailVendedor = detalleTransaccion.get(0).getEmailV();
+            telefonoVendedor = detalleTransaccion.get(0).getTelefonoV();
+        }else{
+            numTransAprobada = "";
+            emailVendedor = "";
+            telefonoVendedor = "";
+        }
     }
 
     public void ejecutarProceso() {
@@ -252,90 +266,6 @@ public class GenerarOfertaPDFCGYPSII4 {
         return true;
     }
 
-    public PdfPTable crearEncabezadoP1() {
-
-        PdfPTable tablapedido = new PdfPTable(8);
-        tablapedido.setWidthPercentage(100);
-
-        PdfPCell celda1 = new PdfPCell();
-        celda1.setBackgroundColor(BaseColor.WHITE);
-        celda1.setBorderColor(BaseColor.WHITE);
-        celda1.setPadding(10);
-//        celda1.setHorizontalAlignment(Element.ALIGN_RIGHT);
-//        celda1.setVerticalAlignment(Element.ALIGN_TOP);
-        celda1.setColspan(5);
-        tablapedido.addCell(celda1);
-
-        PdfPCell celda2 = new PdfPCell();
-        celda2.setBackgroundColor(BaseColor.WHITE);
-        celda2.setBorderColor(BaseColor.WHITE);
-        celda1.setPadding(10);
-//        celda1.setHorizontalAlignment(Element.ALIGN_RIGHT);
-//        celda1.setVerticalAlignment(Element.ALIGN_TOP);
-        celda2.setColspan(3);
-
-        try {
-            Image foto = Image.getInstance(logoempresa);
-            foto.scaleToFit(180, 180);
-            foto.setAlignment(Chunk.ALIGN_RIGHT);
-
-            Chunk chunk = new Chunk(foto, 0, -25);
-            Phrase severityChunk = new Phrase(chunk);
-            celda2.addElement(severityChunk);
-        } catch (Exception e) {
-            Toast toast = Toast.makeText(context, R.string.error_no_load_file, Toast.LENGTH_LONG);
-            toast.show();
-        }
-        tablapedido.addCell(celda2);
-
-        return tablapedido;
-    }
-
-    public PdfPTable crearEncabezadoP2() {
-
-        PdfPTable tablapedido = new PdfPTable(8);
-        tablapedido.setWidthPercentage(100);
-
-
-        //Fila 2
-        Font font = FontFactory.getFont("arial", 16, Font.BOLD, BaseColor.BLACK);
-        Font font2 = FontFactory.getFont("arial", 10, Font.BOLD, BaseColor.BLACK);
-        Font font3 = FontFactory.getFont("arial", 10, Font.NORMAL, BaseColor.BLACK);
-
-
-        Chunk nombre_transaccion = new Chunk(tipo_trans.toUpperCase(), font);
-        Chunk texto_contrib_especial = new Chunk("CONTRIBUYENTES ESPECIALES", font2);
-        Chunk texto_resolucion = new Chunk("Resolución No.870 del 03/Sep/2007", font3);
-
-        Paragraph p1 = new Paragraph(nombre_transaccion);
-//        p1.setAlignment(PdfPCell.ALIGN_CENTER);
-        Paragraph p2 = new Paragraph(texto_contrib_especial);
-//        p1.setAlignment(PdfPCell.ALIGN_RIGHT);
-        Paragraph p3 = new Paragraph(texto_resolucion);
-//        p1.setAlignment(PdfPCell.ALIGN_RIGHT);
-
-        PdfPCell celda1 = new PdfPCell();
-        celda1.setBorderColor(BaseColor.WHITE);
-        celda1.setBorder(PdfPCell.NO_BORDER);
-        celda1.setHorizontalAlignment(Element.ALIGN_CENTER);
-//        celda1.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-        celda1.addElement(p1);
-        celda1.setColspan(5);
-        tablapedido.addCell(celda1);
-
-        PdfPCell celda2 = new PdfPCell();
-        celda2.setBorderColor(BaseColor.WHITE);
-        celda2.setBorder(PdfPCell.NO_BORDER);
-//        celda2.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
-//        celda2.setVerticalAlignment(PdfPCell.ALIGN_TOP);
-        celda2.addElement(p2);
-        celda2.addElement(p3);
-        celda2.setColspan(3);
-        tablapedido.addCell(celda2);
-
-
-        return tablapedido;
-    }
 
     public PdfPTable agregarTextoInformativoP1() {
 
@@ -572,7 +502,7 @@ public class GenerarOfertaPDFCGYPSII4 {
     public void crearPdf() throws DocumentException, IOException {
         this.sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String directorio = "/sdcard/" + context.getResources().getString(R.string.title_folder_root) + "/";
-        OutputStream file = new FileOutputStream(new File(directorio + transaccion.getIdentificador() + "_" + transaccion.getNumTransaccion() + ".pdf"));
+        OutputStream file = new FileOutputStream(new File(directorio + transaccion.getIdentificador() + "_" + numTransAprobada + ".pdf"));
         Document document = new Document();
         PdfWriter.getInstance(document, file);
         document.open();
@@ -593,6 +523,7 @@ public class GenerarOfertaPDFCGYPSII4 {
         document.add(agregarFilaDetalle());
         document.add(new Paragraph(" "));
         document.add(agregarDetalles());
+        document.add(new Paragraph("", FontFactory.getFont("arial", 8, Font.NORMAL, BaseColor.BLACK)));
         document.add(agregarResultadosOferta());
         document.close();
         file.close();
@@ -612,7 +543,7 @@ public class GenerarOfertaPDFCGYPSII4 {
         celda.setHorizontalAlignment(Element.ALIGN_LEFT);
         tablapedido.addCell(celda);
 
-        celda = new PdfPCell(new Paragraph(String.valueOf(transaccion.getNumTransaccion()), font2));
+        celda = new PdfPCell(new Paragraph(numTransAprobada, font2));
         celda.setBorder(PdfPCell.NO_BORDER);
         celda.setHorizontalAlignment(Element.ALIGN_LEFT);
         celda.setColspan(3);
@@ -814,10 +745,10 @@ public class GenerarOfertaPDFCGYPSII4 {
         this.filas = detalleTransaccion.size();
         int pst = 0;
         for (DetalleOfertaSii4 detalle : detalleTransaccion) {
+
             double preciounitario = Double.parseDouble(redondearNumero(detalle.getPrecioTotal() / detalle.getCantidad(), this.numdec_punitario));
             double cnt = detalle.getCantidad();
-            double precio = preciounitario;
-            double porcentaje = detalle.getDescuentoSolicitado() / 100;
+            double porcentaje = detalle.getDescuentoAplicado();
 
 
             celda = new PdfPCell(new Paragraph(detalle.getCodInventario(), FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
@@ -859,7 +790,7 @@ public class GenerarOfertaPDFCGYPSII4 {
             tablapedido.addCell(celda);
 
             //descuento solicitado
-            celda = new PdfPCell(new Paragraph(redondearNumero(detalle.getDescuentoSolicitado(), "0.00"), FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
+            celda = new PdfPCell(new Paragraph(redondearNumero(detalle.getDescuentoAplicado() * 100, "0.00") + " %", FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
             celda.setHorizontalAlignment(Element.ALIGN_RIGHT);
             celda.setPaddingLeft(10);
             celda.setBorderColorLeft(BaseColor.WHITE);
@@ -868,11 +799,12 @@ public class GenerarOfertaPDFCGYPSII4 {
             celda.setBorderColorTop(BaseColor.WHITE);
             tablapedido.addCell(celda);
 
-            double precio_total = cnt * precio;
+            double precio_total = detalle.getPrecioTotal();
             double desc = precio_total * porcentaje;
-            double precioreal = (precio_total - desc) / cnt;
-            double subtotal = cnt * precioreal;
+            double subtotal = detalle.getPrecioRealTotal();
 
+            //totales sin descuento
+            this.totales_sin_descuento[pst] = precio_total;
             //porcentajes
             this.descuentos[pst] = desc;
             //totales
@@ -892,18 +824,6 @@ public class GenerarOfertaPDFCGYPSII4 {
 
         }
 
-//        celda = new PdfPCell(new Paragraph(" "));
-//        celda.setHorizontalAlignment(Element.ALIGN_RIGHT);
-//        celda.setBorderColor(BaseColor.WHITE);
-//        celda.setColspan(8);
-//        tablapedido.addCell(celda);
-//
-//        celda = new PdfPCell(new Paragraph(" "));
-//        celda.setHorizontalAlignment(Element.ALIGN_RIGHT);
-//        celda.setBorderColor(BaseColor.WHITE);
-//        celda.setColspan(8);
-//        tablapedido.addCell(celda);
-
         return tablapedido;
     }
 
@@ -915,15 +835,8 @@ public class GenerarOfertaPDFCGYPSII4 {
         tablapedido.setWidthPercentage(100);
 
         //FILA 1
-
-        PdfPCell celda = new PdfPCell(new Paragraph("Nuestras cuentas corrientes son: Bco.Pichincha #3168391004, Bco.Austro #0300181384, Bco.Bolivariano #4005022427", FontFactory.getFont("arial", 7, Font.BOLD, BaseColor.BLACK)));
-        celda.setColspan(4);
-        celda.setBackgroundColor(BaseColor.WHITE);
-        celda.setBorderColor(BaseColor.WHITE);
-        tablapedido.addCell(celda);
-
-        celda = new PdfPCell(new Paragraph(" "));
-        celda.setColspan(1);
+        PdfPCell celda = new PdfPCell(new Paragraph(" "));
+        celda.setColspan(5);
         celda.setBorderColor(BaseColor.WHITE);
         tablapedido.addCell(celda);
 
@@ -939,15 +852,8 @@ public class GenerarOfertaPDFCGYPSII4 {
 
         // FILA 2
 
-        celda = new PdfPCell(new Paragraph("FECHA VALIDEZ", FontFactory.getFont("arial", 8, Font.BOLD, BaseColor.BLACK)));
-        celda.setColspan(2);
-        celda.setBackgroundColor(BaseColor.WHITE);
-        celda.setBorderColor(BaseColor.WHITE);
-        tablapedido.addCell(celda);
-
-
-        celda = new PdfPCell(new Paragraph(fecha_validez, FontFactory.getFont("arial", 8, Font.NORMAL, BaseColor.BLACK)));
-        celda.setColspan(2);
+        celda = new PdfPCell(new Paragraph("Nuestras cuentas corrientes son: Bco.Pichincha #3168391004, Bco.Austro #0300181384, Bco.Bolivariano #4005022427", FontFactory.getFont("arial", 7, Font.BOLD, BaseColor.BLACK)));
+        celda.setColspan(4);
         celda.setBackgroundColor(BaseColor.WHITE);
         celda.setBorderColor(BaseColor.WHITE);
         tablapedido.addCell(celda);
@@ -968,14 +874,14 @@ public class GenerarOfertaPDFCGYPSII4 {
         tablapedido.addCell(celda);
 
         //FILA 3
-
-        celda = new PdfPCell(new Paragraph("TIEMPO DE ENTREGA", FontFactory.getFont("arial", 8, Font.BOLD, BaseColor.BLACK)));
+        celda = new PdfPCell(new Paragraph("FECHA VALIDEZ", FontFactory.getFont("arial", 8, Font.BOLD, BaseColor.BLACK)));
         celda.setColspan(2);
         celda.setBackgroundColor(BaseColor.WHITE);
         celda.setBorderColor(BaseColor.WHITE);
         tablapedido.addCell(celda);
 
-        celda = new PdfPCell(new Paragraph(String.valueOf(tiempo_entrega) + " DIA(S)", FontFactory.getFont("arial", 8, Font.NORMAL, BaseColor.BLACK)));
+
+        celda = new PdfPCell(new Paragraph(fecha_validez, FontFactory.getFont("arial", 8, Font.NORMAL, BaseColor.BLACK)));
         celda.setColspan(2);
         celda.setBackgroundColor(BaseColor.WHITE);
         celda.setBorderColor(BaseColor.WHITE);
@@ -985,6 +891,7 @@ public class GenerarOfertaPDFCGYPSII4 {
         celda.setColspan(1);
         celda.setBorderColor(BaseColor.WHITE);
         tablapedido.addCell(celda);
+
 
         celda = new PdfPCell(new Paragraph("DESCUENTO", FontFactory.getFont("arial", 8, Font.BOLD, BaseColor.BLACK)));
         celda.setColspan(2);
@@ -998,13 +905,13 @@ public class GenerarOfertaPDFCGYPSII4 {
 
         //FILA 4
 
-        celda = new PdfPCell(new Paragraph("FORMA DE PAGO", FontFactory.getFont("arial", 8, Font.BOLD, BaseColor.BLACK)));
+        celda = new PdfPCell(new Paragraph("TIEMPO DE ENTREGA", FontFactory.getFont("arial", 8, Font.BOLD, BaseColor.BLACK)));
         celda.setColspan(2);
         celda.setBackgroundColor(BaseColor.WHITE);
         celda.setBorderColor(BaseColor.WHITE);
         tablapedido.addCell(celda);
 
-        celda = new PdfPCell(new Paragraph(forma_pago, FontFactory.getFont("arial", 8, Font.NORMAL, BaseColor.BLACK)));
+        celda = new PdfPCell(new Paragraph(String.valueOf(tiempo_entrega) + " DIA(S)", FontFactory.getFont("arial", 8, Font.NORMAL, BaseColor.BLACK)));
         celda.setColspan(2);
         celda.setBackgroundColor(BaseColor.WHITE);
         celda.setBorderColor(BaseColor.WHITE);
@@ -1027,8 +934,20 @@ public class GenerarOfertaPDFCGYPSII4 {
 
         //FILA 5
 
+        celda = new PdfPCell(new Paragraph("FORMA DE PAGO", FontFactory.getFont("arial", 8, Font.BOLD, BaseColor.BLACK)));
+        celda.setColspan(2);
+        celda.setBackgroundColor(BaseColor.WHITE);
+        celda.setBorderColor(BaseColor.WHITE);
+        tablapedido.addCell(celda);
+
+        celda = new PdfPCell(new Paragraph(forma_pago, FontFactory.getFont("arial", 8, Font.NORMAL, BaseColor.BLACK)));
+        celda.setColspan(2);
+        celda.setBackgroundColor(BaseColor.WHITE);
+        celda.setBorderColor(BaseColor.WHITE);
+        tablapedido.addCell(celda);
+
         celda = new PdfPCell(new Paragraph(" "));
-        celda.setColspan(5);
+        celda.setColspan(1);
         celda.setBorderColor(BaseColor.WHITE);
         tablapedido.addCell(celda);
 
@@ -1090,11 +1009,14 @@ public class GenerarOfertaPDFCGYPSII4 {
 
         // FILA 11
         Font font = FontFactory.getFont("arial", 10, Font.BOLD, BaseColor.BLACK);
+        Font font_1 = FontFactory.getFont("arial", 9, Font.BOLD, BaseColor.BLACK);
 
         //Columna 1
         Paragraph p1 = new Paragraph("------------------------------------------------------", font);
         Paragraph p2 = new Paragraph(nombres_vendedor.toUpperCase(), font);
-        Paragraph p3 = new Paragraph("VENDEDOR", font);
+        Paragraph p3 = new Paragraph("ASESOR COMERCIAL", font);
+        Paragraph p3_1 = new Paragraph("e-mail: "+this.emailVendedor, font_1);
+        Paragraph p3_2 = new Paragraph("Teléf: " + this.telefonoVendedor, font_1);
 
         //Columna 2
         Paragraph p4 = new Paragraph("------------------------------------------------------", font);
@@ -1107,6 +1029,8 @@ public class GenerarOfertaPDFCGYPSII4 {
         celda1.addElement(p1);
         celda1.addElement(p2);
         celda1.addElement(p3);
+        celda1.addElement(p3_1);
+        celda1.addElement(p3_2);
         celda1.setColspan(4);
         tablapedido.addCell(celda1);
 
@@ -1127,23 +1051,27 @@ public class GenerarOfertaPDFCGYPSII4 {
     public void cargarTotales() {
         double subtotal12 = 0;
         double subtotal0 = 0;
+        double subtotal_real_12 = 0;
+        double subtotal_real_0 = 0;
         double impuestos = 0;
         double total = 0;
         double descuento_total = 0;
 
         for (int i = 0; i < filas; i++) {
-            if (iva[i] != 0) {
-                subtotal12 += totales[i];
+            if (iva[i] > 0) {
+                subtotal12 += totales_sin_descuento[i];
+                subtotal_real_12 += totales[i];
             } else {
-                subtotal0 += totales[i];
+                subtotal0 += totales_sin_descuento[i];
+                subtotal_real_0 += totales[i];
             }
             descuento_total += descuentos[i];
         }
         subtotal_12 = redondearNumero(subtotal12, "0.00");
         subtotal_0 = redondearNumero(subtotal0, "0.00");
-        subtotal = redondearNumero((subtotal0 + subtotal12), "0.00");
-        impuestos = (subtotal12 * PORC_IVA);
-        total = (subtotal0 + subtotal12 + impuestos);
+        subtotal = redondearNumero((subtotal_real_0 + subtotal_real_12), "0.00");
+        impuestos = (subtotal_real_12 * PORC_IVA);
+        total = (subtotal_real_0 + subtotal_real_12 + impuestos);
         descuento_trans = redondearNumero(descuento_total, "0.00");
         total_iva = redondearNumero(impuestos, "0.00");
         total_trans = redondearNumero(total, "0.00");
@@ -1171,7 +1099,7 @@ public class GenerarOfertaPDFCGYPSII4 {
                 if (aBoolean) {
                     Toast ts = Toast.makeText(context, R.string.write_pdf_success, Toast.LENGTH_SHORT);
                     ts.show();
-                    abrirPDF(transaccion.getIdentificador() + "_" + transaccion.getNumTransaccion() + ".pdf");
+                    abrirPDF(transaccion.getIdentificador() + "_" + numTransAprobada + ".pdf");
                 } else {
                     Toast ts = Toast.makeText(context, R.string.write_pdf_fail, Toast.LENGTH_SHORT);
                     ts.show();

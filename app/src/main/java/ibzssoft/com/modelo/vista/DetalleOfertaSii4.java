@@ -18,10 +18,13 @@ public class DetalleOfertaSii4 {
     private double precioTotal;
     private double precioRealTotal;
     private double iva;
-    private double descuentoAnterior;
+    private double descuentoAplicado;
     private double descuentoSolicitado;
+    private String telefonoV;
+    private String emailV;
+    private String formaPagoO;
 
-    public DetalleOfertaSii4(String codTrans, String numTrans, int idCliente, int orden, int idInventario, String codInventario, String descripcionItem, double cantidad, double costoTotal, double costoRealTotal, double precioTotal, double precioRealTotal, double iva, double descuentoAnterior, double descuentoSolicitado) {
+    public DetalleOfertaSii4(String codTrans, String numTrans, int idCliente, int orden, int idInventario, String codInventario, String descripcionItem, double cantidad, double costoTotal, double costoRealTotal, double precioTotal, double precioRealTotal, double iva, double descuentoAplicado, double descuentoSolicitado, String telefonoV, String emailV, String formaPagoO) {
         this.codTrans = codTrans;
         this.numTrans = numTrans;
         this.idCliente = idCliente;
@@ -35,8 +38,11 @@ public class DetalleOfertaSii4 {
         this.precioTotal = precioTotal;
         this.precioRealTotal = precioRealTotal;
         this.iva = iva;
-        this.descuentoAnterior = descuentoAnterior;
+        this.descuentoAplicado = descuentoAplicado;
         this.descuentoSolicitado = descuentoSolicitado;
+        this.telefonoV = telefonoV;
+        this.emailV = emailV;
+        this.formaPagoO = formaPagoO;
     }
 
     public String getCodTrans() {
@@ -143,12 +149,12 @@ public class DetalleOfertaSii4 {
         this.iva = iva;
     }
 
-    public double getDescuentoAnterior() {
-        return descuentoAnterior;
+    public double getDescuentoAplicado() {
+        return descuentoAplicado;
     }
 
-    public void setDescuentoAnterior(double descuentoAnterior) {
-        this.descuentoAnterior = descuentoAnterior;
+    public void setDescuentoAplicado(double descuentoAplicado) {
+        this.descuentoAplicado = descuentoAplicado;
     }
 
     public double getDescuentoSolicitado() {
@@ -157,6 +163,30 @@ public class DetalleOfertaSii4 {
 
     public void setDescuentoSolicitado(double descuentoSolicitado) {
         this.descuentoSolicitado = descuentoSolicitado;
+    }
+
+    public String getTelefonoV() {
+        return telefonoV;
+    }
+
+    public void setTelefonoV(String telefonoV) {
+        this.telefonoV = telefonoV;
+    }
+
+    public String getEmailV() {
+        return emailV;
+    }
+
+    public void setEmailV(String emailV) {
+        this.emailV = emailV;
+    }
+
+    public String getFormaPagoO() {
+        return formaPagoO;
+    }
+
+    public void setFormaPagoO(String formaPagoO) {
+        this.formaPagoO = formaPagoO;
     }
 
     @Override
