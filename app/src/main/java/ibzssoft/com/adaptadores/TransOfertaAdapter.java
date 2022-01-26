@@ -40,6 +40,7 @@ import ibzssoft.com.enviar.EnviarTransaccion;
 import ibzssoft.com.ishidamovile.AprobacionOferta;
 import ibzssoft.com.ishidamovile.GenerarOfertaPDF;
 import ibzssoft.com.ishidamovile.GenerarOfertaPDFCGYP;
+import ibzssoft.com.ishidamovile.GenerarOfertaPDFCGYPSII4;
 import ibzssoft.com.ishidamovile.MainActivity;
 import ibzssoft.com.ishidamovile.R;
 import ibzssoft.com.ishidamovile.oferta.modificar.ModificaOfertaG;
@@ -47,6 +48,7 @@ import ibzssoft.com.ishidamovile.oferta.modificar.ModificaOfertaJM;
 import ibzssoft.com.ishidamovile.oferta.screens.CodigosOferta;
 import ibzssoft.com.ishidamovile.oferta.visualizar.OfertaDetalleG;
 import ibzssoft.com.modelo.Transaccion;
+import ibzssoft.com.modelo.vista.DetalleOfertaSii4;
 import ibzssoft.com.paginas.TabOfertaAll;
 import ibzssoft.com.storage.DBSistemaGestion;
 
@@ -66,6 +68,13 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
     private boolean import_of;
     private String codemp;
     private String ip, port, url, ws, ws_test;
+    boolean estado = false;
+    String idTransSelect, referenciaTransSelect;
+    List<DetalleOfertaSii4> detalleTransaccion;
+
+    public Context getContext() {
+        return context;
+    }
 
     public TransOfertaAdapter(Context context, List<Transaccion> models, String codemp, int opcion, boolean import_of) {
         mInflater = LayoutInflater.from(context);
@@ -208,12 +217,22 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
             }
 
             //Para verificar el estado de las ofertas
-            switch(estadoTrans){
-                case 0: estadoTrans_text.setText("EST: DESAPROBADO");break;
-                case 1: estadoTrans_text.setText("EST: APROBADO");break;
-                case 2: estadoTrans_text.setText("EST: DESPACHADO");break;
-                case 3: estadoTrans_text.setText("EST: ANULADO");break;
-                case 4: estadoTrans_text.setText("EST: SEMIDESPACHADO");break;
+            switch (estadoTrans) {
+                case 0:
+                    estadoTrans_text.setText("EST: DESAPROBADO");
+                    break;
+                case 1:
+                    estadoTrans_text.setText("EST: APROBADO");
+                    break;
+                case 2:
+                    estadoTrans_text.setText("EST: DESPACHADO");
+                    break;
+                case 3:
+                    estadoTrans_text.setText("EST: ANULADO");
+                    break;
+                case 4:
+                    estadoTrans_text.setText("EST: SEMIDESPACHADO");
+                    break;
                 default:
                     estadoTrans_text.setText("EST: ");
             }
@@ -272,10 +291,15 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                         Toast.makeText(context, context.getString(R.string.title_transaction_send_already), Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.itemallPDF:
-                    if(estadoTrans != 0 && estadoTrans != 3){
-                        GenerarOfertaPDFCGYP generarPDF1 = new GenerarOfertaPDFCGYP(context, idtrans);
-                        generarPDF1.ejecutarProceso();
-                    }else{
+                    if (estadoTrans != 0 && estadoTrans != 3) {
+                        detalleTransaccion = new ArrayList<>();
+                        extraerConfigConexionServidor();
+                        idTransSelect = idtrans;
+                        referenciaTransSelect = referencia;
+                        TareaProbarConexion taskTestConection = new TareaProbarConexion();
+                        taskTestConection.execute();
+
+                    } else {
                         Toast.makeText(context, "No se puede generar el PDF, la transacción no se encuentra en un estado válido.", Toast.LENGTH_SHORT).show();
                     }
 
@@ -437,14 +461,14 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
             activity.finish();
         }
 
-        public void extraerConfigConexionServidor(){
+        public void extraerConfigConexionServidor() {
             ExtraerConfiguraciones e = new ExtraerConfiguraciones(context);
 
             ip = e.get(context.getString(R.string.key_conf_ip), context.getString(R.string.pref_ip_default));
             port = e.get(context.getString(R.string.key_conf_port), context.getString(R.string.pref_port_default));
             url = e.get(context.getString(R.string.key_conf_url), context.getString(R.string.pref_url_default));
-            ws = e.get(context.getString(R.string.key_ws_transacciones), context.getString(R.string.pref_ws_transacciones));
-            ws_test = e.get(context.getString(R.string.key_ws_get_detalle_trans_aprobada), context.getString(R.string.pref_ws_get_detalle_trans_aprobada));
+            ws_test = e.get(context.getString(R.string.key_ws_test), context.getString(R.string.pref_ws_test));
+            ws = e.get(context.getString(R.string.key_ws_get_detalle_trans_aprobada), context.getString(R.string.pref_ws_get_detalle_trans_aprobada));
 
         }
     }
@@ -502,7 +526,7 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
         }
     }
 
-    private class TareaProbarConexion extends AsyncTask<String, Float, Boolean> {
+    class TareaProbarConexion extends AsyncTask<String, Float, Boolean> {
         ProgressDialog progress;
 
         @Override
@@ -556,57 +580,54 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                 progress.dismiss();
             }
             if (estado) {
-                numTrans = numTrans.substring(0, numTrans.length() - 1);
-                TabOfertaAll.RecibirEstadoTransacciones recibirTransEstado = new TabOfertaAll.RecibirEstadoTransacciones(getActivity(), codTrans, numTrans);
-                recibirTransEstado.ejecutarTarea();
+                RecibirDetalleTransaccionesTask recibirDetalleTrans = new RecibirDetalleTransaccionesTask();
+                recibirDetalleTrans.execute();
 
             } else {
-                crearVista();
-                Toast.makeText(getActivity(), "Error de conexión, no se podrá actualizar el estado de las transacciones.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error de conexión, no fue posible descargar el detalle.", Toast.LENGTH_SHORT).show();
             }
 
         }
     }
 
-    private class RecibirEstadoTransaccionesTask extends AsyncTask<String, Integer, Boolean> {
+    class RecibirDetalleTransaccionesTask extends AsyncTask<String, Integer, Boolean> {
         ProgressDialog progress;
 
         @Override
         protected void onPreExecute() {
-            progress = new ProgressDialog(getActivity());
-            progress.setTitle("Actualización estado de las transacciones");
-            progress.setMessage("Actualizando el estado de las transacciones, por favor espere...");
+            progress = new ProgressDialog(context);
+            progress.setTitle("Descargando detalle transacción");
+            progress.setMessage("Descargando datos, por favor espere...");
             progress.show();
         }
 
         @Override
         protected Boolean doInBackground(String... params) {
             boolean result = false;
-            DBSistemaGestion helper = new DBSistemaGestion(context);
+
             HttpClient httpClient = new DefaultHttpClient();
             httpClient.getParams().setParameter("http.protocol.content-charset", HTTP.UTF_8);
-            HttpGet del = new HttpGet("http://" + ip + ":" + port + url + ws + "/" + codigoTrans + "/" + numTrans);
+            String codigoOferta = referenciaTransSelect.substring(0, referenciaTransSelect.indexOf("-"));
+            String numeroOferta = referenciaTransSelect.substring(referenciaTransSelect.indexOf("-") + 1);
+            HttpGet del = new HttpGet("http://" + ip + ":" + port + url + ws + "/" + codigoOferta + "/" + numeroOferta);
             del.setHeader("content-type", "application/json");
             try {
                 HttpResponse resp = httpClient.execute(del);
                 String respStr = EntityUtils.toString(resp.getEntity());
                 JSONArray respJSON = new JSONArray(respStr);
                 Gson gson = new Gson();
-                String numReferencia = null;
                 progress.setMax(respJSON.length());
                 int count = 0;
+                detalleTransaccion = new ArrayList<>(respJSON.length());
                 for (int i = 0; i < respJSON.length(); i++) {
                     JSONObject obj = respJSON.getJSONObject(i);
-                    numReferencia = obj.getString("CodTrans") + "-" + obj.getString("NumTrans");
-                    if (helper.buscarTransaccionPorReferencia(numReferencia)) {
-                        helper.actualizarEstadoTransaccion(numReferencia, Integer.parseInt(obj.getString("estado")));
-                    }
-
+                    DetalleOfertaSii4 detalle = gson.fromJson(obj.toString(), DetalleOfertaSii4.class);
+                    detalleTransaccion.add(detalle);
                     count++;
                     publishProgress(count);
 
                 }
-                helper.close();
+
                 Thread.sleep(50);
                 result = true;
             } catch (Exception ex) {
@@ -621,11 +642,13 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
             if (progress.isShowing()) {
                 progress.dismiss();
             }
-            crearVista();
+
             if (s) {
-                Toast.makeText(getActivity(), "Estado de las transacciones actualizado correctamente.", Toast.LENGTH_SHORT).show();
+                GenerarOfertaPDFCGYPSII4 generarPDF1 = new GenerarOfertaPDFCGYPSII4(getContext(), idTransSelect, detalleTransaccion);
+                generarPDF1.ejecutarProceso();
+                Toast.makeText(context, "Detalle descargado correctamente.", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getActivity(), "Error, no fue posible actualizar el estado de las transacciones.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error, no es posible generar el PDF. No fue posible descargar el detalle de la transacción.", Toast.LENGTH_SHORT).show();
             }
 
 

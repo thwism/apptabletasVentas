@@ -32,6 +32,7 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import ibzssoft.com.adaptadores.ExtraerConfiguraciones;
 import ibzssoft.com.modelo.Cliente;
@@ -40,6 +41,7 @@ import ibzssoft.com.modelo.IVInventario;
 import ibzssoft.com.modelo.IVKardex;
 import ibzssoft.com.modelo.Transaccion;
 import ibzssoft.com.modelo.Vendedor;
+import ibzssoft.com.modelo.vista.DetalleOfertaSii4;
 import ibzssoft.com.storage.DBSistemaGestion;
 
 
@@ -57,7 +59,7 @@ public class GenerarOfertaPDFCGYPSII4 {
     private int obs = 0;
     private int precio = 0;
     private int filas = 0;
-    private int[] iva;
+    private double[] iva;
     private double[] totales;
     private double[] descuentos;
     private static final int LIMITE = 50;
@@ -70,11 +72,12 @@ public class GenerarOfertaPDFCGYPSII4 {
     private int validez, tiempo_entrega;
     private String nombres_vendedor;
     private String fecha_trans, fecha_validez;
+    private List<DetalleOfertaSii4> detalleTransaccion;
 
-
-    public GenerarOfertaPDFCGYPSII4(Context context, String id_trans) {
+    public GenerarOfertaPDFCGYPSII4(Context context, String id_trans, List<DetalleOfertaSii4> detalleTransaccion) {
         this.context = context;
         this.id_trans = id_trans;
+        this.detalleTransaccion = detalleTransaccion;
         this.tipo_trans = "PROFORMA";
         this.nombreempresa = "";
         this.direccionempresa = "";
@@ -82,7 +85,7 @@ public class GenerarOfertaPDFCGYPSII4 {
         logoempresa = "";
         this.totales = new double[LIMITE];
         this.descuentos = new double[LIMITE];
-        this.iva = new int[LIMITE];
+        this.iva = new double[LIMITE];
 
         this.subtotal_12 = "";
         this.subtotal_0 = "";
@@ -94,7 +97,7 @@ public class GenerarOfertaPDFCGYPSII4 {
         this.PORC_IVA = Double.parseDouble(impuestos) / 100;
         this.transaccion = loadTransaccion();
         this.cliente = loadCliente();
-        this.cargarPrecio(this.cliente.getIdprovcli(), this.transaccion.getIdentificador().split("-")[0]);
+//        this.cargarPrecio(this.cliente.getIdprovcli(), this.transaccion.getIdentificador().split("-")[0]);
     }
 
     public void ejecutarProceso() {
@@ -808,124 +811,85 @@ public class GenerarOfertaPDFCGYPSII4 {
         celda.setBorderColorLeft(BaseColor.WHITE);
         celda.setBorderColorRight(BaseColor.WHITE);
         tablapedido.addCell(celda);
-
-        DBSistemaGestion helper = new DBSistemaGestion(context);
-        Cursor cursor = helper.consultarIVKardex(transaccion.getId_trans());
-        this.filas = cursor.getCount();
+        this.filas = detalleTransaccion.size();
         int pst = 0;
-        if (cursor.moveToFirst()) {
-            do {
-                boolean bandpro = false;
-                String idpadres = cursor.getString(cursor.getColumnIndex(IVKardex.FIELD_padre_id));
-                int numprecio = cursor.getInt(cursor.getColumnIndex(IVKardex.FIELD_num_precio));
+        for (DetalleOfertaSii4 detalle : detalleTransaccion) {
+            double preciounitario = Double.parseDouble(redondearNumero(detalle.getPrecioTotal() / detalle.getCantidad(), this.numdec_punitario));
+            double cnt = detalle.getCantidad();
+            double precio = preciounitario;
+            double porcentaje = detalle.getDescuentoSolicitado() / 100;
 
 
-                double preciounitario = 0.0;
-                if (idpadres != null) bandpro = true;
-                if (bandpro) {
-                    preciounitario = Double.parseDouble(redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVKardex.FIELD_pre_real_total)), this.numdec_punitario));
-                } else {
-                    switch (numprecio) {
-                        case 1:
-                            preciounitario = Double.parseDouble(redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio1)), this.numdec_punitario));
-                            break;
-                        case 2:
-                            preciounitario = Double.parseDouble(redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio2)), this.numdec_punitario));
-                            break;
-                        case 3:
-                            preciounitario = Double.parseDouble(redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio3)), this.numdec_punitario));
-                            break;
-                        case 4:
-                            preciounitario = Double.parseDouble(redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio4)), this.numdec_punitario));
-                            break;
-                        case 5:
-                            preciounitario = Double.parseDouble(redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio5)), this.numdec_punitario));
-                            break;
-                        case 6:
-                            preciounitario = Double.parseDouble(redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio6)), this.numdec_punitario));
-                            break;
-                        case 7:
-                            preciounitario = Double.parseDouble(redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVInventario.FIELD_precio7)), this.numdec_punitario));
-                            break;
-                    }
-                }
+            celda = new PdfPCell(new Paragraph(detalle.getCodInventario(), FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
+            celda.setPaddingLeft(10);
+            celda.setBorderColorLeft(BaseColor.WHITE);
+            celda.setBorderColorRight(BaseColor.WHITE);
+            celda.setBorderColorBottom(BaseColor.WHITE);
+            celda.setBorderColorTop(BaseColor.WHITE);
+            tablapedido.addCell(celda);
+
+            celda = new PdfPCell(new Paragraph(detalle.getDescripcionItem(), FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
+            celda.setColspan(3);
+            celda.setPaddingLeft(10);
+            celda.setBorderColorLeft(BaseColor.WHITE);
+            celda.setBorderColorRight(BaseColor.WHITE);
+            celda.setBorderColorBottom(BaseColor.WHITE);
+            celda.setBorderColorTop(BaseColor.WHITE);
+            tablapedido.addCell(celda);
+
+            celda = new PdfPCell(new Paragraph(String.valueOf(cnt), FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
+            celda.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            celda.setPaddingLeft(10);
+            celda.setBorderColorLeft(BaseColor.WHITE);
+            celda.setBorderColorRight(BaseColor.WHITE);
+            celda.setBorderColorBottom(BaseColor.WHITE);
+            celda.setBorderColorTop(BaseColor.WHITE);
+            tablapedido.addCell(celda);
 
 
-                celda = new PdfPCell(new Paragraph(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_cod_item)), FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
-                celda.setPaddingLeft(10);
-                celda.setBorderColorLeft(BaseColor.WHITE);
-                celda.setBorderColorRight(BaseColor.WHITE);
-                celda.setBorderColorBottom(BaseColor.WHITE);
-                celda.setBorderColorTop(BaseColor.WHITE);
-                tablapedido.addCell(celda);
+            //precio unitario
 
-                celda = new PdfPCell(new Paragraph(cursor.getString(cursor.getColumnIndex(IVInventario.FIELD_descripcion)), FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
-                celda.setColspan(3);
-                celda.setPaddingLeft(10);
-                celda.setBorderColorLeft(BaseColor.WHITE);
-                celda.setBorderColorRight(BaseColor.WHITE);
-                celda.setBorderColorBottom(BaseColor.WHITE);
-                celda.setBorderColorTop(BaseColor.WHITE);
-                tablapedido.addCell(celda);
+            celda = new PdfPCell(new Paragraph(redondearNumero(preciounitario, this.numdec_punitario), FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
+            celda.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            celda.setPaddingLeft(10);
+            celda.setBorderColorLeft(BaseColor.WHITE);
+            celda.setBorderColorRight(BaseColor.WHITE);
+            celda.setBorderColorBottom(BaseColor.WHITE);
+            celda.setBorderColorTop(BaseColor.WHITE);
+            tablapedido.addCell(celda);
 
-                celda = new PdfPCell(new Paragraph(cursor.getString(cursor.getColumnIndex(IVKardex.FIELD_cantidad)), FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
-                celda.setHorizontalAlignment(Element.ALIGN_RIGHT);
-                celda.setPaddingLeft(10);
-                celda.setBorderColorLeft(BaseColor.WHITE);
-                celda.setBorderColorRight(BaseColor.WHITE);
-                celda.setBorderColorBottom(BaseColor.WHITE);
-                celda.setBorderColorTop(BaseColor.WHITE);
-                tablapedido.addCell(celda);
+            //descuento solicitado
+            celda = new PdfPCell(new Paragraph(redondearNumero(detalle.getDescuentoSolicitado(), "0.00"), FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
+            celda.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            celda.setPaddingLeft(10);
+            celda.setBorderColorLeft(BaseColor.WHITE);
+            celda.setBorderColorRight(BaseColor.WHITE);
+            celda.setBorderColorBottom(BaseColor.WHITE);
+            celda.setBorderColorTop(BaseColor.WHITE);
+            tablapedido.addCell(celda);
 
+            double precio_total = cnt * precio;
+            double desc = precio_total * porcentaje;
+            double precioreal = (precio_total - desc) / cnt;
+            double subtotal = cnt * precioreal;
 
-                //precio unitario
+            //porcentajes
+            this.descuentos[pst] = desc;
+            //totales
+            this.totales[pst] = subtotal;
+            celda = new PdfPCell(new Paragraph(redondearNumero(subtotal, this.numdec_ptotal), FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
+            celda.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            celda.setPaddingLeft(10);
+            celda.setBorderColorLeft(BaseColor.WHITE);
+            celda.setBorderColorRight(BaseColor.WHITE);
+            celda.setBorderColorBottom(BaseColor.WHITE);
+            celda.setBorderColorTop(BaseColor.WHITE);
+            tablapedido.addCell(celda);
+            //cargar iva
+            this.iva[pst] = detalle.getIva();
 
-                celda = new PdfPCell(new Paragraph(redondearNumero(preciounitario, this.numdec_punitario), FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
-                celda.setHorizontalAlignment(Element.ALIGN_RIGHT);
-                celda.setPaddingLeft(10);
-                celda.setBorderColorLeft(BaseColor.WHITE);
-                celda.setBorderColorRight(BaseColor.WHITE);
-                celda.setBorderColorBottom(BaseColor.WHITE);
-                celda.setBorderColorTop(BaseColor.WHITE);
-                tablapedido.addCell(celda);
+            pst++;
 
-                //descuento solicitado
-                celda = new PdfPCell(new Paragraph(redondearNumero(cursor.getDouble(cursor.getColumnIndex(IVKardex.FIELD_desc_sol)), "0.00"), FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
-                celda.setHorizontalAlignment(Element.ALIGN_RIGHT);
-                celda.setPaddingLeft(10);
-                celda.setBorderColorLeft(BaseColor.WHITE);
-                celda.setBorderColorRight(BaseColor.WHITE);
-                celda.setBorderColorBottom(BaseColor.WHITE);
-                celda.setBorderColorTop(BaseColor.WHITE);
-                tablapedido.addCell(celda);
-
-                double cnt = cursor.getInt(cursor.getColumnIndex(IVKardex.FIELD_cantidad));
-                double precio = preciounitario;
-                double porcentaje = cursor.getDouble(cursor.getColumnIndex(IVKardex.FIELD_desc_sol)) / 100;
-
-                double precio_total = cnt * precio;
-                double desc = precio_total * porcentaje;
-                double precioreal = (precio_total - desc) / cnt;
-                double subtotal = cnt * precioreal;
-
-                System.out.println("Subtotal: " + subtotal);
-                //porcentajes
-                this.descuentos[pst] = desc;
-                //totales
-                this.totales[pst] = subtotal;
-                celda = new PdfPCell(new Paragraph(redondearNumero(subtotal, this.numdec_ptotal), FontFactory.getFont("arial", 9, Font.NORMAL, BaseColor.BLACK)));
-                celda.setHorizontalAlignment(Element.ALIGN_RIGHT);
-                celda.setPaddingLeft(10);
-                celda.setBorderColorLeft(BaseColor.WHITE);
-                celda.setBorderColorRight(BaseColor.WHITE);
-                celda.setBorderColorBottom(BaseColor.WHITE);
-                celda.setBorderColorTop(BaseColor.WHITE);
-                tablapedido.addCell(celda);
-                //cargar iva
-                this.iva[pst] = cursor.getInt(cursor.getColumnIndex(IVInventario.FIELD_band_iva));
-
-                pst++;
-            } while (cursor.moveToNext());
         }
 
 //        celda = new PdfPCell(new Paragraph(" "));
