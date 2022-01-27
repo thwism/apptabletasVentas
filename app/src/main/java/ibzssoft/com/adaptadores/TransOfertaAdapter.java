@@ -69,7 +69,7 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
     private String codemp;
     private String ip, port, url, ws, ws_test;
     boolean estado = false;
-    String idTransSelect, referenciaTransSelect;
+    String idTransSelect, codigoTransAprobada, numeroTransAprobada;
     List<DetalleOfertaSii4> detalleTransaccion;
 
     public Context getContext() {
@@ -83,6 +83,8 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
         this.opcion = opcion;
         this.context = context;
         this.import_of = import_of;
+        codigoTransAprobada = "";
+        numeroTransAprobada = "";
     }
 
 
@@ -236,7 +238,11 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                 default:
                     estadoTrans_text.setText("EST: ");
             }
-
+            //Para guardar información general de las transacciones aprobadas
+            if (referencia.contains("-")) {
+                codigoTransAprobada = referencia.substring(0, referencia.indexOf("-"));
+                numeroTransAprobada = referencia.substring(referencia.indexOf("-") + 1);
+            }
 
         }
 
@@ -295,7 +301,6 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                         detalleTransaccion = new ArrayList<>();
                         extraerConfigConexionServidor();
                         idTransSelect = idtrans;
-                        referenciaTransSelect = referencia;
                         TareaProbarConexion taskTestConection = new TareaProbarConexion();
                         taskTestConection.execute();
 
@@ -305,7 +310,9 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
 
                     break;
                 case R.id.itemallEnviarPDF:
-                    String file = "sdcard/" + context.getString(R.string.title_folder_root) + "/" + identificador + "_" + nro + ".pdf";
+                    String numeroOferta = numeroTransAprobada.isEmpty() ? String.valueOf(nro) : numeroTransAprobada;
+
+                    String file = "sdcard/" + context.getString(R.string.title_folder_root) + "/" + identificador + "_" + numeroOferta + ".pdf";
                     File adjunto = new File(file);
                     if (adjunto.exists()) {
                         String[] to = {""};
@@ -313,8 +320,8 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                         itSend.setType("plain/text");
                         itSend.putExtra(Intent.EXTRA_EMAIL, new String[]{});
                         itSend.putExtra(Intent.EXTRA_EMAIL, to);
-                        itSend.putExtra(Intent.EXTRA_SUBJECT, "OFERTA" + " Nro. " + nro);
-                        itSend.putExtra(Intent.EXTRA_TEXT, "Transacción  - " + "OFERTA" + " (" + nro + ")");
+                        itSend.putExtra(Intent.EXTRA_SUBJECT, "OFERTA" + " Nro. " + numeroOferta);
+                        itSend.putExtra(Intent.EXTRA_TEXT, "Transacción  - " + "OFERTA" + " (" + numeroOferta + ")");
                         itSend.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(file)));
                         context.startActivity(itSend);
                     } else {
@@ -390,7 +397,11 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
                                 else intent2 = new Intent(activity, ModificaOfertaG.class);
                                 break;
                             default:
-                                intent2 = new Intent(activity, ModificaOfertaG.class);
+                                if (import_of) {
+                                    intent2 = new Intent(activity, AprobacionOferta.class);
+                                } else {
+                                    intent2 = new Intent(activity, ModificaOfertaG.class);
+                                }
                                 break;
                         }
                         intent2.putExtra("transid", idtrans);
@@ -607,9 +618,8 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
 
             HttpClient httpClient = new DefaultHttpClient();
             httpClient.getParams().setParameter("http.protocol.content-charset", HTTP.UTF_8);
-            String codigoOferta = referenciaTransSelect.substring(0, referenciaTransSelect.indexOf("-"));
-            String numeroOferta = referenciaTransSelect.substring(referenciaTransSelect.indexOf("-") + 1);
-            HttpGet del = new HttpGet("http://" + ip + ":" + port + url + ws + "/" + codigoOferta + "/" + numeroOferta);
+
+            HttpGet del = new HttpGet("http://" + ip + ":" + port + url + ws + "/" + codigoTransAprobada + "/" + numeroTransAprobada);
             del.setHeader("content-type", "application/json");
             try {
                 HttpResponse resp = httpClient.execute(del);

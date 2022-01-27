@@ -260,7 +260,7 @@ public class TabPedidoAll extends Fragment implements SearchView.OnQueryTextList
                 break;
             case R.id.action_enviar:
                 android.support.v7.app.AlertDialog.Builder quitDialog = new android.support.v7.app.AlertDialog.Builder(getActivity());
-                quitDialog.setTitle("Seguro deseas enviar todos los pedidos no enviados?");
+                quitDialog.setTitle("Seguro desea enviar todos los pedidos no enviados?");
                 quitDialog.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
 
                     @Override
@@ -283,7 +283,7 @@ public class TabPedidoAll extends Fragment implements SearchView.OnQueryTextList
                 break;
             case R.id.action_eliminar:
                 android.support.v7.app.AlertDialog.Builder quitDialog2 = new android.support.v7.app.AlertDialog.Builder(getActivity());
-                quitDialog2.setTitle("Seguro deseas eliminar todos los pedidos?");
+                quitDialog2.setTitle("Seguro desea eliminar todos los pedidos?");
                 quitDialog2.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
 
                     @Override

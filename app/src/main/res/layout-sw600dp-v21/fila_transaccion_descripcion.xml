@@ -203,7 +203,7 @@
         android:textColor="@color/successfull"
         android:layout_marginRight="240dip"
         android:textSize="14dp"
-        android:text="EST: "
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceSmall"/>
     <TextView
         android:id="@+id/filaTransaccionReferencia"

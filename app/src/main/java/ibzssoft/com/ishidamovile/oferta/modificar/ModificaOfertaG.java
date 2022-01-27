@@ -597,7 +597,7 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                 this.cantidad[this.count].setGravity(Gravity.CENTER);
                 this.cantidad[this.count].setHint("0");
                 this.cantidad[this.count].setInputType(InputType.TYPE_CLASS_NUMBER);
-                this.cantidad[this.count].setEnabled(false);
+                this.cantidad[this.count].setEnabled(true);
                 this.cantidad[this.count].setText(cursor.getString(cursor.getColumnIndex(IVKardex.FIELD_cantidad)));
                 this.cantidad[this.count].setTextSize(14);
                 this.cantidad[this.count].setPadding(5, 5, 5, 5);
@@ -635,7 +635,7 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                 this.solicitado[this.count].setBackgroundResource(R.drawable.text_field);
                 this.solicitado[count].setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                 this.solicitado[this.count].setGravity(Gravity.CENTER);
-                this.solicitado[this.count].setEnabled(false);
+                this.solicitado[this.count].setEnabled(true);
                 this.solicitado[this.count].setText(cursor.getString(cursor.getColumnIndex(IVKardex.FIELD_desc_sol)));
                 this.solicitado[this.count].setTextSize(14);
                 this.solicitado[this.count].setPadding(5, 5, 5, 5);
@@ -671,28 +671,25 @@ public class ModificaOfertaG extends AppCompatActivity implements View.OnClickLi
                             } else if (verificarExistenciaDescuento(cli_id, iditems[position])) {
                                 double desc = calcularDescuentoItem(cli_id, iditems[position], position);
                                 descuento[position].setText(redondearNumero(desc));
-                                cantidad[position].setEnabled(true);
                                 descripcion[position].setEnabled(false);
                                 solicitado[position].requestFocus();
                                 solicitado[position].setSelection(solicitado[position].getText().length());
-                                solicitado[position].setEnabled(true);
+
                                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                                 imm.showSoftInput(solicitado[position], InputMethodManager.SHOW_IMPLICIT);
                             } else if (verificarExistenciaPromocion(iditems[position], cant)) {
                                 calcularPromociones(iditems[position], cant, keypadres[position], position);
-                                cantidad[position].setEnabled(true);
                                 descripcion[position].setEnabled(false);
                                 solicitado[position].requestFocus();
                                 solicitado[position].setSelection(solicitado[position].getText().length());
-                                solicitado[position].setEnabled(true);
+
                                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                                 imm.showSoftInput(solicitado[position], InputMethodManager.SHOW_IMPLICIT);
                             } else {
-                                cantidad[position].setEnabled(true);
                                 descripcion[position].setEnabled(false);
                                 solicitado[position].requestFocus();
                                 solicitado[position].setSelection(solicitado[position].getText().length());
-                                solicitado[position].setEnabled(true);
+
                                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                                 imm.showSoftInput(solicitado[position], InputMethodManager.SHOW_IMPLICIT);
                             }
