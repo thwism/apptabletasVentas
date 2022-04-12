@@ -219,24 +219,29 @@ public class TransOfertaAdapter extends RecyclerView.Adapter<TransOfertaAdapter.
             }
 
             //Para verificar el estado de las ofertas
-            switch (estadoTrans) {
-                case 0:
-                    estadoTrans_text.setText("EST: DESAPROBADO");
-                    break;
-                case 1:
-                    estadoTrans_text.setText("EST: APROBADO");
-                    break;
-                case 2:
-                    estadoTrans_text.setText("EST: DESPACHADO");
-                    break;
-                case 3:
-                    estadoTrans_text.setText("EST: ANULADO");
-                    break;
-                case 4:
-                    estadoTrans_text.setText("EST: SEMIDESPACHADO");
-                    break;
-                default:
-                    estadoTrans_text.setText("EST: ");
+            if (import_of) {
+                estadoTrans_text.setText("");
+                fecha_envio.setText("");
+            } else {
+                switch (estadoTrans) {
+                    case 0:
+                        estadoTrans_text.setText("EST: DESAPROBADO");
+                        break;
+                    case 1:
+                        estadoTrans_text.setText("EST: APROBADO");
+                        break;
+                    case 2:
+                        estadoTrans_text.setText("EST: DESPACHADO");
+                        break;
+                    case 3:
+                        estadoTrans_text.setText("EST: ANULADO");
+                        break;
+                    case 4:
+                        estadoTrans_text.setText("EST: SEMIDESPACHADO");
+                        break;
+                    default:
+                        estadoTrans_text.setText("EST: ");
+                }
             }
             //Para guardar información general de las transacciones aprobadas
             if (referencia.contains("-")) {
