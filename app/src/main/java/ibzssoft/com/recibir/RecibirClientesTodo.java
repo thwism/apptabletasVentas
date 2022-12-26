@@ -90,6 +90,7 @@ public class RecibirClientesTodo {
             //Se agrega un campo adicional que es la clave para desencriptar informacion 22/04/2020
             HttpGet del = new HttpGet("http://"+ip+":"+port+url+ws+"/"+fecha1+"/"+CONST.CLAVE_DESENCRIPTAR);
             del.setHeader("content-type", "application/json");
+            //IMPORTANTE=> En el controlador del web service, ClientesTodo, se agregó: ini_set('memory_limit', '1024M');
             Collection<Cliente> listaClientes = new ArrayList<>();
             try
             {
