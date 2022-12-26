@@ -1266,7 +1266,7 @@ public class AprobacionOferta extends AppCompatActivity implements View.OnClickL
     */
     public boolean guardarTrans() {
         android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Esta seguro de guardar la transaccion?");
+        alertDialogBuilder.setMessage("Esta seguro de guardar la transacción?");
         alertDialogBuilder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {

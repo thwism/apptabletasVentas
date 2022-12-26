@@ -5,9 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import ibzssoft.com.adaptadores.ParseDates;
@@ -3131,4 +3133,29 @@ public class DBSistemaGestion extends SQLiteOpenHelper {
         mCursor.close();
         return false;
     }
+
+    /**
+     * Guarda los clientes por lotes, para optimizar el proceso de guardado
+     *
+     * @param listaClientes
+     */
+    public void crearClienteAll(Collection<Cliente> listaClientes) {
+        db = this.getWritableDatabase();
+        db.beginTransaction();
+        try {
+            for (Cliente cli : listaClientes) {
+                if (existeCliente(cli.getIdprovcli())) {
+                    modificarCliente(cli);
+                } else {
+                    db.insert(cli.TABLE_NAME, null, generarValoresCliente(cli, false));
+                }
+            }
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            Log.e("Error, ", e.getMessage());
+        } finally {
+            db.endTransaction();
+        }
+    }
+
 }

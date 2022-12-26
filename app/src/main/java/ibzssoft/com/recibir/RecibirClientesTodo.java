@@ -11,10 +11,16 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 import ibzssoft.com.adaptadores.ExtraerConfiguraciones;
 import ibzssoft.com.ishidamovile.CONST;
@@ -75,15 +81,16 @@ public class RecibirClientesTodo {
         @Override
         protected Boolean doInBackground(String... params) {
             DBSistemaGestion helper = new DBSistemaGestion(context);
-            Boolean result=false;
+            Boolean result;
             String fecha1 =ultMod.replace(" ", "%20");
 
             HttpClient httpClient = new DefaultHttpClient();
             httpClient.getParams().setParameter("http.protocol.content-charset", HTTP.UTF_8);
-            System.out.println("solicitando clientes todo: "+"http://"+ip+":"+port+url+ws+"/"+fecha1);
+            System.out.println("solicitando clientes todos: "+"http://"+ip+":"+port+url+ws+"/"+fecha1+"/"+CONST.CLAVE_DESENCRIPTAR);
             //Se agrega un campo adicional que es la clave para desencriptar informacion 22/04/2020
             HttpGet del = new HttpGet("http://"+ip+":"+port+url+ws+"/"+fecha1+"/"+CONST.CLAVE_DESENCRIPTAR);
             del.setHeader("content-type", "application/json");
+            Collection<Cliente> listaClientes = new ArrayList<>();
             try
             {
                 HttpResponse resp = httpClient.execute(del);
@@ -92,17 +99,16 @@ public class RecibirClientesTodo {
                 Gson gson= new Gson();
                 progress.setMax(respJSON.length());
                 int count=0;
-                for(int j=0; j<respJSON.length(); j++)
-                {
+                for(int j=0; j<respJSON.length(); j++){
                     JSONObject obj = respJSON.getJSONObject(j);
                     Cliente cli=gson.fromJson(obj.toString(), Cliente.class);
-                    if(helper.existeCliente(cli.getIdprovcli())){
-                        helper.modificarCliente(cli);
-                    }else helper.crearCliente(cli);
+                    listaClientes.add(cli);
                     count++;
                     publishProgress(count);
-                    //System.out.println("Cliente todo recibido: "+cli.toString());
                 }
+                System.out.println("total clientes a procesar: "+ count);
+                helper.crearClienteAll(listaClientes);
+
                 result=true;
             }
             catch(Exception ex)
